@@ -3,180 +3,129 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Autocomplete Lab</title>
+<title>Neurit Lab</title>
 <style>
-  :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  * { box-sizing: border-box; }
-  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #f4f7ff; color: #17213a; }
-  main { width: min(720px, 100%); }
-  .eyebrow { color: #5572b9; font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
-  h1 { margin: 8px 0; font-size: clamp(30px, 6vw, 46px); letter-spacing: -.045em; }
-  .sub { margin: 0 0 28px; color: #65718a; line-height: 1.6; }
-  .panel { background: white; border: 1px solid #e1e8f7; border-radius: 20px; padding: 22px; box-shadow: 0 18px 55px #263e7412; }
-  label { display: block; margin-bottom: 10px; font-size: 13px; font-weight: 750; }
-  textarea { width: 100%; min-height: 150px; resize: vertical; border: 1px solid #dce4f3; border-radius: 13px; padding: 16px; outline: none; font-family: inherit; font-size: 16px; line-height: 1.6; color: #17213a; background: #fbfcff; }
-  textarea:focus { border-color: #6688e8; box-shadow: 0 0 0 4px #6688e81a; }
-  .hint { display: flex; justify-content: space-between; gap: 12px; margin: 10px 2px 20px; color: #8791a6; font-size: 12px; }
-  .suggestion-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-  .suggestion-head strong { font-size: 13px; }
-  #status { color: #8791a6; font-size: 12px; }
-  #suggestions { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; }
-  .suggestion { border: 1px solid #dce5fa; background: #f3f6ff; color: #3154a4; border-radius: 999px; padding: 9px 13px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: .15s ease; }
-  .suggestion:hover, .suggestion:focus-visible { background: #e5edff; border-color: #9db5f3; outline: none; transform: translateY(-1px); }
-  .empty { color: #8a94a8; font-size: 13px; padding: 9px 0; }
-  .footer { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #8791a6; font-size: 12px; }
-  button.clear { border: 0; background: transparent; color: #5572b9; font: inherit; font-weight: 700; cursor: pointer; padding: 5px; }
-  @media (max-width: 520px) { body { padding: 14px; } .panel { padding: 16px; } .hint { flex-direction: column; gap: 3px; } }
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17213a;background:#f4f7ff}
+*{box-sizing:border-box}body{margin:0;padding:28px 16px;min-height:100vh}.wrap{width:min(900px,100%);margin:auto}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#5572b9}
+h1{font-size:clamp(32px,6vw,46px);letter-spacing:-.045em;margin:7px 0}.sub{color:#65718a;line-height:1.55;margin:0 0 24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:white;border:1px solid #e1e8f7;border-radius:18px;padding:20px;box-shadow:0 14px 45px #263e740d}
+h2{font-size:16px;margin:0 0 13px}label{display:block;font-size:12px;font-weight:750;margin:13px 0 7px;color:#53617b}
+textarea,input{width:100%;border:1px solid #dce4f3;border-radius:11px;padding:12px;font:inherit;color:#17213a;background:#fbfcff;outline:none}
+textarea:focus,input:focus{border-color:#6688e8;box-shadow:0 0 0 3px #6688e81a}textarea{min-height:78px;resize:vertical}
+button{border:0;border-radius:10px;background:#315ac2;color:white;padding:10px 14px;font:inherit;font-size:13px;font-weight:750;cursor:pointer;margin-top:10px}button:hover{background:#24499f}
+.secondary{background:#edf2ff;color:#3154a4}.secondary:hover{background:#e1eaff}
+.muted{font-size:12px;color:#8791a6;line-height:1.5}.answer{margin-top:12px;padding:14px;background:#f3f6ff;border:1px solid #e0e8ff;border-radius:12px;line-height:1.55;min-height:52px}
+.list{display:grid;gap:8px;margin-top:12px}.fact{padding:10px 12px;border:1px solid #e7ecf6;border-radius:10px;font-size:13px;display:flex;justify-content:space-between;gap:10px;align-items:center}.fact small{color:#8791a6;white-space:nowrap}
+.full{grid-column:1/-1}.pill{font-size:11px;color:#5572b9;background:#edf2ff;border-radius:999px;padding:4px 8px}
+#editor{min-height:100px}.suggestions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.suggestion{margin:0;background:#f0f4ff;color:#3154a4;border:1px solid #dce5fa;border-radius:999px;padding:7px 11px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
 </style>
 </head>
-<body>
-<main>
-  <div class="eyebrow">A tiny language experiment</div>
-  <h1>Autocomplete Lab</h1>
-  <p class="sub">Start typing. The suggestion engine looks at the words before your cursor and predicts what might come next.</p>
-  <section class="panel">
-    <label for="editor">Your text</label>
-    <textarea id="editor" placeholder="The curious cat..." spellcheck="false"></textarea>
-    <div class="hint"><span>Press Tab or click a suggestion to insert it.</span><span>Runs locally · No account · No API</span></div>
-    <div class="suggestion-head"><strong>Suggestions</strong><span id="status">Waiting for text</span></div>
-    <div id="suggestions" aria-live="polite"><span class="empty">Your suggestions will appear here.</span></div>
-    <div class="footer"><span>A small n-gram model trained on example sentences</span><button class="clear" id="clear" type="button">Clear text</button></div>
-  </section>
+<body><main class="wrap">
+<div class="eyebrow">A tiny language experiment</div><h1>Neurit Lab</h1>
+<p class="sub">Autocomplete predicts words. Neurits store facts. The reasoning engine connects those facts to answer questions it wasn't directly trained on.</p>
+<div class="grid">
+<section class="panel">
+<h2>Ask the system</h2>
+<label for="question">Question</label>
+<input id="question" value="The capital of the U.S. is" placeholder="Ask something...">
+<button id="ask">Find an answer</button>
+<div class="answer" id="answer" aria-live="polite">Ask a question to search the knowledge base.</div>
+<p class="muted" id="trace"></p>
+</section>
+<section class="panel">
+<h2>Add a Neurit</h2>
+<label for="factInput">Write a fact in plain English</label>
+<textarea id="factInput" placeholder="Example: Washington D.C. is the capital of the U.S."></textarea>
+<button id="add">+ Add Neurit</button>
+<p class="muted">Try: “Japan is a country” or “Tokyo is the capital of Japan”. Each accepted fact becomes a numbered Neurit.</p>
+</section>
+<section class="panel full">
+<h2>Knowledge bank <span class="pill" id="count">0 Neurits</span></h2>
+<div class="list" id="facts"></div>
+</section>
+<section class="panel full">
+<h2>Autocomplete (original feature)</h2>
+<textarea id="editor" placeholder="The curious cat..."></textarea>
+<div class="suggestions" id="suggestions"></div>
+<p class="muted">Suggestions still come from the tiny example corpus. Neurits are a separate knowledge-and-reasoning layer.</p>
+</section>
+</div>
 </main>
 <script>
-const trainingText = [
-  "the curious cat explored the quiet garden",
-  "the curious cat watched the birds",
-  "the curious cat sat beside the window",
-  "the quick brown fox jumped over the fence",
-  "the sun shines brightly in the morning",
-  "the moon appears in the night sky",
-  "the sky is blue on a clear day",
-  "a small bird flew across the garden",
-  "a friendly dog played in the park",
-  "a computer can process information quickly",
-  "artificial intelligence learns patterns from examples",
-  "a language model predicts the next word",
-  "the model uses context to make predictions",
-  "good questions lead to interesting answers",
-  "learning takes time and practice",
-  "science helps us understand the world",
-  "space contains stars planets and galaxies",
-  "water freezes when the temperature gets low",
-  "plants need sunlight water and nutrients",
-  "music can make people feel happy",
-  "programming is the process of giving instructions",
-  "javascript runs in a web browser",
-  "the best way to learn is to build something",
-  "this is a simple autocomplete experiment",
-  "we can improve the system with more examples",
-  "knowledge is made of facts and relationships",
-  "reasoning combines information to reach conclusions",
-  "the capital of france is paris",
-  "paris is a city in france",
-  "the earth travels around the sun"
-];
+const neurits = [];
+const addNeurit = (subject, relation, object, source) => {
+  const duplicate = neurits.some(n => n.subject===subject && n.relation===relation && n.object===object);
+  if (!duplicate) neurits.push({id:neurits.length+1,subject,relation,object,source});
+};
+// The original training sentence supplies this fact to the knowledge layer.
+addNeurit("Paris","capital_of","France","Extracted from training sentence");
+// This fact is additional explicit knowledge, not learned from the autocomplete corpus.
+addNeurit("Washington D.C.","capital_of","the U.S.","Seed Neurit");
+addNeurit("France","type","country","Seed Neurit");
+addNeurit("the U.S.","type","country","Seed Neurit");
 
-const counts = new Map();
-const vocab = new Set();
-function add(map, key, word) {
-  if (!map.has(key)) map.set(key, new Map());
-  const next = map.get(key);
-  next.set(word, (next.get(word) || 0) + 1);
+function clean(s){return s.trim().replace(/[.!?]+$/,"").replace(/\s+/g," ")}
+function parseFact(raw){
+  const s=clean(raw);
+  let m=s.match(/^(.+?)\s+is\s+the\s+capital\s+of\s+(.+)$/i);
+  if(m)return {subject:clean(m[1]),relation:"capital_of",object:clean(m[2])};
+  m=s.match(/^(.+?)\s+is\s+a\s+capital$/i);
+  if(m)return {subject:clean(m[1]),relation:"type",object:"capital"};
+  m=s.match(/^(.+?)\s+is\s+a\s+country$/i);
+  if(m)return {subject:clean(m[1]),relation:"type",object:"country"};
+  m=s.match(/^(.+?)\s+and\s+(.+?)\s+are\s+countries$/i);
+  if(m){addNeurit(clean(m[1]),"type","country","User-added Neurit");return {subject:clean(m[2]),relation:"type",object:"country"};}
+  return null;
 }
-for (const sentence of trainingText) {
-  const words = sentence.toLowerCase().match(/[a-z']+/g) || [];
-  for (let i = 0; i < words.length; i++) {
-    vocab.add(words[i]);
-    add(counts, words.slice(Math.max(0, i - 2), i).join(" "), words[i]);
-    if (i > 0) add(counts, words[i - 1], words[i]);
-    add(counts, "", words[i]);
+function renderFacts(){
+  const root=document.querySelector("#facts");root.replaceChildren();
+  document.querySelector("#count").textContent=neurits.length+" Neurits";
+  for(const n of neurits){
+    const row=document.createElement("div");row.className="fact";
+    const span=document.createElement("span");
+    span.textContent=n.relation==="capital_of"?n.subject+" is the capital of "+n.object:n.subject+" is a "+n.object;
+    const small=document.createElement("small");small.textContent="#"+n.id+" · "+n.source;
+    row.append(span,small);root.append(row);
   }
 }
-const editor = document.querySelector("#editor");
-const suggestions = document.querySelector("#suggestions");
-const status = document.querySelector("#status");
-let current = [];
+function answerQuestion(){
+  const q=document.querySelector("#question").value.trim();
+  const m=q.match(/capital\s+of\s+(.+?)(?:\s+is)?[?.!]*$/i);
+  if(!m){document.querySelector("#answer").textContent="I don't have a matching question pattern yet.";document.querySelector("#trace").textContent="";return;}
+  const country=clean(m[1]).replace(/^the\s+/i,"the ");
+  const found=neurits.find(n=>n.relation==="capital_of" && n.object.toLowerCase()===country.toLowerCase());
+  const ans=document.querySelector("#answer"),trace=document.querySelector("#trace");
+  if(found){
+    ans.textContent=q.replace(/\s*$/," ")+found.subject+".";
+    trace.textContent="Reasoning: matched capital_of("+found.object+") → "+found.subject+". Evidence: Neurit #"+found.id+".";
+  }else{
+    ans.textContent="I don't know the capital of "+country+" yet.";
+    trace.textContent="No Neurit links that place to a capital. Add a fact such as “City is the capital of Country”.";
+  }
+}
+document.querySelector("#ask").addEventListener("click",answerQuestion);
+document.querySelector("#question").addEventListener("keydown",e=>{if(e.key==="Enter")answerQuestion()});
+document.querySelector("#add").addEventListener("click",()=>{
+  const input=document.querySelector("#factInput"),parsed=parseFact(input.value);
+  if(!parsed){document.querySelector("#answer").textContent="I couldn't parse that fact. Try “Tokyo is the capital of Japan” or “Japan is a country”.";return;}
+  const before=neurits.length;addNeurit(parsed.subject,parsed.relation,parsed.object,"User-added Neurit");
+  if(neurits.length===before){document.querySelector("#answer").textContent="That Neurit is already stored.";}
+  else{input.value="";document.querySelector("#answer").textContent="Added Neurit #"+neurits.at(-1).id+" to the knowledge bank.";}
+  renderFacts();
+});
+renderFacts();answerQuestion();
 
-function rank(map, prefix) {
-  if (!map) return [];
-  return [...map.entries()]
-    .filter(([word]) => word.startsWith(prefix) && word !== prefix)
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-}
-function getSuggestions(value) {
-  const before = value.slice(0, editor.selectionStart);
-  const match = before.match(/([a-z']*)$/i);
-  const prefix = match ? match[1].toLowerCase() : "";
-  const priorWords = before.slice(0, before.length - prefix.length).toLowerCase().match(/[a-z']+/g) || [];
-  const lastTwo = priorWords.slice(-2).join(" ");
-  const lastOne = priorWords.at(-1) || "";
-  let results = rank(counts.get(lastTwo), prefix);
-  if (results.length < 5 && lastOne) {
-    for (const item of rank(counts.get(lastOne), prefix)) {
-      if (!results.some(([word]) => word === item[0])) results.push(item);
-    }
-  }
-  if (results.length < 5) {
-    for (const word of vocab) {
-      if (word.startsWith(prefix) && word !== prefix && !results.some(([w]) => w === word)) results.push([word, 0]);
-    }
-    results.sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-  }
-  return { prefix, results: results.slice(0, 6) };
-}
-function render() {
-  const { prefix, results } = getSuggestions(editor.value);
-  current = results.map(([word]) => word);
-  suggestions.replaceChildren();
-  status.textContent = results.length ? (prefix ? 'Completing "' + prefix + '"' : 'Based on context') : 'No matches';
-  if (!results.length) {
-    const empty = document.createElement("span");
-    empty.className = "empty";
-    empty.textContent = "No suggestions yet. Try another word.";
-    suggestions.append(empty);
-    return;
-  }
-  for (const [word] of results) {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "suggestion";
-    button.textContent = word;
-    button.addEventListener("click", () => insert(word));
-    suggestions.append(button);
-  }
-}
-function insert(word) {
-  const start = editor.selectionStart;
-  const end = editor.selectionEnd;
-  const before = editor.value.slice(0, start);
-  const after = editor.value.slice(end);
-  const match = before.match(/[a-z']*$/i);
-  const cut = match ? match[0].length : 0;
-  const needsSpace = cut === 0 && before.length > 0 && !/\s$/.test(before);
-  const replacement = (needsSpace ? " " : "") + word + " ";
-  const next = before.slice(0, before.length - cut) + replacement + after;
-  const cursor = before.length - cut + replacement.length;
-  editor.value = next;
-  editor.focus();
-  editor.setSelectionRange(cursor, cursor);
-  render();
-}
-editor.addEventListener("input", render);
-editor.addEventListener("click", render);
-editor.addEventListener("keyup", render);
-editor.addEventListener("keydown", event => {
-  if (event.key === "Tab" && current.length) {
-    event.preventDefault();
-    insert(current[0]);
-  }
-});
-document.querySelector("#clear").addEventListener("click", () => {
-  editor.value = "";
-  render();
-  editor.focus();
-});
-render();
-</script>
-</body>
-</html>
+// Tiny n-gram autocomplete retained from the first version.
+const trainingText=["the curious cat explored the quiet garden","the curious cat watched the birds","the curious cat sat beside the window","the quick brown fox jumped over the fence","the sun shines brightly in the morning","the moon appears in the night sky","the sky is blue on a clear day","a small bird flew across the garden","a friendly dog played in the park","a computer can process information quickly","artificial intelligence learns patterns from examples","a language model predicts the next word","the model uses context to make predictions","good questions lead to interesting answers","learning takes time and practice","science helps us understand the world","space contains stars planets and galaxies","water freezes when the temperature gets low","plants need sunlight water and nutrients","music can make people feel happy","programming is the process of giving instructions","javascript runs in a web browser","the best way to learn is to build something","this is a simple autocomplete experiment","we can improve the system with more examples","knowledge is made of facts and relationships","reasoning combines information to reach conclusions","the capital of france is paris","paris is a city in france","the earth travels around the sun"];
+const counts=new Map(),vocab=new Set();
+function addCount(key,word){if(!counts.has(key))counts.set(key,new Map());const m=counts.get(key);m.set(word,(m.get(word)||0)+1)}
+for(const sentence of trainingText){const words=sentence.toLowerCase().match(/[a-z']+/g)||[];for(let i=0;i<words.length;i++){vocab.add(words[i]);addCount(words.slice(Math.max(0,i-2),i).join(" "),words[i]);if(i>0)addCount(words[i-1],words[i]);addCount("",words[i]);}}
+const editor=document.querySelector("#editor"),suggestions=document.querySelector("#suggestions");let current=[];
+function getSuggestions(){const before=editor.value.slice(0,editor.selectionStart),match=before.match(/([a-z']*)$/i),prefix=match?match[1].toLowerCase():"",prior=before.slice(0,before.length-prefix.length).toLowerCase().match(/[a-z']+/g)||[],two=prior.slice(-2).join(" "),one=prior.at(-1)||"";let results=[...(counts.get(two)||new Map())].filter(([w])=>w.startsWith(prefix)&&w!==prefix);if(results.length<5)for(const item of [...(counts.get(one)||new Map())])if(item[0].startsWith(prefix)&&!results.some(x=>x[0]===item[0]))results.push(item);if(results.length<5)for(const w of vocab)if(w.startsWith(prefix)&&w!==prefix&&!results.some(x=>x[0]===w))results.push([w,0]);return results.sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,5)}
+function renderSuggestions(){const results=getSuggestions();current=results.map(x=>x[0]);suggestions.replaceChildren();for(const word of current){const b=document.createElement("button");b.className="suggestion";b.textContent=word;b.addEventListener("click",()=>insertWord(word));suggestions.append(b)}}
+function insertWord(word){const start=editor.selectionStart,end=editor.selectionEnd,before=editor.value.slice(0,start),after=editor.value.slice(end),match=before.match(/[a-z']*$/i),cut=match?match[0].length:0,insert=(cut?"":" ")+word+" ";editor.value=before.slice(0,before.length-cut)+insert+after;const pos=before.length-cut+insert.length;editor.focus();editor.setSelectionRange(pos,pos);renderSuggestions()}
+editor.addEventListener("input",renderSuggestions);editor.addEventListener("keyup",renderSuggestions);editor.addEventListener("click",renderSuggestions);editor.addEventListener("keydown",e=>{if(e.key==="Tab"&&current.length){e.preventDefault();insertWord(current[0])}});
+renderSuggestions();
+</script></body></html>
