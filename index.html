@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autocomplete Lab</title>
+<style>
+  :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #f4f7ff; color: #17213a; }
+  main { width: min(720px, 100%); }
+  .eyebrow { color: #5572b9; font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  h1 { margin: 8px 0; font-size: clamp(30px, 6vw, 46px); letter-spacing: -.045em; }
+  .sub { margin: 0 0 28px; color: #65718a; line-height: 1.6; }
+  .panel { background: white; border: 1px solid #e1e8f7; border-radius: 20px; padding: 22px; box-shadow: 0 18px 55px #263e7412; }
+  label { display: block; margin-bottom: 10px; font-size: 13px; font-weight: 750; }
+  textarea { width: 100%; min-height: 150px; resize: vertical; border: 1px solid #dce4f3; border-radius: 13px; padding: 16px; outline: none; font: 16px/1.6 inherit; color: #17213a; background: #fbfcff; }
+  textarea:focus { border-color: #6688e8; box-shadow: 0 0 0 4px #6688e81a; }
+  .hint { display: flex; justify-content: space-between; gap: 12px; margin: 10px 2px 20px; color: #8791a6; font-size: 12px; }
+  .suggestion-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .suggestion-head strong { font-size: 13px; }
+  #status { color: #8791a6; font-size: 12px; }
+  #suggestions { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; }
+  .suggestion { border: 1px solid #dce5fa; background: #f3f6ff; color: #3154a4; border-radius: 999px; padding: 9px 13px; font: 600 13px inherit; cursor: pointer; transition: .15s ease; }
+  .suggestion:hover, .suggestion:focus-visible { background: #e5edff; border-color: #9db5f3; outline: none; transform: translateY(-1px); }
+  .empty { color: #8a94a8; font-size: 13px; padding: 9px 0; }
+  .footer { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #8791a6; font-size: 12px; }
+  button.clear { border: 0; background: transparent; color: #5572b9; font: inherit; font-weight: 700; cursor: pointer; padding: 5px; }
+  @media (max-width: 520px) { body { padding: 14px; } .panel { padding: 16px; } .hint { flex-direction: column; gap: 3px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">A tiny language experiment</div>
+  <h1>Autocomplete Lab</h1>
+  <p class="sub">Start typing. The suggestion engine looks at the words before your cursor and predicts what might come next.</p>
+  <section class="panel">
+    <label for="editor">Your text</label>
+    <textarea id="editor" placeholder="The curious cat..." spellcheck="false"></textarea>
+    <div class="hint"><span>Press Tab or click a suggestion to insert it.</span><span>Runs locally · No account · No API</span></div>
+    <div class="suggestion-head"><strong>Suggestions</strong><span id="status">Waiting for text</span></div>
+    <div id="suggestions" aria-live="polite"><span class="empty">Your suggestions will appear here.</span></div>
+    <div class="footer"><span>A small n-gram model trained on example sentences</span><button class="clear" id="clear" type="button">Clear text</button></div>
+  </section>
+</main>
+<script>
+const trainingText = [
+  "the curious cat explored the quiet garden",
+  "the curious cat watched the birds",
+  "the curious cat sat beside the window",
+  "the quick brown fox jumped over the fence",
+  "the sun shines brightly in the morning",
+  "the moon appears in the night sky",
+  "the sky is blue on a clear day",
+  "a small bird flew across the garden",
+  "a friendly dog played in the park",
+  "a computer can process information quickly",
+  "artificial intelligence learns patterns from examples",
+  "a language model predicts the next word",
+  "the model uses context to make predictions",
+  "good questions lead to interesting answers",
+  "learning takes time and practice",
+  "science helps us understand the world",
+  "space contains stars planets and galaxies",
+  "water freezes when the temperature gets low",
+  "plants need sunlight water and nutrients",
+  "music can make people feel happy",
+  "programming is the process of giving instructions",
+  "javascript runs in a web browser",
+  "the best way to learn is to build something",
+  "this is a simple autocomplete experiment",
+  "we can improve the system with more examples",
+  "knowledge is made of facts and relationships",
+  "reasoning combines information to reach conclusions",
+  "the capital of france is paris",
+  "paris is a city in france",
+  "the earth travels around the sun"
+];
+
+const counts = new Map();
+const vocab = new Set();
+function add(map, key, word) {
+  if (!map.has(key)) map.set(key, new Map());
+  const next = map.get(key);
+  next.set(word, (next.get(word) || 0) + 1);
+}
+for (const sentence of trainingText) {
+  const words = sentence.toLowerCase().match(/[a-z']+/g) || [];
+  for (let i = 0; i < words.length; i++) {
+    vocab.add(words[i]);
+    add(counts, words.slice(Math.max(0, i - 2), i).join(" "), words[i]);
+    if (i > 0) add(counts, words[i - 1], words[i]);
+    add(counts, "", words[i]);
+  }
+}
+const editor = document.querySelector("#editor");
+const suggestions = document.querySelector("#suggestions");
+const status = document.querySelector("#status");
+let current = [];
+
+function rank(map, prefix) {
+  if (!map) return [];
+  return [...map.entries()]
+    .filter(([word]) => word.startsWith(prefix) && word !== prefix)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+}
+function getSuggestions(value) {
+  const before = value.slice(0, editor.selectionStart);
+  const match = before.match(/([a-z']*)$/i);
+  const prefix = match ? match[1].toLowerCase() : "";
+  const priorWords = before.slice(0, before.length - prefix.length).toLowerCase().match(/[a-z']+/g) || [];
+  const lastTwo = priorWords.slice(-2).join(" ");
+  const lastOne = priorWords.at(-1) || "";
+  let results = rank(counts.get(lastTwo), prefix);
+  if (results.length < 5 && lastOne) {
+    for (const item of rank(counts.get(lastOne), prefix)) {
+      if (!results.some(([word]) => word === item[0])) results.push(item);
+    }
+  }
+  if (results.length < 5) {
+    for (const word of vocab) {
+      if (word.startsWith(prefix) && word !== prefix && !results.some(([w]) => w === word)) results.push([word, 0]);
+    }
+    results.sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  }
+  return { prefix, results: results.slice(0, 6) };
+}
+function render() {
+  const { prefix, results } = getSuggestions(editor.value);
+  current = results.map(([word]) => word);
+  suggestions.replaceChildren();
+  status.textContent = results.length ? (prefix ? 'Completing "' + prefix + '"' : 'Based on context') : 'No matches';
+  if (!results.length) {
+    const empty = document.createElement("span");
+    empty.className = "empty";
+    empty.textContent = "No suggestions yet. Try another word.";
+    suggestions.append(empty);
+    return;
+  }
+  for (const [word] of results) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "suggestion";
+    button.textContent = word;
+    button.addEventListener("click", () => insert(word));
+    suggestions.append(button);
+  }
+}
+function insert(word) {
+  const start = editor.selectionStart;
+  const end = editor.selectionEnd;
+  const before = editor.value.slice(0, start);
+  const after = editor.value.slice(end);
+  const match = before.match(/[a-z']*$/i);
+  const cut = match ? match[0].length : 0;
+  const needsSpace = cut === 0 && before.length > 0 && !/\s$/.test(before);
+  const replacement = (needsSpace ? " " : "") + word + " ";
+  const next = before.slice(0, before.length - cut) + replacement + after;
+  const cursor = before.length - cut + replacement.length;
+  editor.value = next;
+  editor.focus();
+  editor.setSelectionRange(cursor, cursor);
+  render();
+}
+editor.addEventListener("input", render);
+editor.addEventListener("click", render);
+editor.addEventListener("keyup", render);
+editor.addEventListener("keydown", event => {
+  if (event.key === "Tab" && current.length) {
+    event.preventDefault();
+    insert(current[0]);
+  }
+});
+document.querySelector("#clear").addEventListener("click", () => {
+  editor.value = "";
+  render();
+  editor.focus();
+});
+render();
+</script>
+</body>
+</html>
