@@ -118,7 +118,7 @@ $('#quicksettings').onclick=()=>openApp('settings');
 function toggleAI(){aiPanel.classList.toggle('show');if(aiPanel.classList.contains('show'))$('#ai-input').focus()}
 $('#aitask').onclick=toggleAI;$('#ai-desktop').onclick=toggleAI;$('#ai-start').onclick=toggleAI;$('#aiclose').onclick=()=>aiPanel.classList.remove('show');
 document.addEventListener('pointerdown',e=>{if(!e.target.closest('#startmenu')&&!e.target.closest('#startbtn')&&!e.target.closest('#brandmenu'))$('#startmenu').classList.remove('show')});
-async function loadModels(){const sel=$('#model-select');sel.innerHTML='<option>Loading…</option>';try{const r=await fetch('/api/models');const data=await r.json();if(!r.ok)throw Error(data.error||'Ollama unavailable');const models=data.models||[];sel.innerHTML='';if(!models.length){sel.innerHTML='<option value="">No models installed</option>';return}models.forEach(m=>{const o=document.createElement('option');o.value=m.name;o.textContent=m.name;sel.append(o)});const preferred=models.find(m=>m.name.startsWith('qwen2.5vl:7b'));if(preferred)sel.value=preferred.name;$('#netstatus').textContent='● Ollama connected';toast(models.length+' local models found')}catch(e){sel.innerHTML='<option value="">Ollama offline</option>';$('#netstatus').textContent='● Ollama offline';toast('Start Ollama to connect the AI cursor')}}
+async function loadModels(){const sel=$('#model-select');sel.innerHTML='<option>Loading…</option>';try{const r=await fetch('http://127.0.0.1:11434/api/tags');const data=await r.json();if(!r.ok)throw Error(data.error||'Ollama unavailable');const models=data.models||[];sel.innerHTML='';if(!models.length){sel.innerHTML='<option value="">No models installed</option>';return}models.forEach(m=>{const o=document.createElement('option');o.value=m.name;o.textContent=m.name;sel.append(o)});const preferred=models.find(m=>m.name.startsWith('qwen2.5vl:7b'));if(preferred)sel.value=preferred.name;$('#netstatus').textContent='● Ollama connected';toast(models.length+' local models found')}catch(e){sel.innerHTML='<option value="">Ollama offline</option>';$('#netstatus').textContent='● Ollama offline';toast('Start Ollama to connect the AI cursor')}}
 $('#reload-models').onclick=loadModels;
 function logBubble(text,who='agent'){const b=document.createElement('div');b.className='bubble '+who;b.textContent=text;$('#ai-log').append(b);$('#ai-log').scrollTop=999999;return b}
 function moveCursor(x,y){cursor.classList.add('show');cursor.style.left=x+'px';cursor.style.top=y+'px'}
@@ -164,7 +164,7 @@ async function askModel(messages,image64){
  const model=$('#model-select').value;if(!model)throw Error('Choose an installed Ollama model first.');
  const body={model,messages,stream:false,options:{temperature:.25,num_ctx:8192}};
  if(image64){const last=body.messages[body.messages.length-1];last.images=[image64]}
- const r=await fetch('/api/ollama',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+ const r=await fetch('http://127.0.0.1:11434/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
  const data=await r.json();if(!r.ok)throw Error(data.error||'Ollama request failed');return data.message?.content||''
 }
 let agentMessages=[];
