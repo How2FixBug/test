@@ -39,7 +39,7 @@ button{border:0;border-radius:10px;background:#315ac2;color:white;padding:10px 1
 <label for="factInput">Write a fact in plain English</label>
 <textarea id="factInput" placeholder="Example: Washington D.C. is the capital of the U.S."></textarea>
 <button id="add">+ Add Neurit</button>
-<p class="muted">Any statement is accepted, including “I shit myself”. Each one becomes a numbered Neurit. Full semantic reasoning is still a work in progress.</p>
+<p class="muted">Any non-empty sentence is accepted. Statements are saved in this browser and can be retrieved using relevant words.</p>
 </section>
 <section class="panel full">
 <h2>Knowledge bank <span class="pill" id="count">0 Neurits</span></h2>
@@ -54,67 +54,79 @@ button{border:0;border-radius:10px;background:#315ac2;color:white;padding:10px 1
 </div>
 </main>
 <script>
-const neurits = [];
-const addNeurit = (subject, relation, object, source) => {
-  const duplicate = neurits.some(n => n.subject===subject && n.relation===relation && n.object===object);
-  if (!duplicate) neurits.push({id:neurits.length+1,subject,relation,object,source});
-};
-// The original training sentence supplies this fact to the knowledge layer.
-addNeurit("Paris","capital_of","France","Extracted from training sentence");
-// This fact is additional explicit knowledge, not learned from the autocomplete corpus.
-addNeurit("Washington D.C.","capital_of","the U.S.","Seed Neurit");
-addNeurit("France","type","country","Seed Neurit");
-addNeurit("the U.S.","type","country","Seed Neurit");
-
-function clean(s){return s.trim().replace(/[.!?]+$/,"").replace(/\s+/g," ")}
+const STORAGE_KEY="neurit-memory-v1";
+const defaultNeurits=[
+  {id:1,subject:"Paris",relation:"capital_of",object:"France",source:"Example knowledge"},
+  {id:2,subject:"Washington D.C.",relation:"capital_of",object:"the U.S.",source:"Example knowledge"},
+  {id:3,subject:"France",relation:"type",object:"country",source:"Example knowledge"},
+  {id:4,subject:"the U.S.",relation:"type",object:"country",source:"Example knowledge"}
+];
+let neurits=[];
+try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");neurits=Array.isArray(saved)?saved:defaultNeurits.map(x=>({...x}));}catch{neurits=defaultNeurits.map(x=>({...x}));}
+let nextId=Math.max(0,...neurits.map(n=>Number(n.id)||0))+1;
+function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(neurits));}catch{}}
+function clean(s){return s.trim().replace(/[.!?]+$/,"").replace(/\\s+/g," ")}
+function addNeurit(subject,relation,object,source){
+  const duplicate=neurits.some(n=>n.subject===subject&&n.relation===relation&&n.object.toLowerCase()===object.toLowerCase());
+  if(duplicate)return null;
+  const n={id:nextId++,subject,relation,object,source};neurits.push(n);persist();return n;
+}
 function parseFact(raw){
-  const s=clean(raw);
-  if(!s)return null;
-  let m=s.match(/^(.+?)\s+is\s+the\s+capital\s+of\s+(.+)$/i);
+  const s=clean(raw);if(!s)return null;
+  let m=s.match(/^(.+?)\\s+is\\s+the\\s+capital\\s+of\\s+(.+)$/i);
   if(m)return {subject:clean(m[1]),relation:"capital_of",object:clean(m[2])};
-  m=s.match(/^(.+?)\s+is\s+a\s+capital$/i);
-  if(m)return {subject:clean(m[1]),relation:"type",object:"capital"};
-  m=s.match(/^(.+?)\s+is\s+a\s+country$/i);
+  m=s.match(/^(.+?)\\s+is\\s+a\\s+country$/i);
   if(m)return {subject:clean(m[1]),relation:"type",object:"country"};
-  m=s.match(/^(.+?)\s+and\s+(.+?)\s+are\s+countries$/i);
-  if(m){addNeurit(clean(m[1]),"type","country","User-added Neurit");return {subject:clean(m[2]),relation:"type",object:"country"};}
-  // Any other sentence is still stored as a statement Neurit.
+  // General statements are kept verbatim; no sentence template is required.
   return {subject:"",relation:"statement",object:s};
+}
+function displayNeurit(n){
+  if(n.relation==="statement")return n.object;
+  if(n.relation==="capital_of")return n.subject+" is the capital of "+n.object;
+  return n.subject+" is a "+n.object;
 }
 function renderFacts(){
   const root=document.querySelector("#facts");root.replaceChildren();
   document.querySelector("#count").textContent=neurits.length+" Neurits";
   for(const n of neurits){
     const row=document.createElement("div");row.className="fact";
-    const span=document.createElement("span");
-    span.textContent=n.relation==="statement"?n.object:n.relation==="capital_of"?n.subject+" is the capital of "+n.object:n.subject+" is a "+n.object;
+    const span=document.createElement("span");span.textContent=displayNeurit(n);
     const small=document.createElement("small");small.textContent="#"+n.id+" · "+n.source;
     row.append(span,small);root.append(row);
   }
 }
+const stopWords=new Set(["what","who","where","when","why","how","did","does","do","is","are","was","were","am","i","me","my","you","your","the","a","an","to","of","and","or","tell","about","know","remember","show","say","said","happen","happened","have","has","had","please","can"]);
+function termsOf(text){return (text.toLowerCase().match(/[a-z0-9']+/g)||[]).filter(w=>!stopWords.has(w));}
 function answerQuestion(){
-  const q=document.querySelector("#question").value.trim();
-  const m=q.match(/capital\s+of\s+(.+?)(?:\s+is)?[?.!]*$/i);
-  if(!m){
-    const words=q.toLowerCase().match(/[a-z']+/g)||[];
-    const ignored=new Set(["what","did","does","do","i","you","the","a","an","is","are","was","were","tell","me","about","know","remember","show","my","have","happen","happened"]);
-    const terms=words.filter(w=>!ignored.has(w));
-    const matches=neurits.filter(n=>n.relation==="statement" && (!terms.length || terms.some(w=>n.object.toLowerCase().includes(w))));
-    const ans=document.querySelector("#answer"),trace=document.querySelector("#trace");
-    if(matches.length){ans.textContent=matches.map(n=>n.object).join(" · ");trace.textContent="Retrieved "+matches.length+" stored statement"+(matches.length===1?"":"s")+". "+matches.map(n=>"#"+n.id).join(", ");}
-    else if(!terms.length){const all=neurits.filter(n=>n.relation==="statement");ans.textContent=all.length?all.map(n=>n.object).join(" · "):"No personal statements stored yet.";trace.textContent="Retrieved stored statement Neurits.";}
-    else{ans.textContent="I couldn't find a stored statement matching that yet.";trace.textContent="No matching statement Neurit was found.";}
+  const q=document.querySelector("#question").value.trim(),ans=document.querySelector("#answer"),trace=document.querySelector("#trace");
+  const cap=q.match(/capital\\s+of\\s+(.+?)(?:\\s+is)?[?.!]*$/i);
+  if(cap){
+    const country=clean(cap[1]);
+    const found=neurits.find(n=>n.relation==="capital_of"&&n.object.toLowerCase()===country.toLowerCase());
+    if(found){ans.textContent=found.subject;trace.textContent="Found a stored capital_of relationship in Neurit #"+found.id+".";}
+    else{ans.textContent="I don't know the capital of "+country+".";trace.textContent="No matching capital relationship is stored.";}
     return;
   }
-  const country=clean(m[1]).replace(/^the\s+/i,"the ");
-  const found=neurits.find(n=>n.relation==="capital_of" && n.object.toLowerCase()===country.toLowerCase());
-  const ans=document.querySelector("#answer"),trace=document.querySelector("#trace");
-  if(found){
-    ans.textContent=q.replace(/\s*$/," ")+found.subject+".";
-    trace.textContent="Reasoning: matched capital_of("+found.object+") → "+found.subject+". Evidence: Neurit #"+found.id+".";
+  const allStatements=neurits.filter(n=>n.relation==="statement");
+  const qLower=q.toLowerCase();
+  const personalIntent=/\\b(i|me|my|myself)\\b/.test(qLower)||/\\b(what did i|what happened|what have i|what do you know about me)\\b/.test(qLower);
+  const terms=termsOf(q);
+  let ranked=allStatements.map(n=>{
+    const body=n.object.toLowerCase(),tokens=termsOf(n.object);
+    let score=0;
+    for(const t of terms){if(tokens.includes(t))score+=3;else if(body.includes(t))score+=1;}
+    if(personalIntent&&/^i\\b/i.test(n.object))score+=4;
+    return {n,score};
+  }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.n.id-b.n.id);
+  const broadRecall=terms.length===0||/\\b(what did i|what happened|what have i|what do you know about me|what did i say)\\b/.test(qLower);
+  if(broadRecall)ranked=allStatements.filter(n=>!personalIntent||/^i\\b/i.test(n.object)).map(n=>({n,score:1}));
+  if(ranked.length){
+    const best=ranked[0].score,results=ranked.filter(x=>x.score===best).slice(0,5);
+    ans.textContent=results.map(x=>x.n.object).join(" · ");
+    trace.textContent="Retrieved "+results.length+" statement Neurit(s): "+results.map(x=>"#"+x.n.id).join(", ")+". Ranked by word overlap and personal-context relevance; this is retrieval, not full semantic understanding.";
   }else{
-    ans.textContent="I don't know the capital of "+country+" yet.";
-    trace.textContent="No Neurit links that place to a capital. Add a fact such as “City is the capital of Country”.";
+    ans.textContent="I don't have a matching memory yet.";
+    trace.textContent="No stored statement matched the useful terms in that question.";
   }
 }
 document.querySelector("#ask").addEventListener("click",answerQuestion);
@@ -122,10 +134,10 @@ document.querySelector("#question").addEventListener("keydown",e=>{if(e.key==="E
 document.querySelector("#add").addEventListener("click",()=>{
   const input=document.querySelector("#factInput"),parsed=parseFact(input.value);
   if(!parsed){document.querySelector("#answer").textContent="Write a statement first.";return;}
-  const before=neurits.length;addNeurit(parsed.subject,parsed.relation,parsed.object,"User-added Neurit");
-  if(neurits.length===before){document.querySelector("#answer").textContent="That Neurit is already stored.";}
-  else{input.value="";document.querySelector("#answer").textContent="Added Neurit #"+neurits.at(-1).id+" to the knowledge bank.";}
-  if(parsed.relation==="statement")document.querySelector("#trace").textContent="Stored as an arbitrary statement. It can be retrieved later, but the system does not yet understand its full meaning.";
+  const added=addNeurit(parsed.subject,parsed.relation,parsed.object,"User memory");
+  if(!added){document.querySelector("#answer").textContent="That exact Neurit is already stored.";}
+  else{input.value="";document.querySelector("#answer").textContent="Stored as Neurit #"+added.id+".";}
+  document.querySelector("#trace").textContent="Saved in this browser's local memory. General statements are stored verbatim and can be retrieved by relevant words.";
   renderFacts();
 });
 renderFacts();answerQuestion();
