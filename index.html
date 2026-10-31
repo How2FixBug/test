@@ -1,50 +1,141 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Square — AI Pet</title>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>square.</title>
 <style>
-*{box-sizing:border-box}body{margin:0;padding:22px;background:#f3f6fc;color:#17213a;font:14px system-ui}.app{max-width:1100px;margin:auto;display:grid;grid-template-columns:270px 1fr;gap:16px}.panel,.stage{background:white;border:1px solid #e2e8f5;border-radius:16px;padding:18px}.brand{font-size:24px;font-weight:900}.muted{color:#8793a9;font-size:12px}h3{font-size:11px;color:#8793a9;text-transform:uppercase;margin:22px 0 8px}.field{margin:12px 0}.field label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}input,select{width:100%;padding:9px;border:1px solid #dce4f3;border-radius:8px;background:#fbfcff}button{border:0;border-radius:9px;padding:10px 13px;background:#315ac2;color:white;font-weight:700;cursor:pointer}.secondary{background:#edf2ff;color:#3154a4}.row{display:flex;gap:8px}.row>*{flex:1}.status{padding:10px;background:#f4f6fb;border-radius:9px;margin:16px 0;font-size:12px}.board{position:relative;width:100%;aspect-ratio:1.6;min-height:260px;border:1px solid #e2e8f5;border-radius:12px;background-color:#fbfcff;background-image:linear-gradient(#e9eef8 1px,transparent 1px),linear-gradient(90deg,#e9eef8 1px,transparent 1px);background-size:4.1667% 6.25%;overflow:hidden;touch-action:pan-y}.sq{position:absolute;width:3.4%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:5px}.terrain{position:absolute;width:4.1667%;height:6.25%;border-radius:3px;pointer-events:none}.wall{background:#536078;box-shadow:inset 0 0 0 1px #39445a}.hazard{background:#ed7474;box-shadow:inset 0 0 0 2px #c94e61}.pet{background:#4385ef;z-index:2}.goal{background:#ffd447}.chat{margin-top:16px;border-top:1px solid #edf0f6;padding-top:12px}.messages{display:flex;flex-direction:column;gap:7px;max-height:220px;overflow:auto}#chatForm{display:flex;gap:8px;margin-top:10px}#chatForm input{flex:1;min-width:0}.msg{background:#f3f6fc;padding:8px 10px;border-radius:9px;max-width:90%;font-size:12px;white-space:pre-wrap}.petmsg{background:#edf3ff;color:#294d9c}.sys{background:#fff8e6;color:#8a6a19}@media(max-width:760px){.app{grid-template-columns:1fr}}
-</style></head><body><div class="app"><aside class="panel"><div class="brand">square.</div><div class="muted">A tiny pet with a tool-using AI brain.</div><div class="status" id="status">Connecting to Ollama…</div><h3>Ollama</h3><div class="field"><label>Address</label><input id="endpoint" value="http://localhost:11434"></div><div class="field"><label>Installed model</label><select id="model"><option>Loading…</option></select></div><button class="secondary" id="check">Refresh models</button><h3>Movement</h3><div class="field"><label>Walking speed <span id="speedVal">1 tile/sec</span></label><input id="speed" type="range" min=".25" max="3" step=".25" value="1"></div><div class="row"><button class="secondary" id="pause">Pause</button><button class="secondary" id="goalBtn">New target</button></div><p class="muted">Square walks one tile at a time. The AI calls Goto(X,Y), Square walks there, then the AI is called again. Mouse near Square can interrupt it.</p><p class="muted">AI vision is limited to an 11×11 area (radius 5).</p></aside><main class="stage"><h2>Square's little world</h2><div class="muted">Tiles walked: <b id="steps">0</b> · Distance to goal: <b id="distance">—</b></div><div class="board" id="board"><div class="sq goal" id="goal"></div><div class="sq pet" id="pet"></div></div><section class="chat"><b>Square's chat</b><div class="messages" id="messages"><div class="msg sys">Waiting for Ollama.</div></div><form id="chatForm"><input id="chatInput" placeholder="Talk to Square…" autocomplete="off"><button type="submit">Send</button></form></section></main></div>
+:root{--ink:#26334a;--muted:#8994a8;--line:#e8edf5;--paper:#fff;--bg:#f7f9fc;--blue:#5489ed;--yellow:#ffd45e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,sans-serif}
+main{width:min(980px,calc(100% - 32px));margin:34px auto 50px}
+header{display:flex;align-items:center;gap:14px;margin-bottom:20px}.logo{font-size:26px;font-weight:850;letter-spacing:-1.5px}.dot{width:8px;height:8px;border-radius:50%;background:#d6a84b}.status{color:var(--muted);font-size:12px;flex:1}
+select,input,button{font:inherit}select{border:1px solid var(--line);border-radius:9px;padding:8px 30px 8px 10px;background:white;color:var(--ink);max-width:220px}
+button{border:0;border-radius:9px;padding:9px 12px;background:#edf2fb;color:#48699f;font-weight:650;cursor:pointer}button:hover{background:#e3ebfa}
+.world{background:white;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 10px 35px #273c5b0a}
+.worldtop{display:flex;align-items:center;justify-content:space-between;margin:0 2px 12px}.worldtop span{font-size:12px;color:var(--muted)}
+.board{display:grid;grid-template-columns:repeat(24,minmax(0,1fr));grid-template-rows:repeat(16,minmax(0,1fr));aspect-ratio:3/2;width:100%;overflow:hidden;border-radius:11px;background:#f9fbff;border:1px solid #e9eef6;gap:1px}
+.cell{position:relative;background:#f8faff;min-width:0;min-height:0}.wall{background:#78869b;border-radius:3px;box-shadow:inset 0 0 0 1px #64738a}.danger{background:#ffe6e5;border-radius:3px}.danger:after{content:"";position:absolute;inset:22%;background:#ed8885;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.goal:after{content:"";position:absolute;inset:20%;border-radius:5px;background:var(--yellow);box-shadow:0 1px 4px #c89c3c55}
+.pet{z-index:2}.sprite{position:absolute;inset:8%;border-radius:27%;background:var(--blue);box-shadow:0 3px 0 #376cc8;display:flex;align-items:center;justify-content:center;gap:18%;transform:translateZ(0)}
+.eye{width:15%;height:22%;background:white;border-radius:50%;position:relative}.eye:after{content:"";position:absolute;width:45%;height:45%;background:#26334a;border-radius:50%;left:38%;top:34%}
+.chat{display:flex;gap:12px;align-items:flex-start;margin:18px 4px 2px;min-height:44px}.avatar{flex:none;width:30px;height:30px;border-radius:10px;background:var(--blue);position:relative;margin-top:2px}.avatar:before,.avatar:after{content:"";position:absolute;top:10px;width:4px;height:7px;border-radius:4px;background:white}.avatar:before{left:9px}.avatar:after{right:9px}
+.messages{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1;max-height:170px;overflow:auto}.bubble{background:#eef4ff;border-radius:4px 13px 13px 13px;padding:9px 12px;width:fit-content;max-width:min(100%,620px);white-space:pre-wrap}.bubble.you{background:#f0f2f6;color:#526078;border-radius:13px 4px 13px 13px;align-self:flex-end}.bubble.note{background:transparent;color:var(--muted);padding:0 2px;font-size:12px}
+form{display:flex;gap:8px;margin:12px 4px 0 46px}form input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:white;outline:none}form input:focus{border-color:#a9c2f4}form button{background:#477ce0;color:white;padding-inline:17px}form button:hover{background:#376dcc}
+.controls{display:flex;align-items:center;gap:12px;margin:13px 4px 0;color:var(--muted);font-size:12px}.controls label{display:flex;align-items:center;gap:8px}.controls input{width:110px;accent-color:#5489ed}.controls .spacer{flex:1}
+details{margin:14px 4px 0;color:var(--muted);font-size:12px}details summary{cursor:pointer;width:fit-content}details .advanced{display:flex;gap:8px;margin-top:9px;align-items:center}details input{padding:7px 9px;border:1px solid var(--line);border-radius:8px;min-width:0;flex:1}
+@media(max-width:620px){main{margin-top:18px}.world{padding:9px}.board{aspect-ratio:1.25}.controls{flex-wrap:wrap}.controls .spacer{display:none}header{flex-wrap:wrap}select{max-width:160px}form{margin-left:0}}
+</style>
+</head>
+<body><main>
+<header><div class="logo">square.</div><div class="dot" id="dot"></div><div class="status" id="status">Connecting to Ollama</div><select id="model" aria-label="Model"><option>Loading models…</option></select><button id="refresh" title="Refresh installed models">↻</button></header>
+<section class="world">
+ <div class="worldtop"><strong>A little world</strong><span id="stats">0 steps</span></div>
+ <div class="board" id="board" aria-label="Square's world"></div>
+ <div class="chat"><div class="avatar"></div><div class="messages" id="messages"><div class="bubble note">Square is waking up…</div></div></div>
+ <form id="chatForm"><input id="chatInput" placeholder="Say something to Square…" autocomplete="off"><button>Send</button></form>
+ <div class="controls"><label>Speed <input id="speed" type="range" min=".25" max="2" step=".25" value="1"><span id="speedLabel">1 tile/sec</span></label><div class="spacer"></div><button id="newGoal">New goal</button><button id="pause">Pause</button></div>
+</section>
+<details><summary>Connection settings</summary><div class="advanced"><label for="endpoint">Ollama address</label><input id="endpoint" value="http://localhost:11434"><button id="saveEndpoint">Connect</button></div></details>
+</main>
 <script>
-const $=s=>document.querySelector(s),W=24,H=16,board=$("#board"),start={x:3,y:8};
-let pet={...start},goal={x:18,y:6},mouse=null,paused=false,thinking=false,moving=false,target=null,tick=0,steps=0,chatHistory=[];
-const walls=new Set(),dangers=new Set(),key=(x,y)=>x+","+y;
-const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
-function generateMap(){
+const $=s=>document.querySelector(s),W=24,H=16,START={x:2,y:8},board=$("#board");
+const key=(x,y)=>x+","+y,clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+let pet={...START},goal={x:21,y:8},walls=new Set(),dangers=new Set(),mouse=null,paused=false,thinking=false,moving=false,target=null,timer=0,steps=0,history=[],lastError="";
+const cells=[];
+for(let y=0;y<H;y++)for(let x=0;x<W;x++){let e=document.createElement("div");e.className="cell";e.dataset.x=x;e.dataset.y=y;board.append(e);cells.push(e)}
+function generateWorld(){
  walls.clear();dangers.clear();
- // Scatter obstacles, keeping the starting area and initial goal clear.
- for(let i=0;i<48;i++){let x=Math.floor(Math.random()*W),y=Math.floor(Math.random()*H),k=key(x,y);if(dist({x,y},start)<3||dist({x,y},goal)<2)continue;walls.add(k)}
- for(let i=0;i<17;i++){let x=Math.floor(Math.random()*W),y=Math.floor(Math.random()*H),k=key(x,y);if(walls.has(k)||dist({x,y},start)<3||dist({x,y},goal)<2)continue;dangers.add(k)}
+ // Randomly scatter impassable and reset tiles, with open space around spawn and goal.
+ for(let i=0;i<38;i++){let x=Math.floor(Math.random()*W),y=Math.floor(Math.random()*H);if(distance({x,y},START)<3||distance({x,y},goal)<2)continue;walls.add(key(x,y))}
+ for(let i=0;i<13;i++){let x=Math.floor(Math.random()*W),y=Math.floor(Math.random()*H);if(walls.has(key(x,y))||distance({x,y},START)<3||distance({x,y},goal)<2)continue;dangers.add(key(x,y))}
 }
-function place(el,p){el.style.left=((p.x+.5)/W*100)+"%";el.style.top=((p.y+.5)/H*100)+"%"}
-function drawMap(){
- board.querySelectorAll(".terrain").forEach(e=>e.remove());
- for(const k of walls){const [x,y]=k.split(",").map(Number),e=document.createElement("div");e.className="terrain wall";e.style.left=(x/W*100)+"%";e.style.top=(y/H*100)+"%";board.insertBefore(e,$("#pet"))}
- for(const k of dangers){const [x,y]=k.split(",").map(Number),e=document.createElement("div");e.className="terrain hazard";e.style.left=(x/W*100)+"%";e.style.top=(y/H*100)+"%";board.insertBefore(e,$("#pet"))}
+function draw(){
+ for(const e of cells){let x=+e.dataset.x,y=+e.dataset.y,k=key(x,y);e.className="cell";if(walls.has(k))e.classList.add("wall");if(dangers.has(k))e.classList.add("danger");if(goal.x===x&&goal.y===y)e.classList.add("goal");if(pet.x===x&&pet.y===y){e.classList.add("pet");e.innerHTML='<div class="sprite"><i class="eye"></i><i class="eye"></i></div>'}else e.innerHTML=""}
+ $("#stats").textContent=steps+" steps";
 }
-function render(){place($("#pet"),pet);place($("#goal"),goal);$("#steps").textContent=steps;$("#distance").textContent=dist(pet,goal).toFixed(1)+" tiles"}
-function say(t,cls="petmsg"){let e=document.createElement("div");e.className="msg "+cls;e.textContent=t;$("#messages").append(e);$("#messages").scrollTop=99999}
-function vision(){let a=[];for(let y=-5;y<=5;y++){let s="";for(let x=-5;x<=5;x++){let X=pet.x+x,Y=pet.y+y,k=key(X,Y),v=X<0||X>=W||Y<0||Y>=H?"#":".";if(walls.has(k))v="W";if(dangers.has(k))v="D";if(goal.x===X&&goal.y===Y)v="G";if(mouse&&dist(mouse,{x:X,y:Y})<=1)v="M";if(!x&&!y)v="P";s+=v}a.push(s)}return a.join("\n")}
-const tools=[{type:"function",function:{name:"Goto",description:"Choose an absolute grid destination. The pet moves one tile per step and the AI is called again when movement ends.",parameters:{type:"object",properties:{X:{type:"integer",minimum:0,maximum:23},Y:{type:"integer",minimum:0,maximum:15}},required:["X","Y"]}}},{type:"function",function:{name:"Say",description:"Send a message to the human.",parameters:{type:"object",properties:{message:{type:"string"}},required:["message"]}}}];
-const system="You are Square, a chatty little square pet. You MUST use tools, never plain text. Use Say(message) to talk. Use Goto(X,Y) to choose a destination. Coordinates are absolute integer tiles: X 0-23, Y 0-15. You are called again after movement ends. You may call Say and Goto together. Move toward G and pay attention to changes in your position and local vision. Only use the supplied local vision.";
-function observation(){return "Position "+JSON.stringify(pet)+". Goal "+JSON.stringify(goal)+". Mouse relative "+(mouse&&dist(mouse,pet)<=5?JSON.stringify({x:mouse.x-pet.x,y:mouse.y-pet.y}):"null")+". Local 11x11 vision (P=self,G=goal,M=mouse,#=edge):\n"+vision()+"\nChoose your next action using tools."}
-async function refresh(){try{let base=$("#endpoint").value.replace(/\/$/,""),r=await fetch(base+"/api/tags");if(!r.ok)throw Error("HTTP "+r.status);let data=await r.json(),sel=$("#model"),old=sel.value;sel.replaceChildren();(data.models||[]).forEach(m=>sel.add(new Option(m.name,m.name)));if(!sel.options.length)sel.add(new Option("No models installed",""));if([...sel.options].some(o=>o.value===old))sel.value=old;$("#status").textContent="Ollama connected · "+(data.models||[]).length+" model(s)";if(sel.value&&!thinking&&!moving&&!paused)setTimeout(()=>think(),0)}catch(e){$("#status").textContent="Ollama unavailable: "+e.message}}
-async function think(){if(thinking||paused||moving||!$("#model").value)return;thinking=true;$("#status").textContent="Square is thinking…";try{let base=$("#endpoint").value.replace(/\/$/,""),r=await fetch(base+"/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:$("#model").value,stream:false,messages:[{role:"system",content:system},...chatHistory,{role:"user",content:observation()}],tools,think:false,options:{temperature:.7,num_predict:180}})});if(!r.ok)throw Error("Ollama HTTP "+r.status);let data=await r.json(),calls=data.message?.tool_calls||[];if(!calls.length)throw Error("Model did not call a tool. Choose one with tool-calling support.");chatHistory.push({role:"assistant",content:data.message?.content||"",tool_calls:calls});let dest=null,toolReplies=[];for(let call of calls){let f=call.function||{},a=f.arguments||{};if(f.name==="Say"&&a.message){say(String(a.message).slice(0,400));toolReplies.push({role:"tool",tool_name:"Say",content:"Message delivered."})}if(f.name==="Goto"){dest={x:clamp(Math.round(Number(a.X)),0,W-1),y:clamp(Math.round(Number(a.Y)),0,H-1)};toolReplies.push({role:"tool",tool_name:"Goto",content:"Destination received."})}}chatHistory.push(...toolReplies);if(dest){if(dest.x===pet.x&&dest.y===pet.y){moving=false;target=null;$("#status").textContent="Square is waiting";return}target=dest;moving=true;tick=0;say("Going to ("+dest.x+", "+dest.y+").","sys")}else{$("#status").textContent="Square is waiting"} }catch(e){say(e.message,"sys");$("#status").textContent="AI error"}finally{thinking=false}}
-function step(){
+function say(message,kind="pet"){let el=document.createElement("div");el.className="bubble"+(kind==="you"?" you":kind==="note"?" note":"");el.textContent=message;$("#messages").append(el);$("#messages").scrollTop=$("#messages").scrollHeight}
+function localView(){
+ let rows=[];for(let dy=-5;dy<=5;dy++){let row="";for(let dx=-5;dx<=5;dx++){let x=pet.x+dx,y=pet.y+dy,k=key(x,y),c=x<0||x>=W||y<0||y>=H?"#":".";if(walls.has(k))c="W";if(dangers.has(k))c="D";if(goal.x===x&&goal.y===y)c="G";if(mouse&&distance(mouse,{x,y})===0)c="M";if(dx===0&&dy===0)c="P";row+=c}rows.push(row)}return rows.join("\n");
+}
+const tools=[
+ {type:"function",function:{name:"Goto",description:"Choose a destination tile using absolute board coordinates.",parameters:{type:"object",properties:{X:{type:"integer",minimum:0,maximum:23},Y:{type:"integer",minimum:0,maximum:15}},required:["X","Y"]}}},
+ {type:"function",function:{name:"Say",description:"Say a short message out loud in the chat.",parameters:{type:"object",properties:{message:{type:"string"}},required:["message"]}}}
+];
+const system="You are Square, a curious little blue square pet living in a grid world. You can speak to the human with Say and choose a destination with Goto. You must use tool calls for every response; do not send plain text. You are allowed to wonder aloud, ask questions, make guesses, and change your mind. Speak naturally and briefly, like a curious little character. Do not narrate every tile. You have a persistent conversation: remember what happened in earlier turns and learn from the outcomes. The board is 24 columns by 16 rows. P marks your current tile, G marks the yellow goal, and # marks the outer edge. The 11-by-11 map is centered on you. Other map symbols are intentionally unexplained; observe them and learn from what happens. Goto chooses a destination, but the world decides what happens as you travel. You are called again when you reach a destination or something interrupts movement. Pick sensible destinations and make progress toward G. Use Say when you have a thought worth sharing, then use Goto to act.";
+function observation(extra=""){
+ return "Current position: ("+pet.x+","+pet.y+"). Goal: ("+goal.x+","+goal.y+"). Local 11x11 view, centered on P:\n"+localView()+"\n"+(extra?"Recent event: "+extra+"\n":"")+"Choose your next action. Use tools.";
+}
+function setStatus(t,ok=true){$("#status").textContent=t;$("#dot").style.background=ok?"#69c69a":"#e28b86"}
+async function refreshModels(startAI=false){
+ try{let base=$("#endpoint").value.trim().replace(/\/$/,""),res=await fetch(base+"/api/tags");if(!res.ok)throw Error("Ollama returned HTTP "+res.status);let data=await res.json(),sel=$("#model"),old=sel.value;sel.replaceChildren();for(const m of data.models||[])sel.add(new Option(m.name,m.name));if(!sel.options.length)throw Error("No Ollama models found");if([...sel.options].some(o=>o.value===old))sel.value=old;setStatus("Connected · "+sel.options.length+" models");if(startAI&&sel.value)requestDecision("You are awake in your world for the first time.");}
+ catch(e){setStatus(e.message,false)}
+}
+async function requestDecision(eventText=""){
+ if(thinking||moving||paused||!$("#model").value)return;
+ thinking=true;setStatus("Square is thinking…");
+ const base=$("#endpoint").value.trim().replace(/\/$/,"");
+ try{
+  const messages=[{role:"system",content:system},...history,{role:"user",content:observation(eventText)}];
+  const res=await fetch(base+"/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:$("#model").value,stream:false,messages,tools,think:false,options:{temperature:.8,num_predict:220}})});
+  if(!res.ok)throw Error("Chat request failed: HTTP "+res.status);
+  const data=await res.json(),assistant=data.message||{},calls=assistant.tool_calls||[];
+  if(!calls.length)throw Error("This model didn't call a tool. Try qwen3:4b.");
+  history.push({role:"assistant",content:assistant.content||"",tool_calls:calls});
+  let destination=null;
+  for(const call of calls){
+   const fn=call.function||{},args=fn.arguments||{};
+   if(fn.name==="Say"&&typeof args.message==="string"){say(args.message.slice(0,240));history.push({role:"tool",tool_name:"Say",content:"The message was spoken."})}
+   if(fn.name==="Goto"){
+    const x=Number(args.X),y=Number(args.Y);
+    if(Number.isInteger(x)&&Number.isInteger(y)){destination={x:clamp(x,0,W-1),y:clamp(y,0,H-1)};history.push({role:"tool",tool_name:"Goto",content:"Destination accepted."})}
+    else history.push({role:"tool",tool_name:"Goto",content:"Invalid coordinates. Choose integer coordinates on the board."});
+   }
+  }
+  if(destination){
+   if(destination.x===pet.x&&destination.y===pet.y){setStatus("Square is pondering");setTimeout(()=>requestDecision("You chose your current tile. You did not move. Consider a different action."),500)}
+   else{target=destination;moving=true;timer=0;setStatus("Square is on the move")}
+  }else setStatus("Square is listening");
+ }catch(e){lastError=e.message;say(e.message,"note");setStatus("AI connection issue",false)}
+ finally{thinking=false}
+}
+function moveOneTile(){
  if(!moving||!target)return;
- if(mouse&&dist(mouse,pet)<=1){moving=false;target=null;say("Eep! Mouse! Changing plans.","sys");think();return}
- // One cardinal tile per step: never skip over a tile or the goal.
- let nx=pet.x,ny=pet.y;
+ const from={...pet};let nx=pet.x,ny=pet.y;
+ // Exactly one cardinal tile per tick. No diagonal steps and no skipped cells.
  if(nx!==target.x)nx+=Math.sign(target.x-nx);else if(ny!==target.y)ny+=Math.sign(target.y-ny);
- let k=key(nx,ny);
- if(walls.has(k)){moving=false;target=null;think();return}
- pet={x:nx,y:ny};steps++;
- if(dangers.has(k)){pet={...start};moving=false;target=null;say("Square suddenly reappeared at the starting spot.","sys");render();think();return}
- render();
- if(pet.x===target.x&&pet.y===target.y){moving=false;target=null;think()}
+ const k=key(nx,ny);
+ if(walls.has(k)){
+  moving=false;target=null;
+  const event="You tried to step from ("+from.x+","+from.y+") toward ("+nx+","+ny+"), but you stayed at ("+pet.x+","+pet.y+").";
+  history.push({role:"user",content:"World event: "+event});
+  requestDecision(event);return;
+ }
+ pet={x:nx,y:ny};steps++;draw();
+ if(dangers.has(k)){
+  pet={...START};moving=false;target=null;draw();
+  const event="You stepped from ("+from.x+","+from.y+") onto ("+nx+","+ny+"). Your position is now ("+pet.x+","+pet.y+").";
+  history.push({role:"user",content:"World event: "+event});
+  requestDecision(event);return;
+ }
+ if(pet.x===goal.x&&pet.y===goal.y){
+  moving=false;target=null;draw();
+  const event="You reached the yellow goal at ("+pet.x+","+pet.y+").";
+  history.push({role:"user",content:"World event: "+event});
+  requestDecision(event);return;
+ }
+ if(pet.x===target.x&&pet.y===target.y){moving=false;target=null;requestDecision("You arrived at ("+pet.x+","+pet.y+").")}
 }
-function randomGoal(){let tries=0;do{goal={x:Math.floor(Math.random()*W),y:Math.floor(Math.random()*H)};tries++}while((dist(goal,pet)<7||walls.has(key(goal.x,goal.y))||dangers.has(key(goal.x,goal.y)))&&tries<300);render();say("A new yellow goal appeared.","sys")}
-function pointer(e){let r=board.getBoundingClientRect();return {x:clamp(Math.floor((e.clientX-r.left)/r.width*W),0,W-1),y:clamp(Math.floor((e.clientY-r.top)/r.height*H),0,H-1)}}
-board.addEventListener("pointermove",e=>{mouse=pointer(e);$("#pet").style.background=dist(mouse,pet)<4?"#ef7890":"#4385ef"});board.addEventListener("pointerleave",()=>{mouse=null;$("#pet").style.background="#4385ef"});board.addEventListener("pointerdown",e=>{mouse=pointer(e);if(dist(mouse,pet)<=1){moving=false;target=null;say("Hey! Personal space!");think()}});
-$("#chatForm").addEventListener("submit",e=>{e.preventDefault();let input=$("#chatInput"),message=input.value.trim();if(!message)return;chatHistory.push({role:"user",content:message});say("You: "+message,"sys");input.value="";if(!moving&&!thinking&&!paused)think()});$("#model").onchange=()=>{chatHistory=[];if(!moving&&!thinking&&!paused)think()};$("#check").onclick=refresh;$("#goalBtn").onclick=randomGoal;$("#pause").onclick=()=>{paused=!paused;$("#pause").textContent=paused?"Resume":"Pause";if(!paused&&!moving)think()};$("#speed").oninput=()=>$("#speedVal").textContent=Number($("#speed").value)+" tile/sec";$("#endpoint").onchange=refresh;
-setInterval(()=>{if(!paused&&moving){tick+=.1;if(tick+1e-9>=1/Number($("#speed").value)){tick=0;step()}}},100);
-generateMap();drawMap();render();refresh();
-</script></body></html>
+function newGoal(){
+ let tries=0,p;do{p={x:Math.floor(Math.random()*W),y:Math.floor(Math.random()*H)};tries++}while((distance(p,pet)<7||walls.has(key(p.x,p.y))||dangers.has(key(p.x,p.y)))&&tries<400);
+ goal=p;draw();requestDecision("The yellow goal moved to a new location.");
+}
+board.addEventListener("pointermove",e=>{const r=board.getBoundingClientRect(),x=clamp(Math.floor((e.clientX-r.left)/r.width*W),0,W-1),y=clamp(Math.floor((e.clientY-r.top)/r.height*H),0,H-1);mouse={x,y}});
+board.addEventListener("pointerleave",()=>mouse=null);
+$("#chatForm").addEventListener("submit",e=>{e.preventDefault();let input=$("#chatInput"),v=input.value.trim();if(!v)return;history.push({role:"user",content:v});say(v,"you");input.value="";if(!moving&&!thinking&&!paused)requestDecision("The human just said: "+v)});
+$("#model").addEventListener("change",()=>{history=[];if(!moving&&!thinking&&!paused)requestDecision("You are awake. Start exploring.")});
+$("#refresh").onclick=()=>refreshModels(true);$("#saveEndpoint").onclick=()=>refreshModels(true);$("#newGoal").onclick=newGoal;
+$("#pause").onclick=()=>{paused=!paused;$("#pause").textContent=paused?"Resume":"Pause";if(!paused&&!moving&&!thinking)requestDecision("You have resumed.")};
+$("#speed").oninput=()=>$("#speedLabel").textContent=Number($("#speed").value)+" tile/sec";
+setInterval(()=>{if(!paused&&moving){timer+=.1;if(timer+1e-9>=1/Number($("#speed").value)){timer=0;moveOneTile()}}},100);
+generateWorld();draw();refreshModels(true);
+</script>
+</body></html>
