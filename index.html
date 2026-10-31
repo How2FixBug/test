@@ -127,8 +127,8 @@ function clickTarget(el){if(!el)return false;cursorToElement(el);el.click();retu
 function desktopSummary(){return {openWindows:$$('.win').filter(w=>w.style.display!=='none').map(w=>({app:w.dataset.app,title:titles[w.dataset.app]})),virtualFiles:Object.keys(virtualFiles),note:noteText.slice(0,800),activeApp:active,clock:$('#clock').textContent}}
 function toolRun(t){
  const name=t.name,args=t.arguments||{};
- if(name==='open_app'){if(!icons[args.app])return 'Unknown app';openApp(args.app);return 'Opened '+args.app}
- if(name==='close_app'){const w=$('.win[data-app="'+args.app+'"]');if(w)w.remove();return 'Closed '+args.app}
+ if(name==='open_app'){if(!icons[args.app])return 'Unknown app';const icon=document.querySelector('.desk-icon[data-open="'+args.app+'"]');if(icon)clickTarget(icon);else openApp(args.app);return 'Opened '+args.app}
+ if(name==='close_app'){const w=$('.win[data-app="'+args.app+'"]');if(w){const b=w.querySelector('[data-close]');clickTarget(b)}return 'Closed '+args.app}
  if(name==='list_files')return JSON.stringify(virtualFiles);
  if(name==='read_file')return virtualFiles[args.name]??'File not found';
  if(name==='write_file'){if(!args.name)return 'Missing filename';virtualFiles[args.name]=String(args.content||'');persist();const w=$('.win[data-app="files"]');if(w)renderFiles(w);return 'Saved '+args.name}
