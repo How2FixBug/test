@@ -1,156 +1,203 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Neurit Lab</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Little Brain — Custom AI</title>
 <style>
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17213a;background:#f4f7ff}
-*{box-sizing:border-box}body{margin:0;padding:28px 16px;min-height:100vh}.wrap{width:min(900px,100%);margin:auto}
-.eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#5572b9}
-h1{font-size:clamp(32px,6vw,46px);letter-spacing:-.045em;margin:7px 0}.sub{color:#65718a;line-height:1.55;margin:0 0 24px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:white;border:1px solid #e1e8f7;border-radius:18px;padding:20px;box-shadow:0 14px 45px #263e740d}
-h2{font-size:16px;margin:0 0 13px}label{display:block;font-size:12px;font-weight:750;margin:13px 0 7px;color:#53617b}
-textarea,input{width:100%;border:1px solid #dce4f3;border-radius:11px;padding:12px;font:inherit;color:#17213a;background:#fbfcff;outline:none}
-textarea:focus,input:focus{border-color:#6688e8;box-shadow:0 0 0 3px #6688e81a}textarea{min-height:78px;resize:vertical}
-button{border:0;border-radius:10px;background:#315ac2;color:white;padding:10px 14px;font:inherit;font-size:13px;font-weight:750;cursor:pointer;margin-top:10px}button:hover{background:#24499f}
-.secondary{background:#edf2ff;color:#3154a4}.secondary:hover{background:#e1eaff}
-.muted{font-size:12px;color:#8791a6;line-height:1.5}.answer{margin-top:12px;padding:14px;background:#f3f6ff;border:1px solid #e0e8ff;border-radius:12px;line-height:1.55;min-height:52px}
-.list{display:grid;gap:8px;margin-top:12px}.fact{padding:10px 12px;border:1px solid #e7ecf6;border-radius:10px;font-size:13px;display:flex;justify-content:space-between;gap:10px;align-items:center}.fact small{color:#8791a6;white-space:nowrap}
-.full{grid-column:1/-1}.pill{font-size:11px;color:#5572b9;background:#edf2ff;border-radius:999px;padding:4px 8px}
-#editor{min-height:100px}.suggestions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.suggestion{margin:0;background:#f0f4ff;color:#3154a4;border:1px solid #dce5fa;border-radius:999px;padding:7px 11px}
-@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#17213a;background:#f4f7ff;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 0%,#e8efff 0,transparent 36%),#f5f7fc}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:#315ac2;color:white;font-weight:750;font-size:13px}button:hover{background:#24499f}button:disabled{opacity:.45;cursor:not-allowed}
+.secondary{background:#edf2ff;color:#3154a4}.secondary:hover{background:#e1eaff}.danger{background:#fff0f0;color:#b43d4a}.danger:hover{background:#ffe1e1}
+.app{max-width:1180px;margin:auto;padding:26px 18px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;min-height:100vh}
+.side,.main{background:#fff;border:1px solid #e2e8f5;border-radius:19px;box-shadow:0 14px 45px #263e740b}
+.side{padding:19px;height:max-content}.brand{font-size:22px;font-weight:850;letter-spacing:-.05em}.brand span{color:#4268d1}.tag{font-size:11px;color:#8190aa;margin-top:3px}
+.status{display:flex;align-items:center;gap:8px;margin:20px 0 14px;padding:10px 11px;border-radius:11px;background:#f4f6fb;font-size:12px;color:#53617b}.dot{width:8px;height:8px;border-radius:50%;background:#e3a63d}.dot.ready{background:#28aa78}
+.side h3{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#8490a5;margin:20px 0 10px}
+.field{margin:12px 0}.field label{display:flex;justify-content:space-between;font-size:12px;font-weight:750;color:#53617b;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid #dce4f3;border-radius:9px;padding:9px 10px;background:#fbfcff;color:#17213a;outline:none}.field input:focus,.field select:focus{border-color:#6688e8}
+.row{display:flex;gap:8px}.row>*{flex:1}.wide{width:100%}.muted{font-size:11px;line-height:1.5;color:#8994a8}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}.stat{padding:10px;background:#f6f8fd;border-radius:10px}.stat b{display:block;font-size:17px}.stat small{color:#8490a5;font-size:10px}
+.main{display:flex;flex-direction:column;min-height:calc(100vh - 52px);overflow:hidden}.top{padding:19px 22px;border-bottom:1px solid #edf0f6;display:flex;justify-content:space-between;align-items:center;gap:12px}.top h1{font-size:17px;margin:0;letter-spacing:-.02em}.top p{margin:4px 0 0;color:#8490a5;font-size:11px}
+#messages{flex:1;overflow:auto;padding:22px;display:flex;flex-direction:column;gap:15px;min-height:400px}.welcome{margin:auto;text-align:center;max-width:390px;color:#7d8aa3}.welcome .orb{width:56px;height:56px;border-radius:18px;margin:0 auto 15px;background:linear-gradient(135deg,#dce7ff,#eff3ff);display:grid;place-items:center;font-size:25px}.welcome h2{color:#263653;font-size:19px;margin:0 0 7px}.welcome p{font-size:13px;line-height:1.6}
+.msg{display:flex;gap:10px;max-width:86%;align-items:flex-start}.msg.user{align-self:flex-end;flex-direction:row-reverse}.avatar{width:28px;height:28px;flex:none;border-radius:9px;background:#edf2ff;color:#315ac2;display:grid;place-items:center;font-size:11px;font-weight:850}.user .avatar{background:#315ac2;color:white}.bubble{padding:11px 14px;border-radius:4px 14px 14px 14px;background:#f2f5fc;color:#263653;font-size:13px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}.user .bubble{background:#315ac2;color:white;border-radius:14px 4px 14px 14px}
+.composer{padding:15px 18px 18px;border-top:1px solid #edf0f6}.composebox{display:flex;gap:9px;align-items:flex-end;border:1px solid #dce4f3;border-radius:14px;padding:8px;background:#fbfcff}.composebox textarea{flex:1;resize:none;border:0;outline:0;background:transparent;padding:8px;min-height:40px;max-height:130px;font-size:13px;color:#17213a}.composebox button{height:40px;min-width:66px}.foot{text-align:center;font-size:10px;color:#9aa4b6;margin-top:8px}
+.progress{height:6px;border-radius:99px;background:#edf1f8;overflow:hidden;margin:10px 0}.progress span{display:block;height:100%;width:0;background:#4268d1;transition:width .15s}
+#trainStatus{font-size:11px;color:#7a879d;line-height:1.5;min-height:32px}
+@media(max-width:800px){.app{grid-template-columns:1fr;padding:10px}.side{order:2}.main{min-height:72vh;order:1}#messages{min-height:48vh}.side{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.side .brand,.side .status,.side .fullrow{grid-column:1/-1}}
 </style>
 </head>
-<body><main class="wrap">
-<div class="eyebrow">A tiny language experiment</div><h1>Neurit Lab</h1>
-<p class="sub">Autocomplete predicts words. Neurits store facts. The reasoning engine connects those facts to answer questions it wasn't directly trained on.</p>
-<div class="grid">
-<section class="panel">
-<h2>Ask the system</h2>
-<label for="question">Question</label>
-<input id="question" value="The capital of the U.S. is" placeholder="Ask something...">
-<button id="ask">Find an answer</button>
-<div class="answer" id="answer" aria-live="polite">Ask a question to search the knowledge base.</div>
-<p class="muted" id="trace"></p>
-</section>
-<section class="panel">
-<h2>Add a Neurit</h2>
-<label for="factInput">Write a fact in plain English</label>
-<textarea id="factInput" placeholder="Example: Washington D.C. is the capital of the U.S."></textarea>
-<button id="add">+ Add Neurit</button>
-<p class="muted">Any non-empty sentence is accepted. Statements are saved in this browser and can be retrieved using relevant words.</p>
-</section>
-<section class="panel full">
-<h2>Knowledge bank <span class="pill" id="count">0 Neurits</span></h2>
-<div class="list" id="facts"></div>
-</section>
-<section class="panel full">
-<h2>Autocomplete (original feature)</h2>
-<textarea id="editor" placeholder="The curious cat..."></textarea>
-<div class="suggestions" id="suggestions"></div>
-<p class="muted">Suggestions still come from the tiny example corpus. Neurits are a separate knowledge-and-reasoning layer.</p>
-</section>
-</div>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand">little<span>brain</span></div><div class="tag">A language model with its own weights.</div>
+  <div class="status fullrow"><span class="dot" id="dot"></span><span id="modelStatus">Not trained yet</span></div>
+  <h3 class="fullrow">Model parameters</h3>
+  <div class="field"><label for="hidden">Hidden size</label><select id="hidden"><option value="32">32 — tiny</option><option value="48" selected>48 — balanced</option><option value="64">64 — larger</option></select></div>
+  <div class="field"><label for="context">Context window</label><select id="context"><option value="4">4 tokens</option><option value="6" selected>6 tokens</option><option value="8">8 tokens</option></select></div>
+  <div class="field"><label for="epochs">Training epochs</label><select id="epochs"><option value="2">2 — quick</option><option value="4" selected>4 — standard</option><option value="8">8 — thorough</option></select></div>
+  <div class="field"><label for="rate">Learning rate <span id="rateLabel">0.025</span></label><input id="rate" type="range" min="0.005" max="0.06" step="0.005" value="0.025"></div>
+  <div class="field fullrow"><button class="wide" id="train">Train from scratch</button><div class="progress"><span id="progress"></span></div><div id="trainStatus">The starter dataset is built in. Training creates new weights locally.</div></div>
+  <div class="field"><label for="temperature">Temperature <span id="tempLabel">0.8</span></label><input id="temperature" type="range" min="0.2" max="1.5" step="0.1" value="0.8"></div>
+  <div class="field"><label for="maxTokens">Max response tokens</label><select id="maxTokens"><option>40</option><option selected>70</option><option>100</option></select></div>
+  <div class="stats fullrow"><div class="stat"><b id="paramCount">0</b><small>TRAINABLE PARAMETERS</small></div><div class="stat"><b id="vocabCount">0</b><small>VOCABULARY</small></div></div>
+  <h3 class="fullrow">Model controls</h3>
+  <div class="row fullrow"><button class="secondary" id="save">Save weights</button><button class="secondary" id="load">Load weights</button></div>
+  <button class="danger wide fullrow" id="reset" style="margin-top:8px">Clear model & chats</button>
+  <p class="muted fullrow">Fully custom neural network. No pretrained model, API, or external AI service. Training and chat run in this browser. This tiny model is experimental, not ChatGPT-scale.</p>
+</aside>
+<main class="main">
+  <header class="top"><div><h1>Chat</h1><p>Custom-trained neural language model</p></div><button class="secondary" id="newChat">New chat</button></header>
+  <section id="messages"><div class="welcome" id="welcome"><div class="orb">✳</div><h2>Your model starts here.</h2><p>Train the network in the left panel, then chat. It begins with random weights — every learned pattern comes from its training data.</p></div></section>
+  <footer class="composer"><div class="composebox"><textarea id="prompt" rows="1" placeholder="Message your model..." disabled></textarea><button id="send" disabled>Send ↑</button></div><div class="foot">Small model · local inference · no conversation leaves this browser</div></footer>
 </main>
+</div>
 <script>
-const STORAGE_KEY="neurit-memory-v1";
-const defaultNeurits=[
-  {id:1,subject:"Paris",relation:"capital_of",object:"France",source:"Example knowledge"},
-  {id:2,subject:"Washington D.C.",relation:"capital_of",object:"the U.S.",source:"Example knowledge"},
-  {id:3,subject:"France",relation:"type",object:"country",source:"Example knowledge"},
-  {id:4,subject:"the U.S.",relation:"type",object:"country",source:"Example knowledge"}
+"use strict";
+const $=s=>document.querySelector(s);
+const STORAGE="littlebrain-model-v1";
+const dialogues=[
+["hello","Hello! It is good to meet you. What would you like to talk about?"],
+["hi","Hi there! I am a tiny language model learning to chat."],
+["hey","Hey! What is on your mind?"],
+["how are you","I am doing well. My little neural network is ready to think."],
+["what are you","I am a small language model trained from scratch in your browser."],
+["what is your name","You can call me Little Brain. I am a custom neural network."],
+["who made you","I was built as a small experiment in training a language model from random weights."],
+["what can you do","I can generate text from patterns learned during training. I am still a very small model."],
+["are you intelligent","I can learn language patterns, but my small size means my understanding is limited."],
+["what is ai","Artificial intelligence is software designed to perform tasks that usually require human-like reasoning or perception."],
+["what is a neural network","A neural network is a collection of connected mathematical units. Training adjusts its weights to reduce prediction errors."],
+["what are parameters","Parameters are numerical weights and biases that a neural network learns during training."],
+["what is training","Training means showing a model examples and adjusting its parameters to improve predictions."],
+["what is a language model","A language model learns patterns in text and predicts which token is likely to come next."],
+["what is a token","A token is a piece of text that a language model processes. It can be a word or part of a word."],
+["what is a computer","A computer is a machine that processes information by following instructions."],
+["what is ram","RAM is short-term computer memory used by running programs and data."],
+["what is a cpu","A CPU is the central processing unit. It executes instructions and performs calculations."],
+["what is a gpu","A GPU is a processor designed to handle many calculations in parallel."],
+["what is javascript","JavaScript is a programming language commonly used to make websites interactive."],
+["what is html","HTML is the markup language used to structure content on web pages."],
+["what is css","CSS controls how web pages look, including layout, colors, and typography."],
+["what is python","Python is a general-purpose programming language known for readable syntax."],
+["what is a variable","A variable is a named place where a program stores a value."],
+["what is a function","A function is a reusable block of code that performs a task."],
+["what is a loop","A loop repeats a block of instructions while a condition is true or for a chosen number of steps."],
+["what is an algorithm","An algorithm is a sequence of steps for solving a problem."],
+["what is the internet","The internet is a global network connecting computers and other devices."],
+["what is a website","A website is a collection of related pages and resources available through the web."],
+["what is space","Space is the vast region beyond Earth's atmosphere, containing stars, planets, galaxies, and other objects."],
+["what is a star","A star is a huge sphere of hot plasma that produces energy through nuclear fusion."],
+["what is the sun","The Sun is the star at the center of our solar system."],
+["what is a planet","A planet is a large object that orbits a star and is massive enough to become nearly round."],
+["what is a black hole","A black hole is a region of spacetime where gravity is so strong that nothing, not even light, can escape."],
+["what is gravity","Gravity is the attraction between objects with mass and energy."],
+["why is the sky blue","Air molecules scatter shorter blue wavelengths of sunlight more strongly than longer red wavelengths."],
+["why do stars shine","Stars shine because nuclear fusion in their cores releases energy."],
+["what is water","Water is a chemical compound made of two hydrogen atoms and one oxygen atom."],
+["what is science","Science is a way of understanding the natural world through observation, testing, and evidence."],
+["what is math","Mathematics studies numbers, patterns, structures, and relationships."],
+["what is geometry","Geometry is the branch of mathematics concerned with shapes, sizes, angles, and space."],
+["what is a fraction","A fraction represents part of a whole and is written as a numerator over a denominator."],
+["what is 2 plus 2","Two plus two equals four."],
+["what is 10 times 5","Ten times five equals fifty."],
+["what is the capital of france","The capital of France is Paris."],
+["what is the capital of japan","The capital of Japan is Tokyo."],
+["what is the capital of italy","The capital of Italy is Rome."],
+["what is the capital of the united states","The capital of the United States is Washington DC."],
+["tell me a fun fact","Octopuses have three hearts and blue blood."],
+["tell me another fact","A day on Venus is longer than its year."],
+["why do cats purr","Cats often purr when they are content, though they can also purr in other situations."],
+["why is the ocean salty","Rivers carry dissolved minerals into the ocean, and water evaporates while most salt remains."],
+["what is music","Music is an organized form of sound involving rhythm, melody, and often harmony."],
+["what is a game","A game is a structured activity with goals, rules, and interaction."],
+["what is geometry dash","Geometry Dash is a rhythm-based platform game where players navigate obstacles in time with music."],
+["how do i learn programming","Start with small projects, experiment often, and learn one concept at a time."],
+["how do i get better at coding","Build projects you care about, read errors carefully, and practice debugging."],
+["how do i debug code","Reproduce the problem, inspect the error, isolate the failing part, and test one change at a time."],
+["why is my code not working","I need to see the code and the error message to identify the problem."],
+["can you help me","Yes. Tell me what you are trying to do, and I will try to help."],
+["thanks","You are welcome!"],
+["thank you","You are very welcome."],
+["goodbye","Goodbye! I hope the rest of your day goes well."],
+["tell me a joke","Why did the computer get cold? It left its Windows open."],
+["that is funny","I am glad the joke worked."],
+["i am bored","A small creative project, puzzle, or new challenge can make a boring afternoon interesting."],
+["i like space","Space is fascinating. There is always something strange happening somewhere in the universe."],
+["i like coding","Coding is a great way to turn ideas into things people can use."],
+["what should i build","Try making a tiny tool that solves one annoying problem. Small projects are easier to finish and improve."],
+["explain photosynthesis","Photosynthesis is the process plants use to turn light energy, water, and carbon dioxide into sugars and oxygen."],
+["what is evolution","Evolution is the change in inherited traits of populations over generations."],
+["what is an atom","An atom is the basic unit of a chemical element, made of a nucleus and electrons."],
+["what is electricity","Electricity involves the presence and movement of electric charge."],
+["what is sound","Sound is a vibration that travels through a material as a wave."],
+["what is light","Light is electromagnetic radiation that can be detected by the human eye."],
+["what is time","Time is a way to measure the sequence and duration of events."],
+["what is a database","A database is an organized collection of information that can be stored, searched, and updated."],
+["what is github","GitHub is a platform for hosting code and collaborating on software projects."],
+["what is an operating system","An operating system manages a computer's hardware and provides services for applications."],
+["what is machine learning","Machine learning is a field of AI where systems learn patterns from data."],
+["what is deep learning","Deep learning uses neural networks with multiple layers to learn complex patterns."],
+["what is a browser","A web browser is an application that retrieves and displays websites."],
+["what is a model","A model is a mathematical system that learns patterns from data and uses them to make predictions."],
+["can you think","I calculate likely next tokens using patterns learned from examples. That is a limited kind of language generation."],
+["do you remember me","I can use the messages in this chat, but I do not have a permanent personal memory system."],
+["what do you know","I learned a small collection of language patterns and facts from my starter training dataset."],
+["are you pretrained","No. The network starts with random weights and is trained locally from the included examples."],
+["where does training happen","Training happens locally in this browser. The model weights stay on this device when saved."],
+["does this use an api","No. Text generation and training run locally in this page."],
+["how big are you","I am intentionally tiny. My parameter count is shown in the model panel."],
+["why are your answers weird","My training dataset and network are small, so I can make mistakes and produce awkward text."],
+["can you learn new things","You can retrain me using a larger text dataset in a future version. Right now I learn from the built-in examples."],
+["what is a good question","A good question is clear about what you want to understand or accomplish."],
+["explain recursion","Recursion is when a function solves a problem by calling itself on a smaller version of that problem."],
+["what is a pixel","A pixel is the smallest addressable unit in a digital image."],
+["what is a pixel art","Pixel art is digital art created using small, deliberately placed pixels."],
+["what is a server","A server is a computer or program that provides data or services to other computers."],
+["what is cloud computing","Cloud computing provides computing resources over a network instead of relying only on a local device."],
+["what is open source","Open source software makes its source code available under a license that allows people to inspect and often modify it."],
+["what is a bug","A bug is an error or unexpected behavior in software."],
+["what is debugging","Debugging is the process of finding and fixing problems in a program."],
+["what makes a good game","A good game often has clear feedback, satisfying controls, interesting decisions, and a reason to keep playing."],
+["how do neural networks learn","They compare predictions with target answers, calculate gradients, and adjust weights to reduce error."],
+["what is a gradient","A gradient describes how a function changes as its input parameters change."],
+["what is an epoch","An epoch is one complete pass through a training dataset."],
+["what is a learning rate","The learning rate controls how much model parameters change during each training update."],
+["what is overfitting","Overfitting happens when a model learns its training examples too specifically and performs poorly on new examples."],
+["what is inference","Inference is using a trained model to make predictions or generate output."],
+["what is a chatbot","A chatbot is a program designed to communicate with people through conversation."],
+["what is a good way to study","Break a topic into small pieces, practice recalling ideas, and check what you misunderstood."],
+["i do not understand","That is okay. We can break the idea into smaller parts and work through it."],
+["can you explain simply","Sure. I will try to use simpler words and a short example."],
+["give me an example","An example makes an abstract idea more concrete. Tell me which part you want illustrated."],
+["what do you think about robots","Robots are machines that can sense or act in the physical world. They can be useful when designed carefully."],
+["what is the meaning of life","There is no single answer everyone agrees on. People often find meaning through relationships, curiosity, creativity, and helping others."]
 ];
-let neurits=[];
-try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");neurits=Array.isArray(saved)?saved:defaultNeurits.map(x=>({...x}));}catch{neurits=defaultNeurits.map(x=>({...x}));}
-let nextId=Math.max(0,...neurits.map(n=>Number(n.id)||0))+1;
-function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(neurits));}catch{}}
-function clean(s){return s.trim().replace(/[.!?]+$/,"").replace(/\s+/g," ")}
-function addNeurit(subject,relation,object,source){
-  const duplicate=neurits.some(n=>n.subject===subject&&n.relation===relation&&n.object.toLowerCase()===object.toLowerCase());
-  if(duplicate)return null;
-  const n={id:nextId++,subject,relation,object,source};neurits.push(n);persist();return n;
-}
-function parseFact(raw){
-  const s=clean(raw);if(!s)return null;
-  let m=s.match(/^(.+?)\s+is\s+the\s+capital\s+of\s+(.+)$/i);
-  if(m)return {subject:clean(m[1]),relation:"capital_of",object:clean(m[2])};
-  m=s.match(/^(.+?)\s+is\s+a\s+country$/i);
-  if(m)return {subject:clean(m[1]),relation:"type",object:"country"};
-  // General statements are kept verbatim; no sentence template is required.
-  return {subject:"",relation:"statement",object:s};
-}
-function displayNeurit(n){
-  if(n.relation==="statement")return n.object;
-  if(n.relation==="capital_of")return n.subject+" is the capital of "+n.object;
-  return n.subject+" is a "+n.object;
-}
-function renderFacts(){
-  const root=document.querySelector("#facts");root.replaceChildren();
-  document.querySelector("#count").textContent=neurits.length+" Neurits";
-  for(const n of neurits){
-    const row=document.createElement("div");row.className="fact";
-    const span=document.createElement("span");span.textContent=displayNeurit(n);
-    const small=document.createElement("small");small.textContent="#"+n.id+" · "+n.source;
-    row.append(span,small);root.append(row);
-  }
-}
-const stopWords=new Set(["what","who","where","when","why","how","did","does","do","is","are","was","were","am","i","me","my","you","your","the","a","an","to","of","and","or","tell","about","know","remember","show","say","said","happen","happened","have","has","had","please","can"]);
-function termsOf(text){return (text.toLowerCase().match(/[a-z0-9']+/g)||[]).filter(w=>!stopWords.has(w));}
-function answerQuestion(){
-  const q=document.querySelector("#question").value.trim(),ans=document.querySelector("#answer"),trace=document.querySelector("#trace");
-  const cap=q.match(/capital\s+of\s+(.+?)(?:\s+is)?[?.!]*$/i);
-  if(cap){
-    const country=clean(cap[1]);
-    const found=neurits.find(n=>n.relation==="capital_of"&&n.object.toLowerCase()===country.toLowerCase());
-    if(found){ans.textContent=found.subject;trace.textContent="Found a stored capital_of relationship in Neurit #"+found.id+".";}
-    else{ans.textContent="I don't know the capital of "+country+".";trace.textContent="No matching capital relationship is stored.";}
-    return;
-  }
-  const allStatements=neurits.filter(n=>n.relation==="statement");
-  const qLower=q.toLowerCase();
-  const personalIntent=/\b(i|me|my|myself)\b/.test(qLower)||/\b(what did i|what happened|what have i|what do you know about me)\b/.test(qLower);
-  const terms=termsOf(q);
-  let ranked=allStatements.map(n=>{
-    const body=n.object.toLowerCase(),tokens=termsOf(n.object);
-    let score=0;
-    for(const t of terms){if(tokens.includes(t))score+=3;else if(body.includes(t))score+=1;}
-    if(personalIntent&&/^i\b/i.test(n.object))score+=4;
-    return {n,score};
-  }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.n.id-b.n.id);
-  const broadRecall=terms.length===0||/\b(what did i|what happened|what have i|what do you know about me|what did i say)\b/.test(qLower);
-  if(broadRecall)ranked=allStatements.filter(n=>!personalIntent||/^i\b/i.test(n.object)).map(n=>({n,score:1}));
-  if(ranked.length){
-    const best=ranked[0].score,results=ranked.filter(x=>x.score===best).slice(0,5);
-    ans.textContent=results.map(x=>x.n.object).join(" · ");
-    trace.textContent="Retrieved "+results.length+" statement Neurit(s): "+results.map(x=>"#"+x.n.id).join(", ")+". Ranked by word overlap and personal-context relevance; this is retrieval, not full semantic understanding.";
-  }else{
-    ans.textContent="I don't have a matching memory yet.";
-    trace.textContent="No stored statement matched the useful terms in that question.";
-  }
-}
-document.querySelector("#ask").addEventListener("click",answerQuestion);
-document.querySelector("#question").addEventListener("keydown",e=>{if(e.key==="Enter")answerQuestion()});
-document.querySelector("#add").addEventListener("click",()=>{
-  const input=document.querySelector("#factInput"),parsed=parseFact(input.value);
-  if(!parsed){document.querySelector("#answer").textContent="Write a statement first.";return;}
-  const added=addNeurit(parsed.subject,parsed.relation,parsed.object,"User memory");
-  if(!added){document.querySelector("#answer").textContent="That exact Neurit is already stored.";}
-  else{input.value="";document.querySelector("#answer").textContent="Stored as Neurit #"+added.id+".";}
-  document.querySelector("#trace").textContent="Saved in this browser's local memory. General statements are stored verbatim and can be retrieved by relevant words.";
-  renderFacts();
-});
-renderFacts();answerQuestion();
-
-// Tiny n-gram autocomplete retained from the first version.
-const trainingText=["the curious cat explored the quiet garden","the curious cat watched the birds","the curious cat sat beside the window","the quick brown fox jumped over the fence","the sun shines brightly in the morning","the moon appears in the night sky","the sky is blue on a clear day","a small bird flew across the garden","a friendly dog played in the park","a computer can process information quickly","artificial intelligence learns patterns from examples","a language model predicts the next word","the model uses context to make predictions","good questions lead to interesting answers","learning takes time and practice","science helps us understand the world","space contains stars planets and galaxies","water freezes when the temperature gets low","plants need sunlight water and nutrients","music can make people feel happy","programming is the process of giving instructions","javascript runs in a web browser","the best way to learn is to build something","this is a simple autocomplete experiment","we can improve the system with more examples","knowledge is made of facts and relationships","reasoning combines information to reach conclusions","the capital of france is paris","paris is a city in france","the earth travels around the sun"];
-const counts=new Map(),vocab=new Set();
-function addCount(key,word){if(!counts.has(key))counts.set(key,new Map());const m=counts.get(key);m.set(word,(m.get(word)||0)+1)}
-for(const sentence of trainingText){const words=sentence.toLowerCase().match(/[a-z']+/g)||[];for(let i=0;i<words.length;i++){vocab.add(words[i]);addCount(words.slice(Math.max(0,i-2),i).join(" "),words[i]);if(i>0)addCount(words[i-1],words[i]);addCount("",words[i]);}}
-const editor=document.querySelector("#editor"),suggestions=document.querySelector("#suggestions");let current=[];
-function getSuggestions(){const before=editor.value.slice(0,editor.selectionStart),match=before.match(/([a-z']*)$/i),prefix=match?match[1].toLowerCase():"",prior=before.slice(0,before.length-prefix.length).toLowerCase().match(/[a-z']+/g)||[],two=prior.slice(-2).join(" "),one=prior.at(-1)||"";let results=[...(counts.get(two)||new Map())].filter(([w])=>w.startsWith(prefix)&&w!==prefix);if(results.length<5)for(const item of [...(counts.get(one)||new Map())])if(item[0].startsWith(prefix)&&!results.some(x=>x[0]===item[0]))results.push(item);if(results.length<5)for(const w of vocab)if(w.startsWith(prefix)&&w!==prefix&&!results.some(x=>x[0]===w))results.push([w,0]);return results.sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,5)}
-function renderSuggestions(){const results=getSuggestions();current=results.map(x=>x[0]);suggestions.replaceChildren();for(const word of current){const b=document.createElement("button");b.className="suggestion";b.textContent=word;b.addEventListener("click",()=>insertWord(word));suggestions.append(b)}}
-function insertWord(word){const start=editor.selectionStart,end=editor.selectionEnd,before=editor.value.slice(0,start),after=editor.value.slice(end),match=before.match(/[a-z']*$/i),cut=match?match[0].length:0,insert=(cut?"":" ")+word+" ";editor.value=before.slice(0,before.length-cut)+insert+after;const pos=before.length-cut+insert.length;editor.focus();editor.setSelectionRange(pos,pos);renderSuggestions()}
-editor.addEventListener("input",renderSuggestions);editor.addEventListener("keyup",renderSuggestions);editor.addEventListener("click",renderSuggestions);editor.addEventListener("keydown",e=>{if(e.key==="Tab"&&current.length){e.preventDefault();insertWord(current[0])}});
-renderSuggestions();
-</script></body></html>
+const TOKENS=/[a-z0-9']+|[.,!?;:]/g;
+let model=null,training=false,chatHistory=[];
+function tokenize(s){return (s.toLowerCase().match(TOKENS)||[])}
+function rand(scale){return (Math.random()*2-1)*scale}
+function buildData(){const sequences=dialogues.map(([q,a])=>["user",...tokenize(q),"assistant",...tokenize(a),"<eos>"]);const vocab=["<pad>","<unk>","<eos>",...new Set(sequences.flat())];const ids=new Map(vocab.map((w,i)=>[w,i]));return {vocab,ids,sequences:sequences.map(s=>s.map(t=>ids.get(t)))}}
+function createModel(hidden,context){const d=buildData(),V=d.vocab.length,E=16,H=hidden,C=context;const randArr=(n,scale)=>{const a=new Float32Array(n);for(let i=0;i<n;i++)a[i]=rand(scale);return a};return {version:1,vocab:d.vocab,hidden:H,context:C,embed:E,W1:randArr(C*E*H,Math.sqrt(2/(C*E))),b1:new Float32Array(H),W2:randArr(H*V,Math.sqrt(2/H)),b2:new Float32Array(V),trained:false,steps:0}}
+function examplesFor(m){const map=new Map(m.vocab.map((w,i)=>[w,i]));const data=dialogues.map(([q,a])=>["user",...tokenize(q),"assistant",...tokenize(a),"<eos>"].map(t=>map.has(t)?map.get(t):1));const out=[];for(const seq of data)for(let i=0;i<seq.length;i++){const x=new Int32Array(m.context);for(let j=0;j<m.context;j++){const p=i-m.context+j;x[j]=p>=0?seq[p]:0}out.push([x,seq[i]])}return out}
+function forward(m,x){const {context:C,embed:E,hidden:H,vocab:vv}=m,V=vv.length;const hpre=new Float32Array(H),h=new Float32Array(H);for(let p=0;p<C;p++){const id=x[p],off=id*E;for(let e=0;e<E;e++){const ev=m.emb[off+e];if(ev===0)continue;const base=(p*E+e)*H;for(let j=0;j<H;j++)hpre[j]+=m.W1[base+j]*ev}}for(let j=0;j<H;j++)h[j]=Math.tanh(hpre[j]+m.b1[j]);const logits=new Float32Array(V);let max=-Infinity;for(let v=0;v<V;v++){let z=m.b2[v],off=v*H;for(let j=0;j<H;j++)z+=m.W2[off+j]*h[j];logits[v]=z;if(z>max)max=z}let sum=0;for(let v=0;v<V;v++){logits[v]=Math.exp(logits[v]-max);sum+=logits[v]}for(let v=0;v<V;v++)logits[v]/=sum;return {h,probs:logits}}
+function trainBatch(m,ex,rate){const H=m.hidden,V=m.vocab.length,E=m.embed,C=m.context;let loss=0;const gW2=new Float32Array(m.W2.length),gb2=new Float32Array(V),gW1=new Float32Array(m.W1.length),gb1=new Float32Array(H),gEmb=new Float32Array(m.emb.length);for(const [x,y] of ex){const {h,probs}=forward(m,x);loss-=Math.log(Math.max(probs[y],1e-9));const dh=new Float32Array(H);for(let v=0;v<V;v++){const dz=probs[v]-(v===y?1:0);gb2[v]+=dz;const off=v*H;for(let j=0;j<H;j++){gW2[off+j]+=dz*h[j];dh[j]+=m.W2[off+j]*dz}}for(let j=0;j<H;j++){const dz=dh[j]*(1-h[j]*h[j]);gb1[j]+=dz;for(let p=0;p<C;p++)for(let e=0;e<E;e++){const id=x[p],idx=id*E+e,wi=(p*E+e)*H+j;gW1[wi]+=dz*m.emb[idx];gEmb[idx]+=dz*m.W1[wi]}}}const scale=rate/ex.length;for(let i=0;i<m.W2.length;i++)m.W2[i]-=scale*gW2[i];for(let i=0;i<V;i++)m.b2[i]-=scale*gb2[i];for(let i=0;i<m.W1.length;i++)m.W1[i]-=scale*gW1[i];for(let i=0;i<H;i++)m.b1[i]-=scale*gb1[i];for(let i=0;i<m.emb.length;i++)m.emb[i]-=scale*gEmb[i];return loss/ex.length}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}
+function paramCount(m){return m.emb.length+m.W1.length+m.b1.length+m.W2.length+m.b2.length}
+function updateStats(){if(!model)return;$("#paramCount").textContent=paramCount(model).toLocaleString();$("#vocabCount").textContent=model.vocab.length;$("#dot").classList.toggle("ready",model.trained);$("#modelStatus").textContent=model.trained?"Trained · "+model.steps.toLocaleString()+" updates":"Model initialized"}
+function addMessage(role,text){$("#welcome")?.remove();const el=document.createElement("div");el.className="msg "+role;const avatar=document.createElement("div");avatar.className="avatar";avatar.textContent=role==="user"?"R":"LB";const bubble=document.createElement("div");bubble.className="bubble";bubble.textContent=text;el.append(avatar,bubble);$("#messages").append(el);$("#messages").scrollTop=$("#messages").scrollHeight;return bubble}
+function sample(probs,temp){const scores=[];let sum=0;for(let i=0;i<probs.length;i++){const p=Math.pow(Math.max(probs[i],1e-12),1/temp);scores.push(p);sum+=p}let r=Math.random()*sum;for(let i=0;i<scores.length;i++){r-=scores[i];if(r<=0)return i}return scores.length-1}
+function encodeContext(m,tokens){const map=new Map(m.vocab.map((w,i)=>[w,i]));const ids=tokens.map(t=>map.get(t)??1);const x=new Int32Array(m.context);for(let i=0;i<m.context;i++){const at=ids.length-m.context+i;x[i]=at>=0?ids[at]:0}return x}
+async function generate(prompt){if(!model?.trained||training)return;$("#send").disabled=true;$("#prompt").disabled=true;const bubble=addMessage("assistant","");const toks=["user",...tokenize(prompt),"assistant"];let out=[];const max=Number($("#maxTokens").value),temp=Number($("#temperature").value);for(let i=0;i<max;i++){const x=encodeContext(model,toks.concat(out));const {probs}=forward(model,x);const id=sample(probs,temp),word=model.vocab[id];if(word==="<eos>"||word==="user")break;out.push(word);bubble.textContent=detokenize(out);$("#messages").scrollTop=$("#messages").scrollHeight;await new Promise(r=>setTimeout(r,12));}if(!out.length)bubble.textContent="I am not sure what to say yet. My tiny model may need more training.";$("#send").disabled=false;$("#prompt").disabled=false;$("#prompt").focus()}
+function detokenize(a){let s="";for(const w of a){if(/[.,!?;:]/.test(w)&&w.length===1)s=s.trimEnd()+w+" ";else s+=w+" "}s=s.trim();return s?s[0].toUpperCase()+s.slice(1):s}
+async function saveModel(){if(!model)return;const data={...model,emb:Array.from(model.emb)};try{const db=await openDB();await new Promise((res,rej)=>{const tx=db.transaction("models","readwrite");tx.objectStore("models").put(data,"active");tx.oncomplete=res;tx.onerror=()=>rej(tx.error)});$("#trainStatus").textContent="Weights saved on this device."}catch(e){try{localStorage.setItem(STORAGE,JSON.stringify(data));$("#trainStatus").textContent="Weights saved in browser storage."}catch{$("#trainStatus").textContent="Could not save. Browser storage may be full."}}}
+function openDB(){return new Promise((res,rej)=>{const req=indexedDB.open("LittleBrainDB",1);req.onupgradeneeded=()=>req.result.createObjectStore("models");req.onsuccess=()=>res(req.result);req.onerror=()=>rej(req.error)})}
+async function loadModel(){try{let data;try{const db=await openDB();data=await new Promise((res,rej)=>{const tx=db.transaction("models","readonly"),r=tx.objectStore("models").get("active");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}catch{}if(!data){const raw=localStorage.getItem(STORAGE);if(raw)data=JSON.parse(raw)}if(data&&data.version===1){model={...data,emb:new Float32Array(data.emb),W1:new Float32Array(data.W1),b1:new Float32Array(data.b1),W2:new Float32Array(data.W2),b2:new Float32Array(data.b2)};updateStats();$("#prompt").disabled=!model.trained;$("#send").disabled=!model.trained;$("#trainStatus").textContent="Loaded saved model weights.";return true}}catch(e){console.warn(e)}return false}
+async function train(){if(training)return;training=true;$("#train").disabled=true;$("#send").disabled=true;$("#prompt").disabled=true;const hidden=Number($("#hidden").value),context=Number($("#context").value),epochs=Number($("#epochs").value),rate=Number($("#rate").value);model=createModel(hidden,context);model.emb=new Float32Array(model.vocab.length*model.embed);for(let i=0;i<model.emb.length;i++)model.emb[i]=rand(.08);const examples=examplesFor(model),total=examples.length*epochs;let done=0,lastLoss=0;$("#paramCount").textContent=paramCount(model).toLocaleString();$("#vocabCount").textContent=model.vocab.length;$("#trainStatus").textContent="Initializing random weights…";const start=performance.now();for(let ep=0;ep<epochs;ep++){shuffle(examples);for(let k=0;k<examples.length;k+=24){const batch=examples.slice(k,k+24);lastLoss=trainBatch(model,batch,rate);done+=batch.length;if(done%120<24||done===total){$("#progress").style.width=(100*done/total)+"%";$("#trainStatus").textContent="Epoch "+(ep+1)+"/"+epochs+" · "+done.toLocaleString()+"/"+total.toLocaleString()+" examples · loss "+lastLoss.toFixed(3);await new Promise(r=>setTimeout(r,0));}}}model.trained=true;model.steps=total;updateStats();training=false;$("#train").disabled=false;$("#send").disabled=false;$("#prompt").disabled=false;$("#trainStatus").textContent="Training complete in "+((performance.now()-start)/1000).toFixed(1)+"s. The network learned "+total.toLocaleString()+" next-token examples.";await saveModel()}
+$("#rate").addEventListener("input",()=>$("#rateLabel").textContent=Number($("#rate").value).toFixed(3));$("#temperature").addEventListener("input",()=>$("#tempLabel").textContent=Number($("#temperature").value).toFixed(1));
+$("#train").addEventListener("click",train);
+$("#send").addEventListener("click",async()=>{const p=$("#prompt").value.trim();if(!p||!model?.trained)return;$("#prompt").value="";addMessage("user",p);await generate(p)});
+$("#prompt").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("#send").click()}});
+$("#newChat").addEventListener("click",()=>{$("#messages").replaceChildren();const w=document.createElement("div");w.className="welcome";w.id="welcome";w.innerHTML='<div class="orb">✳</div><h2>Fresh conversation.</h2><p>Your model weights stay loaded. Start a new chat whenever you like.</p>';$("#messages").append(w)});
+$("#save").addEventListener("click",saveModel);$("#load").addEventListener("click",loadModel);
+$("#reset").addEventListener("click",async()=>{if(!confirm("Delete saved weights and clear this conversation?"))return;model=null;chatHistory=[];localStorage.removeItem(STORAGE);try{const db=await openDB();db.transaction("models","readwrite").objectStore("models").delete("active")}catch{}$("#messages").replaceChildren();const w=document.createElement("div");w.className="welcome";w.id="welcome";w.innerHTML='<div class="orb">✳</div><h2>Clean slate.</h2><p>The model and saved weights have been cleared. Train a new network to begin.</p>';$("#messages").append(w);$("#prompt").disabled=true;$("#send").disabled=true;$("#paramCount").textContent="0";$("#vocabCount").textContent="0";$("#dot").classList.remove("ready");$("#modelStatus").textContent="Not trained yet";$("#progress").style.width="0";$("#trainStatus").textContent="All saved model data cleared."});
+loadModel();
+</script>
+</body></html>
