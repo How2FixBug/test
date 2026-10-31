@@ -65,7 +65,7 @@ let neurits=[];
 try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");neurits=Array.isArray(saved)?saved:defaultNeurits.map(x=>({...x}));}catch{neurits=defaultNeurits.map(x=>({...x}));}
 let nextId=Math.max(0,...neurits.map(n=>Number(n.id)||0))+1;
 function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(neurits));}catch{}}
-function clean(s){return s.trim().replace(/[.!?]+$/,"").replace(/\\s+/g," ")}
+function clean(s){return s.trim().replace(/[.!?]+$/,"").replace(/\s+/g," ")}
 function addNeurit(subject,relation,object,source){
   const duplicate=neurits.some(n=>n.subject===subject&&n.relation===relation&&n.object.toLowerCase()===object.toLowerCase());
   if(duplicate)return null;
@@ -73,9 +73,9 @@ function addNeurit(subject,relation,object,source){
 }
 function parseFact(raw){
   const s=clean(raw);if(!s)return null;
-  let m=s.match(/^(.+?)\\s+is\\s+the\\s+capital\\s+of\\s+(.+)$/i);
+  let m=s.match(/^(.+?)\s+is\s+the\s+capital\s+of\s+(.+)$/i);
   if(m)return {subject:clean(m[1]),relation:"capital_of",object:clean(m[2])};
-  m=s.match(/^(.+?)\\s+is\\s+a\\s+country$/i);
+  m=s.match(/^(.+?)\s+is\s+a\s+country$/i);
   if(m)return {subject:clean(m[1]),relation:"type",object:"country"};
   // General statements are kept verbatim; no sentence template is required.
   return {subject:"",relation:"statement",object:s};
@@ -99,7 +99,7 @@ const stopWords=new Set(["what","who","where","when","why","how","did","does","d
 function termsOf(text){return (text.toLowerCase().match(/[a-z0-9']+/g)||[]).filter(w=>!stopWords.has(w));}
 function answerQuestion(){
   const q=document.querySelector("#question").value.trim(),ans=document.querySelector("#answer"),trace=document.querySelector("#trace");
-  const cap=q.match(/capital\\s+of\\s+(.+?)(?:\\s+is)?[?.!]*$/i);
+  const cap=q.match(/capital\s+of\s+(.+?)(?:\s+is)?[?.!]*$/i);
   if(cap){
     const country=clean(cap[1]);
     const found=neurits.find(n=>n.relation==="capital_of"&&n.object.toLowerCase()===country.toLowerCase());
@@ -109,17 +109,17 @@ function answerQuestion(){
   }
   const allStatements=neurits.filter(n=>n.relation==="statement");
   const qLower=q.toLowerCase();
-  const personalIntent=/\\b(i|me|my|myself)\\b/.test(qLower)||/\\b(what did i|what happened|what have i|what do you know about me)\\b/.test(qLower);
+  const personalIntent=/\b(i|me|my|myself)\b/.test(qLower)||/\b(what did i|what happened|what have i|what do you know about me)\b/.test(qLower);
   const terms=termsOf(q);
   let ranked=allStatements.map(n=>{
     const body=n.object.toLowerCase(),tokens=termsOf(n.object);
     let score=0;
     for(const t of terms){if(tokens.includes(t))score+=3;else if(body.includes(t))score+=1;}
-    if(personalIntent&&/^i\\b/i.test(n.object))score+=4;
+    if(personalIntent&&/^i\b/i.test(n.object))score+=4;
     return {n,score};
   }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.n.id-b.n.id);
-  const broadRecall=terms.length===0||/\\b(what did i|what happened|what have i|what do you know about me|what did i say)\\b/.test(qLower);
-  if(broadRecall)ranked=allStatements.filter(n=>!personalIntent||/^i\\b/i.test(n.object)).map(n=>({n,score:1}));
+  const broadRecall=terms.length===0||/\b(what did i|what happened|what have i|what do you know about me|what did i say)\b/.test(qLower);
+  if(broadRecall)ranked=allStatements.filter(n=>!personalIntent||/^i\b/i.test(n.object)).map(n=>({n,score:1}));
   if(ranked.length){
     const best=ranked[0].score,results=ranked.filter(x=>x.score===best).slice(0,5);
     ans.textContent=results.map(x=>x.n.object).join(" · ");
