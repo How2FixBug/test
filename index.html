@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeskOS</title>
+<style>
+:root{--ink:#f4f7ff;--muted:#aab8d0;--glass:rgba(15,24,43,.82);--line:rgba(220,235,255,.18);--accent:#82b7ff;--accent2:#a8e0ff;--shadow:0 24px 80px #02071288}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;background:#101c35}
+button,input,textarea{font:inherit}button{color:inherit;cursor:pointer;border:0}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#desktop{position:relative;width:100%;height:100%;overflow:hidden;background:radial-gradient(ellipse at 70% 22%,#5378b7 0,#2b4778 22%,transparent 52%),radial-gradient(ellipse at 22% 80%,#274c70 0,#142a4c 36%,transparent 65%),linear-gradient(135deg,#101c35,#182e50 60%,#101a30)}
+#desktop:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 38%,#b9dcff12 38.2%,transparent 39%),radial-gradient(ellipse at 50% 110%,#8fcfff30,transparent 55%);pointer-events:none}
+#topbar{position:absolute;z-index:500;left:0;right:0;top:0;height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;background:#0a1427a8;border-bottom:1px solid #ffffff18;backdrop-filter:blur(18px);font-size:12px}
+.top-left,.top-right{display:flex;align-items:center;gap:17px}.top-action{background:transparent;padding:4px 7px;border-radius:6px}.top-action:hover{background:#ffffff18}
+#desktop-icons{position:absolute;z-index:2;top:52px;left:18px;display:grid;grid-auto-flow:row;grid-template-columns:78px;gap:10px}
+.desk-icon{width:76px;min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:transparent;border:1px solid transparent;border-radius:11px;text-shadow:0 2px 5px #0009;font-size:12px}.desk-icon:hover,.desk-icon.selected{background:#d6e9ff20;border-color:#d8ecff40}.desk-icon .glyph{font-size:31px;filter:drop-shadow(0 4px 5px #0006)}
+#windows{position:absolute;inset:34px 0 70px;z-index:5;pointer-events:none}
+.win{position:absolute;display:flex;flex-direction:column;min-width:310px;min-height:220px;width:min(720px,calc(100vw - 36px));height:min(500px,calc(100vh - 135px));background:rgba(14,23,41,.96);border:1px solid #c6dcff45;border-radius:13px;box-shadow:var(--shadow);overflow:hidden;pointer-events:auto;backdrop-filter:blur(22px)}
+.win.active{border-color:#a8d2ff9c;box-shadow:0 25px 90px #02071299,0 0 0 1px #9ecaff25}.win.maximized{left:10px!important;top:7px!important;width:calc(100vw - 20px)!important;height:calc(100vh - 120px)!important}
+.titlebar{height:43px;flex-shrink:0;display:flex;align-items:center;gap:10px;padding:0 13px;background:#ffffff08;border-bottom:1px solid #ffffff16;cursor:grab;user-select:none}.titlebar:active{cursor:grabbing}.win-title{font-weight:650;flex:1}.win-controls{display:flex;gap:7px}.win-controls button{width:12px;height:12px;border-radius:50%;padding:0;background:#65758c}.win-controls button:nth-child(1){background:#ffbd58}.win-controls button:nth-child(2){background:#54d59a}.win-controls button:nth-child(3){background:#ff6f7d}
+.win-body{flex:1;min-height:0;overflow:auto;padding:16px}.resize{position:absolute;right:0;bottom:0;width:18px;height:18px;cursor:nwse-resize}
+#taskbar{position:absolute;z-index:600;bottom:12px;left:50%;transform:translateX(-50%);height:54px;display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid #d5e7ff30;border-radius:17px;background:#0c1729c9;backdrop-filter:blur(24px);box-shadow:0 12px 45px #02071270}
+.task-app{height:40px;min-width:42px;border-radius:11px;background:transparent;font-size:21px}.task-app:hover,.task-app.open{background:#ffffff20}.task-app.active{background:#82b7ff36;box-shadow:inset 0 -2px var(--accent)}
+#startmenu{position:absolute;z-index:700;bottom:77px;left:50%;transform:translateX(-50%);width:min(420px,calc(100vw - 22px));padding:18px;border-radius:18px;border:1px solid var(--line);background:#101c30ed;backdrop-filter:blur(25px);box-shadow:var(--shadow);display:none}
+#startmenu.show{display:block}.start-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.start-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.start-app{display:flex;flex-direction:column;gap:6px;align-items:center;padding:14px 5px;border-radius:12px;background:#ffffff08}.start-app:hover{background:#ffffff18}.start-app b{font-size:25px}.start-app span{font-size:12px}
+.panel{background:#ffffff0a;border:1px solid #ffffff18;border-radius:12px;padding:13px}.muted{color:var(--muted)}.row{display:flex;align-items:center;gap:9px}.spread{justify-content:space-between}.pill{font-size:11px;padding:4px 8px;border-radius:99px;background:#82b7ff20;color:#b9d8ff}.primary{background:#6e9fe5;color:#081426;padding:9px 13px;border-radius:9px;font-weight:700}.secondary{background:#ffffff12;border:1px solid #ffffff1c;padding:8px 11px;border-radius:9px}.field{width:100%;background:#081323;border:1px solid #ffffff25;color:var(--ink);padding:10px 11px;border-radius:9px}.app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}.file-item{display:flex;align-items:center;gap:10px;padding:11px;border-radius:9px;background:#ffffff08;cursor:pointer}.file-item:hover{background:#ffffff16}.file-item .fi{font-size:23px}
+.browserbar{display:flex;gap:8px;margin-bottom:13px}.browserbar input{flex:1}.browser-result{padding:13px 4px;border-bottom:1px solid #ffffff18}.browser-result h3{color:#a9ceff;margin:0 0 4px;font-size:15px}.browser-result p{margin:0;color:var(--muted);font-size:13px}
+#ai-panel{position:absolute;z-index:850;right:14px;top:48px;bottom:82px;width:min(390px,calc(100vw - 24px));display:none;flex-direction:column;border:1px solid #8abaff55;border-radius:17px;background:#0c1728f2;backdrop-filter:blur(24px);box-shadow:var(--shadow);overflow:hidden}
+#ai-panel.show{display:flex}.ai-head{padding:13px 14px;border-bottom:1px solid #ffffff1b;display:flex;align-items:center;gap:10px}.ai-orb{width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#8ac6ff,#a58bff);display:grid;place-items:center;color:#10203a;font-weight:900}.ai-head strong{flex:1}.ai-head button{background:transparent;font-size:19px}
+.ai-config{padding:10px 13px;border-bottom:1px solid #ffffff16;display:flex;gap:7px;align-items:center}.ai-config select{min-width:0;flex:1;background:#17263e;color:white;border:1px solid #ffffff22;border-radius:8px;padding:8px}.ai-config button{background:#ffffff12;border-radius:8px;padding:8px}
+#ai-log{flex:1;overflow:auto;padding:13px;display:flex;flex-direction:column;gap:10px}.bubble{max-width:94%;padding:10px 12px;border-radius:12px;background:#ffffff0d;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}.bubble.me{align-self:flex-end;background:#31527e}.bubble.agent{align-self:flex-start}.bubble .tooltag{display:block;margin-top:6px;color:#9ecaff;font-size:11px}
+.ai-compose{padding:11px;border-top:1px solid #ffffff19}.ai-compose textarea{width:100%;height:68px;resize:none;background:#081323;border:1px solid #ffffff25;color:white;border-radius:10px;padding:10px}.ai-compose .row{margin-top:8px}.ai-compose button{flex:1}
+#agent-cursor{position:absolute;z-index:9999;left:50%;top:50%;pointer-events:none;display:none;filter:drop-shadow(0 3px 4px #000b);transition:left .22s ease,top .22s ease}
+#agent-cursor.show{display:block}#agent-cursor svg{width:28px;height:34px}#agent-cursor .cursor-label{position:absolute;left:23px;top:21px;padding:3px 7px;background:#8c79ff;color:white;border-radius:5px;font-size:10px;font-weight:800;white-space:nowrap}
+#toast{position:absolute;z-index:1200;bottom:82px;left:50%;transform:translateX(-50%);padding:9px 13px;border:1px solid #ffffff26;border-radius:10px;background:#0c1729ed;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s}#toast.show{opacity:1}
+#vision-video{position:fixed;width:1px;height:1px;opacity:0;pointer-events:none}
+.terminal{height:100%;background:#07101d;color:#b5f0c8;font:13px/1.6 ui-monospace,monospace;padding:12px;border-radius:8px;overflow:auto}.terminal input{background:transparent;border:0;color:#fff;outline:0;font:inherit;width:70%}
+.notes{width:100%;height:100%;resize:none;background:transparent;color:#f5f7ff;border:0;outline:0;font:15px/1.6 inherit}
+@media(max-width:650px){#desktop-icons{grid-template-columns:repeat(2,72px);top:48px}.win{min-width:0;width:calc(100vw - 18px)!important;left:9px!important}.win.maximized{left:4px!important;width:calc(100vw - 8px)!important}.top-left{gap:5px}.top-right{gap:8px}#taskbar{max-width:calc(100vw - 20px);overflow-x:auto}.desk-icon{min-height:66px}}
+</style></head>
+<body>
+<div id="desktop">
+  <div id="topbar"><div class="top-left"><button class="top-action" id="brandmenu">◈ <b>DeskOS</b></button><span id="top-active">Desktop</span><button class="top-action" data-open="files">Files</button><button class="top-action" data-open="browser">Browser</button></div><div class="top-right"><span id="netstatus">● Local</span><span id="clock">--:--</span><button class="top-action" id="quicksettings">⚙</button></div></div>
+  <div id="desktop-icons">
+    <button class="desk-icon" data-open="files"><span class="glyph">📁</span>Files</button>
+    <button class="desk-icon" data-open="browser"><span class="glyph">🌐</span>Web Browser</button>
+    <button class="desk-icon" data-open="notes"><span class="glyph">📝</span>Notes</button>
+    <button class="desk-icon" data-open="terminal"><span class="glyph">⌘</span>Terminal</button>
+    <button class="desk-icon" data-open="settings"><span class="glyph">⚙️</span>Settings</button>
+    <button class="desk-icon" id="ai-desktop"><span class="glyph">✨</span>AI Assistant</button>
+  </div>
+  <div id="windows"></div>
+  <div id="startmenu"><div class="start-head"><b>DeskOS</b><span class="muted">Your simulated workspace</span></div><div class="start-grid">
+    <button class="start-app" data-open="files"><b>📁</b><span>Files</span></button><button class="start-app" data-open="browser"><b>🌐</b><span>Browser</span></button><button class="start-app" data-open="notes"><b>📝</b><span>Notes</span></button><button class="start-app" data-open="terminal"><b>⌘</b><span>Terminal</span></button><button class="start-app" data-open="settings"><b>⚙️</b><span>Settings</span></button><button class="start-app" id="ai-start"><b>✨</b><span>AI Assistant</span></button>
+  </div><p class="muted" style="margin:15px 0 0;font-size:11px">A fictional computer. Your real files and system are untouched.</p></div>
+  <div id="taskbar"><button class="task-app" id="startbtn" title="Start">◈</button><button class="task-app" data-open="files" title="Files">📁</button><button class="task-app" data-open="browser" title="Browser">🌐</button><button class="task-app" data-open="notes" title="Notes">📝</button><button class="task-app" data-open="terminal" title="Terminal">⌘</button><button class="task-app" data-open="settings" title="Settings">⚙️</button><button class="task-app" id="aitask" title="AI Assistant">✨</button></div>
+  <div id="ai-panel"><div class="ai-head"><div class="ai-orb">✦</div><strong>Local AI Agent</strong><span class="pill">SECOND CURSOR</span><button id="aiclose">×</button></div>
+    <div class="ai-config"><select id="model-select"><option>Loading installed models…</option></select><button id="reload-models" title="Refresh installed models">↻</button></div>
+    <div class="ai-config"><button id="visionbtn" class="secondary">◎ Share tab for vision</button><span id="visionstate" class="muted" style="font-size:11px">Vision off</span></div>
+    <div id="ai-log"><div class="bubble agent">Hi! I'm the local desktop agent. I can use the simulated apps and tools. Ask me to open something, organize the virtual desktop, write a note, or inspect what's on screen.</div></div>
+    <div class="ai-compose"><textarea id="ai-input" placeholder="Talk to your local AI…"></textarea><div class="row"><button id="speak-toggle" class="secondary">🔊 Speak replies</button><button id="agent-stop" class="secondary">Stop</button><button id="agent-send" class="primary">Send ↗</button></div></div>
+  </div>
+  <div id="agent-cursor"><svg viewBox="0 0 28 34" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 L2 27 L9 20 L15 32 L20 29 L14 17 L25 16 Z" fill="#a995ff" stroke="#fff" stroke-width="1.5"/></svg><span class="cursor-label">LOCAL AI</span></div>
+  <div id="toast"></div>
+</div>
+<video id="vision-video" autoplay muted playsinline></video>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const desktop=$('#desktop'),windows=$('#windows'),aiPanel=$('#ai-panel'),cursor=$('#agent-cursor');
+const icons={files:'📁',browser:'🌐',notes:'📝',terminal:'⌘',settings:'⚙️'};
+const titles={files:'File Explorer',browser:'Desk Browser',notes:'Notes',terminal:'Terminal',settings:'Settings'};
+let z=10,active=null,agentBusy=false,stopAgent=false,screenStream=null,speakReplies=false;
+let virtualFiles=JSON.parse(localStorage.getItem('desk-files')||'null')||{'Welcome.txt':'Welcome to DeskOS!\n\nThis is a fully simulated computer. Nothing here changes your real system.','Ideas.txt':'Things to build:\n- A tiny game\n- A pixel art editor\n- A better desktop'};
+let noteText=localStorage.getItem('desk-note')||'Welcome to DeskOS Notes.\n\nWrite something here…';
+function persist(){localStorage.setItem('desk-files',JSON.stringify(virtualFiles))}
+function toast(s){const t=$('#toast');t.textContent=s;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),2100)}
+function clock(){const d=new Date();$('#clock').textContent=d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}
+clock();setInterval(clock,10000);
+function focusWin(w){$$('.win').forEach(x=>x.classList.remove('active'));if(w){w.classList.add('active');w.style.zIndex=++z;active=w.dataset.app;$('#top-active').textContent=titles[active]||'Desktop'}else{active=null;$('#top-active').textContent='Desktop'}$$('.task-app[data-open]').forEach(b=>b.classList.toggle('active',b.dataset.open===active))}
+function makeWindow(app){
+ let existing=$('.win[data-app="'+app+'"]');if(existing){existing.style.display='flex';focusWin(existing);return existing}
+ const w=document.createElement('section');w.className='win';w.dataset.app=app;
+ w.style.left=Math.max(22,(innerWidth-(app==='browser'?780:650))/2+(Math.random()*32-16))+'px';w.style.top=Math.max(52,(innerHeight-(app==='browser'?520:430))/2+(Math.random()*28-14))+'px';
+ w.innerHTML='<div class="titlebar"><span>'+icons[app]+'</span><span class="win-title">'+titles[app]+'</span><div class="win-controls"><button data-min title="Minimize"></button><button data-max title="Maximize"></button><button data-close title="Close"></button></div></div><div class="win-body">'+appContent(app)+'</div><div class="resize"></div>';
+ windows.append(w);focusWin(w);wireWindow(w);return w
+}
+function appContent(app){
+ if(app==='files')return '<div class="row spread" style="margin-bottom:13px"><div><b>Home</b><div class="muted" style="font-size:12px">This computer · Virtual storage</div></div><button class="primary" id="newfile">＋ New file</button></div><div class="app-grid" id="filelist"></div><div class="muted" style="font-size:11px;margin-top:15px">Files are stored only in this browser.</div>';
+ if(app==='notes')return '<div class="row spread" style="margin-bottom:10px"><b>Untitled note</b><span class="pill">Auto-saved</span></div><textarea class="notes" id="notepad" spellcheck="false"></textarea>';
+ if(app==='browser')return '<div class="browserbar"><input class="field" id="searchbox" value="desk://home" aria-label="Address or search"><button class="primary" id="searchgo">Go</button></div><div id="browserpage"><div style="padding:24px 5px"><div style="font-size:25px;font-weight:800">desk<span style="color:#9ecaff">search</span></div><p class="muted">A tiny browser for the simulated internet.</p><input class="field" id="homesearch" placeholder="Search the fictional web…"><button class="primary" id="homesearchgo" style="margin-top:9px">Search</button><p class="muted" style="font-size:11px;margin-top:24px">This browser is intentionally offline. Search results are fictional and generated locally.</p></div></div>';
+ if(app==='terminal')return '<div class="terminal" id="termout">DeskOS Terminal [Version 1.0]\nThis is a simulated shell. Type "help" to see available commands.\n\n<span id="termhistory"></span><span>guest@deskos:~$ </span><input id="termcmd" autocomplete="off" spellcheck="false"></div>';
+ if(app==='settings')return '<h2 style="margin:0 0 5px">Settings</h2><p class="muted">Personalize this simulated computer.</p><div class="panel" style="margin:12px 0"><b>Appearance</b><p class="muted">Desktop wallpaper</p><div class="row"><button class="secondary" data-wall="blue">Ocean blue</button><button class="secondary" data-wall="violet">Violet dusk</button><button class="secondary" data-wall="green">Forest</button></div></div><div class="panel" style="margin:12px 0"><b>System</b><p class="muted">DeskOS Simulator · Local mode</p><p class="muted">Virtual storage: '+Object.keys(virtualFiles).length+' files</p><p class="muted">AI engine: Ollama (optional)</p></div><div class="panel"><b>Privacy</b><p class="muted">No real shell commands, external browsing, or remote AI services. Screen sharing is opt-in.</p></div>';
+ return ''
+}
+function renderFiles(w){const list=w.querySelector('#filelist');if(!list)return;list.innerHTML='';Object.keys(virtualFiles).forEach(name=>{const b=document.createElement('button');b.className='file-item';b.innerHTML='<span class="fi">📄</span><span style="text-align:left;min-width:0"><b style="display:block;overflow-wrap:anywhere">'+esc(name)+'</b><small class="muted">Text document</small></span>';b.addEventListener('click',()=>editFile(name));list.append(b)})}
+function editFile(name){const w=makeWindow('notes');const area=w.querySelector('#notepad');area.value=virtualFiles[name];area.dataset.filename=name;w.querySelector('.win-title').textContent=name;area.oninput=()=>{virtualFiles[name]=area.value;persist()}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function wireWindow(w){
+ const app=w.dataset.app,body=w.querySelector('.win-body');
+ w.querySelector('.titlebar').addEventListener('pointerdown',e=>{if(e.target.closest('.win-controls'))return;focusWin(w);if(w.classList.contains('maximized'))return;const x=e.clientX-parseFloat(w.style.left),y=e.clientY-parseFloat(w.style.top);function move(ev){w.style.left=Math.max(0,Math.min(innerWidth-100,ev.clientX-x))+'px';w.style.top=Math.max(34,Math.min(innerHeight-100,ev.clientY-y))+'px'}function up(){window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',up)}window.addEventListener('pointermove',move);window.addEventListener('pointerup',up)});
+ w.addEventListener('pointerdown',()=>focusWin(w));
+ w.querySelector('[data-close]').onclick=()=>{w.remove();focusWin(null)};
+ w.querySelector('[data-min]').onclick=()=>{w.style.display='none';focusWin(null)};
+ w.querySelector('[data-max]').onclick=()=>w.classList.toggle('maximized');
+ const handle=w.querySelector('.resize');handle.addEventListener('pointerdown',e=>{e.preventDefault();const sx=e.clientX,sy=e.clientY,sw=w.offsetWidth,sh=w.offsetHeight;function move(ev){w.style.width=Math.max(310,sw+ev.clientX-sx)+'px';w.style.height=Math.max(220,sh+ev.clientY-sy)+'px'}function up(){window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',up)}window.addEventListener('pointermove',move);window.addEventListener('pointerup',up)});
+ if(app==='files'){renderFiles(w);w.querySelector('#newfile').onclick=()=>{const n=prompt('New virtual filename:','New file.txt');if(n){virtualFiles[n]='';persist();renderFiles(w)}}}
+ if(app==='notes'){const area=w.querySelector('#notepad');area.value=noteText;area.oninput=()=>{noteText=area.value;localStorage.setItem('desk-note',noteText)}}
+ if(app==='browser'){const run=()=>browserSearch(w,w.querySelector('#searchbox').value);w.querySelector('#searchgo').onclick=run;w.querySelector('#searchbox').onkeydown=e=>{if(e.key==='Enter')run()};w.querySelector('#homesearchgo').onclick=()=>browserSearch(w,w.querySelector('#homesearch').value);w.querySelector('#homesearch').onkeydown=e=>{if(e.key==='Enter')browserSearch(w,e.target.value)}}
+ if(app==='terminal'){const input=w.querySelector('#termcmd');input.focus();input.onkeydown=e=>{if(e.key==='Enter'){const cmd=input.value.trim();input.value='';terminalCommand(w,cmd)} }}
+ if(app==='settings')w.querySelectorAll('[data-wall]').forEach(b=>b.onclick=()=>setWallpaper(b.dataset.wall))
+}
+function browserSearch(w,q){q=q.trim();if(!q)return;w.querySelector('#searchbox').value=q;const results=[['DeskOS Help Center','Tips and guides for using your simulated desktop.'],['Pixel Playground','A fictional community for tiny games and pixel art.'],['Local Knowledge Base','A collection of example articles stored inside this simulator.']];w.querySelector('#browserpage').innerHTML='<h2>Search results for “'+esc(q)+'”</h2><p class="muted" style="font-size:12px">3 fictional local results · no internet connection</p>'+results.map(r=>'<div class="browser-result"><h3>'+r[0]+'</h3><p>'+r[1]+'</p></div>').join('');}
+function terminalCommand(w,cmd){const out=w.querySelector('#termhistory');let result='';const parts=cmd.split(' '),c=parts[0];if(c==='help')result='help, ls, pwd, date, whoami, echo TEXT, cat FILENAME, touch FILENAME, clear, open APP';else if(c==='ls')result=Object.keys(virtualFiles).join('   ')||'(empty)';else if(c==='pwd')result='/home/guest';else if(c==='date')result=new Date().toString();else if(c==='whoami')result='guest';else if(c==='echo')result=cmd.slice(5);else if(c==='cat')result=virtualFiles[parts.slice(1).join(' ')]??'File not found';else if(c==='touch'){const n=parts.slice(1).join(' ');if(n){virtualFiles[n]='';persist();result='Created '+n}else result='Usage: touch filename'}else if(c==='clear'){out.innerHTML='';return}else if(c==='open'&&icons[parts[1]]){openApp(parts[1]);result='Opened '+parts[1]}else result='Unknown command. Type help.';out.innerHTML+=esc('guest@deskos:~$ '+cmd)+'\n'+esc(result)+'\n';w.querySelector('#termout').scrollTop=99999}
+function setWallpaper(kind){const backgrounds={blue:'radial-gradient(ellipse at 70% 22%,#5378b7 0,#2b4778 22%,transparent 52%),linear-gradient(135deg,#101c35,#182e50 60%,#101a30)',violet:'radial-gradient(ellipse at 72% 25%,#9b72bd,#392f69 32%,transparent 65%),linear-gradient(135deg,#17142f,#31234e)',green:'radial-gradient(ellipse at 70% 20%,#6eac8d,#285e61 35%,transparent 65%),linear-gradient(135deg,#102b32,#183f43)'};desktop.style.background=backgrounds[kind]||backgrounds.blue}
+function openApp(app){$('#startmenu').classList.remove('show');makeWindow(app)}
+$$('[data-open]').forEach(b=>b.addEventListener('click',()=>openApp(b.dataset.open)));
+$('#startbtn').onclick=()=>$('#startmenu').classList.toggle('show');$('#brandmenu').onclick=()=>$('#startmenu').classList.toggle('show');
+$('#quicksettings').onclick=()=>openApp('settings');
+function toggleAI(){aiPanel.classList.toggle('show');if(aiPanel.classList.contains('show'))$('#ai-input').focus()}
+$('#aitask').onclick=toggleAI;$('#ai-desktop').onclick=toggleAI;$('#ai-start').onclick=toggleAI;$('#aiclose').onclick=()=>aiPanel.classList.remove('show');
+document.addEventListener('pointerdown',e=>{if(!e.target.closest('#startmenu')&&!e.target.closest('#startbtn')&&!e.target.closest('#brandmenu'))$('#startmenu').classList.remove('show')});
+async function loadModels(){const sel=$('#model-select');sel.innerHTML='<option>Loading…</option>';try{const r=await fetch('/api/models');const data=await r.json();if(!r.ok)throw Error(data.error||'Ollama unavailable');const models=data.models||[];sel.innerHTML='';if(!models.length){sel.innerHTML='<option value="">No models installed</option>';return}models.forEach(m=>{const o=document.createElement('option');o.value=m.name;o.textContent=m.name;sel.append(o)});const preferred=models.find(m=>m.name.startsWith('qwen2.5vl:7b'));if(preferred)sel.value=preferred.name;$('#netstatus').textContent='● Ollama connected';toast(models.length+' local models found')}catch(e){sel.innerHTML='<option value="">Ollama offline</option>';$('#netstatus').textContent='● Ollama offline';toast('Start Ollama to connect the AI cursor')}}
+$('#reload-models').onclick=loadModels;
+function logBubble(text,who='agent'){const b=document.createElement('div');b.className='bubble '+who;b.textContent=text;$('#ai-log').append(b);$('#ai-log').scrollTop=999999;return b}
+function moveCursor(x,y){cursor.classList.add('show');cursor.style.left=x+'px';cursor.style.top=y+'px'}
+function cursorToElement(el){if(!el)return;const r=el.getBoundingClientRect();moveCursor(r.left+Math.min(r.width/2,25),r.top+Math.min(r.height/2,18))}
+function clickTarget(el){if(!el)return false;cursorToElement(el);el.click();return true}
+function desktopSummary(){return {openWindows:$$('.win').filter(w=>w.style.display!=='none').map(w=>({app:w.dataset.app,title:titles[w.dataset.app]})),virtualFiles:Object.keys(virtualFiles),note:noteText.slice(0,800),activeApp:active,clock:$('#clock').textContent}}
+function toolRun(t){
+ const name=t.name,args=t.arguments||{};
+ if(name==='open_app'){if(!icons[args.app])return 'Unknown app';openApp(args.app);return 'Opened '+args.app}
+ if(name==='close_app'){const w=$('.win[data-app="'+args.app+'"]');if(w)w.remove();return 'Closed '+args.app}
+ if(name==='list_files')return JSON.stringify(virtualFiles);
+ if(name==='read_file')return virtualFiles[args.name]??'File not found';
+ if(name==='write_file'){if(!args.name)return 'Missing filename';virtualFiles[args.name]=String(args.content||'');persist();const w=$('.win[data-app="files"]');if(w)renderFiles(w);return 'Saved '+args.name}
+ if(name==='delete_file'){if(!(args.name in virtualFiles))return 'File not found';delete virtualFiles[args.name];persist();const w=$('.win[data-app="files"]');if(w)renderFiles(w);return 'Deleted virtual file '+args.name}
+ if(name==='write_note'){noteText=String(args.content||'');localStorage.setItem('desk-note',noteText);const w=$('.win[data-app="notes"]');if(w)w.querySelector('#notepad').value=noteText;return 'Updated Notes'}
+ if(name==='search_fake_web'){openApp('browser');const w=$('.win[data-app="browser"]');browserSearch(w,args.query||'');return 'Searched the fictional offline browser for '+args.query}
+ if(name==='terminal_command'){const w=makeWindow('terminal');terminalCommand(w,String(args.command||''));return 'Ran simulated terminal command'}
+ if(name==='click'){const el=document.querySelector(args.selector||'');if(!el)return 'No element matched selector';clickTarget(el);return 'Clicked '+args.selector}
+ if(name==='type'){const el=document.querySelector(args.selector||'');if(!el)return 'No element matched selector';el.focus();if('value'in el){el.value=String(args.text||'');el.dispatchEvent(new Event('input',{bubbles:true}));}else return 'Target is not a text field';return 'Typed into '+args.selector}
+ if(name==='get_desktop_state')return JSON.stringify(desktopSummary());
+ if(name==='say')return String(args.message||'');
+ return 'Unknown tool: '+name;
+}
+const toolDefs=[
+{name:'open_app',description:'Open one of the simulated apps.',arguments:{app:'files|browser|notes|terminal|settings'}},
+{name:'close_app',description:'Close a simulated app window.',arguments:{app:'files|browser|notes|terminal|settings'}},
+{name:'get_desktop_state',description:'Inspect current open windows and virtual files.',arguments:{}},
+{name:'list_files',description:'List all virtual files and their contents.',arguments:{}},
+{name:'read_file',description:'Read a virtual text file.',arguments:{name:'filename'}},
+{name:'write_file',description:'Create or replace a virtual text file.',arguments:{name:'filename',content:'text'}},
+{name:'delete_file',description:'Delete a virtual file.',arguments:{name:'filename'}},
+{name:'write_note',description:'Replace the contents of the Notes app.',arguments:{content:'text'}},
+{name:'search_fake_web',description:'Search the offline fictional browser. No real internet.',arguments:{query:'search phrase'}},
+{name:'terminal_command',description:'Run a safe simulated terminal command, never a real shell command.',arguments:{command:'help|ls|pwd|date|whoami|echo|cat|touch|clear|open'}},
+{name:'click',description:'Click a visible UI element using a CSS selector.',arguments:{selector:'CSS selector'}},
+{name:'type',description:'Type text into a visible input or textarea selected by CSS.',arguments:{selector:'CSS selector',text:'text'}},
+{name:'say',description:'Speak a message to the user.',arguments:{message:'message'}}
+];
+const systemPrompt='You are the AI co-pilot inside DeskOS, a fictional local desktop simulator. You can inspect the supplied desktop screenshot and state, converse naturally, and control ONLY this simulated desktop. Never claim to access the real computer, real files, shell, or internet. You have these tools: '+JSON.stringify(toolDefs)+'.\nFor every response output exactly one JSON object and no markdown: {"say":"brief user-facing message or empty string","tool":null} OR {"say":"brief progress message","tool":{"name":"tool_name","arguments":{}}}. Use one tool at a time; after its result you will be called again. When finished, set tool to null. Do not repeat a completed tool. Use screenshot when available to ground visual interactions. Tool selectors must be specific. Ask before destructive virtual-file deletion. Never use terminal_command to attempt anything except the documented simulated commands.';
+function extractJSON(s){s=s.trim().replace(/^\x60\x60\x60(?:json)?/i,'').replace(/\x60\x60\x60$/,'').trim();const a=s.indexOf('{'),b=s.lastIndexOf('}');if(a<0||b<a)throw Error('Model did not return the required JSON: '+s.slice(0,300));return JSON.parse(s.slice(a,b+1))}
+async function captureVision(){if(!screenStream)return null;const v=$('#vision-video');if(v.readyState<2)return null;const c=document.createElement('canvas');c.width=Math.min(v.videoWidth,1280);c.height=Math.round(c.width*v.videoHeight/v.videoWidth);const ctx=c.getContext('2d');ctx.drawImage(v,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.72).split(',')[1]}
+async function askModel(messages,image64){
+ const model=$('#model-select').value;if(!model)throw Error('Choose an installed Ollama model first.');
+ const body={model,messages,stream:false,options:{temperature:.25,num_ctx:8192}};
+ if(image64){const last=body.messages[body.messages.length-1];last.images=[image64]}
+ const r=await fetch('/api/ollama',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+ const data=await r.json();if(!r.ok)throw Error(data.error||'Ollama request failed');return data.message?.content||''
+}
+let agentMessages=[];
+async function agentSend(){
+ const prompt=$('#ai-input').value.trim();if(!prompt||agentBusy)return;
+ $('#ai-input').value='';logBubble(prompt,'me');agentBusy=true;stopAgent=false;$('#agent-send').disabled=true;
+ agentMessages=[{role:'system',content:systemPrompt},{role:'user',content:'Current desktop state: '+JSON.stringify(desktopSummary())+'\nUser says: '+prompt}];
+ try{
+  for(let step=0;step<12&&!stopAgent;step++){
+   const img=await captureVision();const raw=await askModel(agentMessages,img);let parsed;
+   try{parsed=extractJSON(raw)}catch(e){logBubble('The model returned an unreadable action. Try asking again.\n'+raw.slice(0,400),'agent');break}
+   if(parsed.say){logBubble(parsed.say,'agent');if(speakReplies&&'speechSynthesis'in window)speechSynthesis.speak(new SpeechSynthesisUtterance(parsed.say))}
+   if(!parsed.tool)break;
+   const result=toolRun(parsed.tool);const toolmsg='Tool '+parsed.tool.name+': '+String(result).slice(0,3000);
+   agentMessages.push({role:'assistant',content:raw},{role:'user',content:toolmsg+'\nUpdated desktop state: '+JSON.stringify(desktopSummary())});
+   if(step===11)logBubble('I reached the 12-action limit for one request. You can ask me to continue.','agent');
+  }
+ }catch(e){logBubble('Local AI error: '+e.message,'agent')}
+ finally{agentBusy=false;$('#agent-send').disabled=false}
+}
+$('#agent-send').onclick=agentSend;$('#ai-input').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();agentSend()}};
+$('#agent-stop').onclick=()=>{stopAgent=true;toast('Stopping after the current model response…')};
+$('#speak-toggle').onclick=()=>{speakReplies=!speakReplies;$('#speak-toggle').textContent=speakReplies?'🔊 Speech on':'🔊 Speak replies'};
+$('#visionbtn').onclick=async()=>{
+ if(screenStream){screenStream.getTracks().forEach(t=>t.stop());screenStream=null;$('#visionstate').textContent='Vision off';$('#visionbtn').textContent='◎ Share tab for vision';return}
+ try{screenStream=await navigator.mediaDevices.getDisplayMedia({video:{displaySurface:'browser'},audio:false});$('#vision-video').srcObject=screenStream;$('#visionstate').textContent='Vision on';$('#visionbtn').textContent='Stop vision';screenStream.getVideoTracks()[0].addEventListener('ended',()=>{screenStream=null;$('#visionstate').textContent='Vision off';$('#visionbtn').textContent='◎ Share tab for vision'});toast('Desktop vision enabled — choose this tab in the share dialog')}
+ catch(e){toast('Screen sharing was not enabled')}
+};
+$('#netstatus').textContent='● Local simulator';loadModels();
+</script></body></html>
