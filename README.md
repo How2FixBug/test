@@ -21,7 +21,8 @@ No backend, hosted database, account, or paid service is required. Website files
 - Shared CR wallet, local payments, transaction history, and visitor revenue (0.05 CR per visit).
 - Sandboxed website frames with a restrictive local-only Content Security Policy, internal-domain link routing, and a permissioned `window.Internet` API.
 - Human purchases require a confirmation prompt; website scripts cannot spend AI residents' balances.
-- Ollama model discovery, multiple AI resident profiles, and a selected resident's tool loop in a separate browser frame.
+- Ollama model discovery, multiple AI resident profiles, custom activity briefs, and a selected resident's tool loop in a separate browser frame.
+- Optional population scheduler that gives every active AI resident a browsing turn, then repeats after a minute while the AI page stays open. Residents can be paused individually from People.
 - Local JSON export/import backups.
 
 ## Ollama
@@ -58,6 +59,6 @@ The simulation is local to the browser profile and device. Clearing site data ca
 
 ## Limitations / next engineering steps
 
-This is the foundation, not a production browser engine. The AI screenshot capture uses a DOM-to-SVG snapshot and may not perfectly reproduce every external image, font, canvas, or CSS effect. AI browsing is session-based rather than a continuously running population scheduler. Add residents in the AI users page and select which resident gets the next browsing session. Website rendering supports common linked CSS/JS assets and nested paths; it is not a full HTTP server or standards-complete browser origin implementation. Visitor revenue currently accrues on navigations, so refreshing a page can count as another visit.
+This is the foundation, not a production browser engine. The AI screenshot capture uses a DOM-to-SVG snapshot and may not perfectly reproduce every external image, font, canvas, or CSS effect. The population scheduler runs only while the AI users page is open in this browser tab. It is not a background service: closing the tab or browser stops it. Each resident uses the configured Ollama model and gets one turn per cycle. Website rendering supports common linked CSS/JS assets and nested paths; it is not a full HTTP server or standards-complete browser origin implementation. Visitor revenue currently accrues on navigations, so refreshing a page can count as another visit.
 
 Website frames block outbound network connections by default. External-looking hyperlinks are treated as local domain navigation. Ollama requests go only to the configured Ollama address.
