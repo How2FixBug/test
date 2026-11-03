@@ -45,3 +45,13 @@
 .tab-close:hover{background:#30445d;color:white}
 .new-tab{align-self:center;flex:none}
 @media(max-width:600px){.browser-tab{width:135px;max-width:42vw}.tab-select{font-size:10px;padding:0 7px}}
+
+/* Resident population controls */
+.mission-box{margin:16px 0 12px;padding:13px 14px;border:1px solid #2b4058;border-radius:11px;background:#132238}
+.mission-box .field-label{margin:0 0 7px}
+.mission-input{display:block;width:100%;min-height:64px;resize:vertical;line-height:1.5}
+.mission-box .muted{font-size:10px;margin:7px 0 0}
+.population-status{margin-top:12px;padding:10px 12px;border:1px solid #2b4058;border-radius:9px;background:#0c1725;color:#91a9c5;font-size:11px}
+.ai-controls button:disabled{opacity:.45;cursor:not-allowed}
+.row-card .pill+.pill{margin-left:4px}
+@media(max-width:600px){.row-card{flex-wrap:wrap}.row-card .grow{min-width:65%}.row-card>strong{margin-left:48px}}
