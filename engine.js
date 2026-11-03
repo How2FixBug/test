@@ -59,7 +59,7 @@
       return {
         me:async()=>({id:user.id,name:user.name,balance:user.balance,kind:user.kind}),
         balance:async()=>user.balance,
-        pay:async({to,amount,description})=>this.transfer(userId,to,amount,description),
+        pay:async({to,amount,description})=>{if(userId==='human'&&!window.confirm('Pay '+amount+' CR to '+to+' for '+(description||'purchase')+'?'))throw Error('Payment cancelled.');return this.transfer(userId,to,amount,description)},
         search:async(q)=>{const term=String(q||'').toLowerCase();return (await all('sites')).filter(s=>(s.name+' '+s.domain+' '+s.description).toLowerCase().includes(term)).map(s=>({name:s.name,url:s.domain,description:s.description}))},
         posts:{list:async()=> (await all('posts')).filter(p=>p.domain===siteId).sort((a,b)=>b.created-a.created),create:async(body)=>{const p={id:uid(),domain:siteId,author:user.name,body:String(body||'').slice(0,4000),created:Date.now()};await put('posts',p);return p}},
         notifications:{send:async({title,message})=>{const n={id:uid(),userId,title:String(title||'Notification'),message:String(message||''),created:Date.now()};await put('notifications',n);return n}},
