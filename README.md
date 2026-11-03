@@ -1,6 +1,6 @@
 # Local Internet
 
-A local-first, AI-populated miniature internet. Create real multi-file HTML/CSS/JavaScript websites, assign any unique local domain string, use a shared currency, and let Ollama-powered residents browse their own private viewport.
+A fully local, AI-populated miniature internet. Create real multi-file HTML/CSS/JavaScript websites, assign any unique local domain string, use a shared currency, and let Ollama-powered residents browse their own private viewport.
 
 ## Run it
 
@@ -18,7 +18,7 @@ No backend, hosted database, account, or paid service is required. Website files
 - Human and AI accounts with 500 CR starting balance.
 - Shared CR wallet, local payments, transaction history, and visitor revenue (0.05 CR per visit).
 - Sandboxed website frames and a permissioned `window.Internet` API.
-- Ollama model discovery and an AI resident tool loop with a separate browser frame.
+- Ollama model discovery, multiple AI resident profiles, and a selected resident's tool loop in a separate browser frame.
 - Local JSON export/import backups.
 
 ## Ollama
@@ -55,6 +55,6 @@ The simulation is local to the browser profile and device. Clearing site data ca
 
 ## Limitations / next engineering steps
 
-This is the foundation, not a production browser engine. The AI screenshot capture uses a DOM-to-SVG snapshot and may not perfectly reproduce every external image, font, canvas, or CSS effect. AI browsing is session-based rather than a continuously running population scheduler. Website rendering supports common linked CSS/JS assets and nested paths; it is not a full HTTP server or standards-complete browser origin implementation. Visitor revenue currently accrues on navigations, so refreshing a page can count as another visit.
+This is the foundation, not a production browser engine. The AI screenshot capture uses a DOM-to-SVG snapshot and may not perfectly reproduce every external image, font, canvas, or CSS effect. AI browsing is session-based rather than a continuously running population scheduler. Add residents in the AI users page and select which resident gets the next browsing session. Website rendering supports common linked CSS/JS assets and nested paths; it is not a full HTTP server or standards-complete browser origin implementation. Visitor revenue currently accrues on navigations, so refreshing a page can count as another visit.
 
 All activity is local to this browser unless a website or Ollama model makes an external request.
