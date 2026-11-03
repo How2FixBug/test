@@ -28,7 +28,7 @@
   const InternetEngine={
     uid,safeDomain,esc,all,get,put,del,starterSites,
     async seed(){
-      let me=await get('users','human');
+      let me=await get('users','human');if(!await get('users','system'))await put('users',{id:'system',name:'Local Internet',kind:'system',balance:0,bio:'Built-in website publisher',created:Date.now()});
       if(!me){me={id:'human',name:'Roger',kind:'human',balance:500,created:Date.now(),bio:'The human who owns this corner of the internet.'};await put('users',me)}
       const sites=await all('sites');
       if(!sites.length){for(const s of starterSites)await put('sites',{id:uid(),...s,owner:'system',created:Date.now(),visitors:0,earnings:0,files:s.files})}
@@ -39,7 +39,7 @@
     async balance(id='human'){const u=await get('users',id);return u?.balance||0},
     async transfer(from,to,amount,description='Payment'){
       amount=Number(amount);if(!Number.isFinite(amount)||amount<=0||amount>1000000)throw Error('Enter a valid payment amount.');
-      const sender=await get('users',from),recipient=await get('users',to);
+      const sender=await get('users',from);let recipient=await get('users',to);if(!recipient){const site=(await all('sites')).find(s=>s.domain===safeDomain(to));if(site)recipient=await get('users',site.owner)}
       if(!sender)throw Error('Payer account not found.');
       if(sender.balance<amount)throw Error('Not enough credits.');
       if(!recipient)throw Error('Recipient account not found.');
