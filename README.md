@@ -10,6 +10,7 @@ No backend, hosted database, account, or paid service is required. Website files
 
 ## Features in this build
 
+- Browser-like navigation with real independent tabs, tab switching, and tab closing.
 - Browser-like navigation and a local website directory.
 - Network activity center with traffic rankings, recent visits, transaction ledger, and community posts.
 - Arbitrary unique domain names. Domains are local identifiers, not real DNS names.
