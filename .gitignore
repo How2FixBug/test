@@ -1,5 +1,3 @@
-__pycache__/
-*.py[cod]
-.venv/
-venv/
 .DS_Store
+.DS_Store?
+*.log
