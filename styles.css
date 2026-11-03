@@ -34,3 +34,14 @@
 .post-item{align-items:flex-start}
 @media(max-width:850px){.activity-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.activity-columns{grid-template-columns:1fr}}
 @media(max-width:520px){.activity-head{display:block}.activity-head button{margin-bottom:12px}.activity-stat{padding:13px}.activity-stat strong{font-size:21px}}
+
+/* Functional browser tabs */
+.tabbar{align-items:stretch;padding-top:5px}
+.browser-tab{display:flex;align-items:center;min-width:0;width:190px;max-width:26vw;height:34px;border:1px solid transparent;border-bottom:0;border-radius:9px 9px 0 0;background:transparent}
+.browser-tab.active{background:#17263a;border-color:var(--line)}
+.tab-select{flex:1;min-width:0;height:100%;padding:0 10px;border:0;background:transparent;color:#9fb0c5;text-align:left;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.browser-tab.active .tab-select{color:#edf4ff}
+.tab-close{width:25px;height:25px;margin-right:5px;border:0;border-radius:7px;background:transparent;color:#8497ad;font-size:17px;line-height:1}
+.tab-close:hover{background:#30445d;color:white}
+.new-tab{align-self:center;flex:none}
+@media(max-width:600px){.browser-tab{width:135px;max-width:42vw}.tab-select{font-size:10px;padding:0 7px}}
