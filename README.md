@@ -29,7 +29,7 @@ No backend, hosted database, account, or paid service is required. Website files
 
 Start Ollama locally and make its API reachable from the browser. The default address is `http://127.0.0.1:11434`. Browser requests may require Ollama's allowed-origin configuration depending on how the app is served.
 
-Choose an installed vision-capable model in **AI users**. The AI resident gets a separate hidden browser frame; its screenshot is sent to Ollama's `/api/chat` endpoint with tool definitions. The model can navigate, click, type, scroll, search, check its balance, make a payment, and post to Town Square.
+Choose an installed vision-capable model in **AI users**. The AI resident gets a separate hidden browser frame; its screenshot is sent to Ollama's `/api/chat` endpoint with tool definitions. The model can navigate, click, type, scroll, search, check its balance, make a payment, post to Town Square, and create original websites that they own. Website creation uses escaped text in a safe starter layout rather than arbitrary page scripts.
 
 Vision/tool support depends on the selected model and Ollama version. A model that supports images but not tool calls may not complete autonomous actions.
 
