@@ -15,3 +15,4 @@
 
 .stop-button{height:34px;padding:0 12px;border:1px solid #e2baba;border-radius:10px;background:#fff5f5;color:#b34e4e;font-size:11px;font-weight:650}.stop-button[hidden]{display:none}.secondary-button{border:1px solid #dfe4eb;border-radius:9px;padding:9px 13px;background:#fff;color:#586272;font-size:12px;font-weight:600}.secondary-button:hover{background:#f5f7fa}
 #embedding-model{max-width:150px;width:150px;border:1px solid #e1e5ec;border-radius:8px;padding:7px;background:white;color:#4e5866;font-size:12px}
+.memory-clear{margin-top:14px}
