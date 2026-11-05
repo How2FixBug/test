@@ -1,6 +1,6 @@
 const OLLAMA_URL = "http://localhost:11434";
 const STORAGE_KEY = "ultillama.data.v2";
-const DEFAULTS = { contextSize: 10, memoryEnabled: true, autoMemory: true, temperature: 0.7 };
+const DEFAULTS = { contextSize: 10, memoryEnabled: true, autoMemory: true, temperature: 0.7, embeddingModel: "nomic-embed-text" };
 
 const $ = (selector) => document.querySelector(selector);
 const form = $("#chat-form");
@@ -24,10 +24,11 @@ function loadState() {
     if (saved && Array.isArray(saved.chats)) return {
       chats: saved.chats, activeChatId: saved.activeChatId || null,
       memories: Array.isArray(saved.memories) ? saved.memories : [],
+      memoryVectors: saved.memoryVectors && typeof saved.memoryVectors === "object" ? saved.memoryVectors : {},
       settings: { ...DEFAULTS, ...(saved.settings || {}) }
     };
   } catch (error) { console.warn("Could not load saved data", error); }
-  return { chats: [], activeChatId: null, memories: [], settings: { ...DEFAULTS } };
+  return { chats: [], activeChatId: null, memories: [], memoryVectors: {}, settings: { ...DEFAULTS } };
 }
 function persist() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
@@ -122,7 +123,7 @@ function renderMemories() {
     const remove = document.createElement("button");
     remove.textContent = "×";
     remove.title = "Delete memory";
-    remove.addEventListener("click", () => { state.memories.splice(index, 1); persist(); renderMemories(); });
+    remove.addEventListener("click", () => { delete state.memoryVectors[memory]; state.memories.splice(index, 1); persist(); renderMemories(); });
     row.append(content, edit, remove);
     list.append(row);
   });
@@ -136,6 +137,7 @@ function renderAll() {
   $("#memory-enabled").checked = state.settings.memoryEnabled;
   $("#auto-memory").checked = state.settings.autoMemory;
   $("#temperature").value = state.settings.temperature;
+  $("#embedding-model").value = state.settings.embeddingModel || "nomic-embed-text";
 }
 function addMessage(role, content) {
   const chat = activeChat() || (makeChat(), activeChat());
@@ -149,24 +151,63 @@ function addMessage(role, content) {
   renderAll();
   return message;
 }
-function buildRequestMessages(chat) {
+async function getEmbedding(text) {
+  const model = (state.settings.embeddingModel || "nomic-embed-text").trim();
+  if (!model) throw new Error("No embedding model selected");
+  const response = await fetch(`${OLLAMA_URL}/api/embed`, {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ model, input: text })
+  });
+  if (!response.ok) throw new Error("Embedding model unavailable");
+  const data = await response.json();
+  if (!Array.isArray(data.embeddings?.[0])) throw new Error("Invalid embedding response");
+  return data.embeddings[0];
+}
+function cosineSimilarity(a, b) {
+  let dot = 0, aa = 0, bb = 0;
+  for (let i = 0; i < Math.min(a.length, b.length); i++) { dot += a[i] * b[i]; aa += a[i] * a[i]; bb += b[i] * b[i]; }
+  return dot / (Math.sqrt(aa) * Math.sqrt(bb) || 1);
+}
+async function retrieveRelevantMemories(query) {
+  if (!state.settings.memoryEnabled || !state.memories.length) return [];
+  try {
+    const missing = state.memories.filter(memory => !Array.isArray(state.memoryVectors[memory]));
+    if (missing.length) {
+      const response = await fetch(`${OLLAMA_URL}/api/embed`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ model: state.settings.embeddingModel || "nomic-embed-text", input: missing })
+      });
+      if (!response.ok) throw new Error("Embedding model unavailable");
+      const data = await response.json();
+      if (!Array.isArray(data.embeddings) || data.embeddings.length !== missing.length) throw new Error("Invalid embeddings");
+      missing.forEach((memory, index) => { state.memoryVectors[memory] = data.embeddings[index]; });
+      persist();
+    }
+    const queryVector = await getEmbedding(query);
+    return state.memories.map(text => ({
+      text, score: cosineSimilarity(queryVector, state.memoryVectors[text] || [])
+    })).sort((a, b) => b.score - a.score).slice(0, 6).filter(item => item.score > 0.18);
+  } catch (error) {
+    console.warn("Semantic memory search unavailable; using keyword matching.", error);
+    const queryWords = new Set((query.toLowerCase().match(/[a-z0-9']{2,}/g) || []));
+    return state.memories.map(text => {
+      const memoryWords = new Set((text.toLowerCase().match(/[a-z0-9']{2,}/g) || []));
+      let overlap = 0;
+      for (const word of queryWords) if (memoryWords.has(word)) overlap++;
+      return { text, score: overlap / Math.max(1, Math.sqrt(memoryWords.size)) };
+    }).filter(item => item.score > 0.04).sort((a, b) => b.score - a.score).slice(0, 6);
+  }
+}
+async function buildRequestMessages(chat) {
   const currentText = chat.messages.at(-1)?.content || "";
   const history = chat.messages.slice(0, -1);
   const recent = state.settings.contextSize === 0 ? [] : history.slice(-state.settings.contextSize);
-  const queryWords = new Set((currentText.toLowerCase().match(/[a-z0-9']{2,}/g) || []));
-  const selectedMemories = state.settings.memoryEnabled
-    ? state.memories.map(text => {
-        const memoryWords = new Set((text.toLowerCase().match(/[a-z0-9']{2,}/g) || []));
-        let overlap = 0;
-        for (const word of queryWords) if (memoryWords.has(word)) overlap++;
-        return { text, score: overlap / Math.max(1, Math.sqrt(memoryWords.size)) };
-      }).filter(item => item.score > 0.04).sort((x, y) => y.score - x.score).slice(0, 6)
-    : [];
+  const selectedMemories = await retrieveRelevantMemories(currentText);
   const systemParts = [];
-  if (selectedMemories.length) systemParts.push("Relevant long-term memories (use only when helpful; do not force them into unrelated answers):\n" + selectedMemories.map(item => "- " + item.text).join("\n"));
+  if (selectedMemories.length) systemParts.push("Relevant long-term memories (retrieved by semantic similarity; use only when helpful):\\n" + selectedMemories.map(item => "- " + item.text).join("\\n"));
   if (systemParts.length) systemParts.push("Use recent conversation messages for short-term context. If a saved memory conflicts with what the user says now, trust what they say now.");
   return [
-    ...(systemParts.length ? [{ role: "system", content: systemParts.join("\n\n") }] : []),
+    ...(systemParts.length ? [{ role: "system", content: systemParts.join("\\n\\n") }] : []),
     ...recent.map(({ role, content }) => ({ role, content })),
     { role: "user", content: currentText }
   ];
@@ -194,10 +235,12 @@ async function updateLongTermMemory(userText, assistantText, model) {
     const remove = Array.isArray(parsed.remove) ? parsed.remove : [];
     const add = Array.isArray(parsed.add) ? parsed.add : [];
     state.memories = state.memories.filter(item => !remove.includes(item));
+    for (const oldMemory of remove) delete state.memoryVectors[oldMemory];
     for (const item of add) {
       if (typeof item === "string" && item.trim() && !state.memories.includes(item.trim())) state.memories.push(item.trim().slice(0, 300));
     }
     state.memories = state.memories.slice(-30);
+    for (const key of Object.keys(state.memoryVectors)) if (!state.memories.includes(key)) delete state.memoryVectors[key];
     persist(); renderMemories(); renderAll();
   } catch (error) { console.warn("Automatic memory update skipped", error); }
 }
@@ -232,7 +275,7 @@ async function sendMessage(text) {
   const chat = activeChat();
   addMessage("user", text);
   // Capture context before appending the assistant placeholder.
-  const requestMessages = buildRequestMessages(chat);
+  const requestMessages = await buildRequestMessages(chat);
   const assistantMessage = addMessage("assistant", "Thinking…");
   assistantMessage.pending = true;
   busy = true; updateSendState();
@@ -311,6 +354,7 @@ $("#settings-done").addEventListener("click", () => {
   state.settings.memoryEnabled = $("#memory-enabled").checked;
   state.settings.autoMemory = $("#auto-memory").checked;
   state.settings.temperature = Number($("#temperature").value);
+  state.settings.embeddingModel = $("#embedding-model").value.trim() || "nomic-embed-text";
   persist(); renderAll(); $("#settings-overlay").hidden = true;
 });
 $("#export-data").addEventListener("click", () => {
@@ -329,6 +373,7 @@ $("#memory-form").addEventListener("submit", event => {
   const value = input.value.trim();
   if (!value) return;
   if (!state.memories.includes(value)) state.memories.push(value);
+  delete state.memoryVectors[value];
   input.value = ""; persist(); renderMemories();
 });
 loadModels();
