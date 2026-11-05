@@ -3,13 +3,14 @@
 A browser-based chat workspace for local Ollama models.
 
 ## Features
-- Multiple chats with local persistence
-- Create and delete chats
-- Short-term context: choose how many recent messages are sent to the model
+- Multiple saved chats: create, switch, rename (double-click a chat), and delete
+- Streaming responses, model selection, and a stop-generation button
+- Short-term memory: choose how many recent messages from the active chat are sent
 - Long-term memory: add, edit, and delete saved facts
-- Optional automatic memory extraction after replies
-- Settings for context size, memory, and temperature
-- Streaming responses from Ollama
+- Automatic memory extraction using your selected local Ollama model
+- Relevance-ranked memory retrieval: only the most relevant saved facts are added to a prompt
+- Settings for context size, memory, and response temperature
+- Export chats, memories, and settings as a JSON backup
 
 ## Run it
 1. Start Ollama on your computer.
@@ -19,10 +20,11 @@ A browser-based chat workspace for local Ollama models.
 Ultillama connects directly to `http://localhost:11434`. Configure Ollama's allowed origins if your browser blocks the site.
 
 ## How memory works
-- Chats and memories are saved in this browser's localStorage.
+- Chats, settings, and memories are saved in this browser's localStorage.
 - Short-term context sends a configurable number of recent messages from the active chat.
-- Long-term memory is shared across chats and can be managed in the Memory panel.
-- Automatic memory asks your selected Ollama model to extract stable, useful facts. You can turn it off or edit/delete saved items.
-- Only the active chat's selected context and enabled memories are sent to Ollama. Nothing is sent to an Ultillama server.
+- Long-term memory is shared across chats. Before each request, Ultillama ranks saved facts by word overlap with the new message and sends up to six relevant memories.
+- Automatic memory asks your selected Ollama model to identify stable, useful facts after a response. You can turn it off or edit/delete saved items.
+- The current message and selected recent context are sent to Ollama. Irrelevant saved memories are left out.
 
-This is browser-local storage, not encrypted cloud sync. Clearing site data will remove chats and memories.
+## Privacy and limitations
+This is browser-local storage, not encrypted cloud sync. Data stays in this browser profile unless you export it. Clearing site data removes chats and memories. When you send a message, selected context and memories are sent to your local Ollama instance; nothing is sent to an Ultillama server.
