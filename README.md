@@ -22,8 +22,8 @@ Ultillama connects directly to `http://localhost:11434`. Configure Ollama's allo
 ## How memory works
 - Chats, settings, and memories are saved in this browser's localStorage.
 - Short-term context sends a configurable number of recent messages from the active chat.
-- Long-term memory is shared across chats. Before each request, Ultillama ranks saved facts by word overlap with the new message and sends up to six relevant memories.
-- Automatic memory asks your selected Ollama model to identify stable, useful facts after a response. You can turn it off or edit/delete saved items.
+- Long-term memory is shared across chats. Ultillama uses the configured Ollama embedding model (default: `nomic-embed-text`) to find up to six semantically relevant memories. If embeddings are unavailable, it falls back to keyword matching.
+- Automatic memory makes an additional local Ollama request after a response to identify stable, useful facts. You can turn it off or edit/delete saved items.
 - The current message and selected recent context are sent to Ollama. Irrelevant saved memories are left out.
 
 ## Privacy and limitations
