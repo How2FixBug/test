@@ -5,7 +5,7 @@ A browser-based chat workspace for local Ollama models.
 ## Features
 - Multiple saved chats: create, switch, rename (double-click a chat), and delete
 - Streaming responses, model selection, and a stop-generation button
-- Short-term memory: choose how many recent messages from the active chat are sent
+- Short-term memory: choose how many recent messages from the active chat are sent, or turn it off
 - Long-term memory: add, edit, and delete saved facts
 - Automatic memory extraction using your selected local Ollama model
 - Relevance-ranked memory retrieval: only the most relevant saved facts are added to a prompt
