@@ -8,40 +8,70 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app">
-    <header class="topbar">
-      <a class="brand" href="#" aria-label="Ultillama home">
-        <span class="brand-mark">U</span>
-        <span>ultillama</span>
-      </a>
-      <div class="connection" id="connection"><span class="status-dot"></span><span id="connection-text">Checking Ollama…</span></div>
-    </header>
-
-    <section class="chat-shell" aria-label="Chat">
-      <div class="welcome" id="welcome">
-        <div class="welcome-mark">U</div>
-        <h1>What can I help with?</h1>
-        <p>A simple chat, powered by your local Ollama models.</p>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Ultillama home"><span class="brand-mark">U</span><span>ultillama</span></a>
+      <button class="new-chat-button" id="new-chat">＋ <span>New chat</span></button>
+      <div class="sidebar-label">RECENTS</div>
+      <nav class="chat-list" id="chat-list" aria-label="Chats"></nav>
+      <div class="sidebar-bottom">
+        <button class="side-button" id="memory-open">◇ <span>Memory</span></button>
+        <button class="side-button" id="settings-open">⚙ <span>Settings</span></button>
+        <div class="local-note"><span class="local-dot"></span> Stored on this device</div>
       </div>
-      <div class="messages" id="messages" aria-live="polite"></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Open sidebar">☰</button>
+        <div class="active-title" id="active-title">New chat</div>
+        <div class="connection" id="connection"><span class="status-dot"></span><span id="connection-text">Checking Ollama…</span></div>
+      </header>
+
+      <section class="chat-shell" aria-label="Chat">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark">U</div>
+          <h1>What can I help with?</h1>
+          <p>Your local AI workspace.</p>
+        </div>
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </section>
+
+      <form class="composer-wrap" id="chat-form">
+        <div class="composer">
+          <textarea id="prompt" rows="1" placeholder="Message Ultillama…" aria-label="Message" autocomplete="off"></textarea>
+          <button id="send" class="send-button" type="submit" aria-label="Send message" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+          </button>
+        </div>
+        <div class="composer-footer">
+          <label class="model-picker"><span>Model</span><select id="model" aria-label="Ollama model"><option value="">Loading models…</option></select></label>
+          <span class="privacy-note" id="context-note">Short-term context on · long-term memory on</span>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <div class="overlay" id="settings-overlay" hidden>
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="dialog-heading"><div><h2 id="settings-title">Settings</h2><p>Configure how Ultillama talks to Ollama.</p></div><button class="icon-button" data-close="settings-overlay" aria-label="Close">×</button></div>
+      <label class="setting-row"><span><strong>Short-term context</strong><small>How many recent messages are sent with each prompt.</small></span><select id="context-size"><option value="2">2 messages</option><option value="4">4 messages</option><option value="6">6 messages</option><option value="10">10 messages</option><option value="20">20 messages</option><option value="40">40 messages</option></select></label>
+      <label class="setting-row"><span><strong>Long-term memory</strong><small>Include saved facts in new conversations.</small></span><input type="checkbox" id="memory-enabled"></label>
+      <label class="setting-row"><span><strong>Automatically remember</strong><small>Ask the model to identify useful facts after replies.</small></span><input type="checkbox" id="auto-memory"></label>
+      <label class="setting-row"><span><strong>Temperature</strong><small>Lower is more focused; higher is more varied.</small></span><input id="temperature" type="range" min="0" max="1.5" step="0.1"></label>
+      <div class="dialog-actions"><button class="danger-button" id="clear-chats">Delete all chats</button><button class="primary-button" id="settings-done">Done</button></div>
     </section>
+  </div>
 
-    <form class="composer-wrap" id="chat-form">
-      <div class="composer">
-        <textarea id="prompt" rows="1" placeholder="Message Ultillama…" aria-label="Message" autocomplete="off"></textarea>
-        <button id="send" class="send-button" type="submit" aria-label="Send message" disabled>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
-        </button>
-      </div>
-      <div class="composer-footer">
-        <label class="model-picker">
-          <span>Model</span>
-          <select id="model" aria-label="Ollama model"><option value="">Loading models…</option></select>
-        </label>
-        <span class="privacy-note">Each message is sent independently. No chat history is used.</span>
-      </div>
-    </form>
-  </main>
+  <div class="overlay" id="memory-overlay" hidden>
+    <section class="dialog memory-dialog" role="dialog" aria-modal="true" aria-labelledby="memory-title">
+      <div class="dialog-heading"><div><h2 id="memory-title">Long-term memory</h2><p>Saved locally and available across chats.</p></div><button class="icon-button" data-close="memory-overlay" aria-label="Close">×</button></div>
+      <form class="memory-add" id="memory-form"><input id="memory-input" maxlength="500" placeholder="Add something for Ultillama to remember…" required><button class="primary-button" type="submit">Add</button></form>
+      <div class="memory-list" id="memory-list"></div>
+      <p class="memory-footnote">Memory is stored in this browser. You can edit or delete any item. It is only sent to your selected local Ollama model.</p>
+    </section>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
