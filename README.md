@@ -1,21 +1,28 @@
 # Ultillama
 
-A minimal browser chat interface for local Ollama models.
+A browser-based chat workspace for local Ollama models.
+
+## Features
+- Multiple chats with local persistence
+- Create and delete chats
+- Short-term context: choose how many recent messages are sent to the model
+- Long-term memory: add, edit, and delete saved facts
+- Optional automatic memory extraction after replies
+- Settings for context size, memory, and temperature
+- Streaming responses from Ollama
 
 ## Run it
-
 1. Start Ollama on your computer.
-2. Open this repository through a local static web server, or deploy it to a static host.
-3. Choose an installed model and send a message.
+2. Open the site through a local static web server or deploy it to a static host.
+3. Choose an installed model and start chatting.
 
-Ultillama connects to Ollama at `http://localhost:11434`.
+Ultillama connects directly to `http://localhost:11434`. Configure Ollama's allowed origins if your browser blocks the site.
 
-## No context by design
+## How memory works
+- Chats and memories are saved in this browser's localStorage.
+- Short-term context sends a configurable number of recent messages from the active chat.
+- Long-term memory is shared across chats and can be managed in the Memory panel.
+- Automatic memory asks your selected Ollama model to extract stable, useful facts. You can turn it off or edit/delete saved items.
+- Only the active chat's selected context and enabled memories are sent to Ollama. Nothing is sent to an Ultillama server.
 
-Every request contains exactly one message: the current user message. Previous messages remain visible in the page so you can read the conversation, but they are never sent to Ollama. There is no memory, retrieval, system prompt, or conversation history.
-
-## Browser access
-
-If the page cannot connect, Ollama may be blocking the page's origin. Configure Ollama's allowed origins to include the origin serving this page, then restart Ollama. For a locally served page, that is usually a localhost origin.
-
-Ultillama does not include a backend or send prompts to a third-party service.
+This is browser-local storage, not encrypted cloud sync. Clearing site data will remove chats and memories.
