@@ -116,6 +116,7 @@ function renderMemories() {
     edit.addEventListener("click", () => {
       const updated = prompt("Edit memory", memory);
       if (updated === null) return;
+      delete state.memoryVectors[memory];
       if (updated.trim()) state.memories[index] = updated.trim();
       else state.memories.splice(index, 1);
       persist(); renderMemories();
@@ -274,13 +275,14 @@ async function sendMessage(text) {
   if (!activeChat()) makeChat();
   const chat = activeChat();
   addMessage("user", text);
-  // Capture context before appending the assistant placeholder.
-  const requestMessages = await buildRequestMessages(chat);
-  const assistantMessage = addMessage("assistant", "Thinking…");
-  assistantMessage.pending = true;
-  busy = true; updateSendState();
+  busy = true;
   abortController = new AbortController();
+  updateSendState();
+  let assistantMessage = null;
   try {
+    // Build context while the newest chat message is still the user's message.
+    const requestMessages = await buildRequestMessages(chat);
+    assistantMessage = addMessage("assistant", "Thinking…");
     const response = await fetch(`${OLLAMA_URL}/api/chat`, {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -301,14 +303,17 @@ async function sendMessage(text) {
       const { value, done } = await reader.read();
       if (done) break;
       buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n"); buffer = lines.pop();
+      const lines = buffer.split("\\n"); buffer = lines.pop();
       for (const line of lines) {
         if (!line.trim()) continue;
         const chunk = JSON.parse(line);
         if (chunk.message?.content) {
           assistantMessage.content += chunk.message.content;
           const last = messagesEl.lastElementChild?.querySelector(".message-content");
-          if (last && activeChat()?.id === chat.id) { last.textContent = assistantMessage.content; messagesEl.scrollTop = messagesEl.scrollHeight; }
+          if (last && activeChat()?.id === chat.id) {
+            last.textContent = assistantMessage.content;
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+          }
         }
       }
     }
@@ -320,6 +325,7 @@ async function sendMessage(text) {
     persist();
     await updateLongTermMemory(text, assistantMessage.content, model);
   } catch (error) {
+    if (!assistantMessage) assistantMessage = addMessage("assistant", "");
     assistantMessage.content = error.name === "AbortError" ? "Response stopped." : `Couldn't reach Ollama: ${error.message}. Check that Ollama is running and allows this page's origin.`;
     renderMessages(); persist();
   } finally {
