@@ -142,7 +142,7 @@ function addMessage(role, content) {
   chat.messages.push(message);
   chat.updatedAt = Date.now();
   if (role === "user" && chat.title === "New chat") {
-    chat.title = content.trim().replace(/\s+/g, " ").slice(0,  forty = 40) || "New chat";
+    chat.title = content.trim().replace(/\s+/g, " ").slice(0, 40) || "New chat";
   }
   persist();
   renderAll();
