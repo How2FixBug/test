@@ -40,6 +40,7 @@
       <form class="composer-wrap" id="chat-form">
         <div class="composer">
           <textarea id="prompt" rows="1" placeholder="Message Ultillama…" aria-label="Message" autocomplete="off"></textarea>
+          <button id="stop-generation" class="stop-button" type="button" hidden>Stop</button>
           <button id="send" class="send-button" type="submit" aria-label="Send message" disabled>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
           </button>
@@ -59,7 +60,7 @@
       <label class="setting-row"><span><strong>Long-term memory</strong><small>Include saved facts in new conversations.</small></span><input type="checkbox" id="memory-enabled"></label>
       <label class="setting-row"><span><strong>Automatically remember</strong><small>Ask the model to identify useful facts after replies.</small></span><input type="checkbox" id="auto-memory"></label>
       <label class="setting-row"><span><strong>Temperature</strong><small>Lower is more focused; higher is more varied.</small></span><input id="temperature" type="range" min="0" max="1.5" step="0.1"></label>
-      <div class="dialog-actions"><button class="danger-button" id="clear-chats">Delete all chats</button><button class="primary-button" id="settings-done">Done</button></div>
+      <div class="dialog-actions"><button class="secondary-button" id="export-data">Export data</button><button class="danger-button" id="clear-chats">Delete all chats</button><button class="primary-button" id="settings-done">Done</button></div>
     </section>
   </div>
 
