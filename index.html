@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fa">
+  <title>Ultillama</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Ultillama home">
+        <span class="brand-mark">U</span>
+        <span>ultillama</span>
+      </a>
+      <div class="connection" id="connection"><span class="status-dot"></span><span id="connection-text">Checking Ollama…</span></div>
+    </header>
+
+    <section class="chat-shell" aria-label="Chat">
+      <div class="welcome" id="welcome">
+        <div class="welcome-mark">U</div>
+        <h1>What can I help with?</h1>
+        <p>A simple chat, powered by your local Ollama models.</p>
+      </div>
+      <div class="messages" id="messages" aria-live="polite"></div>
+    </section>
+
+    <form class="composer-wrap" id="chat-form">
+      <div class="composer">
+        <textarea id="prompt" rows="1" placeholder="Message Ultillama…" aria-label="Message" autocomplete="off"></textarea>
+        <button id="send" class="send-button" type="submit" aria-label="Send message" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </button>
+      </div>
+      <div class="composer-footer">
+        <label class="model-picker">
+          <span>Model</span>
+          <select id="model" aria-label="Ollama model"><option value="">Loading models…</option></select>
+        </label>
+        <span class="privacy-note">Each message is sent independently. No chat history is used.</span>
+      </div>
+    </form>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
