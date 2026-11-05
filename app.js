@@ -237,6 +237,7 @@ async function sendMessage(text) {
   assistantMessage.pending = true;
   busy = true; updateSendState();
   abortController = new AbortController();
+  try {
     const response = await fetch(`${OLLAMA_URL}/api/chat`, {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
