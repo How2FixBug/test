@@ -149,16 +149,25 @@ function addMessage(role, content) {
   return message;
 }
 function buildRequestMessages(chat) {
+  const currentText = chat.messages.at(-1)?.content || "";
   const history = chat.messages.slice(0, -1);
   const recent = state.settings.contextSize === 0 ? [] : history.slice(-state.settings.contextSize);
-  const memory = state.settings.memoryEnabled ? state.memories : [];
+  const queryWords = new Set((currentText.toLowerCase().match(/[a-z0-9']{2,}/g) || []));
+  const selectedMemories = state.settings.memoryEnabled
+    ? state.memories.map(text => {
+        const memoryWords = new Set((text.toLowerCase().match(/[a-z0-9']{2,}/g) || []));
+        let overlap = 0;
+        for (const word of queryWords) if (memoryWords.has(word)) overlap++;
+        return { text, score: overlap / Math.max(1, Math.sqrt(memoryWords.size)) };
+      }).filter(item => item.score > 0.04).sort((x, y) => y.score - x.score).slice(0, 6)
+    : [];
   const systemParts = [];
-  if (memory.length) systemParts.push("Long-term memory about the user (use only when relevant; do not assume these facts are always relevant):\n" + memory.map(item => "- " + item).join("\n"));
-  if (systemParts.length) systemParts.push("Use the conversation history for short-term context. If memory conflicts with what the user says now, trust what they say now.");
+  if (selectedMemories.length) systemParts.push("Relevant long-term memories (use only when helpful; do not force them into unrelated answers):\n" + selectedMemories.map(item => "- " + item.text).join("\n"));
+  if (systemParts.length) systemParts.push("Use recent conversation messages for short-term context. If a saved memory conflicts with what the user says now, trust what they say now.");
   return [
     ...(systemParts.length ? [{ role: "system", content: systemParts.join("\n\n") }] : []),
     ...recent.map(({ role, content }) => ({ role, content })),
-    { role: "user", content: chat.messages.at(-1).content }
+    { role: "user", content: currentText }
   ];
 }
 async function updateLongTermMemory(userText, assistantText, model) {
@@ -221,16 +230,17 @@ async function sendMessage(text) {
   if (!activeChat()) makeChat();
   const chat = activeChat();
   addMessage("user", text);
+  // Capture context before appending the assistant placeholder.
+  const requestMessages = buildRequestMessages(chat);
   const assistantMessage = addMessage("assistant", "Thinking…");
   assistantMessage.pending = true;
   busy = true; updateSendState();
   abortController = new AbortController();
-  try {
     const response = await fetch(`${OLLAMA_URL}/api/chat`, {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model,
-        messages: buildRequestMessages(chat),
+        messages: requestMessages,
         stream: true,
         options: { temperature: Number(state.settings.temperature) }
       }),
