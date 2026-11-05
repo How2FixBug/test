@@ -63,6 +63,7 @@ function renderChatList() {
     open.textContent = chat.title;
     open.title = chat.title;
     open.addEventListener("click", () => { if (busy) return; state.activeChatId = chat.id; persist(); renderAll(); $("#sidebar").classList.remove("mobile-open"); });
+    open.addEventListener("dblclick", event => { event.preventDefault(); const title = window.prompt("Rename chat", chat.title); if (title && title.trim()) { chat.title = title.trim().slice(0, 60); persist(); renderAll(); } });
     const remove = document.createElement("button");
     remove.className = "chat-delete";
     remove.textContent = "×";
@@ -223,7 +224,7 @@ async function loadModels() {
     updateSendState();
   }
 }
-function updateSendState() { sendButton.disabled = busy || !modelSelect.value || !promptInput.value.trim(); }
+function updateSendState() { sendButton.disabled = busy || !modelSelect.value || !promptInput.value.trim(); const stop = $("#stop-generation"); if (stop) stop.hidden = !busy; }
 async function sendMessage(text) {
   const model = modelSelect.value;
   if (!model || busy) return;
@@ -297,6 +298,7 @@ promptInput.addEventListener("keydown", event => {
   if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); }
 });
 modelSelect.addEventListener("change", updateSendState);
+$("#stop-generation").addEventListener("click", () => abortController?.abort());
 $("#new-chat").addEventListener("click", () => { if (!busy) makeChat(); });
 $("#settings-open").addEventListener("click", () => { renderAll(); $("#settings-overlay").hidden = false; });
 $("#memory-open").addEventListener("click", () => { renderMemories(); $("#memory-overlay").hidden = false; });
@@ -309,6 +311,12 @@ $("#settings-done").addEventListener("click", () => {
   state.settings.autoMemory = $("#auto-memory").checked;
   state.settings.temperature = Number($("#temperature").value);
   persist(); renderAll(); $("#settings-overlay").hidden = true;
+});
+$("#export-data").addEventListener("click", () => {
+  const data = { format: "Ultillama backup", version: 1, exportedAt: new Date().toISOString(), ...state };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob); const link = document.createElement("a");
+  link.href = url; link.download = "ultillama-backup.json"; link.click(); URL.revokeObjectURL(url);
 });
 $("#clear-chats").addEventListener("click", () => {
   if (!confirm("Delete every chat? Saved memories will be kept.")) return;
