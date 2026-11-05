@@ -373,6 +373,10 @@ $("#clear-chats").addEventListener("click", () => {
   if (!confirm("Delete every chat? Saved memories will be kept.")) return;
   state.chats = []; state.activeChatId = null; persist(); renderAll();
 });
+$("#clear-memories").addEventListener("click", () => {
+  if (!confirm("Delete all long-term memories?")) return;
+  state.memories = []; state.memoryVectors = {}; persist(); renderMemories();
+});
 $("#memory-form").addEventListener("submit", event => {
   event.preventDefault();
   const input = $("#memory-input");
