@@ -205,7 +205,7 @@ async function buildRequestMessages(chat) {
   const recent = state.settings.contextSize === 0 ? [] : history.slice(-state.settings.contextSize);
   const selectedMemories = await retrieveRelevantMemories(currentText);
   const systemParts = [];
-  if (selectedMemories.length) systemParts.push("Relevant long-term memories (retrieved by semantic similarity; use only when helpful):\\n" + selectedMemories.map(item => "- " + item.text).join("\\n"));
+  if (selectedMemories.length) systemParts.push("Relevant long-term memories (retrieved by semantic similarity; use only when helpful):\\n" + selectedMemories.map(item => "- " + item.text).join("\n"));
   if (systemParts.length) systemParts.push("Use recent conversation messages for short-term context. If a saved memory conflicts with what the user says now, trust what they say now.");
   return [
     ...(systemParts.length ? [{ role: "system", content: systemParts.join("\\n\\n") }] : []),
@@ -303,7 +303,7 @@ async function sendMessage(text) {
       const { value, done } = await reader.read();
       if (done) break;
       buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\\n"); buffer = lines.pop();
+      const lines = buffer.split("\n"); buffer = lines.pop();
       for (const line of lines) {
         if (!line.trim()) continue;
         const chunk = JSON.parse(line);
