@@ -157,4 +157,3 @@ modelSelect.addEventListener("change", () => {
 });
 
 loadModels();
-setInterval(loadModels, 15000);
