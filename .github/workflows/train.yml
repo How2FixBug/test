@@ -1,11 +1,6 @@
 name: Train littleGPT
 
 on:
-  push:
-    paths:
-      - ".github/workflows/train.yml"
-      - ".github/actions/train-chunk/action.yml"
-      - "train.py"
   workflow_dispatch:
     inputs:
       steps:
