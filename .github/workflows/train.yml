@@ -51,4 +51,13 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add model.json
           git commit -m "Train littleGPT v3: ${{ inputs.steps }} CPU steps" || echo "No model changes"
+          git pull --rebase origin main
           git push
+
+      - name: Upload model backup
+        if: always() && hashFiles('model.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: littleGPT-v3-model
+          path: model.json
+          retention-days: 14
