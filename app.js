@@ -7,7 +7,20 @@ function makeId(){return Date.now().toString(36)+Math.random().toString(36).slic
 function newChat(){const chat={id:makeId(),title:"New chat",messages:[]};chats.unshift(chat);activeChatId=chat.id;saveChats();renderChatList();renderActiveChat();$("prompt").focus()}
 function saveChats(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(chats))}catch(e){console.warn("Could not save chat history",e)}}
 function loadChats(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]");if(Array.isArray(saved))chats=saved.filter(c=>c&&typeof c.id==="string"&&Array.isArray(c.messages))}catch(e){chats=[]}if(!chats.length)chats=[{id:makeId(),title:"New chat",messages:[]}];activeChatId=chats[0].id;renderChatList();renderActiveChat()}
-function renderChatList(){const list=$("chat-list");list.replaceChildren();chats.forEach(chat=>{const button=document.createElement("button");button.type="button";button.className="chat-item"+(chat.id===activeChatId?" active":"");button.textContent=chat.title||"New chat";button.title=button.textContent;button.addEventListener("click",()=>{if(generating)return;activeChatId=chat.id;renderChatList();renderActiveChat()});list.append(button)})}
+function renderChatList(){
+ const list=$("chat-list");list.replaceChildren();
+ chats.forEach(chat=>{
+  const row=document.createElement("div");row.className="chat-row"+(chat.id===activeChatId?" active":"");
+  const select=document.createElement("button");select.type="button";select.className="chat-item";select.textContent=chat.title||"New chat";select.title=select.textContent;
+  select.addEventListener("click",()=>{if(generating)return;activeChatId=chat.id;renderChatList();renderActiveChat()});
+  const actions=document.createElement("div");actions.className="chat-actions";
+  const rename=document.createElement("button");rename.type="button";rename.className="chat-action";rename.textContent="✎";rename.title="Rename chat";rename.setAttribute("aria-label","Rename chat");
+  rename.addEventListener("click",event=>{event.stopPropagation();if(generating)return;const value=window.prompt("Rename chat:",chat.title||"New chat");if(value===null)return;const title=value.trim();if(!title)return;chat.title=title.slice(0,80);saveChats();renderChatList();if(chat.id===activeChatId)$("current-chat-title").textContent=chat.title});
+  const remove=document.createElement("button");remove.type="button";remove.className="chat-action delete-chat";remove.textContent="×";remove.title="Delete chat";remove.setAttribute("aria-label","Delete chat");
+  remove.addEventListener("click",event=>{event.stopPropagation();if(generating)return;if(!window.confirm("Delete this chat? This cannot be undone."))return;const index=chats.findIndex(item=>item.id===chat.id);if(index<0)return;chats.splice(index,1);if(activeChatId===chat.id){if(chats.length)activeChatId=chats[Math.min(index,chats.length-1)].id;else{const fresh={id:makeId(),title:"New chat",messages:[]};chats.push(fresh);activeChatId=fresh.id}}saveChats();renderChatList();renderActiveChat()});
+  actions.append(rename,remove);row.append(select,actions);list.append(row);
+ });
+}
 function activeChat(){return chats.find(c=>c.id===activeChatId)}
 function renderActiveChat(){
  const chat=activeChat();if(!chat)return;$("current-chat-title").textContent=chat.title||"New chat";const messages=$("messages");messages.replaceChildren();
