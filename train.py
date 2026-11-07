@@ -30,7 +30,7 @@ EVAL_BATCHES = 16
 LEARNING_RATE = 1.5e-3
 DATASET = "roneneldan/TinyStories"
 ROWS_API = "https://datasets-server.huggingface.co/rows"
-TOKEN_RE = re.compile(r"[a-z0-9]+(?:'[a-z0-9]+)?|[^\\w\\s]", re.IGNORECASE)
+TOKEN_RE = re.compile(r"[a-z0-9]+(?:'[a-z0-9]+)?|[^\w\s]", re.IGNORECASE)
 
 torch.manual_seed(SEED)
 torch.set_num_threads(2)
