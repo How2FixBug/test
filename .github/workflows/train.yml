@@ -51,9 +51,9 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: checkpoint.pt
-          key: littlegpt-v5-checkpoint-${{ github.run_id }}-initial
+          key: littlegpt-v5b-checkpoint-${{ github.run_id }}-initial
           restore-keys: |
-            littlegpt-v5-checkpoint-
+            littlegpt-v5b-checkpoint-
 
       - name: Train checkpoint chunk 1
         uses: ./.github/actions/train-chunk
