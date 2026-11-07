@@ -23,4 +23,4 @@ runs:
       uses: actions/cache/save@v4
       with:
         path: checkpoint.pt
-        key: littlegpt-v5-checkpoint-${{ github.run_id }}-${{ inputs.chunk }}
+        key: littlegpt-v5b-checkpoint-${{ github.run_id }}-${{ inputs.chunk }}
