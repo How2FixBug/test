@@ -14,23 +14,23 @@ import torch.nn.functional as F
 
 # littleGPT v4: story-isolated batches, regularization, and best-validation export.
 SEED = 1337
-BLOCK_SIZE = 160
-BATCH_SIZE = 24
-N_EMBD = 128
+BLOCK_SIZE = 96
+BATCH_SIZE = 16
+N_EMBD = 96
 N_HEAD = 4
-N_LAYER = 4
-DROPOUT = 0.10
+N_LAYER = 3
+DROPOUT = 0.08
 VOCAB_LIMIT = 4096
 DATASET_ROWS = int(os.environ.get("DATASET_ROWS", "30000"))
-MAX_STEPS = int(os.environ.get("TRAIN_STEPS", "20000"))
+MAX_STEPS = int(os.environ.get("TRAIN_STEPS", "3000"))
 CHUNK_STEPS = int(os.environ.get("CHUNK_STEPS", "500"))
 CHECKPOINT_PATH = Path("checkpoint.pt")
 EVAL_INTERVAL = 500
-EVAL_BATCHES = 16
-LEARNING_RATE = 1.5e-3
+EVAL_BATCHES = 8
+LEARNING_RATE = 1.8e-3
 DATASET = "roneneldan/TinyStories"
 ROWS_API = "https://datasets-server.huggingface.co/rows"
-TOKEN_RE = re.compile(r"[a-z0-9]+(?:'[a-z0-9]+)?|[^\w\s]", re.IGNORECASE)
+TOKEN_RE = re.compile(r"[a-z0-9]+(?:'[a-z0-9]+)?|[.,!?;:"()\-]")
 
 torch.manual_seed(SEED)
 torch.set_num_threads(2)
@@ -107,8 +107,24 @@ split_at = max(1, int(len(stories) * 0.95))
 train_stories, val_stories = stories[:split_at], stories[split_at:]
 
 
+def normalize_text(text):
+    # Repair common mojibake and normalize smart punctuation before vocabulary creation.
+    replacements = {
+        "â€œ": '"', "â€": '"', "â€˜": "'", "â€™": "'",
+        "â€“": "-", "â€”": "-", "â€¦": "...",
+        "“": '"', "”": '"', "„": '"', "‟": '"',
+        "‘": "'", "’": "'", "‚": "'", "‛": "'",
+        # These artifacts appeared in generated text in place of quotes/apostrophes.
+        "€": '"', "™": "'",
+        "\u00a0": " ",
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return text
+
+
 def tokenize(text):
-    return TOKEN_RE.findall(text.lower())
+    return TOKEN_RE.findall(normalize_text(text).lower())
 
 
 counter = Counter()
@@ -216,11 +232,12 @@ last_metrics = {"train": None, "val": None}
 config_signature = {
     "block_size": BLOCK_SIZE, "n_embd": N_EMBD, "n_head": N_HEAD,
     "n_layer": N_LAYER, "dropout": DROPOUT, "dataset_rows": DATASET_ROWS,
+    "tokenizer_version": 2,
 }
 
 if CHECKPOINT_PATH.exists():
     checkpoint = torch.load(CHECKPOINT_PATH, map_location=device, weights_only=False)
-    if (checkpoint.get("format") != "littleGPT-training-checkpoint-v2"
+    if (checkpoint.get("format") != "littleGPT-training-checkpoint-v3"
             or checkpoint.get("vocab") != vocab
             or checkpoint.get("config") != config_signature):
         raise RuntimeError("Checkpoint belongs to another model version/configuration; refusing to resume it.")
@@ -234,7 +251,7 @@ if CHECKPOINT_PATH.exists():
     print(f"RESUMED v4 from checkpoint at step {start_step}/{MAX_STEPS}", flush=True)
 
 print(
-    f"littleGPT v4 | {parameter_count:,} parameters | vocab={vocab_size} | "
+    f"littleGPT v5 | {parameter_count:,} parameters | vocab={vocab_size} | "
     f"stories={len(stories):,} | train={len(train_sequences):,} | "
     f"validation={len(val_sequences):,} | batch={BATCH_SIZE} distinct stories | CPU",
     flush=True,
@@ -261,7 +278,7 @@ def clone_state_dict(module):
 
 
 def learning_rate(step):
-    warmup = min(1.0, (step + 1) / 400)
+    warmup = min(1.0, (step + 1) / 200)
     progress = min(1.0, step / max(1, MAX_STEPS - 1))
     cosine = 0.5 * (1.0 + math.cos(math.pi * progress))
     return LEARNING_RATE * warmup * (0.10 + 0.90 * cosine)
@@ -345,7 +362,7 @@ for block in model.blocks:
     })
 
 payload = {
-    "format": "littleGPT-v4",
+    "format": "littleGPT-v5",
     "created_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
     "config": {
         "block_size": BLOCK_SIZE, "n_embd": N_EMBD, "n_head": N_HEAD,
