@@ -24,7 +24,7 @@ jobs:
   train:
     name: Train littleGPT v5 fast with resumable checkpoints
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
