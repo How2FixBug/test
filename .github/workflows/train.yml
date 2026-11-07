@@ -1,6 +1,9 @@
 name: Train littleGPT
 
 on:
+  push:
+    paths:
+      - ".github/workflows/train.yml"
   workflow_dispatch:
     inputs:
       steps:
@@ -41,7 +44,7 @@ jobs:
 
       - name: Train on TinyStories
         env:
-          TRAIN_STEPS: ${{ inputs.steps }}
+          TRAIN_STEPS: ${{ inputs.steps || '5000' }}
           DATASET_ROWS: "6000"
         run: python train.py
 
@@ -50,7 +53,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add model.json
-          git commit -m "Train littleGPT v3: ${{ inputs.steps }} CPU steps" || echo "No model changes"
+          git commit -m "Train littleGPT v3: ${{ inputs.steps || '5000' }} CPU steps" || echo "No model changes"
           git pull --rebase origin main
           git push
 
