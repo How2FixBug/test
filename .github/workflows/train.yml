@@ -6,12 +6,12 @@ on:
       steps:
         description: "Training steps (more steps = longer training)"
         required: true
-        default: "1500"
+        default: "5000"
         type: choice
         options:
-          - "750"
-          - "1500"
-          - "2500"
+          - "3000"
+          - "5000"
+          - "7000"
 
 permissions:
   contents: write
@@ -22,9 +22,9 @@ concurrency:
 
 jobs:
   train:
-    name: Train littleGPT v2 from scratch (CPU)
+    name: Train littleGPT v3 from scratch (CPU)
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
       - name: Train on TinyStories
         env:
           TRAIN_STEPS: ${{ inputs.steps }}
-          DATASET_ROWS: "1800"
+          DATASET_ROWS: "6000"
         run: python train.py
 
       - name: Save learned weights to the repository
@@ -50,5 +50,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add model.json
-          git commit -m "Train littleGPT v2: ${{ inputs.steps }} CPU steps" || echo "No model changes"
+          git commit -m "Train littleGPT v3: ${{ inputs.steps }} CPU steps" || echo "No model changes"
           git push
