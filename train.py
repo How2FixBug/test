@@ -37,6 +37,12 @@ device = torch.device("cpu")
 
 
 def download_stories():
+    cached_stories = Path("training_stories.json")
+    if cached_stories.exists():
+        stories = json.loads(cached_stories.read_text(encoding="utf-8"))
+        print(f"Loaded {len(stories)} cached stories.", flush=True)
+        random.Random(SEED).shuffle(stories)
+        return stories
     stories = []
     page_size = 100
     for offset in range(0, DATASET_ROWS, page_size):
