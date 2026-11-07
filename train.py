@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import random
 import time
 import urllib.parse
 import urllib.request
@@ -13,16 +14,16 @@ import torch.nn.functional as F
 
 # A small word-level GPT. The model is initialized randomly every run.
 SEED = 1337
-BLOCK_SIZE = 96
+BLOCK_SIZE = 128
 BATCH_SIZE = 16
-N_EMBD = 96
+N_EMBD = 112
 N_HEAD = 4
-N_LAYER = 2
-VOCAB_LIMIT = 2048
-DATASET_ROWS = int(os.environ.get("DATASET_ROWS", "1800"))
-MAX_STEPS = int(os.environ.get("TRAIN_STEPS", "1500"))
-EVAL_INTERVAL = max(100, min(250, MAX_STEPS // 6))
-LEARNING_RATE = 2.5e-3
+N_LAYER = 3
+VOCAB_LIMIT = 4096
+DATASET_ROWS = int(os.environ.get("DATASET_ROWS", "6000"))
+MAX_STEPS = int(os.environ.get("TRAIN_STEPS", "5000"))
+EVAL_INTERVAL = max(200, min(400, MAX_STEPS // 8))
+LEARNING_RATE = 2.0e-3
 DATASET = "roneneldan/TinyStories"
 ROWS_API = "https://datasets-server.huggingface.co/rows"
 TOKEN_RE = re.compile(r"[a-z0-9]+(?:'[a-z0-9]+)?|[^\w\s]", re.IGNORECASE)
@@ -69,6 +70,7 @@ def download_stories():
     if len(stories) < 100:
         raise RuntimeError("Not enough training stories were downloaded.")
     Path("training_data.txt").write_text("\n\n".join(stories), encoding="utf-8")
+    random.Random(SEED).shuffle(stories)
     return stories
 
 
@@ -164,7 +166,14 @@ class TinyGPT(nn.Module):
 
 model = TinyGPT().to(device)
 parameter_count = sum(parameter.numel() for parameter in model.parameters())
-optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=0.1)
+optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=0.08)
+
+
+def learning_rate(step):
+    warmup = min(1.0, (step + 1) / 150)
+    progress = min(1.0, step / max(1, MAX_STEPS - 1))
+    cosine = 0.5 * (1.0 + __import__("math").cos(__import__("math").pi * progress))
+    return LEARNING_RATE * warmup * (0.15 + 0.85 * cosine)
 print(
     f"Random init: {parameter_count:,} parameters | vocab={vocab_size} | "
     f"train tokens={len(train_ids):,} | CPU",
@@ -188,6 +197,9 @@ def estimate_loss():
 
 last_metrics = {"train": None, "val": None}
 for step in range(MAX_STEPS):
+    lr = learning_rate(step)
+    for group in optimizer.param_groups:
+        group["lr"] = lr
     xb, yb = get_batch(train_ids)
     _, loss = model(xb, yb)
     optimizer.zero_grad(set_to_none=True)
@@ -229,7 +241,7 @@ for block in model.blocks:
     })
 
 payload = {
-    "format": "littleGPT-v2",
+    "format": "littleGPT-v3",
     "created_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
     "config": {
         "block_size": BLOCK_SIZE,
@@ -249,6 +261,8 @@ payload = {
         "dataset": f"TinyStories ({len(stories)} stories)",
         "seed": SEED,
         "train_tokens": len(train_ids),
+        "validation_tokens": len(val_ids),
+        "learning_rate": LEARNING_RATE,
     },
     "state": state,
 }
