@@ -301,6 +301,126 @@ jobs:
           chunk: "40"
           total_steps: ${{ inputs.steps || '20000' }}
 
+      - name: Train checkpoint chunk 41
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "41"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 42
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "42"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 43
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "43"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 44
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "44"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 45
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "45"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 46
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "46"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 47
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "47"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 48
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "48"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 49
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "49"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 50
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "50"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 51
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "51"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 52
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "52"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 53
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "53"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 54
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "54"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 55
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "55"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 56
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "56"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 57
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "57"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 58
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "58"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 59
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "59"
+          total_steps: ${{ inputs.steps || '20000' }}
+
+      - name: Train checkpoint chunk 60
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "60"
+          total_steps: ${{ inputs.steps || '20000' }}
+
       - name: Save learned weights to the repository
         if: hashFiles('model.json') != ''
         run: |
