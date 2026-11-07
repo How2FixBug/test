@@ -1,0 +1,54 @@
+name: Train littleGPT
+
+on:
+  workflow_dispatch:
+    inputs:
+      steps:
+        description: "Training steps (more steps = longer training)"
+        required: true
+        default: "500"
+        type: choice
+        options:
+          - "200"
+          - "500"
+          - "1000"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: little-gpt-training
+  cancel-in-progress: false
+
+jobs:
+  train:
+    name: Train from random initialization (CPU)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install CPU PyTorch
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Train the model
+        env:
+          TRAIN_STEPS: ${{ inputs.steps }}
+        run: python train.py
+
+      - name: Save learned weights to the repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add model.json
+          git commit -m "Train littleGPT: ${{ inputs.steps }} CPU steps" || echo "No model changes"
+          git push

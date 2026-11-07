@@ -1,391 +1,148 @@
-const OLLAMA_URL = "http://localhost:11434";
-const STORAGE_KEY = "ultillama.data.v2";
-const DEFAULTS = { contextSize: 10, memoryEnabled: true, autoMemory: true, temperature: 0.7, embeddingModel: "nomic-embed-text" };
+const MODEL_URL = "./model.json";
+const $ = (id) => document.getElementById(id);
+let model = null;
+let generating = false;
+let cancelled = false;
 
-const $ = (selector) => document.querySelector(selector);
-const form = $("#chat-form");
-const promptInput = $("#prompt");
-const sendButton = $("#send");
-const modelSelect = $("#model");
-const messagesEl = $("#messages");
-const welcome = $("#welcome");
-const connection = $("#connection");
-const connectionText = $("#connection-text");
-const chatList = $("#chat-list");
-
-let state = loadState();
-let busy = false;
-let abortController = null;
-
-function uid() { return crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2); }
-function loadState() {
+function setStatus(ready, text) {
+  $("model-state").textContent = text;
+  $("status-dot").classList.toggle("ready", ready);
+  $("weight-label").textContent = ready ? "WEIGHTS LOADED" : "NO WEIGHTS";
+  $("weight-label").classList.toggle("loaded", ready);
+  $("generate").disabled = !ready || generating || !$("prompt").value.trim();
+}
+function fmt(n) { return Number(n).toLocaleString("en-US"); }
+async function loadModel() {
+  setStatus(false, "Looking for trained weights…");
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (saved && Array.isArray(saved.chats)) return {
-      chats: saved.chats, activeChatId: saved.activeChatId || null,
-      memories: Array.isArray(saved.memories) ? saved.memories : [],
-      memoryVectors: saved.memoryVectors && typeof saved.memoryVectors === "object" ? saved.memoryVectors : {},
-      settings: { ...DEFAULTS, ...(saved.settings || {}) }
-    };
-  } catch (error) { console.warn("Could not load saved data", error); }
-  return { chats: [], activeChatId: null, memories: [], memoryVectors: {}, settings: { ...DEFAULTS } };
-}
-function persist() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-  catch { setConnection(false, "Storage full — delete old chats"); }
-}
-function activeChat() { return state.chats.find(chat => chat.id === state.activeChatId) || null; }
-function setConnection(online, label) {
-  connection.classList.toggle("online", online);
-  connection.classList.toggle("offline", !online);
-  connectionText.textContent = label;
-}
-function makeChat() {
-  const chat = { id: uid(), title: "New chat", createdAt: Date.now(), updatedAt: Date.now(), messages: [] };
-  state.chats.unshift(chat);
-  state.activeChatId = chat.id;
-  persist();
-  renderAll();
-  promptInput.focus();
-}
-function deleteChat(id) {
-  state.chats = state.chats.filter(chat => chat.id !== id);
-  if (state.activeChatId === id) state.activeChatId = state.chats[0]?.id || null;
-  persist();
-  renderAll();
-}
-function renderChatList() {
-  chatList.replaceChildren();
-  for (const chat of state.chats) {
-    const row = document.createElement("div");
-    row.className = "chat-row" + (chat.id === state.activeChatId ? " active" : "");
-    const open = document.createElement("button");
-    open.className = "chat-open";
-    open.textContent = chat.title;
-    open.title = chat.title;
-    open.addEventListener("click", () => { if (busy) return; state.activeChatId = chat.id; persist(); renderAll(); $("#sidebar").classList.remove("mobile-open"); });
-    open.addEventListener("dblclick", event => { event.preventDefault(); const title = window.prompt("Rename chat", chat.title); if (title && title.trim()) { chat.title = title.trim().slice(0, 60); persist(); renderAll(); } });
-    const remove = document.createElement("button");
-    remove.className = "chat-delete";
-    remove.textContent = "×";
-    remove.title = "Delete chat";
-    remove.setAttribute("aria-label", "Delete " + chat.title);
-    remove.addEventListener("click", () => { if (!busy && confirm("Delete this chat?")) deleteChat(chat.id); });
-    row.append(open, remove);
-    chatList.append(row);
+    const response = await fetch(MODEL_URL + "?v=" + Date.now(), {cache:"no-store"});
+    if (!response.ok) throw new Error("No trained model yet");
+    const data = await response.json();
+    if (data.format !== "littleGPT-v1" || !data.state) throw new Error("Model file is invalid");
+    model = data;
+    $("param-count").textContent = fmt(data.parameters);
+    $("loss-value").textContent = Number(data.training.loss).toFixed(3);
+    $("steps-value").textContent = fmt(data.training.steps);
+    $("vocab-value").textContent = fmt(data.vocab.length);
+    $("context-value").textContent = data.config.block_size;
+    $("model-state").textContent = "Trained · " + data.training.steps + " steps";
+    $("runtime-note").textContent = "Model ready · " + fmt(data.parameters) + " parameters loaded into this tab.";
+    $("welcome-title").textContent = "Your model is ready.";
+    $("welcome-copy").textContent = "These weights were learned from random initialization by a GitHub Actions CPU runner. Type a prompt and see what it learned.";
+    setStatus(true, "Trained · " + data.training.steps + " steps");
+  } catch (error) {
+    model = null;
+    $("param-count").textContent = "—"; $("loss-value").textContent = "—";
+    $("steps-value").textContent = "—"; $("vocab-value").textContent = "—"; $("context-value").textContent = "—";
+    $("runtime-note").textContent = "No trained weights found yet. Run the GitHub Actions workflow.";
+    setStatus(false, "Not trained yet");
   }
 }
-function renderMessages() {
-  messagesEl.replaceChildren();
-  const chat = activeChat();
-  const hasMessages = !!chat?.messages.length;
-  welcome.hidden = hasMessages;
-  $("#active-title").textContent = chat?.title || "New chat";
-  if (!chat) return;
-  for (const message of chat.messages) {
-    const wrapper = document.createElement("article");
-    wrapper.className = "message " + message.role;
-    const label = document.createElement("div");
-    label.className = "message-role";
-    label.textContent = message.role === "user" ? "You" : "Ultillama";
-    const body = document.createElement("div");
-    body.className = "message-content";
-    body.textContent = message.content;
-    wrapper.append(label, body);
-    messagesEl.append(wrapper);
-  }
-  messagesEl.scrollTop = messagesEl.scrollHeight;
+function matvec(x, weight, bias) {
+  const out = new Array(bias.length);
+  for (let j=0;j<bias.length;j++) { let sum=bias[j]; for(let i=0;i<x.length;i++) sum += x[i]*weight[j][i]; out[j]=sum; }
+  return out;
 }
-function renderMemories() {
-  const list = $("#memory-list");
-  list.replaceChildren();
-  if (!state.memories.length) {
-    const empty = document.createElement("p");
-    empty.className = "empty-memory";
-    empty.textContent = "No saved memories yet. Add one above, or enable automatic memory in Settings.";
-    list.append(empty);
-    return;
-  }
-  state.memories.forEach((memory, index) => {
-    const row = document.createElement("div");
-    row.className = "memory-item";
-    const content = document.createElement("p");
-    content.textContent = memory;
-    const edit = document.createElement("button");
-    edit.textContent = "Edit";
-    edit.addEventListener("click", () => {
-      const updated = prompt("Edit memory", memory);
-      if (updated === null) return;
-      delete state.memoryVectors[memory];
-      if (updated.trim()) state.memories[index] = updated.trim();
-      else state.memories.splice(index, 1);
-      persist(); renderMemories();
-    });
-    const remove = document.createElement("button");
-    remove.textContent = "×";
-    remove.title = "Delete memory";
-    remove.addEventListener("click", () => { delete state.memoryVectors[memory]; state.memories.splice(index, 1); persist(); renderMemories(); });
-    row.append(content, edit, remove);
-    list.append(row);
-  });
+function layerNorm(x, scale, bias, eps=1e-5) {
+  let mean=0; for(const v of x) mean+=v; mean/=x.length;
+  let variance=0; for(const v of x) variance+=(v-mean)*(v-mean); variance/=x.length;
+  const inv=1/Math.sqrt(variance+eps);
+  return x.map((v,i)=>(v-mean)*inv*scale[i]+bias[i]);
 }
-function renderAll() {
-  renderChatList();
-  renderMessages();
-  renderMemories();
-  $("#context-note").textContent = `Short-term context ${state.settings.contextSize ? "on" : "off"} · long-term memory ${state.settings.memoryEnabled ? "on" : "off"}`;
-  $("#context-size").value = String(state.settings.contextSize);
-  $("#memory-enabled").checked = state.settings.memoryEnabled;
-  $("#auto-memory").checked = state.settings.autoMemory;
-  $("#temperature").value = state.settings.temperature;
-  $("#embedding-model").value = state.settings.embeddingModel || "nomic-embed-text";
+function gelu(x) { return 0.5*x*(1+Math.tanh(0.7978845608*(x+0.044715*x*x*x))); }
+function softmax(values) {
+  const max=Math.max(...values), exps=values.map(v=>Math.exp(v-max));
+  const sum=exps.reduce((a,b)=>a+b,0); return exps.map(v=>v/sum);
+}
+function linearRows(rows, weight, bias) { return rows.map(row=>matvec(row,weight,bias)); }
+function forward(tokenIds) {
+  const s=model.state, c=model.config, T=tokenIds.length, D=c.n_embd, H=c.n_head, HD=D/H;
+  let x=tokenIds.map((id,pos)=>s.wte[id].map((v,j)=>v+s.wpe[pos][j]));
+  for(let layer=0;layer<c.n_layer;layer++) {
+    const p=s.blocks[layer], residual=x;
+    const norm=x.map(row=>layerNorm(row,p.ln1.weight,p.ln1.bias));
+    const qkv=linearRows(norm,p.attn.qkv.weight,p.attn.qkv.bias);
+    const attended=Array.from({length:T},()=>new Array(D).fill(0));
+    for(let h=0;h<H;h++) for(let t=0;t<T;t++) {
+      const scores=[];
+      for(let j=0;j<=t;j++) {
+        let dot=0; for(let k=0;k<HD;k++) dot+=qkv[t][h*HD+k]*qkv[j][D+h*HD+k];
+        scores.push(dot/Math.sqrt(HD));
+      }
+      const probs=softmax(scores);
+      for(let k=0;k<HD;k++) { let value=0; for(let j=0;j<=t;j++) value+=probs[j]*qkv[j][2*D+h*HD+k]; attended[t][h*HD+k]=value; }
+    }
+    x=linearRows(attended,p.attn.proj.weight,p.attn.proj.bias).map((row,t)=>row.map((v,j)=>v+residual[t][j]));
+    const residual2=x;
+    x=x.map(row=>layerNorm(row,p.ln2.weight,p.ln2.bias));
+    x=linearRows(x,p.mlp.fc1.weight,p.mlp.fc1.bias).map(row=>row.map(gelu));
+    x=linearRows(x,p.mlp.fc2.weight,p.mlp.fc2.bias).map((row,t)=>row.map((v,j)=>v+residual2[t][j]));
+  }
+  const last=layerNorm(x[T-1],s.ln_f.weight,s.ln_f.bias);
+  return matvec(last,s.lm_head.weight,s.lm_head.bias);
+}
+function sample(logits, temperature, topK) {
+  const scaled=logits.map(v=>v/Math.max(0.05,temperature));
+  if(topK>0 && topK<scaled.length) {
+    const keep=new Set(scaled.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,topK).map(x=>x[1]));
+    for(let i=0;i<scaled.length;i++) if(!keep.has(i)) scaled[i]=-Infinity;
+  }
+  const probs=softmax(scaled);
+  let r=Math.random(); for(let i=0;i<probs.length;i++){r-=probs[i];if(r<=0)return i;} return probs.length-1;
+}
+async function generate(prompt, maxTokens=240, temperature=0.8, topK=24) {
+  const stoi=new Map(model.vocab.map((ch,i)=>[ch,i]));
+  const unknown=stoi.has(" ") ? stoi.get(" ") : 0;
+  let ids=Array.from(prompt).map(ch=>stoi.has(ch)?stoi.get(ch):unknown);
+  if(!ids.length) ids=[unknown];
+  let output="";
+  for(let i=0;i<maxTokens;i++) {
+    if(cancelled) break;
+    const context=ids.slice(-model.config.block_size);
+    const logits=forward(context);
+    const next=sample(logits,temperature,topK);
+    ids.push(next);
+    const ch=model.vocab[next];
+    output+=ch;
+    if(i%4===0) {
+      const node=document.querySelector(".message.assistant:last-child .message-body");
+      if(node) node.textContent=output;
+      await new Promise(resolve=>setTimeout(resolve,0));
+    }
+  }
+  return output;
 }
 function addMessage(role, content) {
-  const chat = activeChat() || (makeChat(), activeChat());
-  const message = { role, content, createdAt: Date.now() };
-  chat.messages.push(message);
-  chat.updatedAt = Date.now();
-  if (role === "user" && chat.title === "New chat") {
-    chat.title = content.trim().replace(/\s+/g, " ").slice(0, 40) || "New chat";
-  }
-  persist();
-  renderAll();
-  return message;
+  const wrap=document.createElement("article"); wrap.className="message "+role;
+  const label=document.createElement("div"); label.className="message-label"; label.textContent=role==="user"?"YOU":"LITTLEGPT";
+  const body=document.createElement("div"); body.className="message-body"; body.textContent=content;
+  wrap.append(label,body); $("messages").append(wrap); $("messages").scrollTop=$("messages").scrollHeight;
+  return body;
 }
-async function getEmbedding(text) {
-  const model = (state.settings.embeddingModel || "nomic-embed-text").trim();
-  if (!model) throw new Error("No embedding model selected");
-  const response = await fetch(`${OLLAMA_URL}/api/embed`, {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ model, input: text })
-  });
-  if (!response.ok) throw new Error("Embedding model unavailable");
-  const data = await response.json();
-  if (!Array.isArray(data.embeddings?.[0])) throw new Error("Invalid embedding response");
-  return data.embeddings[0];
-}
-function cosineSimilarity(a, b) {
-  let dot = 0, aa = 0, bb = 0;
-  for (let i = 0; i < Math.min(a.length, b.length); i++) { dot += a[i] * b[i]; aa += a[i] * a[i]; bb += b[i] * b[i]; }
-  return dot / (Math.sqrt(aa) * Math.sqrt(bb) || 1);
-}
-async function retrieveRelevantMemories(query) {
-  if (!state.settings.memoryEnabled || !state.memories.length) return [];
+async function handleGenerate(prompt) {
+  if(!model||generating||!prompt.trim()) return;
+  generating=true; cancelled=false; $("generate").disabled=true; $("generate").innerHTML="<span>Generating…</span><b>Ⅱ</b>";
+  $("welcome").hidden=true;
+  addMessage("user",prompt);
+  addMessage("assistant","…");
   try {
-    const missing = state.memories.filter(memory => !Array.isArray(state.memoryVectors[memory]));
-    if (missing.length) {
-      const response = await fetch(`${OLLAMA_URL}/api/embed`, {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ model: state.settings.embeddingModel || "nomic-embed-text", input: missing })
-      });
-      if (!response.ok) throw new Error("Embedding model unavailable");
-      const data = await response.json();
-      if (!Array.isArray(data.embeddings) || data.embeddings.length !== missing.length) throw new Error("Invalid embeddings");
-      missing.forEach((memory, index) => { state.memoryVectors[memory] = data.embeddings[index]; });
-      persist();
-    }
-    const queryVector = await getEmbedding(query);
-    return state.memories.map(text => ({
-      text, score: cosineSimilarity(queryVector, state.memoryVectors[text] || [])
-    })).sort((a, b) => b.score - a.score).slice(0, 6).filter(item => item.score > 0.18);
-  } catch (error) {
-    console.warn("Semantic memory search unavailable; using keyword matching.", error);
-    const queryWords = new Set((query.toLowerCase().match(/[a-z0-9']{2,}/g) || []));
-    return state.memories.map(text => {
-      const memoryWords = new Set((text.toLowerCase().match(/[a-z0-9']{2,}/g) || []));
-      let overlap = 0;
-      for (const word of queryWords) if (memoryWords.has(word)) overlap++;
-      return { text, score: overlap / Math.max(1, Math.sqrt(memoryWords.size)) };
-    }).filter(item => item.score > 0.04).sort((a, b) => b.score - a.score).slice(0, 6);
-  }
-}
-async function buildRequestMessages(chat) {
-  const currentText = chat.messages.at(-1)?.content || "";
-  const history = chat.messages.slice(0, -1);
-  const recent = state.settings.contextSize === 0 ? [] : history.slice(-state.settings.contextSize);
-  const selectedMemories = await retrieveRelevantMemories(currentText);
-  const systemParts = [];
-  if (selectedMemories.length) systemParts.push("Relevant long-term memories (retrieved by semantic similarity; use only when helpful):\\n" + selectedMemories.map(item => "- " + item.text).join("\n"));
-  if (systemParts.length) systemParts.push("Use recent conversation messages for short-term context. If a saved memory conflicts with what the user says now, trust what they say now.");
-  return [
-    ...(systemParts.length ? [{ role: "system", content: systemParts.join("\\n\\n") }] : []),
-    ...recent.map(({ role, content }) => ({ role, content })),
-    { role: "user", content: currentText }
-  ];
-}
-async function updateLongTermMemory(userText, assistantText, model) {
-  if (!state.settings.autoMemory) return;
-  const prompt = [
-    "You maintain a small, useful long-term memory for this user.",
-    "Extract only stable preferences, ongoing projects, or facts the user clearly wants remembered.",
-    "Do not save temporary details, guesses, secrets, sensitive personal information, or facts only about fictional roleplay.",
-    "Return ONLY valid JSON in this exact shape: {\"add\":[\"short memory\"],\"remove\":[\"exact old memory to remove\"]}.",
-    "If nothing should change, return {\"add\":[],\"remove\":[]}. Keep at most 30 memories. Each memory must be concise.",
-    "USER MESSAGE: " + userText,
-    "ASSISTANT REPLY: " + assistantText.slice(0, 1800),
-    "EXISTING MEMORIES:\n" + state.memories.map(item => "- " + item).join("\n")
-  ].join("\n\n");
-  try {
-    const response = await fetch(`${OLLAMA_URL}/api/chat`, {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ model, stream: false, format: "json", messages: [{ role: "user", content: prompt }] })
-    });
-    if (!response.ok) return;
-    const data = await response.json();
-    const parsed = JSON.parse(data.message?.content || "{}");
-    const remove = Array.isArray(parsed.remove) ? parsed.remove : [];
-    const add = Array.isArray(parsed.add) ? parsed.add : [];
-    state.memories = state.memories.filter(item => !remove.includes(item));
-    for (const oldMemory of remove) delete state.memoryVectors[oldMemory];
-    for (const item of add) {
-      if (typeof item === "string" && item.trim() && !state.memories.includes(item.trim())) state.memories.push(item.trim().slice(0, 300));
-    }
-    state.memories = state.memories.slice(-30);
-    for (const key of Object.keys(state.memoryVectors)) if (!state.memories.includes(key)) delete state.memoryVectors[key];
-    persist(); renderMemories(); renderAll();
-  } catch (error) { console.warn("Automatic memory update skipped", error); }
-}
-async function loadModels() {
-  try {
-    const response = await fetch(`${OLLAMA_URL}/api/tags`);
-    if (!response.ok) throw new Error("Ollama did not respond");
-    const data = await response.json();
-    const models = data.models || [];
-    const previous = modelSelect.value;
-    modelSelect.replaceChildren();
-    for (const model of models) modelSelect.add(new Option(model.name, model.name));
-    if (!models.length) {
-      modelSelect.add(new Option("No models installed", ""));
-      setConnection(true, "Ollama connected · no models");
-    } else {
-      if (models.some(model => model.name === previous)) modelSelect.value = previous;
-      setConnection(true, "Ollama connected");
-    }
-    updateSendState();
-  } catch {
-    modelSelect.replaceChildren(new Option("Ollama unavailable", ""));
-    setConnection(false, "Ollama not connected");
-    updateSendState();
-  }
-}
-function updateSendState() { sendButton.disabled = busy || !modelSelect.value || !promptInput.value.trim(); const stop = $("#stop-generation"); if (stop) stop.hidden = !busy; }
-async function sendMessage(text) {
-  const model = modelSelect.value;
-  if (!model || busy) return;
-  if (!activeChat()) makeChat();
-  const chat = activeChat();
-  addMessage("user", text);
-  busy = true;
-  abortController = new AbortController();
-  updateSendState();
-  let assistantMessage = null;
-  try {
-    // Build context while the newest chat message is still the user's message.
-    const requestMessages = await buildRequestMessages(chat);
-    assistantMessage = addMessage("assistant", "Thinking…");
-    const response = await fetch(`${OLLAMA_URL}/api/chat`, {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model,
-        messages: requestMessages,
-        stream: true,
-        options: { temperature: Number(state.settings.temperature) }
-      }),
-      signal: abortController.signal
-    });
-    if (!response.ok) throw new Error((await response.text()) || `Request failed (${response.status})`);
-    assistantMessage.content = "";
-    persist(); renderMessages();
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = "";
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n"); buffer = lines.pop();
-      for (const line of lines) {
-        if (!line.trim()) continue;
-        const chunk = JSON.parse(line);
-        if (chunk.message?.content) {
-          assistantMessage.content += chunk.message.content;
-          const last = messagesEl.lastElementChild?.querySelector(".message-content");
-          if (last && activeChat()?.id === chat.id) {
-            last.textContent = assistantMessage.content;
-            messagesEl.scrollTop = messagesEl.scrollHeight;
-          }
-        }
-      }
-    }
-    if (buffer.trim()) {
-      const chunk = JSON.parse(buffer);
-      if (chunk.message?.content) assistantMessage.content += chunk.message.content;
-    }
-    if (!assistantMessage.content) assistantMessage.content = "(No response)";
-    persist();
-    await updateLongTermMemory(text, assistantMessage.content, model);
-  } catch (error) {
-    if (!assistantMessage) assistantMessage = addMessage("assistant", "");
-    assistantMessage.content = error.name === "AbortError" ? "Response stopped." : `Couldn't reach Ollama: ${error.message}. Check that Ollama is running and allows this page's origin.`;
-    renderMessages(); persist();
+    const result=await generate(prompt,240,0.8,24);
+    const node=document.querySelector(".message.assistant:last-child .message-body");
+    if(node) node.textContent=result || "(Generation stopped.)";
+  } catch(error) {
+    const node=document.querySelector(".message.assistant:last-child .message-body");
+    if(node) node.textContent="Inference error: "+error.message;
+    console.error(error);
   } finally {
-    busy = false; abortController = null; renderAll(); updateSendState(); promptInput.focus();
+    generating=false; $("generate").innerHTML="<span>Generate</span><b>↑</b>"; $("generate").disabled=!model||!$("prompt").value.trim();
   }
 }
-form.addEventListener("submit", async event => {
-  event.preventDefault();
-  const text = promptInput.value.trim();
-  if (!text || busy || !modelSelect.value) return;
-  promptInput.value = ""; promptInput.style.height = "auto";
-  await sendMessage(text);
+$("chat-form").addEventListener("submit",async event=>{
+  event.preventDefault(); const prompt=$("prompt").value; $("prompt").value=""; $("prompt").style.height="auto"; $("generate").disabled=true; await handleGenerate(prompt);
 });
-promptInput.addEventListener("input", () => {
-  promptInput.style.height = "auto";
-  promptInput.style.height = `${Math.min(promptInput.scrollHeight, 180)}px`;
-  updateSendState();
-});
-promptInput.addEventListener("keydown", event => {
-  if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); }
-});
-modelSelect.addEventListener("change", updateSendState);
-$("#stop-generation").addEventListener("click", () => abortController?.abort());
-$("#new-chat").addEventListener("click", () => { if (!busy) makeChat(); });
-$("#settings-open").addEventListener("click", () => { renderAll(); $("#settings-overlay").hidden = false; });
-$("#memory-open").addEventListener("click", () => { renderMemories(); $("#memory-overlay").hidden = false; });
-$("#mobile-menu").addEventListener("click", () => $("#sidebar").classList.toggle("mobile-open"));
-document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", () => { $("#" + button.dataset.close).hidden = true; }));
-document.querySelectorAll(".overlay").forEach(overlay => overlay.addEventListener("click", event => { if (event.target === overlay) overlay.hidden = true; }));
-$("#settings-done").addEventListener("click", () => {
-  state.settings.contextSize = Number($("#context-size").value);
-  state.settings.memoryEnabled = $("#memory-enabled").checked;
-  state.settings.autoMemory = $("#auto-memory").checked;
-  state.settings.temperature = Number($("#temperature").value);
-  state.settings.embeddingModel = $("#embedding-model").value.trim() || "nomic-embed-text";
-  persist(); renderAll(); $("#settings-overlay").hidden = true;
-});
-$("#export-data").addEventListener("click", () => {
-  const data = { format: "Ultillama backup", version: 1, exportedAt: new Date().toISOString(), ...state };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob); const link = document.createElement("a");
-  link.href = url; link.download = "ultillama-backup.json"; link.click(); URL.revokeObjectURL(url);
-});
-$("#clear-chats").addEventListener("click", () => {
-  if (!confirm("Delete every chat? Saved memories will be kept.")) return;
-  state.chats = []; state.activeChatId = null; persist(); renderAll();
-});
-$("#clear-memories").addEventListener("click", () => {
-  if (!confirm("Delete all long-term memories?")) return;
-  state.memories = []; state.memoryVectors = {}; persist(); renderMemories();
-});
-$("#memory-form").addEventListener("submit", event => {
-  event.preventDefault();
-  const input = $("#memory-input");
-  const value = input.value.trim();
-  if (!value) return;
-  if (!state.memories.includes(value)) state.memories.push(value);
-  delete state.memoryVectors[value];
-  input.value = ""; persist(); renderMemories();
-});
-loadModels();
-renderAll();
-if (state.chats.length && !activeChat()) { state.activeChatId = state.chats[0].id; persist(); renderAll(); }
+$("prompt").addEventListener("input",()=>{$("prompt").style.height="auto";$("prompt").style.height=Math.min($("prompt").scrollHeight,120)+"px";$("generate").disabled=!model||generating||!$("prompt").value.trim();});
+$("prompt").addEventListener("keydown",event=>{if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();$("chat-form").requestSubmit();}});
+document.querySelectorAll("[data-prompt]").forEach(button=>button.addEventListener("click",()=>{$("prompt").value=button.dataset.prompt;$("prompt").dispatchEvent(new Event("input"));$("prompt").focus();}));
+$("reload-model").addEventListener("click",loadModel);
+$("generate").addEventListener("click",()=>{if(generating){cancelled=true;}});
+loadModel();
