@@ -44,7 +44,9 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: training_stories.json
-          key: littlegpt-v4-dataset-30000
+          key: littlegpt-v4-dataset-${{ github.run_id }}
+          restore-keys: |
+            littlegpt-v4-dataset-
 
       - name: Restore v4 training checkpoint
         uses: actions/cache/restore@v4
@@ -61,11 +63,11 @@ jobs:
           total_steps: ${{ inputs.steps || '20000' }}
 
       - name: Save v4 dataset cache
-        if: steps.dataset-cache.outputs.cache-hit != 'true' && hashFiles('training_stories.json') != ''
+        if: always() && hashFiles('training_stories.json') != ''
         uses: actions/cache/save@v4
         with:
           path: training_stories.json
-          key: littlegpt-v4-dataset-30000
+          key: littlegpt-v4-dataset-${{ github.run_id }}
 
       - name: Train checkpoint chunk 2
         uses: ./.github/actions/train-chunk
@@ -432,7 +434,7 @@ jobs:
           git push
 
       - name: Upload final model backup
-        if: always() && hashFiles('model.json') != ''
+        if: success() && hashFiles('model.json') != ''
         uses: actions/upload-artifact@v4
         with:
           name: littleGPT-v4-model
