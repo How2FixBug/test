@@ -330,7 +330,7 @@ for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
 
 completed_steps = min(start_step + CHUNK_STEPS, MAX_STEPS)
 torch.save({
-    "format": "littleGPT-training-checkpoint-v2",
+    "format": "littleGPT-training-checkpoint-v3",
     "step": completed_steps,
     "model": base_model.state_dict(),
     "best_model": best_model_state,
