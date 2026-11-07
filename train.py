@@ -40,16 +40,23 @@ device = torch.device("cpu")
 
 def download_stories():
     cache = Path("training_stories.json")
-    if cache.exists():
-        stories = json.loads(cache.read_text(encoding="utf-8"))
-        if len(stories) >= DATASET_ROWS:
-            print(f"Loaded {len(stories)} cached stories.", flush=True)
-            return stories[:DATASET_ROWS]
-        print(f"Cached dataset has only {len(stories)} stories; downloading the larger dataset.", flush=True)
-
     stories = []
+    if cache.exists():
+        try:
+            stories = json.loads(cache.read_text(encoding="utf-8"))
+            if not isinstance(stories, list):
+                stories = []
+        except Exception:
+            stories = []
+    if len(stories) >= DATASET_ROWS:
+        print(f"Loaded {len(stories)} cached stories.", flush=True)
+        return stories[:DATASET_ROWS]
+
+    # Resume partial downloads instead of throwing away thousands of rows after a rate limit.
     page_size = 100
-    for offset in range(0, DATASET_ROWS, page_size):
+    offset = len(stories)
+    print(f"Continuing dataset download from story {offset:,}.", flush=True)
+    while offset < DATASET_ROWS:
         length = min(page_size, DATASET_ROWS - offset)
         params = urllib.parse.urlencode({
             "dataset": DATASET, "config": "default", "split": "train",
@@ -57,31 +64,40 @@ def download_stories():
         })
         request = urllib.request.Request(
             ROWS_API + "?" + params,
-            headers={"User-Agent": "littleGPT-training/4.0"},
+            headers={"User-Agent": "littleGPT-training/4.1"},
         )
         last_error = None
-        for attempt in range(4):
+        for attempt in range(7):
             try:
-                with urllib.request.urlopen(request, timeout=60) as response:
+                with urllib.request.urlopen(request, timeout=90) as response:
                     payload = json.loads(response.read().decode("utf-8"))
                 batch = [row.get("row", {}).get("text", "") for row in payload.get("rows", [])]
                 batch = [story.strip() for story in batch if isinstance(story, str) and len(story.strip()) > 30]
                 if not batch:
                     raise RuntimeError(f"No stories returned at offset {offset}")
                 stories.extend(batch)
-                print(f"Downloaded {len(stories)} / {DATASET_ROWS} stories…", flush=True)
+                offset += len(batch)
+                # Persist every page so a later run can resume after throttling/cancellation.
+                cache.write_text(json.dumps(stories, ensure_ascii=False), encoding="utf-8")
+                print(f"Downloaded {len(stories):,} / {DATASET_ROWS:,} stories…", flush=True)
+                time.sleep(0.35)
                 break
             except Exception as error:
                 last_error = error
-                if attempt == 3:
+                if attempt == 6:
                     raise RuntimeError(f"TinyStories download failed at offset {offset}: {last_error}") from error
-                time.sleep(2 * (attempt + 1))
+                retry_after = 60 * (attempt + 1)
+                if hasattr(error, "headers") and error.headers:
+                    try:
+                        retry_after = max(retry_after, int(error.headers.get("Retry-After", "0")))
+                    except (TypeError, ValueError):
+                        pass
+                print(f"Dataset request throttled/failed ({error}); retrying in {retry_after}s…", flush=True)
+                time.sleep(retry_after)
 
     if len(stories) < 1000:
         raise RuntimeError(f"Only {len(stories)} stories downloaded; refusing to train.")
-    cache.write_text(json.dumps(stories, ensure_ascii=False), encoding="utf-8")
-    return stories
-
+    return stories[:DATASET_ROWS]
 
 stories = download_stories()
 # Shuffle before splitting so validation stories are held out from training.
