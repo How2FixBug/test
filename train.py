@@ -12,28 +12,29 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# littleGPT v5: normalized tokenizer, compact architecture, and fast story-isolated training.
+# littleGPT v5: full v4 architecture plus normalized text and compiled CPU training.
 SEED = 1337
-BLOCK_SIZE = 96
-BATCH_SIZE = 16
-N_EMBD = 96
+BLOCK_SIZE = 160
+BATCH_SIZE = 24
+N_EMBD = 128
 N_HEAD = 4
-N_LAYER = 3
-DROPOUT = 0.08
+N_LAYER = 4
+DROPOUT = 0.10
 VOCAB_LIMIT = 4096
 DATASET_ROWS = int(os.environ.get("DATASET_ROWS", "30000"))
-MAX_STEPS = int(os.environ.get("TRAIN_STEPS", "3000"))
+MAX_STEPS = int(os.environ.get("TRAIN_STEPS", "30000"))
 CHUNK_STEPS = int(os.environ.get("CHUNK_STEPS", "500"))
 CHECKPOINT_PATH = Path("checkpoint.pt")
 EVAL_INTERVAL = 500
-EVAL_BATCHES = 8
-LEARNING_RATE = 1.8e-3
+EVAL_BATCHES = 16
+LEARNING_RATE = 1.5e-3
 DATASET = "roneneldan/TinyStories"
 ROWS_API = "https://datasets-server.huggingface.co/rows"
-TOKEN_RE = re.compile(r"""[a-z0-9]+(?:'[a-z0-9]+)?|[.,!?;:"()\-]""")
+TOKEN_RE = re.compile(r"""[a-z0-9]+(?:'[a-z0-9]+)?|[.,!?;:"()\-]""", re.IGNORECASE)
 
 torch.manual_seed(SEED)
-torch.set_num_threads(2)
+torch.set_num_threads(min(2, os.cpu_count() or 2))
+torch.set_num_interop_threads(1)
 torch.backends.mkldnn.enabled = True
 device = torch.device("cpu")
 
@@ -108,15 +109,13 @@ train_stories, val_stories = stories[:split_at], stories[split_at:]
 
 
 def normalize_text(text):
-    # Repair common mojibake and normalize smart punctuation before vocabulary creation.
+    # Normalize smart punctuation and repair symbols seen in place of quotes.
     replacements = {
-        "â€œ": '"', "â€": '"', "â€˜": "'", "â€™": "'",
-        "â€“": "-", "â€”": "-", "â€¦": "...",
-        "“": '"', "”": '"', "„": '"', "‟": '"',
-        "‘": "'", "’": "'", "‚": "'", "‛": "'",
-        # These artifacts appeared in generated text in place of quotes/apostrophes.
-        "€": '"', "™": "'",
-        "\u00a0": " ",
+        "\u00e2\u20ac\u0153": '"', "\u00e2\u20ac\u009d": '"',
+        "\u00e2\u20ac\u02dc": "'", "\u00e2\u20ac\u2122": "'",
+        "\u201c": '"', "\u201d": '"', "\u201e": '"', "\u201f": '"',
+        "\u2018": "'", "\u2019": "'", "\u201a": "'", "\u201b": "'",
+        "\u20ac": '"', "\u2122": "'", "\u00a0": " ",
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
@@ -222,9 +221,18 @@ class TinyGPT(nn.Module):
         return logits, loss
 
 
-model = TinyGPT().to(device)
+base_model = TinyGPT().to(device)
+model = base_model
+compile_enabled = os.environ.get("TORCH_COMPILE", "1") == "1"
+if compile_enabled:
+    try:
+        model = torch.compile(base_model, backend="inductor", mode="default")
+        print("CPU graph compilation enabled; first step includes compilation.", flush=True)
+    except Exception as error:
+        model = base_model
+        print(f"CPU graph compilation unavailable; using eager mode: {error}", flush=True)
 parameter_count = sum(p.numel() for p in model.parameters())
-optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=0.10)
+optimizer = torch.optim.AdamW(base_model.parameters(), lr=LEARNING_RATE, weight_decay=0.10, foreach=True)
 start_step = 0
 best_val = float("inf")
 best_model_state = None
@@ -241,14 +249,14 @@ if CHECKPOINT_PATH.exists():
             or checkpoint.get("vocab") != vocab
             or checkpoint.get("config") != config_signature):
         raise RuntimeError("Checkpoint belongs to another model version/configuration; refusing to resume it.")
-    model.load_state_dict(checkpoint["model"])
+    base_model.load_state_dict(checkpoint["model"])
     optimizer.load_state_dict(checkpoint["optimizer"])
     start_step = int(checkpoint["step"])
     best_val = float(checkpoint.get("best_val", float("inf")))
     best_model_state = checkpoint.get("best_model")
     last_metrics = checkpoint.get("metrics", last_metrics)
     torch.set_rng_state(checkpoint["torch_rng"])
-    print(f"RESUMED v4 from checkpoint at step {start_step}/{MAX_STEPS}", flush=True)
+    print(f"RESUMED v5 from checkpoint at step {start_step}/{MAX_STEPS}", flush=True)
 
 print(
     f"littleGPT v5 | {parameter_count:,} parameters | vocab={vocab_size} | "
@@ -278,7 +286,7 @@ def clone_state_dict(module):
 
 
 def learning_rate(step):
-    warmup = min(1.0, (step + 1) / 200)
+    warmup = min(1.0, (step + 1) / 400)
     progress = min(1.0, step / max(1, MAX_STEPS - 1))
     cosine = 0.5 * (1.0 + math.cos(math.pi * progress))
     return LEARNING_RATE * warmup * (0.10 + 0.90 * cosine)
@@ -290,10 +298,20 @@ for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
     for group in optimizer.param_groups:
         group["lr"] = lr
     xb, yb = get_batch(train_sequences)
-    _, loss = model(xb, yb)
     optimizer.zero_grad(set_to_none=True)
-    loss.backward()
-    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+    try:
+        _, loss = model(xb, yb)
+        loss.backward()
+    except Exception as error:
+        if model is base_model:
+            raise
+        print(f"Compiled CPU step failed; falling back to eager execution: {error}", flush=True)
+        model = base_model
+        compile_enabled = False
+        optimizer.zero_grad(set_to_none=True)
+        _, loss = model(xb, yb)
+        loss.backward()
+    torch.nn.utils.clip_grad_norm_(base_model.parameters(), 1.0)
     optimizer.step()
 
     if (step + 1) % EVAL_INTERVAL == 0 or step == 0 or step + 1 == MAX_STEPS:
@@ -301,7 +319,7 @@ for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
         improved = last_metrics["val"] < best_val
         if improved:
             best_val = last_metrics["val"]
-            best_model_state = clone_state_dict(model)
+            best_model_state = clone_state_dict(base_model)
         marker = " BEST" if improved else ""
         print(
             f"step {step + 1}/{MAX_STEPS} "
@@ -312,9 +330,9 @@ for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
 
 completed_steps = min(start_step + CHUNK_STEPS, MAX_STEPS)
 torch.save({
-    "format": "littleGPT-training-checkpoint-v3",
+    "format": "littleGPT-training-checkpoint-v2",
     "step": completed_steps,
-    "model": model.state_dict(),
+    "model": base_model.state_dict(),
     "best_model": best_model_state,
     "best_val": best_val,
     "optimizer": optimizer.state_dict(),
@@ -331,7 +349,7 @@ if completed_steps < MAX_STEPS:
 
 # Export the checkpoint with the lowest held-out validation loss.
 if best_model_state is not None:
-    model.load_state_dict(best_model_state)
+    base_model.load_state_dict(best_model_state)
     model.eval()
     print(f"Exporting best-validation checkpoint (val={best_val:.4f})", flush=True)
 
