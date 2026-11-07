@@ -22,6 +22,8 @@ N_LAYER = 3
 VOCAB_LIMIT = 4096
 DATASET_ROWS = int(os.environ.get("DATASET_ROWS", "6000"))
 MAX_STEPS = int(os.environ.get("TRAIN_STEPS", "5000"))
+CHUNK_STEPS = int(os.environ.get("CHUNK_STEPS", str(MAX_STEPS)))
+CHECKPOINT_PATH = Path("checkpoint.pt")
 EVAL_INTERVAL = max(200, min(400, MAX_STEPS // 8))
 LEARNING_RATE = 2.0e-3
 DATASET = "roneneldan/TinyStories"
@@ -167,6 +169,18 @@ class TinyGPT(nn.Module):
 model = TinyGPT().to(device)
 parameter_count = sum(parameter.numel() for parameter in model.parameters())
 optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=0.08)
+start_step = 0
+last_metrics = {"train": None, "val": None}
+if CHECKPOINT_PATH.exists():
+    checkpoint = torch.load(CHECKPOINT_PATH, map_location=device, weights_only=False)
+    if checkpoint.get("format") != "littleGPT-training-checkpoint-v1" or checkpoint.get("vocab") != vocab:
+        raise RuntimeError("Checkpoint does not match this dataset/vocabulary; refusing unsafe resume.")
+    model.load_state_dict(checkpoint["model"])
+    optimizer.load_state_dict(checkpoint["optimizer"])
+    start_step = int(checkpoint["step"])
+    last_metrics = checkpoint.get("metrics", last_metrics)
+    torch.set_rng_state(checkpoint["torch_rng"])
+    print(f"RESUMED from checkpoint at step {start_step}/{MAX_STEPS}", flush=True)
 
 
 def learning_rate(step):
@@ -195,8 +209,7 @@ def estimate_loss():
     return metrics
 
 
-last_metrics = {"train": None, "val": None}
-for step in range(MAX_STEPS):
+for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
     lr = learning_rate(step)
     for group in optimizer.param_groups:
         group["lr"] = lr
@@ -213,6 +226,22 @@ for step in range(MAX_STEPS):
             f"train={last_metrics['train']:.4f} val={last_metrics['val']:.4f}",
             flush=True,
         )
+
+completed_steps = min(start_step + CHUNK_STEPS, MAX_STEPS)
+torch.save({
+    "format": "littleGPT-training-checkpoint-v1",
+    "step": completed_steps,
+    "model": model.state_dict(),
+    "optimizer": optimizer.state_dict(),
+    "vocab": vocab,
+    "metrics": last_metrics,
+    "torch_rng": torch.get_rng_state(),
+}, CHECKPOINT_PATH)
+print(f"CHECKPOINT SAVED at step {completed_steps}/{MAX_STEPS}", flush=True)
+
+if completed_steps < MAX_STEPS:
+    print("Chunk complete; waiting for the next checkpointed chunk.", flush=True)
+    raise SystemExit(0)
 
 
 def array(tensor):
