@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - ".github/workflows/train.yml"
+      - ".github/actions/train-chunk/action.yml"
+      - "train.py"
   workflow_dispatch:
     inputs:
       steps:
-        description: "Training steps (more steps = longer training)"
+        description: "Total training steps"
         required: true
         default: "5000"
         type: choice
@@ -25,9 +27,9 @@ concurrency:
 
 jobs:
   train:
-    name: Train littleGPT v3 from scratch (CPU)
+    name: Train littleGPT v3 with resumable checkpoints
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -42,13 +44,87 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
 
-      - name: Train on TinyStories
-        env:
-          TRAIN_STEPS: ${{ inputs.steps || '5000' }}
-          DATASET_ROWS: "6000"
-        run: python train.py
+      - name: Restore latest checkpoint
+        uses: actions/cache/restore@v4
+        with:
+          path: checkpoint.pt
+          key: littlegpt-checkpoint-${{ github.run_id }}-initial
+          restore-keys: |
+            littlegpt-checkpoint-
+
+      - name: Train checkpoint chunk 1
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "1"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 2
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "2"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 3
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "3"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 4
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "4"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 5
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "5"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 6
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "6"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 7
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "7"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 8
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "8"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 9
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "9"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 10
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "10"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 11
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "11"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 12
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "12"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 13
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "13"
+          total_steps: ${{ inputs.steps || '5000' }}
+      - name: Train checkpoint chunk 14
+        uses: ./.github/actions/train-chunk
+        with:
+          chunk: "14"
+          total_steps: ${{ inputs.steps || '5000' }}
 
       - name: Save learned weights to the repository
+        if: hashFiles('model.json') != ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -57,7 +133,7 @@ jobs:
           git pull --rebase origin main
           git push
 
-      - name: Upload model backup
+      - name: Upload final model backup
         if: always() && hashFiles('model.json') != ''
         uses: actions/upload-artifact@v4
         with:
