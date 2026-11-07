@@ -9,16 +9,21 @@
 </head>
 <body>
   <div class="app">
-    <header class="topbar">
-      <a class="brand" href="#" aria-label="littleGPT home"><span class="brand-icon">✳</span><span>littleGPT</span></a>
-      <div class="header-actions">
-        <div class="model-status"><span class="status-dot" id="status-dot"></span><span id="model-state">Checking model…</span></div>
-        <a class="train-link" href="https://github.com/How2FixBug/test/actions/workflows/train.yml" target="_blank" rel="noreferrer">Train model <span>↗</span></a>
-        <a class="github-link" href="https://github.com/How2FixBug/test" target="_blank" rel="noreferrer" aria-label="Open GitHub">GitHub</a>
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <a class="brand" href="#" aria-label="littleGPT home"><span class="brand-icon">✳</span><span>littleGPT</span></a>
+        <button class="new-chat" id="new-chat" type="button"><span>＋</span> New chat</button>
+        <div class="history-heading">YOUR CHATS</div>
+        <nav class="chat-list" id="chat-list" aria-label="Chat history"></nav>
       </div>
-    </header>
+      <div class="sidebar-bottom">
+        <div class="model-status"><span class="status-dot" id="status-dot"></span><span id="model-state">Checking model…</span></div>
+        <a class="train-link" href="https://github.com/How2FixBug/test/actions/workflows/train.yml" target="_blank" rel="noreferrer">Train model ↗</a>
+      </div>
+    </aside>
 
-    <main class="chat-shell">
+    <main class="main-panel">
+      <header class="topbar"><span id="current-chat-title">New chat</span></header>
       <section class="conversation" aria-label="Chat">
         <div class="messages" id="messages">
           <div class="welcome" id="welcome">
@@ -41,7 +46,6 @@
         </div>
       </section>
     </main>
-
     <div class="sr-only" aria-hidden="true">
       <span id="weight-label">NO WEIGHTS</span><span id="param-count">—</span>
       <span id="loss-value">—</span><span id="steps-value">—</span>
