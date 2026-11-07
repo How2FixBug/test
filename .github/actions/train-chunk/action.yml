@@ -1,4 +1,4 @@
-name: Train one littleGPT v4 checkpoint chunk
+name: Train one littleGPT v5 checkpoint chunk
 description: Train a chunk and persist its resumable checkpoint
 inputs:
   chunk:
