@@ -12,7 +12,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# littleGPT v4: story-isolated batches, regularization, and best-validation export.
+# littleGPT v5: normalized tokenizer, compact architecture, and fast story-isolated training.
 SEED = 1337
 BLOCK_SIZE = 96
 BATCH_SIZE = 16
@@ -312,7 +312,7 @@ for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
 
 completed_steps = min(start_step + CHUNK_STEPS, MAX_STEPS)
 torch.save({
-    "format": "littleGPT-training-checkpoint-v2",
+    "format": "littleGPT-training-checkpoint-v3",
     "step": completed_steps,
     "model": model.state_dict(),
     "best_model": best_model_state,
