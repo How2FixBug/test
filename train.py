@@ -77,7 +77,7 @@ def download_stories():
                 time.sleep(2 * (attempt + 1))
     if len(stories) < 100:
         raise RuntimeError("Not enough training stories were downloaded.")
-    Path("training_data.txt").write_text("\n\n".join(stories), encoding="utf-8")
+    cached_stories.write_text(json.dumps(stories), encoding="utf-8")
     random.Random(SEED).shuffle(stories)
     return stories
 
