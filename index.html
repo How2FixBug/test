@@ -3,101 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f4f8ff">
-  <title>littleGPT — train a model from zero</title>
+  <meta name="theme-color" content="#ffffff">
+  <title>littleGPT</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app">
-    <aside class="sidebar">
-      <a class="brand" href="#"><span class="brand-icon">g</span><span>littleGPT</span></a>
-      <div class="side-section">
-        <div class="eyebrow">YOUR MODEL</div>
-        <div class="model-card">
-          <div class="model-symbol">✳</div>
-          <div><strong>littleGPT-1</strong><small id="model-state">Checking model…</small></div>
-          <span class="status-dot" id="status-dot"></span>
-        </div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="littleGPT home"><span class="brand-icon">✳</span><span>littleGPT</span></a>
+      <div class="header-actions">
+        <div class="model-status"><span class="status-dot" id="status-dot"></span><span id="model-state">Checking model…</span></div>
+        <a class="train-link" href="https://github.com/How2FixBug/test/actions/workflows/train.yml" target="_blank" rel="noreferrer">Train model <span>↗</span></a>
+        <a class="github-link" href="https://github.com/How2FixBug/test" target="_blank" rel="noreferrer" aria-label="Open GitHub">GitHub</a>
       </div>
-      <div class="side-section side-info">
-        <div class="eyebrow">THE SETUP</div>
-        <div class="side-stat"><span>Architecture</span><strong>Decoder-only GPT</strong></div>
-        <div class="side-stat"><span>Initialization</span><strong>Random weights</strong></div>
-        <div class="side-stat"><span>Training</span><strong>GitHub Actions CPU</strong></div>
-        <div class="side-stat"><span>Inference</span><strong>Your browser</strong></div>
-      </div>
-      <div class="sidebar-bottom">
-        <span class="local-indicator"></span>
-        <span>No API. No backend. No Ollama.</span>
-      </div>
-    </aside>
+    </header>
 
-    <main class="main">
-      <header class="topbar">
-        <div><span class="top-kicker">FROM RANDOM WEIGHTS TO WORDS</span><h1>Talk to your model.</h1></div>
-        <a class="github-link" href="https://github.com/How2FixBug/test" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
-      </header>
-
-      <section class="workspace">
-        <div class="chat-panel">
-          <div class="panel-heading">
-            <div><span class="eyebrow">PLAYGROUND</span><h2>Model chat</h2></div>
-            <div class="runtime-pill"><span></span> Runs locally</div>
-          </div>
-          <div class="messages" id="messages">
-            <div class="welcome" id="welcome">
-              <div class="welcome-glyph">✳</div>
-              <h3 id="welcome-title">A tiny model. From absolutely nothing.</h3>
-              <p id="welcome-copy">Train it on a GitHub CPU runner, then generate text right here in your browser. Its weights start random — no pretrained model hiding underneath.</p>
-              <div class="prompt-chips">
-                <button class="prompt-chip" data-prompt="ROMEO:">Continue a play</button>
-                <button class="prompt-chip" data-prompt="To be, or not to be">Complete a sentence</button>
-                <button class="prompt-chip" data-prompt="KING:">Write dialogue</button>
-              </div>
+    <main class="chat-shell">
+      <section class="conversation" aria-label="Chat">
+        <div class="messages" id="messages">
+          <div class="welcome" id="welcome">
+            <div class="welcome-glyph">✳</div>
+            <h1 id="welcome-title">What can I help you explore?</h1>
+            <p id="welcome-copy">This is littleGPT, a tiny language model trained from random weights on a GitHub CPU runner. Its replies are generated right here in your browser.</p>
+            <div class="prompt-chips">
+              <button class="prompt-chip" data-prompt="ROMEO:">Continue a play</button>
+              <button class="prompt-chip" data-prompt="To be, or not to be">Complete a sentence</button>
+              <button class="prompt-chip" data-prompt="KING:">Write dialogue</button>
             </div>
           </div>
+        </div>
+        <div class="composer-wrap">
           <form class="composer" id="chat-form">
-            <textarea id="prompt" rows="1" placeholder="Give the model a starting prompt…" aria-label="Prompt"></textarea>
-            <button class="send-button" id="generate" type="submit" disabled><span>Generate</span><b>↑</b></button>
+            <textarea id="prompt" rows="1" placeholder="Message littleGPT…" aria-label="Message littleGPT"></textarea>
+            <button class="send-button" id="generate" type="submit" disabled aria-label="Send message"><span>↑</span></button>
           </form>
-          <div class="composer-meta"><span id="runtime-note">Load a trained model to start generating.</span><span>Character-level · temperature sampling</span></div>
+          <div class="composer-meta"><span id="runtime-note">Run training to create the model's weights.</span><span>littleGPT can make mistakes.</span></div>
         </div>
-
-        <aside class="right-column">
-          <section class="card train-card">
-            <div class="card-topline"><span class="eyebrow">01 / TRAIN</span><span class="cpu-tag">CPU</span></div>
-            <h2>Teach it language.</h2>
-            <p>Every training run starts with freshly initialized weights. GitHub's runner does the math and saves the resulting model file to this repository.</p>
-            <a class="train-button" href="https://github.com/How2FixBug/test/actions/workflows/train.yml" target="_blank" rel="noreferrer"><span>Train on GitHub</span><b>↗</b></a>
-            <div class="train-footnote">Opens Actions → Run workflow. No setup on your Mac.</div>
-          </section>
-
-          <section class="card model-card-large">
-            <div class="card-topline"><span class="eyebrow">02 / MODEL</span><span class="weight-label" id="weight-label">NO WEIGHTS</span></div>
-            <div class="metric"><strong id="param-count">—</strong><span>parameters</span></div>
-            <div class="metric-grid">
-              <div><span>Training loss</span><strong id="loss-value">—</strong></div>
-              <div><span>Training steps</span><strong id="steps-value">—</strong></div>
-              <div><span>Vocabulary</span><strong id="vocab-value">—</strong></div>
-              <div><span>Context length</span><strong id="context-value">—</strong></div>
-            </div>
-            <button class="text-button" id="reload-model" type="button">↻ Check for updated weights</button>
-          </section>
-
-          <section class="card how-card">
-            <div class="eyebrow">03 / HOW IT WORKS</div>
-            <div class="flow-step"><span>1</span><div><strong>Initialize</strong><small>Randomly create every weight.</small></div></div>
-            <div class="flow-line"></div>
-            <div class="flow-step"><span>2</span><div><strong>Train</strong><small>Predict the next character; adjust weights with backpropagation.</small></div></div>
-            <div class="flow-line"></div>
-            <div class="flow-step"><span>3</span><div><strong>Export</strong><small>GitHub saves the learned weights as model.json.</small></div></div>
-            <div class="flow-line"></div>
-            <div class="flow-step"><span>4</span><div><strong>Run</strong><small>JavaScript performs inference in this tab.</small></div></div>
-          </section>
-        </aside>
       </section>
-      <footer><span>littleGPT is an experiment in learning from scratch.</span><span>Made of math, not magic.</span></footer>
     </main>
+
+    <div class="sr-only" aria-hidden="true">
+      <span id="weight-label">NO WEIGHTS</span><span id="param-count">—</span>
+      <span id="loss-value">—</span><span id="steps-value">—</span>
+      <span id="vocab-value">—</span><span id="context-value">—</span>
+      <button id="reload-model" type="button">Reload model</button>
+    </div>
   </div>
   <script src="app.js"></script>
 </body>
