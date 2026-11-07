@@ -48,13 +48,13 @@ jobs:
           restore-keys: |
             littlegpt-v4-dataset-
 
-      - name: Restore v4 training checkpoint
+      - name: Restore v5 training checkpoint
         uses: actions/cache/restore@v4
         with:
           path: checkpoint.pt
           key: littlegpt-v5-checkpoint-${{ github.run_id }}-initial
           restore-keys: |
-            littlegpt-v4-checkpoint-
+            littlegpt-v5-checkpoint-
 
       - name: Train checkpoint chunk 1
         uses: ./.github/actions/train-chunk
@@ -81,24 +81,28 @@ jobs:
           total_steps: ${{ inputs.steps || '3000' }}
 
       - name: Train checkpoint chunk 5
+        if: inputs.steps != '2000'
         uses: ./.github/actions/train-chunk
         with:
           chunk: "5"
           total_steps: ${{ inputs.steps || '3000' }}
 
       - name: Train checkpoint chunk 6
+        if: inputs.steps != '2000'
         uses: ./.github/actions/train-chunk
         with:
           chunk: "6"
           total_steps: ${{ inputs.steps || '3000' }}
 
       - name: Train checkpoint chunk 7
+        if: inputs.steps == '4000'
         uses: ./.github/actions/train-chunk
         with:
           chunk: "7"
           total_steps: ${{ inputs.steps || '3000' }}
 
       - name: Train checkpoint chunk 8
+        if: inputs.steps == '4000'
         uses: ./.github/actions/train-chunk
         with:
           chunk: "8"
