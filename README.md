@@ -1,34 +1,34 @@
-# littleGPT
+# littleGPT v2
 
-A tiny decoder-only Transformer trained **from random initialization** on a GitHub Actions CPU runner, then executed entirely in the browser.
+A small decoder-only Transformer trained **from random initialization** on a GitHub Actions CPU runner, then executed in the browser.
 
-## Run it
+## Train it
 
-1. Open the **Actions** tab in this repository.
+1. Open the **Actions** tab.
 2. Select **Train littleGPT** → **Run workflow**.
-3. Choose 200, 500, or 1,000 training steps.
-4. When the workflow finishes, it commits the learned `model.json` weights to `main`.
-5. Open the GitHub Pages site and press **Check for updated weights**.
+3. Choose 750, 1,500, or 2,500 steps.
+4. Wait for the workflow to finish. It commits the new `model.json` weights.
+5. Refresh the GitHub Pages site.
 
-The site uses those exported weights directly. Inference is JavaScript running in your browser; no API, server, Ollama, or pretrained model is involved.
+The workflow downloads a small, fixed-size sample of TinyStories from the Hugging Face dataset viewer API. It does not download the multi-gigabyte full dataset or use a pretrained model.
 
-## Architecture
+## What changed in v2
 
-- Character-level tokenizer built from the training corpus.
-- 2 decoder blocks, 4 attention heads, 48-dimensional embeddings.
-- 96-character context window.
-- AdamW optimization and next-character cross-entropy.
-- Tiny Shakespeare training text.
-- Plain JSON weight export consumed by a small JavaScript inference engine.
+- TinyStories instead of Tiny Shakespeare: short, simple modern-English stories.
+- Word-and-punctuation tokens instead of individual characters.
+- 2,048-token vocabulary.
+- 2 decoder blocks, 4 attention heads, 96-dimensional embeddings.
+- 96-token context window.
+- PyTorch scaled-dot-product attention for a faster CPU training path.
+- 1,500 default training steps, with 750/2,500 options.
+- Browser-side JavaScript inference; no model-serving backend.
 
-This is intentionally a small educational model, not a competitive general-purpose assistant. It learns character patterns and Shakespeare-like text structure. Training more steps can improve its output, but the small model and dataset impose real limits.
+## Important limitations
 
-## GitHub Pages
-
-Publish from the repository's `main` branch, root folder. The workflow only updates `model.json`; the static site remains on Pages.
+This is still a small next-token language model, not an instruction-tuned assistant. It is better suited to continuing simple story-like text than answering arbitrary questions. More steps can help, but a small model and a small training sample cannot provide ChatGPT-level reasoning or factual reliability.
 
 ## Files
 
-- `index.html`, `styles.css`, `app.js`: browser interface and inference runtime.
-- `train.py`: PyTorch model and CPU training/export.
-- `.github/workflows/train.yml`: manual GitHub Actions training job.
+- `index.html`, `styles.css`, `app.js`: browser chat UI and inference.
+- `train.py`: data download, model, CPU training, and JSON export.
+- `.github/workflows/train.yml`: manual training workflow.
