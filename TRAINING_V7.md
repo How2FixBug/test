@@ -11,6 +11,7 @@ v7 is a new model format and training pipeline; it does not reuse v6 checkpoints
 - **Vectorized batches, fixed tensor shapes, gradient clipping, cosine learning-rate decay, held-out validation, and best-validation checkpoint export.**
 - **Apple Silicon MPS:** automatically selected when available. CPU is the fallback.
 - **Browser KV cache:** v7 inference caches each layer's keys and values instead of recalculating attention for the entire prompt on every generated token.
+- **Compact model export:** learned weights are stored as float16 base64 blobs (about 20 MB of raw weight data) and unpacked into typed arrays in the browser, avoiding a massive nested-number JSON file and staying below GitHub's per-file size limit.
 
 ## Train locally on an Apple Silicon Mac
 
@@ -36,5 +37,5 @@ When training finishes, `model.json` is exported in the repository folder. Commi
 
 - The MPS backend uses the Mac's Apple GPU. It shares unified memory with the CPU, so close memory-heavy apps if the machine starts swapping.
 - v7 deliberately uses fixed batch and context shapes. Mixed precision is **not enabled by default**: compare it against FP32 on the actual Mac before using it, because unsupported or numerically unstable kernels can make training slower or less reliable.
-- KV caching removes repeated key/value projections and attention over old tokens. The remaining dense matrix operations are still JavaScript CPU work in the current browser runtime; a future WebGPU backend would be a separate optimization.
+- KV caching removes repeated key/value projections and attention over old tokens. The remaining dense matrix operations are still JavaScript CPU work in the current browser runtime; a future WebGPU backend would be a separate optimization. Float16 packing is only an export/storage format; training remains FP32.
 - Training speed and story quality are not guaranteed by parameter count alone. Compare validation loss and inspect generated samples after the first completed run.
