@@ -19,7 +19,8 @@ DATASET_ROWS=int(os.environ.get("DATASET_ROWS","25000"))
 VALIDATION_ROWS=int(os.environ.get("VALIDATION_ROWS","21990"))
 MAX_STEPS=int(os.environ.get("TRAIN_STEPS","30000"))
 CHUNK_STEPS=int(os.environ.get("CHUNK_STEPS",str(MAX_STEPS)))
-EVAL_INTERVAL=500
+EVAL_INTERVAL=int(os.environ.get("EVAL_INTERVAL","1000"))
+SAVE_INTERVAL=int(os.environ.get("SAVE_INTERVAL","1000"))
 EVAL_BATCHES=32
 LEARNING_RATE=8e-4
 # Optional mixed-precision experiment; set USE_AMP=0 for the FP32 baseline.
@@ -308,9 +309,9 @@ for step in range(step0,min(step0+CHUNK_STEPS,MAX_STEPS)):
         if improved: best=metrics["val"]; best_state=clone_state()
         elapsed=time.perf_counter()-started
         print(f"step {step+1}/{MAX_STEPS} train={metrics['train']:.4f} val={metrics['val']:.4f} best_val={best:.4f}{' BEST' if improved else ''} speed={(step+1-start_step)/max(elapsed,1e-9):.2f} steps/s",flush=True)
-    if (step+1)%500==0 or step+1==MAX_STEPS: save(step+1)
+    if (step+1)%SAVE_INTERVAL==0 or step+1==MAX_STEPS: save(step+1)
 completed=min(step0+CHUNK_STEPS,MAX_STEPS)
-if completed%500 and completed<MAX_STEPS: save(completed)
+if completed%SAVE_INTERVAL and completed<MAX_STEPS: save(completed)
 if completed<MAX_STEPS: print("Chunk complete; checkpoint saved.",flush=True); raise SystemExit(0)
 if best_state: base.load_state_dict(best_state)
 base.eval()
