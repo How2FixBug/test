@@ -39,7 +39,7 @@ def fetch_page(offset,length):
         try:
             with urllib.request.urlopen(req,timeout=120) as r: data=json.loads(r.read().decode())
             rows=[x.get("row",{}).get("text","") for x in data.get("rows",[])]
-            return offset,[s.strip() for s in rows if isinstance(s,str) and len(s.strip())>30]
+            return offset,[s.strip() for s in rows if isinstance(s,str) and len(s.strip())>0]
         except Exception as e:
             if attempt==6: raise RuntimeError(f"Download failed at offset {offset}: {e}") from e
             wait=min(90,5*(attempt+1))
@@ -97,13 +97,14 @@ tokens=byte_tokens+extra
 # Unique and exactly bounded; one-byte fallback guarantees full coverage.
 seen=set(tokens); tokens=[bytes([i]) for i in range(256)]+[x for x in extra if x not in set(bytes([i]) for i in range(256))]
 tokens=tokens[:VOCAB_SIZE-3]
+if len(tokens)<VOCAB_SIZE-3: raise RuntimeError(f"Tokenizer built only {len(tokens)+3} tokens; need {VOCAB_SIZE}.")
 vocab=special+[x.decode("latin1") for x in tokens]
 stoi={x:i+3 for i,x in enumerate(tokens)}
 max_width=max(map(len,tokens))
 token_trie={}
 for token,idx in stoi.items():
     node=token_trie
-    for byte in token.encode("latin1"): node=node.setdefault(byte,{})
+    for byte in token: node=node.setdefault(byte,{})
     node[None]=idx
 max_width=max(map(len,tokens))
 
