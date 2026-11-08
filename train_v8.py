@@ -9,7 +9,7 @@ import torch.nn.functional as F
 # littleGPT v8: byte-subword tokenizer, all-story masked batches, ~9.8M parameters.
 SEED=1337
 BLOCK_SIZE=256
-BATCH_SIZE=16
+BATCH_SIZE=int(os.environ.get("BATCH_SIZE","16"))
 N_EMBD=288
 N_HEAD=6
 N_LAYER=5
@@ -21,7 +21,7 @@ MAX_STEPS=int(os.environ.get("TRAIN_STEPS","30000"))
 CHUNK_STEPS=int(os.environ.get("CHUNK_STEPS",str(MAX_STEPS)))
 EVAL_INTERVAL=int(os.environ.get("EVAL_INTERVAL","1000"))
 SAVE_INTERVAL=int(os.environ.get("SAVE_INTERVAL","1000"))
-EVAL_BATCHES=32
+EVAL_BATCHES=int(os.environ.get("EVAL_BATCHES","32"))
 LEARNING_RATE=8e-4
 # Optional mixed-precision experiment; set USE_AMP=0 for the FP32 baseline.
 USE_AMP=os.environ.get("USE_AMP","1")=="1" and torch.backends.mps.is_available()
