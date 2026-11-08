@@ -31,8 +31,8 @@ function setStatus(ready,text){$("model-state").textContent=text;$("status-dot")
 function fmt(n){return Number(n).toLocaleString("en-US")}
 async function loadModel(){
  setStatus(false,"Looking for trained weights…");
- try{const response=await fetch(MODEL_URL+"?v="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("No trained model yet");const data=await response.json();if(!["littleGPT-v3","littleGPT-v4","littleGPT-v5","littleGPT-v6"].includes(data.format)||!data.state)throw new Error("Model file is invalid");model=data;model.vocabToId=new Map(data.vocab.map((token,index)=>[token,index]));$("param-count").textContent=fmt(data.parameters);$("loss-value").textContent=Number(data.training.loss).toFixed(3);$("steps-value").textContent=fmt(data.training.steps);$("vocab-value").textContent=fmt(data.vocab.length);$("context-value").textContent=data.config.block_size;$("runtime-note").textContent="Model ready · "+fmt(data.parameters)+" parameters · "+data.training.dataset;setStatus(true,"Trained · "+fmt(data.training.steps)+" steps");renderActiveChat()}
- catch(error){model=null;$("param-count").textContent="—";$("loss-value").textContent="—";$("steps-value").textContent="—";$("vocab-value").textContent="—";$("context-value").textContent="—";$("runtime-note").textContent="No trained weights yet. Run the littleGPT v6 training workflow.";setStatus(false,"Not trained yet")}
+ try{const response=await fetch(MODEL_URL+"?v="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("No trained model yet");const data=await response.json();if(!["littleGPT-v3","littleGPT-v4","littleGPT-v5","littleGPT-v6","littleGPT-v7"].includes(data.format)||!data.state)throw new Error("Model file is invalid");model=data;model.vocabToId=new Map(data.vocab.map((token,index)=>[token,index]));if(data.format==="littleGPT-v7")buildTokenizerTrie();$("param-count").textContent=fmt(data.parameters);$("loss-value").textContent=Number(data.training.loss).toFixed(3);$("steps-value").textContent=fmt(data.training.steps);$("vocab-value").textContent=fmt(data.vocab.length);$("context-value").textContent=data.config.block_size;$("runtime-note").textContent="Model ready · "+fmt(data.parameters)+" parameters · "+data.training.dataset;setStatus(true,"Trained · "+fmt(data.training.steps)+" steps");renderActiveChat()}
+ catch(error){model=null;$("param-count").textContent="—";$("loss-value").textContent="—";$("steps-value").textContent="—";$("vocab-value").textContent="—";$("context-value").textContent="—";$("runtime-note").textContent="No trained weights yet. Run the littleGPT v7 training workflow.";setStatus(false,"Not trained yet")}
 }
 function matvec(x,w,b){const out=new Array(b.length);for(let j=0;j<b.length;j++){let sum=b[j];for(let i=0;i<x.length;i++)sum+=x[i]*w[j][i];out[j]=sum}return out}
 function layerNorm(x,scale,bias,eps=1e-5){let mean=0;for(const v of x)mean+=v;mean/=x.length;let variance=0;for(const v of x)variance+=(v-mean)*(v-mean);variance/=x.length;const inv=1/Math.sqrt(variance+eps);return x.map((v,i)=>(v-mean)*inv*scale[i]+bias[i])}
@@ -47,12 +47,83 @@ function forward(tokenIds){
  }
  return matvec(layerNorm(x[T-1],s.ln_f.weight,s.ln_f.bias),s.lm_head.weight,s.lm_head.bias)
 }
+function cachedForward(tokenId,position,caches){
+ const st=model.state,c=model.config,D=c.n_embd,H=c.n_head,HD=D/H;
+ let x=st.wte[tokenId].map((v,j)=>v+st.wpe[position][j]);
+ for(let layer=0;layer<c.n_layer;layer++){
+  const p=st.blocks[layer],n=layerNorm(x,p.ln1.weight,p.ln1.bias),qkv=matvec(n,p.attn.qkv.weight,p.attn.qkv.bias);
+  const q=qkv.slice(0,D),k=qkv.slice(D,2*D),v=qkv.slice(2*D,3*D),cache=caches[layer];
+  cache.k.push(k);cache.v.push(v);
+  const attended=new Array(D).fill(0);
+  for(let h=0;h<H;h++){
+   const scores=[];
+   for(let t=0;t<cache.k.length;t++){let dot=0;for(let z=0;z<HD;z++)dot+=q[h*HD+z]*cache.k[t][h*HD+z];scores.push(dot/Math.sqrt(HD))}
+   const probs=softmax(scores);
+   for(let z=0;z<HD;z++){let sum=0;for(let t=0;t<cache.v.length;t++)sum+=probs[t]*cache.v[t][h*HD+z];attended[h*HD+z]=sum}
+  }
+  const projected=matvec(attended,p.attn.proj.weight,p.attn.proj.bias);
+  x=x.map((v,j)=>v+projected[j]);
+  const n2=layerNorm(x,p.ln2.weight,p.ln2.bias),hidden=matvec(n2,p.mlp.fc1.weight,p.mlp.fc1.bias).map(gelu),mlp=matvec(hidden,p.mlp.fc2.weight,p.mlp.fc2.bias);
+  x=x.map((v,j)=>v+mlp[j]);
+ }
+ return matvec(layerNorm(x,st.ln_f.weight,st.ln_f.bias),st.lm_head.weight,st.lm_head.bias)
+}
+function buildTokenizerTrie(){
+ const root={};
+ for(let id=3;id<model.vocab.length;id++){
+  const token=model.vocab[id];let node=root;
+  for(let j=0;j<token.length;j++){const key=String(token.charCodeAt(j));node=node[key]||(node[key]={})}
+  node.$id=id;
+ }
+ model.tokenTrie=root
+}
 function sample(logits,temp,topK){const scaled=logits.map(v=>v/Math.max(.05,temp));if(topK>0&&topK<scaled.length){const keep=new Set(scaled.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]).slice(0,topK).map(x=>x[1]));for(let i=0;i<scaled.length;i++)if(!keep.has(i))scaled[i]=-Infinity}const probs=softmax(scaled);let r=Math.random();for(let i=0;i<probs.length;i++){r-=probs[i];if(r<=0)return i}return probs.length-1}
-function encodePrompt(prompt){const normalized=prompt.replace(/\u00e2\u20ac\u0153|\u00e2\u20ac\u009d/g,'"').replace(/\u00e2\u20ac\u02dc|\u00e2\u20ac\u2122/g,"'").replace(/[“”„‟]/g,'"').replace(/[‘’‚‛]/g,"'").replace(/€/g,'"').replace(/™/g,"'").replace(/\u00a0/g," ");const pieces=normalized.toLowerCase().match(/[a-z0-9]+(?:'[a-z0-9]+)?|[.,!?;:"()\-]/g)||[];const ids=[model.config.bos_id];for(const piece of pieces)ids.push(model.vocabToId.get(piece)??model.config.unk_id);return ids}
-function decodeTokens(ids){let out="",quoteOpen=false;for(const id of ids){if(id===model.config.eos_id)break;const token=model.vocab[id];if(!token||token==="<unk>"||token==="<bos>")continue;if(token==='"'){if(quoteOpen)out=out.replace(/\s+$/,"")+'"';else out+=(out?" ":"")+'"';quoteOpen=!quoteOpen;continue}const punctuation=/^[.,!?;:%)}\]]$/.test(token);const opening=/^[([{]$/.test(token);if(!out)out=token;else if(punctuation)out+=token;else if(opening)out+=" "+token;else out+=" "+token}return out.replace(/(^|[.!?]\s+)([a-z])/g,(_,prefix,ch)=>prefix+ch.toUpperCase())}
-async function generate(prompt,maxTokens=120,temp=.8,topK=32,onUpdate=()=>{}){
+function encodePrompt(prompt){
+ if(model.format!=="littleGPT-v7"){
+  const normalized=prompt.replace(/\\u00e2\\u20ac\\u0153|\\u00e2\\u20ac\\u009d/g,'"').replace(/\\u00e2\\u20ac\\u02dc|\\u00e2\\u20ac\\u2122/g,"'").replace(/[“”„‟]/g,'"').replace(/[‘’‚‛]/g,"'").replace(/€/g,'"').replace(/™/g,"'").replace(/\\u00a0/g," ");
+  const pieces=normalized.toLowerCase().match(/[a-z0-9]+(?:'[a-z0-9]+)?|[.,!?;:"()\\-]/g)||[];
+  const ids=[model.config.bos_id];for(const piece of pieces)ids.push(model.vocabToId.get(piece)??model.config.unk_id);return ids
+ }
+ const bytes=new TextEncoder().encode(prompt),ids=[model.config.bos_id],trie=model.tokenTrie;
+ let i=0;
+ while(i<bytes.length){
+  let node=trie,best=null,bestEnd=i;
+  for(let j=i;j<bytes.length&&j<i+model.config.max_token_bytes;j++){
+   node=node[String(bytes[j])];if(!node)break;
+   if(node.$id!==undefined){best=node.$id;bestEnd=j+1}
+  }
+  if(best===null){ids.push(bytes[i]+3);i++}else{ids.push(best);i=bestEnd}
+ }
+ return ids
+}
+function decodeTokens(ids){
+ if(model.format!=="littleGPT-v7"){
+  let out="",quoteOpen=false;
+  for(const id of ids){if(id===model.config.eos_id)break;const token=model.vocab[id];if(!token||token==="<unk>"||token==="<bos>")continue;if(token==='"'){if(quoteOpen)out=out.replace(/\\s+$/,"")+'"';else out+=(out?" ":"")+'"';quoteOpen=!quoteOpen;continue}const punctuation=/^[.,!?;:%)}\\]]$/.test(token);const opening=/^[([{]$/.test(token);if(!out)out=token;else if(punctuation)out+=token;else if(opening)out+=" "+token;else out+=" "+token}
+  return out.replace(/(^|[.!?]\\s+)([a-z])/g,(_,prefix,ch)=>prefix+ch.toUpperCase())
+ }
+ const chunks=[];for(const id of ids){if(id===model.config.eos_id)break;if(id<3)continue;const token=model.vocab[id];for(let j=0;j<token.length;j++)chunks.push(token.charCodeAt(j))}
+ return new TextDecoder().decode(new Uint8Array(chunks)).replace(/^\\s+/,"")
+}
+async function generate(prompt,maxTokens=120,temp=.8,topK=32,onUpdate=()=>[]){
  const ids=encodePrompt(prompt);let generated=[];
- for(let i=0;i<maxTokens;i++){if(cancelled)break;const context=ids.slice(-model.config.block_size);const next=sample(forward(context),temp,topK);if(next===model.config.eos_id)break;ids.push(next);generated.push(next);if(i%2===0){onUpdate(decodeTokens(generated));await new Promise(resolve=>setTimeout(resolve,0))}}
+ if(model.format==="littleGPT-v7"){
+  let context=ids.slice(-model.config.block_size),caches=Array.from({length:model.config.n_layer},()=>({k:[],v:[]}));
+  let logits=null;
+  for(let i=0;i<context.length;i++)logits=cachedForward(context[i],i,caches);
+  for(let i=0;i<maxTokens;i++){
+   if(cancelled)break;
+   const next=sample(logits,temp,topK);if(next===model.config.eos_id)break;
+   ids.push(next);generated.push(next);
+   if(context.length>=model.config.block_size){
+    context=ids.slice(-model.config.block_size);caches=Array.from({length:model.config.n_layer},()=>({k:[],v:[]}));
+    for(let j=0;j<context.length;j++)logits=cachedForward(context[j],j,caches)
+   }else{context.push(next);logits=cachedForward(next,context.length-1,caches)}
+   if(i%2===0){onUpdate(decodeTokens(generated));await new Promise(resolve=>setTimeout(resolve,0))}
+  }
+ }else{
+  for(let i=0;i<maxTokens;i++){if(cancelled)break;const context=ids.slice(-model.config.block_size);const next=sample(forward(context),temp,topK);if(next===model.config.eos_id)break;ids.push(next);generated.push(next);if(i%2===0){onUpdate(decodeTokens(generated));await new Promise(resolve=>setTimeout(resolve,0))}}
+ }
  onUpdate(decodeTokens(generated));return decodeTokens(generated)
 }
 function addMessage(role,content,store=true){const wrap=document.createElement("article");wrap.className="message "+role;const label=document.createElement("div");label.className="message-label";label.textContent=role==="user"?"YOU":"LITTLEGPT";const body=document.createElement("div");body.className="message-body";body.textContent=content;wrap.append(label,body);$("messages").append(wrap);if(store){const chat=activeChat();chat.messages.push({role,content});saveChats()}$("messages").scrollTop=$("messages").scrollHeight;return body}
