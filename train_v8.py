@@ -146,6 +146,18 @@ def encode_stories(source):
 
 train_docs=encode_stories(train_stories)
 val_docs=encode_stories(val_stories)
+
+# Flatten each split once so training batches can be gathered in parallel on CPU.
+# This avoids 16 per-story Python slicing operations on every training step.
+def make_doc_store(docs):
+    lengths=torch.tensor([doc.numel() for doc in docs],dtype=torch.long)
+    offsets=torch.cat((torch.zeros(1,dtype=torch.long),lengths.cumsum(0)[:-1]))
+    flat=torch.cat(docs)
+    return {"flat":flat,"lengths":lengths,"offsets":offsets}
+
+train_store=make_doc_store(train_docs)
+val_store=make_doc_store(val_docs)
+
 # V8 batches whole stories (including short ones) without joining story boundaries.
 # Each row is padded on the right; target=-100 masks padding out of the loss.
 def make_one_window(doc,start):
@@ -158,15 +170,22 @@ def make_one_window(doc,start):
         y=F.pad(y,(0,BLOCK_SIZE-valid),value=-100)
     return x,y
 
-def get_batch(docs):
-    xs=[]; ys=[]
-    for _ in range(BATCH_SIZE):
-        which=int(torch.randint(len(docs),(1,)).item())
-        doc=docs[which]
-        start=int(torch.randint(max(1,doc.numel()-1),(1,)).item())
-        x,y=make_one_window(doc,start)
-        xs.append(x); ys.append(y)
-    return torch.stack(xs).to(device),torch.stack(ys).to(device)
+def get_batch(store):
+    # Sample stories and offsets as vectors, then gather all rows in two operations.
+    lengths=store["lengths"]
+    which=torch.randint(lengths.numel(),(BATCH_SIZE,))
+    row_lengths=lengths[which]
+    offsets=store["offsets"][which]
+    starts=(torch.rand(BATCH_SIZE)*(row_lengths-1).float()).long()
+    positions=starts[:,None]+torch.arange(BLOCK_SIZE)[None,:]
+    valid=positions<(row_lengths[:,None]-1)
+    last=(row_lengths-1)[:,None]
+    flat=store["flat"]
+    x=flat[offsets[:,None]+torch.minimum(positions,last)]
+    y=flat[offsets[:,None]+torch.minimum(positions+1,last)]
+    x=x.masked_fill(~valid,0)
+    y=y.masked_fill(~valid,-100)
+    return x.to(device),y.to(device)
 
 def make_fixed_eval_batches(docs,seed):
     rng=random.Random(seed)
@@ -268,7 +287,7 @@ def lr_at(step):
 base.train(); started=time.perf_counter(); start_step=step0
 for step in range(step0,min(step0+CHUNK_STEPS,MAX_STEPS)):
     for group in optimizer.param_groups: group["lr"]=lr_at(step)
-    x,y=get_batch(train_docs); optimizer.zero_grad(set_to_none=True)
+    x,y=get_batch(train_store); optimizer.zero_grad(set_to_none=True)
     if USE_AMP:
         with torch.autocast(device_type="mps",dtype=torch.float16):
             _,loss=base(x,y)
