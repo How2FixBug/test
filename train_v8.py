@@ -227,17 +227,8 @@ class GPT(nn.Module):
         _,t=idx.shape; pos=torch.arange(t,device=idx.device)
         x=self.drop(self.wte(idx)+self.wpe(pos))
         for block in self.blocks: x=block(x)
-        hidden=self.ln_f(x); loss=None
-        if targets is not None:
-            # Padding positions never contribute to the objective. Do not spend
-            # vocabulary-projection compute producing logits for those positions.
-            flat_targets=targets.reshape(-1)
-            valid=flat_targets.ne(-100)
-            hidden=hidden.reshape(-1,N_EMBD)[valid]
-            logits=self.lm_head(hidden)
-            loss=F.cross_entropy(logits,flat_targets[valid])
-        else:
-            logits=self.lm_head(hidden)
+        logits=self.lm_head(self.ln_f(x)); loss=None
+        if targets is not None: loss=F.cross_entropy(logits.reshape(-1,VOCAB_SIZE),targets.reshape(-1),ignore_index=-100)
         return logits,loss
 
 base=GPT().to(device)
