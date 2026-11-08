@@ -217,7 +217,7 @@ class Block(nn.Module):
         super().__init__(); self.ln1=nn.LayerNorm(N_EMBD); self.attn=Attention(); self.ln2=nn.LayerNorm(N_EMBD)
         self.fc1=nn.Linear(N_EMBD,4*N_EMBD); self.fc2=nn.Linear(4*N_EMBD,N_EMBD)
     def forward(self,x):
-        x=x+self.attn(self.ln1(x)); return x+self.fc2(F.gelu(self.fc1(self.ln2(x))))
+        x=x+self.attn(self.ln1(x)); hidden=F.gelu(self.fc1(self.ln2(x)),approximate="tanh"); return x+self.fc2(hidden)
 class GPT(nn.Module):
     def __init__(self):
         super().__init__(); self.wte=nn.Embedding(VOCAB_SIZE,N_EMBD); self.wpe=nn.Embedding(BLOCK_SIZE,N_EMBD)
