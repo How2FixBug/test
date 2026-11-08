@@ -178,7 +178,13 @@ def get_batch(store):
     row_lengths=lengths[which]
     offsets=store["offsets"][which]
     starts=(torch.rand(BATCH_SIZE)*(row_lengths-1).float()).long()
-    positions=starts[:,None]+torch.arange(BLOCK_SIZE)[None,:]
+    # Crop the whole batch to its longest real next-token window.
+    # Padding never contributes to the loss, and causal attention means padded
+    # positions cannot affect earlier valid tokens. Avoids running every layer
+    # and the 8,192-way output projection on unnecessary trailing padding.
+    available=(row_lengths-1-starts).clamp(min=1,max=BLOCK_SIZE)
+    seq_len=int(available.max())
+    positions=starts[:,None]+torch.arange(seq_len)[None,:]
     valid=positions<(row_lengths[:,None]-1)
     last=(row_lengths-1)[:,None]
     flat=store["flat"]
