@@ -192,7 +192,8 @@ def get_batch(store):
     y=flat[offsets[:,None]+torch.minimum(positions+1,last)]
     x=x.masked_fill(~valid,0)
     y=y.masked_fill(~valid,-100)
-    return x.to(device),y.to(device)
+    valid_tokens=int(valid.sum())
+    return x.to(device),y.to(device),valid_tokens
 
 def make_fixed_eval_batches(docs,seed):
     rng=random.Random(seed)
@@ -276,6 +277,9 @@ if CHECKPOINT.exists():
     if device.type=="mps" and ck.get("mps_rng") is not None: torch.mps.set_rng_state(ck["mps_rng"].cpu())
 print(f"littleGPT v8 | {params:,} parameters | vocab={VOCAB_SIZE} byte-subwords | stories={len(stories):,} | train tokens={sum(d.numel() for d in train_docs):,} | validation tokens={sum(d.numel() for d in val_docs):,} | device={device}",flush=True)
 
+def sync_device():
+    if device.type=="mps": torch.mps.synchronize()
+
 @torch.inference_mode()
 def evaluate():
     base.eval(); out={}
@@ -290,6 +294,27 @@ def evaluate():
             vals.append(loss.item())
         out[name]=round(sum(vals)/len(vals),4)
     base.train(); return out
+
+@torch.inference_mode()
+def generate_sample(max_new_tokens=48):
+    # Greedy decoding is deterministic and does not consume the training RNG.
+    was_training=base.training; base.eval()
+    idx=torch.tensor([[1]],dtype=torch.long,device=device)
+    for _ in range(max_new_tokens):
+        context=idx[:,-BLOCK_SIZE:]
+        if USE_AMP:
+            with torch.autocast(device_type="mps",dtype=torch.float16):
+                logits,_=base(context)
+        else:
+            logits,_=base(context)
+        next_id=logits[:,-1,:].argmax(dim=-1,keepdim=True)
+        idx=torch.cat((idx,next_id),dim=1)
+        if int(next_id.item())==2: break
+    ids=idx[0,1:].tolist()
+    raw=b"".join(vocab[i].encode("latin1") for i in ids if i>=3)
+    result=raw.decode("utf-8",errors="replace").strip()
+    if was_training: base.train()
+    return result or "(model generated only a special token)"
 def clone_state(): return {k:v.detach().cpu().clone() for k,v in base.state_dict().items()}
 def save(step):
     data={"format":"littleGPT-v8-checkpoint","step":step,"model":{k:v.detach().cpu() for k,v in base.state_dict().items()},
@@ -302,9 +327,15 @@ def lr_at(step):
     return LEARNING_RATE*warm*(.08+.92*.5*(1+math.cos(math.pi*progress)))
 
 base.train(); started=time.perf_counter(); start_step=step0
+train_seconds=0.0; eval_seconds=0.0; save_seconds=0.0; sample_seconds=0.0
+interval_tokens=0; interval_positions=0; interval_seq_len_sum=0; interval_batches=0
+train_segment_started=time.perf_counter()
 for step in range(step0,min(step0+CHUNK_STEPS,MAX_STEPS)):
     for group in optimizer.param_groups: group["lr"]=lr_at(step)
-    x,y=get_batch(train_store); optimizer.zero_grad(set_to_none=True)
+    x,y,valid_tokens=get_batch(train_store)
+    interval_tokens+=valid_tokens; interval_positions+=x.shape[0]*x.shape[1]
+    interval_seq_len_sum+=x.shape[1]; interval_batches+=1
+    optimizer.zero_grad(set_to_none=True)
     if USE_AMP:
         with torch.autocast(device_type="mps",dtype=torch.float16):
             _,loss=base(x,y)
@@ -321,11 +352,27 @@ for step in range(step0,min(step0+CHUNK_STEPS,MAX_STEPS)):
         torch.nn.utils.clip_grad_norm_(base.parameters(),1.0)
         optimizer.step()
     if (step+1)%EVAL_INTERVAL==0 or step==0 or step+1==MAX_STEPS:
-        metrics=evaluate(); improved=metrics["val"]<best
+        sync_device()
+        now=time.perf_counter(); train_seconds+=now-train_segment_started
+        eval_started=time.perf_counter()
+        metrics=evaluate(); sync_device(); eval_seconds+=time.perf_counter()-eval_started
+        improved=metrics["val"]<best
         if improved: best=metrics["val"]; best_state=clone_state()
+        sample_started=time.perf_counter()
+        sample=generate_sample(); sync_device(); sample_seconds+=time.perf_counter()-sample_started
+        steps_done=step+1-start_step
+        avg_seq=interval_seq_len_sum/max(1,interval_batches)
+        utilization=100*interval_tokens/max(1,interval_positions)
         elapsed=time.perf_counter()-started
-        print(f"step {step+1}/{MAX_STEPS} train={metrics['train']:.4f} val={metrics['val']:.4f} best_val={best:.4f}{' BEST' if improved else ''} speed={(step+1-start_step)/max(elapsed,1e-9):.2f} steps/s",flush=True)
-    if (step+1)%SAVE_INTERVAL==0 or step+1==MAX_STEPS: save(step+1)
+        print(f"step {step+1}/{MAX_STEPS} train={metrics['train']:.4f} val={metrics['val']:.4f} best_val={best:.4f}{' BEST' if improved else ''} speed={(steps_done)/max(elapsed,1e-9):.2f} steps/s",flush=True)
+        print(f"  PERFORMANCE | useful_tokens/s={interval_tokens/max(train_seconds,1e-9):,.0f} | avg_seq_len={avg_seq:.1f}/{BLOCK_SIZE} | padding_utilization={utilization:.1f}% | train={train_seconds:.1f}s eval={eval_seconds:.1f}s save={save_seconds:.1f}s sample={sample_seconds:.1f}s",flush=True)
+        print(f"  LITTLEGPT SAYS: {sample}",flush=True)
+        interval_tokens=0; interval_positions=0; interval_seq_len_sum=0; interval_batches=0
+        train_segment_started=time.perf_counter()
+    if (step+1)%SAVE_INTERVAL==0 or step+1==MAX_STEPS:
+        sync_device(); save_started=time.perf_counter(); save(step+1)
+        save_seconds+=time.perf_counter()-save_started
+        train_segment_started=time.perf_counter()
 completed=min(step0+CHUNK_STEPS,MAX_STEPS)
 if completed%SAVE_INTERVAL and completed<MAX_STEPS: save(completed)
 if completed<MAX_STEPS: print("Chunk complete; checkpoint saved.",flush=True); raise SystemExit(0)
