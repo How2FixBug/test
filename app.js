@@ -31,10 +31,29 @@ function setStatus(ready,text){$("model-state").textContent=text;$("status-dot")
 function fmt(n){return Number(n).toLocaleString("en-US")}
 async function loadModel(){
  setStatus(false,"Looking for trained weights…");
- try{const response=await fetch(MODEL_URL+"?v="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("No trained model yet");const data=await response.json();if(!["littleGPT-v3","littleGPT-v4","littleGPT-v5","littleGPT-v6","littleGPT-v7"].includes(data.format)||!data.state)throw new Error("Model file is invalid");model=data;model.vocabToId=new Map(data.vocab.map((token,index)=>[token,index]));if(data.format==="littleGPT-v7")buildTokenizerTrie();$("param-count").textContent=fmt(data.parameters);$("loss-value").textContent=Number(data.training.loss).toFixed(3);$("steps-value").textContent=fmt(data.training.steps);$("vocab-value").textContent=fmt(data.vocab.length);$("context-value").textContent=data.config.block_size;$("runtime-note").textContent="Model ready · "+fmt(data.parameters)+" parameters · "+data.training.dataset;setStatus(true,"Trained · "+fmt(data.training.steps)+" steps");renderActiveChat()}
+ try{const response=await fetch(MODEL_URL+"?v="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("No trained model yet");const data=await response.json();if(!["littleGPT-v3","littleGPT-v4","littleGPT-v5","littleGPT-v6","littleGPT-v7"].includes(data.format)||!data.state)throw new Error("Model file is invalid");model=data;model.vocabToId=new Map(data.vocab.map((token,index)=>[token,index]));if(data.format==="littleGPT-v7"){model.state=decodePackedState(data.state);buildTokenizerTrie();}$("param-count").textContent=fmt(data.parameters);$("loss-value").textContent=Number(data.training.loss).toFixed(3);$("steps-value").textContent=fmt(data.training.steps);$("vocab-value").textContent=fmt(data.vocab.length);$("context-value").textContent=data.config.block_size;$("runtime-note").textContent="Model ready · "+fmt(data.parameters)+" parameters · "+data.training.dataset;setStatus(true,"Trained · "+fmt(data.training.steps)+" steps");renderActiveChat()}
  catch(error){model=null;$("param-count").textContent="—";$("loss-value").textContent="—";$("steps-value").textContent="—";$("vocab-value").textContent="—";$("context-value").textContent="—";$("runtime-note").textContent="No trained weights yet. Run the littleGPT v7 training workflow.";setStatus(false,"Not trained yet")}
 }
-function matvec(x,w,b){const out=new Array(b.length);for(let j=0;j<b.length;j++){let sum=b[j];for(let i=0;i<x.length;i++)sum+=x[i]*w[j][i];out[j]=sum}return out}
+function matvec(x,w,b){
+ const out=new Array(b.length),flat=ArrayBuffer.isView(w),width=x.length;
+ for(let j=0;j<b.length;j++){let sum=b[j],offset=j*width;for(let i=0;i<width;i++)sum+=x[i]*(flat?w[offset+i]:w[j][i]);out[j]=sum}
+ return out
+}
+function row(matrix,index,width){return matrix.subarray(index*width,(index+1)*width)}
+function decodePackedState(value){
+ if(value&&typeof value==="object"&&typeof value.f16==="string"){
+  const raw=atob(value.f16),bytes=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
+  const view=new DataView(bytes.buffer),out=new Float32Array(bytes.length/2);
+  for(let i=0;i<out.length;i++){
+   const h=view.getUint16(i*2,true),sign=(h&0x8000)?-1:1,exp=(h>>10)&31,frac=h&1023;
+   out[i]=exp===0?sign*Math.pow(2,-14)*(frac/1024):exp===31?(frac?NaN:sign*Infinity):sign*Math.pow(2,exp-15)*(1+frac/1024)
+  }
+  return out
+ }
+ if(Array.isArray(value))return value.map(decodePackedState);
+ if(value&&typeof value==="object"){for(const key of Object.keys(value))value[key]=decodePackedState(value[key])}
+ return value
+}
 function layerNorm(x,scale,bias,eps=1e-5){let mean=0;for(const v of x)mean+=v;mean/=x.length;let variance=0;for(const v of x)variance+=(v-mean)*(v-mean);variance/=x.length;const inv=1/Math.sqrt(variance+eps);return x.map((v,i)=>(v-mean)*inv*scale[i]+bias[i])}
 function gelu(x){return .5*x*(1+Math.tanh(.7978845608*(x+.044715*x*x*x)))}
 function softmax(values){const max=Math.max(...values),exps=values.map(v=>Math.exp(v-max)),sum=exps.reduce((a,b)=>a+b,0);return exps.map(v=>v/sum)}
@@ -49,7 +68,7 @@ function forward(tokenIds){
 }
 function cachedForward(tokenId,position,caches){
  const st=model.state,c=model.config,D=c.n_embd,H=c.n_head,HD=D/H;
- let x=st.wte[tokenId].map((v,j)=>v+st.wpe[position][j]);
+ let x=row(st.wte,tokenId,D).map((v,j)=>v+row(st.wpe,position,D)[j]);
  for(let layer=0;layer<c.n_layer;layer++){
   const p=st.blocks[layer],n=layerNorm(x,p.ln1.weight,p.ln1.bias),qkv=matvec(n,p.attn.qkv.weight,p.attn.qkv.bias);
   const q=qkv.slice(0,D),k=qkv.slice(D,2*D),v=qkv.slice(2*D,3*D),cache=caches[layer];
