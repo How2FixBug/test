@@ -370,8 +370,11 @@ for step in range(step0,min(step0+CHUNK_STEPS,MAX_STEPS)):
         interval_tokens=0; interval_positions=0; interval_seq_len_sum=0; interval_batches=0
         train_segment_started=time.perf_counter()
     if (step+1)%SAVE_INTERVAL==0 or step+1==MAX_STEPS:
-        sync_device(); save_started=time.perf_counter(); save(step+1)
-        save_seconds+=time.perf_counter()-save_started
+        sync_device(); now=time.perf_counter()
+        train_seconds+=now-train_segment_started
+        save_started=time.perf_counter(); save(step+1)
+        just_saved=time.perf_counter()-save_started; save_seconds+=just_saved
+        print(f"  CHECKPOINT TIMING | last_save={just_saved:.2f}s | cumulative_save={save_seconds:.2f}s",flush=True)
         train_segment_started=time.perf_counter()
 completed=min(step0+CHUNK_STEPS,MAX_STEPS)
 if completed%SAVE_INTERVAL and completed<MAX_STEPS: save(completed)
