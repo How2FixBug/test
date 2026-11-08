@@ -34,39 +34,51 @@ else:
 
 def fetch_page(offset,length):
     params=urllib.parse.urlencode({"dataset":DATASET,"config":"default","split":"train","offset":offset,"length":length})
-    req=urllib.request.Request(ROWS_API+"?"+params,headers={"User-Agent":"littleGPT-v7/1.0"})
-    for attempt in range(7):
+    req=urllib.request.Request(ROWS_API+"?"+params,headers={"User-Agent":"littleGPT-v7/1.1 (sequential-resumable)"})
+    for attempt in range(12):
         try:
             with urllib.request.urlopen(req,timeout=120) as r: data=json.loads(r.read().decode())
             rows=[x.get("row",{}).get("text","") for x in data.get("rows",[])]
-            return offset,[s.strip() for s in rows if isinstance(s,str) and len(s.strip())>0]
+            return [s.strip() for s in rows if isinstance(s,str) and len(s.strip())>0],len(data.get("rows",[]))
         except Exception as e:
-            if attempt==6: raise RuntimeError(f"Download failed at offset {offset}: {e}") from e
-            wait=min(90,5*(attempt+1))
+            if attempt==11: raise RuntimeError(f"Download failed at offset {offset}: {e}") from e
+            # Be gentle with the public dataset API, especially after HTTP 429.
+            wait=min(300,15*(2**attempt))
             if getattr(e,"headers",None):
                 try: wait=max(wait,int(e.headers.get("Retry-After","0")))
                 except Exception: pass
             print(f"Retry page {offset} in {wait}s: {e}",flush=True); time.sleep(wait)
 
 def download():
-    stories=[]
+    stories=[]; next_offset=0
     if CACHE.exists():
-        try: stories=json.loads(CACHE.read_text(encoding="utf-8"))
-        except Exception: stories=[]
+        try:
+            cached=json.loads(CACHE.read_text(encoding="utf-8"))
+            if isinstance(cached,dict) and "stories" in cached:
+                stories=cached["stories"]; next_offset=int(cached.get("next_offset",0))
+            elif isinstance(cached,list):
+                # Migrate the earlier v7 cache format. The old downloader requested
+                # 100-row pages and normally retained every returned story.
+                stories=cached; next_offset=len(stories)
+                print(f"Resuming legacy cache at approximately row {next_offset:,}.",flush=True)
+        except Exception as e:
+            print(f"Cache could not be read ({e}); starting a fresh dataset download.",flush=True)
+            stories=[]; next_offset=0
     if len(stories)>=DATASET_ROWS: return stories[:DATASET_ROWS]
-    # Fetch in bounded concurrent batches; save after each batch for safe resume.
-    offsets=list(range(len(stories),DATASET_ROWS,100))
-    for base in range(0,len(offsets),32):
-        batch_offsets=offsets[base:base+32]
-        with ThreadPoolExecutor(max_workers=6) as pool:
-            futures=[pool.submit(fetch_page,o,min(100,DATASET_ROWS-o)) for o in batch_offsets]
-            pages=[f.result() for f in as_completed(futures)]
-        page_map=dict(pages)
-        for o in sorted(page_map): stories.extend(page_map[o])
-        stories=stories[:DATASET_ROWS]
-        CACHE.write_text(json.dumps(stories,ensure_ascii=False),encoding="utf-8")
-        print(f"Downloaded {len(stories):,}/{DATASET_ROWS:,} stories",flush=True)
-        time.sleep(1.0)
+    # One request at a time. Persist both the stories and source-row offset after
+    # EVERY successful page, using atomic replacement so interruption is recoverable.
+    while len(stories)<DATASET_ROWS:
+        requested=min(100,DATASET_ROWS-next_offset)
+        if requested<=0: break
+        page,row_count=fetch_page(next_offset,requested)
+        if row_count<=0: break
+        stories.extend(page)
+        next_offset+=row_count
+        temp=CACHE.with_suffix(".tmp")
+        temp.write_text(json.dumps({"next_offset":next_offset,"stories":stories},ensure_ascii=False),encoding="utf-8")
+        temp.replace(CACHE)
+        print(f"Downloaded {len(stories):,}/{DATASET_ROWS:,} stories (source row {next_offset:,})",flush=True)
+        time.sleep(2.0)
     if len(stories)<1000: raise RuntimeError(f"Only {len(stories)} stories downloaded.")
     return stories[:DATASET_ROWS]
 
@@ -104,7 +116,8 @@ max_width=max(map(len,tokens))
 token_trie={}
 for token,idx in stoi.items():
     node=token_trie
-    for byte in token: node=node.setdefault(byte,{})
+    # Token strings store raw bytes as Latin-1; trie keys must be integer bytes.
+    for byte in token.encode("latin1"): node=node.setdefault(byte,{})
     node[None]=idx
 max_width=max(map(len,tokens))
 
