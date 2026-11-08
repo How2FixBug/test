@@ -99,20 +99,24 @@ tokens=tokens[:VOCAB_SIZE-3]
 vocab=special+[x.decode("latin1") for x in tokens]
 stoi={x:i+3 for i,x in enumerate(tokens)}
 max_width=max(map(len,tokens))
-by_first={}
+token_trie={}
 for token,idx in stoi.items():
-    by_first.setdefault(token[0],[]).append((token,idx))
-for key in by_first: by_first[key].sort(key=lambda x:len(x[0]),reverse=True)
+    node=token_trie
+    for byte in token.encode("latin1"): node=node.setdefault(byte,{})
+    node[None]=idx
+max_width=max(map(len,tokens))
 
 def encode_bytes(data):
     out=[]; i=0
     while i<len(data):
-        tail=data[i:i+max_width].decode("latin1")
-        chosen=None
-        for token,idx in by_first.get(tail[0],[]):
-            if tail.startswith(token): chosen=idx; break
-        if chosen is None: raise RuntimeError("Missing byte fallback")
-        out.append(chosen); i+=len(vocab[chosen].encode("latin1"))
+        node=token_trie; j=i; best=None; best_end=i
+        while j<len(data) and j<i+max_width:
+            node=node.get(data[j])
+            if node is None: break
+            j+=1
+            if None in node: best=node[None]; best_end=j
+        if best is None: raise RuntimeError("Missing byte fallback")
+        out.append(best); i=best_end
     return out
 
 def encode_stories(source):
@@ -127,20 +131,22 @@ train_docs=encode_stories(train_stories)
 val_docs=encode_stories(val_stories)
 def pack(docs):
     stream=torch.cat(docs).to(device)
-    starts=[]; offset=0
+    doc_offsets=[]; doc_spans=[]; offset=0
     for doc in docs:
         length=doc.numel()
         if length>BLOCK_SIZE+1:
-            starts.extend(range(offset,offset+length-BLOCK_SIZE))
+            doc_offsets.append(offset)
+            doc_spans.append(length-BLOCK_SIZE)
         offset+=length
-    if not starts: raise RuntimeError("No stories long enough for a training window.")
-    return stream,torch.tensor(starts,dtype=torch.long,device=device)
-train_stream,train_starts=pack(train_docs)
-val_stream,val_starts=pack(val_docs)
+    if not doc_offsets: raise RuntimeError("No stories long enough for a training window.")
+    return stream,torch.tensor(doc_offsets,dtype=torch.long,device=device),torch.tensor(doc_spans,dtype=torch.long,device=device)
+train_stream,train_offsets,train_spans=pack(train_docs)
+val_stream,val_offsets,val_spans=pack(val_docs)
 OFFSETS=torch.arange(BLOCK_SIZE,device=device).unsqueeze(0)
-def get_batch(stream,starts):
-    chosen=starts[torch.randint(starts.numel(),(BATCH_SIZE,),device=device)].unsqueeze(1)
-    ix=chosen+OFFSETS
+def get_batch(stream,doc_offsets,doc_spans):
+    which=torch.randint(doc_offsets.numel(),(BATCH_SIZE,),device=device)
+    starts=doc_offsets[which]+(torch.rand(BATCH_SIZE,device=device)*doc_spans[which]).long()
+    ix=starts.unsqueeze(1)+OFFSETS
     return stream[ix],stream[ix+1]
 
 class Attention(nn.Module):
@@ -209,7 +215,7 @@ def lr_at(step):
 base.train(); started=time.perf_counter(); start_step=step0
 for step in range(step0,min(step0+CHUNK_STEPS,MAX_STEPS)):
     for group in optimizer.param_groups: group["lr"]=lr_at(step)
-    x,y=get_batch(train_stream,train_starts); optimizer.zero_grad(set_to_none=True)
+    x,y=get_batch(train_stream,train_offsets,train_spans); optimizer.zero_grad(set_to_none=True)
     _,loss=base(x,y); loss.backward(); torch.nn.utils.clip_grad_norm_(base.parameters(),1.0); optimizer.step()
     if (step+1)%EVAL_INTERVAL==0 or step==0 or step+1==MAX_STEPS:
         metrics=evaluate(); improved=metrics["val"]<best
