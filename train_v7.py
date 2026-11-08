@@ -195,10 +195,10 @@ print(f"littleGPT v7 | {params:,} parameters | vocab={VOCAB_SIZE} byte-subwords 
 @torch.no_grad()
 def evaluate():
     base.eval(); out={}
-    for name,stream,starts in (("train",train_stream,train_starts),("val",val_stream,val_starts)):
+    for name,stream,offsets,spans in (("train",train_stream,train_offsets,train_spans),("val",val_stream,val_offsets,val_spans)):
         vals=[]
         for _ in range(EVAL_BATCHES):
-            x,y=get_batch(stream,starts); _,loss=base(x,y); vals.append(loss.item())
+            x,y=get_batch(stream,offsets,spans); _,loss=base(x,y); vals.append(loss.item())
         out[name]=round(sum(vals)/len(vals),4)
     base.train(); return out
 def clone_state(): return {k:v.detach().cpu().clone() for k,v in base.state_dict().items()}
