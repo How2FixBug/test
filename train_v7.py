@@ -69,8 +69,8 @@ def download_split(split,target_rows,cache_path):
     print(f"Loading TinyStories {split} split: target {target_rows:,} stories; cached {len(stories):,}.",flush=True)
     # Fetch one page at a time and atomically cache every successful page.
     # The train and official validation split have independent caches and offsets.
-    while len(stories)<target_rows and next_offset<target_rows:
-        requested=min(100,target_rows-next_offset)
+    while len(stories)<target_rows:
+        requested=100
         page,row_count=fetch_page(next_offset,requested,split)
         if row_count<=0: break
         stories.extend(page)
