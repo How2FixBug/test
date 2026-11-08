@@ -198,13 +198,18 @@ def make_fixed_eval_batches(docs,seed):
     rng=random.Random(seed)
     batches=[]
     for _ in range(EVAL_BATCHES):
-        xs=[]; ys=[]
+        xs=[]; ys=[]; valid_lengths=[]
         for _ in range(BATCH_SIZE):
             doc=docs[rng.randrange(len(docs))]
             start=rng.randrange(max(1,doc.numel()-1))
             x,y=make_one_window(doc,start)
             xs.append(x); ys.append(y)
-        batches.append((torch.stack(xs).to(device),torch.stack(ys).to(device)))
+            valid_lengths.append(min(BLOCK_SIZE,doc.numel()-1-start))
+        # Evaluation has the same padding waste as training. Crop to the
+        # longest useful row while retaining the exact fixed evaluation examples.
+        seq_len=max(valid_lengths)
+        batches.append((torch.stack([x[:seq_len] for x in xs]).to(device),
+                        torch.stack([y[:seq_len] for y in ys]).to(device)))
     return batches
 
 train_eval_batches=make_fixed_eval_batches(train_docs,SEED+101)
@@ -271,13 +276,18 @@ if CHECKPOINT.exists():
     if device.type=="mps" and ck.get("mps_rng") is not None: torch.mps.set_rng_state(ck["mps_rng"].cpu())
 print(f"littleGPT v8 | {params:,} parameters | vocab={VOCAB_SIZE} byte-subwords | stories={len(stories):,} | train tokens={sum(d.numel() for d in train_docs):,} | validation tokens={sum(d.numel() for d in val_docs):,} | device={device}",flush=True)
 
-@torch.no_grad()
+@torch.inference_mode()
 def evaluate():
     base.eval(); out={}
     for name,batches in (("train",train_eval_batches),("val",val_eval_batches)):
         vals=[]
         for x,y in batches:
-            _,loss=base(x,y); vals.append(loss.item())
+            if USE_AMP:
+                with torch.autocast(device_type="mps",dtype=torch.float16):
+                    _,loss=base(x,y)
+            else:
+                _,loss=base(x,y)
+            vals.append(loss.item())
         out[name]=round(sum(vals)/len(vals),4)
     base.train(); return out
 def clone_state(): return {k:v.detach().cpu().clone() for k,v in base.state_dict().items()}
