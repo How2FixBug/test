@@ -15,7 +15,8 @@ N_HEAD=6
 N_LAYER=5
 DROPOUT=0.10
 VOCAB_SIZE=8192
-DATASET_ROWS=int(os.environ.get("DATASET_ROWS","250000"))
+DATASET_ROWS=int(os.environ.get("DATASET_ROWS","25000"))
+VALIDATION_ROWS=int(os.environ.get("VALIDATION_ROWS","21990"))
 MAX_STEPS=int(os.environ.get("TRAIN_STEPS","30000"))
 CHUNK_STEPS=int(os.environ.get("CHUNK_STEPS",str(MAX_STEPS)))
 EVAL_INTERVAL=500
@@ -24,7 +25,8 @@ LEARNING_RATE=8e-4
 DATASET="roneneldan/TinyStories"
 ROWS_API="https://datasets-server.huggingface.co/rows"
 CACHE=Path("training_stories_v7.json")
-CHECKPOINT=Path("checkpoint-v7.pt")
+VAL_CACHE=Path("validation_stories_v7.json")
+CHECKPOINT=Path("checkpoint-v7-25k.pt")
 random.seed(SEED); torch.manual_seed(SEED)
 if torch.backends.mps.is_available():
     device=torch.device("mps"); print("MPS acceleration enabled.",flush=True)
@@ -32,8 +34,8 @@ else:
     device=torch.device("cpu"); torch.set_num_threads(min(4,os.cpu_count() or 2)); torch.set_num_interop_threads(1)
     print("Using CPU. For M1/M2/M3 Mac, MPS should be available in a PyTorch build with MPS support.",flush=True)
 
-def fetch_page(offset,length):
-    params=urllib.parse.urlencode({"dataset":DATASET,"config":"default","split":"train","offset":offset,"length":length})
+def fetch_page(offset,length,split):
+    params=urllib.parse.urlencode({"dataset":DATASET,"config":"default","split":split,"offset":offset,"length":length})
     req=urllib.request.Request(ROWS_API+"?"+params,headers={"User-Agent":"littleGPT-v7/1.1 (sequential-resumable)"})
     for attempt in range(12):
         try:
@@ -49,48 +51,46 @@ def fetch_page(offset,length):
                 except Exception: pass
             print(f"Retry page {offset} in {wait}s: {e}",flush=True); time.sleep(wait)
 
-def download():
+def download_split(split,target_rows,cache_path):
     stories=[]; next_offset=0
-    if CACHE.exists():
+    if cache_path.exists():
         try:
-            cached=json.loads(CACHE.read_text(encoding="utf-8"))
+            cached=json.loads(cache_path.read_text(encoding="utf-8"))
             if isinstance(cached,dict) and "stories" in cached:
-                stories=cached["stories"]; next_offset=int(cached.get("next_offset",0))
-            elif isinstance(cached,list):
-                # Migrate the earlier v7 cache format. The old downloader requested
-                # 100-row pages and normally retained every returned story.
+                if cached.get("split",split)==split:
+                    stories=cached["stories"]; next_offset=int(cached.get("next_offset",0))
+            elif isinstance(cached,list) and split=="train":
+                # Migrate the previous list-based v7 training cache.
                 stories=cached; next_offset=len(stories)
-                print(f"Resuming legacy cache at approximately row {next_offset:,}.",flush=True)
+                print(f"Resuming legacy train cache at approximately row {next_offset:,}.",flush=True)
         except Exception as e:
-            print(f"Cache could not be read ({e}); starting a fresh dataset download.",flush=True)
-            stories=[]; next_offset=0
-    if len(stories)>=DATASET_ROWS: return stories[:DATASET_ROWS]
-    # One request at a time. Persist both the stories and source-row offset after
-    # EVERY successful page, using atomic replacement so interruption is recoverable.
-    while len(stories)<DATASET_ROWS:
-        requested=min(100,DATASET_ROWS-next_offset)
-        if requested<=0: break
-        page,row_count=fetch_page(next_offset,requested)
+            raise RuntimeError(f"Could not read {split} cache {cache_path}: {e}") from e
+    if len(stories)>=target_rows: return stories[:target_rows]
+    print(f"Loading TinyStories {split} split: target {target_rows:,} stories; cached {len(stories):,}.",flush=True)
+    # Fetch one page at a time and atomically cache every successful page.
+    # The train and official validation split have independent caches and offsets.
+    while len(stories)<target_rows and next_offset<target_rows:
+        requested=min(100,target_rows-next_offset)
+        page,row_count=fetch_page(next_offset,requested,split)
         if row_count<=0: break
         stories.extend(page)
         next_offset+=row_count
-        temp=CACHE.with_suffix(".tmp")
-        temp.write_text(json.dumps({"next_offset":next_offset,"stories":stories},ensure_ascii=False),encoding="utf-8")
-        temp.replace(CACHE)
-        print(f"Downloaded {len(stories):,}/{DATASET_ROWS:,} stories (source row {next_offset:,})",flush=True)
-        time.sleep(2.0)
-    if len(stories)<1000: raise RuntimeError(f"Only {len(stories)} stories downloaded.")
-    return stories[:DATASET_ROWS]
+        temp=cache_path.with_suffix(".tmp")
+        temp.write_text(json.dumps({"split":split,"next_offset":next_offset,"stories":stories},ensure_ascii=False),encoding="utf-8")
+        temp.replace(cache_path)
+        print(f"{split}: cached {len(stories):,}/{target_rows:,} stories (source row {next_offset:,})",flush=True)
+    if len(stories)<min(1000,target_rows):
+        raise RuntimeError(f"Only {len(stories)} stories downloaded from TinyStories {split}.")
+    return stories[:target_rows]
 
 def clean(s):
     table={"\u201c":'"',"\u201d":'"',"\u201e":'"',"\u201f":'"',"\u2018":"'","\u2019":"'","\u201a":"'","\u201b":"'","\u00a0":" "}
     for a,b in table.items(): s=s.replace(a,b)
     return s
 
-stories=download()
-random.Random(SEED).shuffle(stories)
-cut=int(len(stories)*.95)
-train_stories,val_stories=stories[:cut],stories[cut:]
+train_stories=download_split("train",DATASET_ROWS,CACHE)
+val_stories=download_split("validation",VALIDATION_ROWS,VAL_CACHE)
+stories=train_stories
 
 # Learn a deterministic byte-subword vocabulary. Every UTF-8 byte is always representable,
 # so unseen words never collapse to <unk>. Tokens are byte strings stored as Latin-1 in JSON.
@@ -195,7 +195,7 @@ base=GPT().to(device)
 params=sum(p.numel() for p in base.parameters())
 assert params==9796448, f"Expected 9,796,448 params, got {params}"
 optimizer=torch.optim.AdamW(base.parameters(),lr=LEARNING_RATE,weight_decay=.1,foreach=(device.type=="cpu"))
-config={"block_size":BLOCK_SIZE,"n_embd":N_EMBD,"n_head":N_HEAD,"n_layer":N_LAYER,"vocab_size":VOCAB_SIZE,"dataset_rows":DATASET_ROWS,"tokenizer_version":1,"boundary_safe":True}
+config={"block_size":BLOCK_SIZE,"n_embd":N_EMBD,"n_head":N_HEAD,"n_layer":N_LAYER,"vocab_size":VOCAB_SIZE,"dataset_rows":DATASET_ROWS,"validation_rows":VALIDATION_ROWS,"tokenizer_version":1,"boundary_safe":True}
 step0=0; best=float("inf"); best_state=None; metrics={"train":None,"val":None}
 if CHECKPOINT.exists():
     ck=torch.load(CHECKPOINT,map_location=device,weights_only=False)
@@ -252,6 +252,6 @@ for b in base.blocks:
     state["blocks"].append({"ln1":{"weight":arr(b.ln1.weight),"bias":arr(b.ln1.bias)},"attn":{"qkv":{"weight":arr(b.attn.qkv.weight),"bias":arr(b.attn.qkv.bias)},"proj":{"weight":arr(b.attn.proj.weight),"bias":arr(b.attn.proj.bias)}},"ln2":{"weight":arr(b.ln2.weight),"bias":arr(b.ln2.bias)},"mlp":{"fc1":{"weight":arr(b.fc1.weight),"bias":arr(b.fc1.bias)},"fc2":{"weight":arr(b.fc2.weight),"bias":arr(b.fc2.bias)}}})
 payload={"format":"littleGPT-v7","created_at":__import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
 "config":{"block_size":BLOCK_SIZE,"n_embd":N_EMBD,"n_head":N_HEAD,"n_layer":N_LAYER,"vocab_size":VOCAB_SIZE,"unk_id":0,"bos_id":1,"eos_id":2,"tokenizer":"byte-subword-greedy-v1","max_token_bytes":max_width},
-"vocab":vocab,"parameters":params,"training":{"steps":MAX_STEPS,"loss":best,"train_loss":metrics["train"],"dataset":f"TinyStories ({len(stories)} stories; story-boundary-safe windows)","seed":SEED,"train_tokens":train_stream.numel(),"validation_tokens":val_stream.numel(),"learning_rate":LEARNING_RATE,"batch_size":BATCH_SIZE,"dropout":DROPOUT,"best_validation_loss":best,"device":str(device)},"state":state}
+"vocab":vocab,"parameters":params,"training":{"steps":MAX_STEPS,"loss":best,"train_loss":metrics["train"],"dataset":f"TinyStories official train split ({len(train_stories)} stories; official validation split ({len(val_stories)} stories); story-boundary-safe windows)","seed":SEED,"train_tokens":train_stream.numel(),"validation_tokens":val_stream.numel(),"learning_rate":LEARNING_RATE,"batch_size":BATCH_SIZE,"dropout":DROPOUT,"best_validation_loss":best,"device":str(device)},"state":state}
 Path("model.json").write_text(json.dumps(payload,separators=(",",":")),encoding="utf-8")
 print(f"Exported littleGPT v7 ({Path('model.json').stat().st_size/1024/1024:.1f} MB)",flush=True)
