@@ -8,7 +8,7 @@ v7 is a new model format and training pipeline; it does not reuse v6 checkpoints
 - **8,192-token byte-subword vocabulary:** frequent byte sequences are learned from a representative sample of training stories. Every UTF-8 byte has a fallback, so unfamiliar words are composed from smaller pieces rather than becoming `<unk>`.
 - **25,000 TinyStories training stories** by default, sampled from the official `train` split. Evaluation uses the official TinyStories `validation` split (21,990 stories), not a random slice of training data. The two splits have separate resumable caches.
 - **Story-boundary-safe training:** each training window is sampled wholly inside one story. Context from one story cannot bleed into another.
-- **Vectorized batches, fixed tensor shapes, gradient clipping, cosine learning-rate decay, held-out validation, and best-validation checkpoint export.**
+- **Vectorized batches, fixed tensor shapes, gradient clipping, cosine learning-rate decay, held-out validation, and best-validation checkpoint export.** Evaluation uses the same 32 preselected batches at every checkpoint, so validation changes are comparable rather than being dominated by a new random sample each time.
 - **Apple Silicon MPS:** automatically selected when available. CPU is the fallback.
 - **Browser KV cache:** v7 inference caches each layer's keys and values instead of recalculating attention for the entire prompt on every generated token.
 - **Compact model export:** learned weights are stored as float16 base64 blobs (about 20 MB of raw weight data) and unpacked into typed arrays in the browser, avoiding a massive nested-number JSON file and staying below GitHub's per-file size limit.
