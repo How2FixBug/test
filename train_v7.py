@@ -1,4 +1,4 @@
-import json, os, time, math, random, urllib.parse, urllib.request
+import json, os, time, math, random, base64, urllib.parse, urllib.request
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -231,7 +231,9 @@ if completed<MAX_STEPS: print("Chunk complete; checkpoint saved.",flush=True); r
 if best_state: base.load_state_dict(best_state)
 base.eval()
 
-def arr(t): return t.detach().cpu().tolist()
+def arr(t):
+    packed=t.detach().to(device="cpu",dtype=torch.float16).contiguous()
+    return {"f16":base64.b64encode(bytes(packed.untyped_storage())).decode("ascii") }
 state={"wte":arr(base.wte.weight),"wpe":arr(base.wpe.weight),"ln_f":{"weight":arr(base.ln_f.weight),"bias":arr(base.ln_f.bias)},"lm_head":{"weight":arr(base.lm_head.weight),"bias":arr(base.lm_head.bias)},"blocks":[]}
 for b in base.blocks:
     state["blocks"].append({"ln1":{"weight":arr(b.ln1.weight),"bias":arr(b.ln1.bias)},"attn":{"qkv":{"weight":arr(b.attn.qkv.weight),"bias":arr(b.attn.qkv.bias)},"proj":{"weight":arr(b.attn.proj.weight),"bias":arr(b.attn.proj.bias)}},"ln2":{"weight":arr(b.ln2.weight),"bias":arr(b.ln2.bias)},"mlp":{"fc1":{"weight":arr(b.fc1.weight),"bias":arr(b.fc1.bias)},"fc2":{"weight":arr(b.fc2.weight),"bias":arr(b.fc2.bias)}}})
