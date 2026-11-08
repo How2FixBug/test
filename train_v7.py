@@ -116,8 +116,8 @@ max_width=max(map(len,tokens))
 token_trie={}
 for token,idx in stoi.items():
     node=token_trie
-    # Token strings store raw bytes as Latin-1; trie keys must be integer bytes.
-    for byte in token.encode("latin1"): node=node.setdefault(byte,{})
+    # Tokens are already bytes; iterating yields integer byte values.
+    for byte in token: node=node.setdefault(byte,{})
     node[None]=idx
 max_width=max(map(len,tokens))
 
