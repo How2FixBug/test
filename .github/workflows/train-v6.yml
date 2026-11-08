@@ -49,7 +49,7 @@ jobs:
       - name: Restore v6 checkpoint for this run
         uses: actions/cache/restore@v4
         with:
-          path: checkpoint.pt
+          path: checkpoint-v6.pt
           key: littlegpt-v6-checkpoint-${{ github.run_id }}-initial
           restore-keys: |
             littlegpt-v6-checkpoint-${{ github.run_id }}-
