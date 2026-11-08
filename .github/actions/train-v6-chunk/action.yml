@@ -20,8 +20,8 @@ runs:
       run: python train_v6.py
 
     - name: Persist checkpoint
-      if: always() && hashFiles('checkpoint.pt') != ''
+      if: always() && hashFiles('checkpoint-v6.pt') != ''
       uses: actions/cache/save@v4
       with:
-        path: checkpoint.pt
+        path: checkpoint-v6.pt
         key: littlegpt-v6-checkpoint-${{ github.run_id }}-${{ inputs.chunk }}
