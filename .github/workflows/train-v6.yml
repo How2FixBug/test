@@ -68,14 +68,12 @@ jobs:
           key: littlegpt-v4-dataset-${{ github.run_id }}
 
       - name: Train chunk 2
-        if: ${{ inputs.steps != '10000' || inputs.steps == '' }}
         uses: ./.github/actions/train-v6-chunk
         with:
           chunk: "2"
           total_steps: ${{ inputs.steps || '30000' }}
 
       - name: Train chunk 3
-        if: ${{ inputs.steps != '10000' || inputs.steps == '' }}
         uses: ./.github/actions/train-v6-chunk
         with:
           chunk: "3"
@@ -88,21 +86,21 @@ jobs:
           total_steps: ${{ inputs.steps || '30000' }}
 
       - name: Train chunk 5
-        if: ${{ inputs.steps == '30000' || inputs.steps == '' }}
+        if: ${{ inputs.steps == '20000' || inputs.steps == '30000' || inputs.steps == '' }}
         uses: ./.github/actions/train-v6-chunk
         with:
           chunk: "5"
           total_steps: ${{ inputs.steps || '30000' }}
 
       - name: Train chunk 6
-        if: ${{ inputs.steps == '30000' || inputs.steps == '' }}
+        if: ${{ inputs.steps == '20000' || inputs.steps == '30000' || inputs.steps == '' }}
         uses: ./.github/actions/train-v6-chunk
         with:
           chunk: "6"
           total_steps: ${{ inputs.steps || '30000' }}
 
       - name: Train chunk 7
-        if: ${{ inputs.steps == '30000' || inputs.steps == '' }}
+        if: ${{ inputs.steps == '20000' || inputs.steps == '30000' || inputs.steps == '' }}
         uses: ./.github/actions/train-v6-chunk
         with:
           chunk: "7"
