@@ -22,6 +22,8 @@ CHUNK_STEPS=int(os.environ.get("CHUNK_STEPS",str(MAX_STEPS)))
 EVAL_INTERVAL=500
 EVAL_BATCHES=32
 LEARNING_RATE=8e-4
+# Optional mixed-precision experiment; set USE_AMP=0 for the FP32 baseline.
+USE_AMP=os.environ.get("USE_AMP","1")=="1" and torch.backends.mps.is_available()
 DATASET="roneneldan/TinyStories"
 ROWS_API="https://datasets-server.huggingface.co/rows"
 CACHE=Path("training_stories_v7.json")
@@ -213,6 +215,14 @@ base=GPT().to(device)
 params=sum(p.numel() for p in base.parameters())
 assert params==9796448, f"Expected 9,796,448 params, got {params}"
 optimizer=torch.optim.AdamW(base.parameters(),lr=LEARNING_RATE,weight_decay=.1,foreach=(device.type=="cpu"))
+# Model weights and optimizer state stay FP32; only eligible forward operations use FP16.
+scaler=None
+if USE_AMP:
+    try:
+        scaler=torch.amp.GradScaler("mps",enabled=True)
+    except Exception as exc:
+        print(f"MPS gradient scaler unavailable ({exc}); trying autocast without scaling.",flush=True)
+print("Mixed precision: "+("ON (MPS FP16)" if USE_AMP else "OFF (FP32)"),flush=True)
 config={"block_size":BLOCK_SIZE,"n_embd":N_EMBD,"n_head":N_HEAD,"n_layer":N_LAYER,"vocab_size":VOCAB_SIZE,"dataset_rows":DATASET_ROWS,"validation_rows":VALIDATION_ROWS,"tokenizer_version":1,"boundary_safe":True,"eval_version":3,"batching_version":2}
 step0=0; best=float("inf"); best_state=None; metrics={"train":None,"val":None}
 if CHECKPOINT.exists():
@@ -258,7 +268,21 @@ base.train(); started=time.perf_counter(); start_step=step0
 for step in range(step0,min(step0+CHUNK_STEPS,MAX_STEPS)):
     for group in optimizer.param_groups: group["lr"]=lr_at(step)
     x,y=get_batch(train_docs); optimizer.zero_grad(set_to_none=True)
-    _,loss=base(x,y); loss.backward(); torch.nn.utils.clip_grad_norm_(base.parameters(),1.0); optimizer.step()
+    if USE_AMP:
+        with torch.autocast(device_type="mps",dtype=torch.float16):
+            _,loss=base(x,y)
+    else:
+        _,loss=base(x,y)
+    if scaler is not None:
+        scaler.scale(loss).backward()
+        scaler.unscale_(optimizer)
+        torch.nn.utils.clip_grad_norm_(base.parameters(),1.0)
+        scaler.step(optimizer)
+        scaler.update()
+    else:
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(base.parameters(),1.0)
+        optimizer.step()
     if (step+1)%EVAL_INTERVAL==0 or step==0 or step+1==MAX_STEPS:
         metrics=evaluate(); improved=metrics["val"]<best
         if improved: best=metrics["val"]; best_state=clone_state()
