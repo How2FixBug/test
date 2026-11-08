@@ -274,7 +274,7 @@ if CHECKPOINT_PATH.exists():
 print(
     f"littleGPT v6 | {parameter_count:,} parameters | vocab={vocab_size} | "
     f"stories={len(stories):,} | train_tokens={train_sequences.numel():,} | "
-    f"validation_tokens={val_sequences.numel():,} | batch={BATCH_SIZE} distinct stories | CPU",
+    f"validation_tokens={val_sequences.numel():,} | batch={BATCH_SIZE} packed windows | device={device}",
     flush=True,
 )
 
@@ -325,6 +325,11 @@ def learning_rate(step):
 
 
 model.train()
+interval_start = time.perf_counter()
+interval_start_step = start_step
+profile_steps = int(os.environ.get("PROFILE_STEPS", "0"))
+profiler = None
+profiled_steps = 0
 for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
     lr = learning_rate(step)
     for group in optimizer.param_groups:
@@ -346,6 +351,26 @@ for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
     torch.nn.utils.clip_grad_norm_(base_model.parameters(), 1.0)
     optimizer.step()
 
+    # Profile steady-state CPU steps after the first compiled warm-up step.
+    if (profile_steps > 0 and device.type == "cpu" and start_step == 0
+            and step == 1 and profiler is None):
+        profiler = torch.profiler.profile(
+            activities=[torch.profiler.ProfilerActivity.CPU],
+            record_shapes=True,
+            profile_memory=True,
+        )
+        profiler.start()
+    if profiler is not None:
+        profiler.step()
+        profiled_steps += 1
+        if profiled_steps >= profile_steps:
+            profiler.stop()
+            print("CPU PROFILE (top operators):", flush=True)
+            print(profiler.key_averages().table(
+                sort_by="self_cpu_time_total", row_limit=15
+            ), flush=True)
+            profiler = None
+
     if (step + 1) % EVAL_INTERVAL == 0 or step == 0 or step + 1 == MAX_STEPS:
         last_metrics = estimate_loss()
         improved = last_metrics["val"] < best_val
@@ -353,12 +378,18 @@ for step in range(start_step, min(start_step + CHUNK_STEPS, MAX_STEPS)):
             best_val = last_metrics["val"]
             best_model_state = clone_state_dict(base_model)
         marker = " BEST" if improved else ""
+        elapsed = time.perf_counter() - interval_start
+        interval_steps = step + 1 - interval_start_step
+        rate = interval_steps / max(elapsed, 1e-9)
         print(
             f"step {step + 1}/{MAX_STEPS} "
             f"train={last_metrics['train']:.4f} val={last_metrics['val']:.4f} "
-            f"best_val={best_val:.4f}{marker}",
+            f"best_val={best_val:.4f}{marker} "
+            f"speed={rate:.2f} steps/s ({elapsed:.1f}s for {interval_steps} steps)",
             flush=True,
         )
+        interval_start = time.perf_counter()
+        interval_start_step = step + 1
     if (step + 1) % 500 == 0 or step + 1 == MAX_STEPS:
         save_checkpoint(step + 1)
 
