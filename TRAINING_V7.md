@@ -6,7 +6,7 @@ v7 is a new model format and training pipeline; it does not reuse v6 checkpoints
 
 - **9,796,448 parameters:** 5 transformer blocks, width 288, 6 attention heads, 256-token context.
 - **8,192-token byte-subword vocabulary:** frequent byte sequences are learned from a representative sample of training stories. Every UTF-8 byte has a fallback, so unfamiliar words are composed from smaller pieces rather than becoming `<unk>`.
-- **250,000 TinyStories rows** by default, with resumable download caching.
+- **25,000 TinyStories training stories** by default, sampled from the official `train` split. Evaluation uses the official TinyStories `validation` split (21,990 stories), not a random slice of training data. The two splits have separate resumable caches.
 - **Story-boundary-safe training:** each training window is sampled wholly inside one story. Context from one story cannot bleed into another.
 - **Vectorized batches, fixed tensor shapes, gradient clipping, cosine learning-rate decay, held-out validation, and best-validation checkpoint export.**
 - **Apple Silicon MPS:** automatically selected when available. CPU is the fallback.
@@ -21,15 +21,15 @@ Use the existing Python/PyTorch environment. From the repository folder:
 python3 train_v7.py
 ```
 
-The defaults are 250,000 stories and 30,000 optimizer steps. The first run downloads and caches the dataset and builds the tokenizer; later runs reuse the story cache. Checkpoints are written every 500 steps, so rerunning resumes from the latest saved checkpoint.
+The defaults are 25,000 training stories, the full 21,990-story official validation split, and 30,000 optimizer steps. The first run downloads and caches both splits separately and builds the tokenizer; later runs reuse both caches. The train cache is `training_stories_v7.json`; the validation cache is `validation_stories_v7.json`. Checkpoints are written every 500 steps, so rerunning resumes from the latest saved checkpoint.
 
 For a smaller smoke run (still a separate v7 dataset/tokenizer configuration):
 
 ```bash
-DATASET_ROWS=30000 TRAIN_STEPS=500 python3 train_v7.py
+DATASET_ROWS=5000 VALIDATION_ROWS=1000 TRAIN_STEPS=500 python3 train_v7.py
 ```
 
-Do not switch `DATASET_ROWS` after creating a checkpoint unless you remove `checkpoint-v7.pt`; the script intentionally rejects mismatched checkpoints.
+Do not change `DATASET_ROWS` or `VALIDATION_ROWS` after creating a checkpoint unless you use a fresh checkpoint filename or remove `checkpoint-v7-25k.pt`; the script intentionally rejects mismatched dataset configurations.
 
 When training finishes, `model.json` is exported in the repository folder. Commit and push it to publish the model through GitHub Pages.
 
