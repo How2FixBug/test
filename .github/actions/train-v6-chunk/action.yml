@@ -16,6 +16,7 @@ runs:
         TRAIN_STEPS: ${{ inputs.total_steps }}
         CHUNK_STEPS: "3000"
         DATASET_ROWS: "30000"
+        PROFILE_STEPS: "10"
       run: python train_v6.py
 
     - name: Persist checkpoint
