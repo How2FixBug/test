@@ -240,6 +240,7 @@ if CHECKPOINT.exists():
         print("Migrated checkpoint: preserved training progress; recalibrating best checkpoint with fixed evaluation batches.",flush=True)
     else:
         best=ck["best"]; best_state=ck["best_model"]; metrics=ck["metrics"]
+    if scaler is not None and ck.get("scaler") is not None: scaler.load_state_dict(ck["scaler"])
     torch.set_rng_state(ck["rng"].cpu())
     if device.type=="mps" and ck.get("mps_rng") is not None: torch.mps.set_rng_state(ck["mps_rng"].cpu())
 print(f"littleGPT v8 | {params:,} parameters | vocab={VOCAB_SIZE} byte-subwords | stories={len(stories):,} | train tokens={sum(d.numel() for d in train_docs):,} | validation tokens={sum(d.numel() for d in val_docs):,} | device={device}",flush=True)
@@ -256,7 +257,7 @@ def evaluate():
 def clone_state(): return {k:v.detach().cpu().clone() for k,v in base.state_dict().items()}
 def save(step):
     data={"format":"littleGPT-v8-checkpoint","step":step,"model":{k:v.detach().cpu() for k,v in base.state_dict().items()},
-          "best_model":best_state,"best":best,"optimizer":optimizer.state_dict(),"vocab":vocab,"config":config,"metrics":metrics,"rng":torch.get_rng_state()}
+          "best_model":best_state,"best":best,"optimizer":optimizer.state_dict(),"scaler":scaler.state_dict() if scaler is not None else None,"vocab":vocab,"config":config,"metrics":metrics,"rng":torch.get_rng_state()}
     if device.type=="mps": data["mps_rng"]=torch.mps.get_rng_state()
     torch.save(data,CHECKPOINT); print(f"CHECKPOINT SAVED {step}/{MAX_STEPS} best_val={best:.4f}",flush=True)
 
