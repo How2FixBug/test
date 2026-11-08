@@ -84,7 +84,8 @@ train_stories,val_stories=stories[:cut],stories[cut:]
 # so unseen words never collapse to <unk>. Tokens are byte strings stored as Latin-1 in JSON.
 def raw_bytes(s): return clean(s).encode("utf-8")
 counts=Counter()
-for n,s in enumerate(train_stories):
+tokenizer_sample=random.Random(SEED).sample(train_stories,min(50000,len(train_stories)))
+for n,s in enumerate(tokenizer_sample):
     b=raw_bytes(s)
     for width in range(2,9):
         counts.update(b[i:i+width] for i in range(max(0,len(b)-width+1)))
