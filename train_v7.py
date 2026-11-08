@@ -228,8 +228,8 @@ if CHECKPOINT.exists():
         print("Migrated checkpoint: preserved training progress; recalibrating best checkpoint with fixed evaluation batches.",flush=True)
     else:
         best=ck["best"]; best_state=ck["best_model"]; metrics=ck["metrics"]
-    torch.set_rng_state(ck["rng"])
-    if device.type=="mps" and ck.get("mps_rng") is not None: torch.mps.set_rng_state(ck["mps_rng"])
+    torch.set_rng_state(ck["rng"].cpu())
+    if device.type=="mps" and ck.get("mps_rng") is not None: torch.mps.set_rng_state(ck["mps_rng"].cpu())
 print(f"littleGPT v7 | {params:,} parameters | vocab={VOCAB_SIZE} byte-subwords | stories={len(stories):,} | train tokens={train_stream.numel():,} | validation tokens={val_stream.numel():,} | device={device}",flush=True)
 
 @torch.no_grad()
