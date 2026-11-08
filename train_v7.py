@@ -20,7 +20,7 @@ VALIDATION_ROWS=int(os.environ.get("VALIDATION_ROWS","21990"))
 MAX_STEPS=int(os.environ.get("TRAIN_STEPS","30000"))
 CHUNK_STEPS=int(os.environ.get("CHUNK_STEPS",str(MAX_STEPS)))
 EVAL_INTERVAL=500
-EVAL_BATCHES=12
+EVAL_BATCHES=32
 LEARNING_RATE=8e-4
 DATASET="roneneldan/TinyStories"
 ROWS_API="https://datasets-server.huggingface.co/rows"
@@ -164,6 +164,22 @@ def get_batch(stream,doc_offsets,doc_spans):
     ix=starts.unsqueeze(1)+OFFSETS
     return stream[ix],stream[ix+1]
 
+# Fixed evaluation windows make loss comparable between checkpoints.
+# Separate Python RNGs keep evaluation sampling independent of training RNG state.
+def make_fixed_eval_batches(stream,doc_offsets,doc_spans,seed):
+    rng=random.Random(seed)
+    offsets=doc_offsets.detach().cpu().tolist()
+    spans=doc_spans.detach().cpu().tolist()
+    batches=[]
+    for _ in range(EVAL_BATCHES):
+        starts=[offsets[j]+rng.randrange(spans[j]) for j in (rng.randrange(len(offsets)) for _ in range(BATCH_SIZE))]
+        ix=torch.tensor(starts,dtype=torch.long,device=device).unsqueeze(1)+OFFSETS
+        batches.append((stream[ix],stream[ix+1]))
+    return batches
+
+train_eval_batches=make_fixed_eval_batches(train_stream,train_offsets,train_spans,SEED+101)
+val_eval_batches=make_fixed_eval_batches(val_stream,val_offsets,val_spans,SEED+202)
+
 class Attention(nn.Module):
     def __init__(self):
         super().__init__(); self.qkv=nn.Linear(N_EMBD,3*N_EMBD); self.proj=nn.Linear(N_EMBD,N_EMBD)
@@ -195,14 +211,23 @@ base=GPT().to(device)
 params=sum(p.numel() for p in base.parameters())
 assert params==9796448, f"Expected 9,796,448 params, got {params}"
 optimizer=torch.optim.AdamW(base.parameters(),lr=LEARNING_RATE,weight_decay=.1,foreach=(device.type=="cpu"))
-config={"block_size":BLOCK_SIZE,"n_embd":N_EMBD,"n_head":N_HEAD,"n_layer":N_LAYER,"vocab_size":VOCAB_SIZE,"dataset_rows":DATASET_ROWS,"validation_rows":VALIDATION_ROWS,"tokenizer_version":1,"boundary_safe":True}
+config={"block_size":BLOCK_SIZE,"n_embd":N_EMBD,"n_head":N_HEAD,"n_layer":N_LAYER,"vocab_size":VOCAB_SIZE,"dataset_rows":DATASET_ROWS,"validation_rows":VALIDATION_ROWS,"tokenizer_version":1,"boundary_safe":True,"eval_version":2}
 step0=0; best=float("inf"); best_state=None; metrics={"train":None,"val":None}
 if CHECKPOINT.exists():
     ck=torch.load(CHECKPOINT,map_location=device,weights_only=False)
-    if ck.get("format")!="littleGPT-v7-checkpoint" or ck.get("config")!=config or ck.get("vocab")!=vocab:
+    old_config=ck.get("config",{})
+    legacy_eval_config={k:v for k,v in config.items() if k!="eval_version"}
+    legacy_eval=(old_config==legacy_eval_config)
+    if ck.get("format")!="littleGPT-v7-checkpoint" or (old_config!=config and not legacy_eval) or ck.get("vocab")!=vocab:
         raise RuntimeError("Checkpoint does not match v7 data/tokenizer/config; refusing to resume.")
     base.load_state_dict(ck["model"]); optimizer.load_state_dict(ck["optimizer"]); step0=ck["step"]
-    best=ck["best"]; best_state=ck["best_model"]; metrics=ck["metrics"]
+    if legacy_eval:
+        # Old best scores came from changing random samples and cannot be compared
+        # with the new fixed evaluation set. Keep model/optimizer progress, reset best.
+        best=float("inf"); best_state=None; metrics={"train":None,"val":None}
+        print("Migrated checkpoint: preserved training progress; recalibrating best checkpoint with fixed evaluation batches.",flush=True)
+    else:
+        best=ck["best"]; best_state=ck["best_model"]; metrics=ck["metrics"]
     torch.set_rng_state(ck["rng"])
     if device.type=="mps" and ck.get("mps_rng") is not None: torch.mps.set_rng_state(ck["mps_rng"])
 print(f"littleGPT v7 | {params:,} parameters | vocab={VOCAB_SIZE} byte-subwords | stories={len(stories):,} | train tokens={train_stream.numel():,} | validation tokens={val_stream.numel():,} | device={device}",flush=True)
@@ -210,10 +235,10 @@ print(f"littleGPT v7 | {params:,} parameters | vocab={VOCAB_SIZE} byte-subwords 
 @torch.no_grad()
 def evaluate():
     base.eval(); out={}
-    for name,stream,offsets,spans in (("train",train_stream,train_offsets,train_spans),("val",val_stream,val_offsets,val_spans)):
+    for name,batches in (("train",train_eval_batches),("val",val_eval_batches)):
         vals=[]
-        for _ in range(EVAL_BATCHES):
-            x,y=get_batch(stream,offsets,spans); _,loss=base(x,y); vals.append(loss.item())
+        for x,y in batches:
+            _,loss=base(x,y); vals.append(loss.item())
         out[name]=round(sum(vals)/len(vals),4)
     base.train(); return out
 def clone_state(): return {k:v.detach().cpu().clone() for k,v in base.state_dict().items()}
