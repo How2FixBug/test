@@ -150,7 +150,7 @@ async function handleGenerate(prompt){
  if(!model||generating||!prompt.trim())return;generating=true;cancelled=false;$("generate").disabled=true;$("generate").textContent="…";const chat=activeChat();$("welcome")?.remove();
  if(chat.title==="New chat"){chat.title=prompt.trim().replace(/\s+/g," ").slice(0,34);$("current-chat-title").textContent=chat.title;renderChatList()}
  addMessage("user",prompt);const reply=addMessage("assistant","…");const record=chat.messages[chat.messages.length-1];
- try{const instructionTuned=Boolean(model.training?.instruction_tuned);const modelPrompt=instructionTuned?"User: "+prompt+"\nAssistant:\n":prompt;const result=await generate(modelPrompt,instructionTuned?160:100,instructionTuned?.82:.76,instructionTuned?40:28,text=>{reply.textContent=text;$("messages").scrollTop=$("messages").scrollHeight});reply.textContent=result||"(No text generated.)";record.content=reply.textContent;saveChats()}
+ try{const instructionTuned=Boolean(model.training?.instruction_tuned);const modelPrompt=instructionTuned?"User: "+prompt+"\nAssistant:\n":prompt;const result=await generate(modelPrompt,instructionTuned?160:100,instructionTuned ? 0.82 : 0.76,instructionTuned?40:28,text=>{reply.textContent=text;$("messages").scrollTop=$("messages").scrollHeight});reply.textContent=result||"(No text generated.)";record.content=reply.textContent;saveChats()}
  catch(error){reply.textContent="Inference error: "+error.message;record.content=reply.textContent;saveChats();console.error(error)}
  finally{generating=false;$("generate").textContent="↑";$("generate").disabled=!model||!$("prompt").value.trim()}
 }
