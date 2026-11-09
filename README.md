@@ -31,3 +31,24 @@ This is a small next-token model trained on children's stories. It can learn sto
 - `index.html`, `styles.css`, `app.js`: browser chat UI and inference.
 - `train.py`: data download, model, CPU training, and JSON export.
 - `.github/workflows/train.yml`: manual training workflow.
+
+
+## Phase 2: instruction fine-tuning
+
+Phase 2 fine-tunes the best weights from `checkpoint-v8.pt` on story-writing instruction/response pairs derived from the TinyStories train and validation caches. It keeps the same tokenizer and model architecture, so the browser can still run inference locally.
+
+Run this on the Mac that has the V8 checkpoint and both dataset caches:
+
+```bash
+python3 train_v9.py
+```
+
+The script reads `checkpoint-v8.pt`, `training_stories_v7.json`, and `validation_stories_v7.json`; writes a separate `checkpoint-v9-instruct.pt`; and exports the instruction-tuned `model.json`. It does not overwrite the V8 checkpoint.
+
+After training, commit and push only the exported model:
+
+```bash
+git add model.json && git commit -m "Train littleGPT Phase 2" && git push
+```
+
+Do not add either checkpoint file to Git.
