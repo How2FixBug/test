@@ -219,7 +219,7 @@ for b in model.blocks:
               "proj":{"weight":arr(b.attn.proj.weight),"bias":arr(b.attn.proj.bias)}},
       "ln2":{"weight":arr(b.ln2.weight),"bias":arr(b.ln2.bias)},
       "mlp":{"fc1":{"weight":arr(b.fc1.weight),"bias":arr(b.fc1.bias)},
-             "fc2":{"weight":arr(b.mlp.fc2.weight),"bias":arr(b.mlp.fc2.bias)}}})
+             "fc2":{"weight":arr(b.fc2.weight),"bias":arr(b.fc2.bias)}}})
 payload={"format":"littleGPT-v7","created_at":__import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
  "config":{"block_size":BLOCK_SIZE,"n_embd":N_EMBD,"n_head":N_HEAD,"n_layer":N_LAYER,"vocab_size":VOCAB_SIZE,
  "unk_id":0,"bos_id":1,"eos_id":2,"tokenizer":"byte-subword-greedy-v1","max_token_bytes":max_width},
