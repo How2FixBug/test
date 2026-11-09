@@ -182,7 +182,7 @@ extra_train, extra_val = make_constrained_examples(SEED + 77)
 # Oversample the smaller, carefully checked set so explicit constraints matter
 # during fine-tuning without replacing the broad TinyStories examples.
 train_examples.extend(extra_train * 8)
-val_examples.extend(extra_val)
+val_examples.extend(extra_val * 8)
 random.Random(SEED + 78).shuffle(train_examples)
 random.Random(SEED + 79).shuffle(val_examples)
 if len(train_examples)<1000 or len(val_examples)<500:
