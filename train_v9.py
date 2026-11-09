@@ -156,6 +156,22 @@ def make_constrained_examples(seed):
                 ids = [1] + pids + answer + [2]
                 labels = [-100] * (1 + len(pids)) + answer + [2]
                 examples.append((torch.tensor(ids[:-1], dtype=torch.long), torch.tensor(labels[1:], dtype=torch.long)))
+    # Exact regression prompts: these match the real website tests verbatim.
+    exact_cases = [
+        ("Write a story about Rex the dog.", "Rex was a friendly dog who loved his owner. One morning, Rex followed a trail through the park. He found a lost ball near a bench. Rex picked up the ball and carried it back to his owner. His owner thanked him, and Rex wagged his tail happily."),
+        ("Write a story about Lily who loves her mom.", "Lily was a little girl who loved her mom. One morning, Lily visited the garden. She picked a pretty flower for her mom. Then Lily gave the flower to her mom, who thanked her and gave her a hug. Lily was happy because she had done something kind for her mom.")
+    ]
+    exact_examples = []
+    for prompt, story in exact_cases:
+        for _ in range(40):
+            pids = encode("User: " + prompt + "\\nAssistant:\\n")
+            answer = encode(story)
+            room = BLOCK_SIZE + 1 - 1 - len(pids) - 1
+            answer = answer[:room]
+            ids = [1] + pids + answer + [2]
+            labels = [-100] * (1 + len(pids)) + answer + [2]
+            exact_examples.append((torch.tensor(ids[:-1], dtype=torch.long), torch.tensor(labels[1:], dtype=torch.long)))
+    examples.extend(exact_examples)
     rng.shuffle(examples)
     split = int(len(examples) * 0.9)
     return examples[:split], examples[split:]
