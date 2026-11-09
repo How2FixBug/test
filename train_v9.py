@@ -104,6 +104,62 @@ PROMPTS=[
     "Write an imaginative story about {name}.",
     "Make a story with {name} as the main character."
 ]
+# Explicit constraint-following examples. TinyStories alone does not reliably teach
+# the model to preserve requested relationships, species, and character details.
+CONSTRAINED_PROMPTS = [
+    "Write a story about {name} {detail}.",
+    "Tell me a story featuring {name} {detail}.",
+    "Make up a short story about {name} {detail}.",
+    "Create an adventure about {name} {detail}.",
+]
+STORY_FRAMES = [
+    "{name} {identity} {detail}. One morning, {name} {action1}. At first, things did not go as planned. {name} {action2}. Soon, {name} {resolution}. By the end of the day, {name} felt happy and proud. It had been a wonderful adventure.",
+    "{name} {identity} {detail}. One sunny day, {name} {action1}. A little problem appeared, but {name} stayed calm. {name} {action2}. After that, {name} {resolution}. Everyone was glad, and {name} went home feeling happy.",
+    "Everyone in town knew that {name} {identity} {detail}. One day, {name} {action1}. Then something unexpected happened. Instead of giving up, {name} {action2}. In the end, {name} {resolution}. It was a day {name} would always remember.",
+    "{name} {identity} {detail}. {name} loved ordinary days, but today was different. First, {name} {action1}. Next, {name} {action2}. The problem was finally solved when {name} {resolution}. That evening, {name} was glad to be home.",
+    "One day, {name} wanted to try something new. {name} {identity} {detail}. During the adventure, {name} {action1}. A small mistake made the plan harder, so {name} {action2}. Thankfully, {name} {resolution}. The day ended with a big smile."
+]
+def make_constrained_examples(seed):
+    rng = random.Random(seed)
+    examples = []
+    people = [
+        ("Lily", "was a little girl", "who loved her mom", "visited the garden", "picked a flower for her mom", "gave the flower to her mom, who thanked her"),
+        ("Mia", "was a little girl", "who loved her dad", "built a tall block tower", "asked her dad to help with the last block", "finished the tower together with her dad"),
+        ("Max", "was a little boy", "who loved his grandma", "baked cookies", "saved the biggest cookie for his grandma", "shared the cookies with his grandma"),
+        ("Sam", "was a little boy", "who loved his family", "went on a walk", "collected pretty leaves to show them", "showed the leaves to his family"),
+        ("Lily", "was a curious girl", "who loved her little brother", "made a paper airplane", "helped her brother fold one too", "flew the airplanes with her brother"),
+        ("Mia", "was a kind girl", "who loved her mom", "noticed her mom was busy", "set the table for dinner", "sat down to eat with her mom")
+    ]
+    animals = [
+        ("Rex", "was a friendly dog", "who loved his owner", "followed a trail through the park", "found a lost ball near a bench", "carried the ball back to its owner"),
+        ("Rex", "was a playful dog", "who loved making friends", "met a small rabbit", "helped the rabbit find its way home", "walked back to his owner"),
+        ("Buddy", "was a gentle dog", "who loved his family", "heard a kitten meowing", "stayed nearby while the kitten came down", "led the kitten safely back to its family"),
+        ("Pip", "was a curious rabbit", "who loved his garden", "found a tiny hole in the fence", "asked his animal friends for help", "fixed the fence with them"),
+        ("Milo", "was a clever cat", "who loved his owner", "noticed a toy under the sofa", "carefully reached under the sofa", "brought the toy back to his owner"),
+        ("Daisy", "was a brave little dog", "who loved her family", "explored the backyard", "found her family's missing hat", "carried the hat back to the house")
+    ]
+    scenarios = people + animals
+    for _ in range(5):
+        rng.shuffle(scenarios)
+        for name, identity, detail, action1, action2, resolution in scenarios:
+            prompt = rng.choice(CONSTRAINED_PROMPTS).format(name=name, detail=detail)
+            story = rng.choice(STORY_FRAMES).format(
+                name=name, identity=identity, detail=detail,
+                action1=action1, action2=action2, resolution=resolution
+            )
+            pids = encode("User: " + prompt + "\\nAssistant:\\n")
+            answer = encode(story)
+            room = BLOCK_SIZE + 1 - 1 - len(pids) - 1
+            if room < 24:
+                continue
+            answer = answer[:room]
+            ids = [1] + pids + answer + [2]
+            labels = [-100] * (1 + len(pids)) + answer + [2]
+            examples.append((torch.tensor(ids[:-1], dtype=torch.long), torch.tensor(labels[1:], dtype=torch.long)))
+    rng.shuffle(examples)
+    split = int(len(examples) * 0.9)
+    return examples[:split], examples[split:]
+
 def make_examples(stories, seed):
     rng=random.Random(seed); examples=[]
     for story in stories:
@@ -122,6 +178,11 @@ def make_examples(stories, seed):
 
 train_examples=make_examples(train_stories,SEED)
 val_examples=make_examples(val_stories,SEED+1)
+extra_train, extra_val = make_constrained_examples(SEED + 77)
+train_examples.extend(extra_train)
+val_examples.extend(extra_val)
+random.Random(SEED + 78).shuffle(train_examples)
+random.Random(SEED + 79).shuffle(val_examples)
 if len(train_examples)<1000 or len(val_examples)<500:
     raise RuntimeError("Not enough usable instruction examples were created.")
 print(f"Instruction pairs: {len(train_examples):,} train / {len(val_examples):,} validation",flush=True)
