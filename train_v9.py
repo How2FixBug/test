@@ -164,7 +164,7 @@ def make_constrained_examples(seed):
     exact_examples = []
     for prompt, story in exact_cases:
         for _ in range(40):
-            pids = encode("User: " + prompt + "\\nAssistant:\\n")
+            pids = encode("User: " + prompt + "\nAssistant:\n")
             answer = encode(story)
             room = BLOCK_SIZE + 1 - 1 - len(pids) - 1
             answer = answer[:room]
