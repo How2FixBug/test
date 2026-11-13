@@ -28,7 +28,22 @@
     <main class="main-panel">
       <header class="topbar">
         <button class="mobile-menu" id="mobile-menu" aria-label="Toggle sidebar" type="button"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-        <div class="topbar-emblem" aria-hidden="true"><svg viewBox="0 0 64 28"><path d="M3 14h13m32 0h13M32 2v5m0 14v5" /><ellipse cx="32" cy="14" rx="11" ry="5" transform="rotate(-28 32 14)"/><circle cx="32" cy="14" r="2.4"/><circle cx="43" cy="8" r="1.7"/><path d="m8 5 1.5 3.5L13 10l-3.5 1.5L8 15l-1.5-3.5L3 10l3.5-1.5Z"/></svg></div>
+        <div class="topbar-actions">
+          <div class="edit-menu-wrap">
+            <button class="icon-button" id="edit-chat-button" type="button" aria-label="Edit chat" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>
+              <span class="button-tooltip">Edit Chat</span>
+            </button>
+            <div class="edit-menu" id="edit-chat-menu" hidden>
+              <button type="button" data-action="rename"><svg viewBox="0 0 24 24"><path d="m14 5 5 5M4 20l4.2-.9L19 8.3 15.7 5 4.9 15.8 4 20Z"/></svg>Rename</button>
+              <button type="button" data-action="delete"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7"/></svg>Delete</button>
+            </div>
+          </div>
+          <button class="icon-button" id="settings-button" type="button" aria-label="Settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="m19.4 15 .1.1 1.1.9-1.5 2.6-1.4-.6a7.9 7.9 0 0 1-1.5.9l-.2 1.5h-3l-.3-1.5a7.9 7.9 0 0 1-1.5-.9l-1.4.6-1.5-2.6 1.1-.9a7 7 0 0 1 0-1.8l-1.1-.9 1.5-2.6 1.4.6a7.9 7.9 0 0 1 1.5-.9l.3-1.5h3l.2 1.5a7.9 7.9 0 0 1 1.5.9l1.4-.6 1.5 2.6-1.1.9a7 7 0 0 1 0 1.7Z" transform="translate(-1 -1)"/></svg>
+            <span class="button-tooltip">Settings</span>
+          </button>
+        </div>
       </header>
 
       <section class="conversation" id="conversation">
@@ -50,6 +65,17 @@
         </form>
       </footer>
     </main>
+  </div>
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="modal-kicker" id="modal-kicker">ASTRA</div>
+      <h2 id="modal-title">Edit conversation</h2>
+      <div class="modal-content" id="modal-content"></div>
+      <div class="modal-actions" id="modal-actions"></div>
+    </section>
   </div>
   <div class="toast" id="toast" role="status"></div>
 </body>
