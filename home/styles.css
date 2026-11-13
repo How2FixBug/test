@@ -115,21 +115,6 @@ body {
   pointer-events: none;
 }
 @keyframes blink { to { visibility: hidden; } }
-.statusbar {
-  min-height: 31px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 0 18px;
-  border-top: 1px solid var(--line);
-  background: #0a0f0b;
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: .08em;
-}
-.statusbar b { color: var(--green); font-weight: 500; }
-.status-dot { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--green); }
 @media (max-width: 560px) {
   .terminal-body { padding: 28px 18px; }
   .ascii { font-size: clamp(9px, 2.5vw, 14px); }
