@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#070b18">
   <meta name="description" content="Sol — a little corner of the cosmos.">
-  <title>Sol — UltraGPT</title>
+  <title>Sol</title>
   <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -16,7 +16,7 @@
     <aside class="sidebar" id="sidebar">
       <div class="brand">
         <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="6"/><ellipse cx="20" cy="20" rx="17" ry="7" transform="rotate(-28 20 20)"/><circle cx="33.5" cy="12" r="2.3"/></svg></div>
-        <div><span class="brand-name">SOL</span><span class="brand-caption">ULTRAGPT PROJECT</span></div>
+        <div><span class="brand-name">SOL</span></div>
       </div>
       <button class="new-chat" id="new-chat" type="button">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New chat</span><kbd>CTRL K</kbd>
@@ -24,9 +24,6 @@
       <div class="history-heading"><span>YOUR CONVERSATIONS</span><span class="history-count" id="chat-count">0</span></div>
       <nav class="chat-list" id="chat-list" aria-label="Conversations"></nav>
       <div class="sidebar-bottom">
-        <div class="profile-orbit"><span></span></div>
-        <div class="profile-copy"><strong>Guest explorer</strong><span>Local session</span></div>
-        <span class="online-dot" title="Ready"></span>
       </div>
     </aside>
 
@@ -45,16 +42,6 @@
             <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
             <span class="scene-coordinate">28° 23′  ·  DEEP SPACE</span>
           </div>
-          <div class="welcome-copy">
-            <div class="eyebrow"><span></span> A NEW CONVERSATION</div>
-            <h1>Somewhere,<br><em>among the stars.</em></h1>
-            <p>Take a moment. Look around. Then say hello.</p>
-          </div>
-          <div class="suggestions" aria-label="Suggested messages">
-            <button class="suggestion" type="button" data-prompt="Hello, Sol."><span class="suggestion-icon"><svg viewBox="0 0 24 24"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.64 5.64l2.12 2.12m8.48 8.48 2.12 2.12m0-12.72-2.12 2.12m-8.48 8.48-2.12 2.12"/><circle cx="12" cy="12" r="4"/></svg></span><span><strong>Say hello</strong><small>Start with a greeting</small></span><svg class="suggestion-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
-            <button class="suggestion" type="button" data-prompt="What is out there?"><span class="suggestion-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.8 9h16.4M3.8 15h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5s-1.1 6.2-3.3 8.5c-2.2-2.3-3.3-5.1-3.3-8.5s1.1-6.2 3.3-8.5Z"/></svg></span><span><strong>Explore the cosmos</strong><small>Ask a question</small></span><svg class="suggestion-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
-          </div>
-          <div class="scene-footer"><span>THE UNIVERSE IS A PRETTY BIG PLACE</span><span>01 / 01</span></div>
         </div>
         <div class="messages" id="messages" aria-live="polite"></div>
       </section>
@@ -64,7 +51,6 @@
           <textarea id="message-input" rows="1" placeholder="Send a message into the cosmos..." aria-label="Message Sol" autocomplete="off"></textarea>
           <button class="send-button" type="submit" aria-label="Send message"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
         </form>
-        <div class="composer-note"><span> <svg class="tiny-star" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 9.7 6.3 14.5 8 9.7 9.7 8 14.5 6.3 9.7 1.5 8 6.3 6.3Z"/></svg> SOL IS STILL LEARNING TO SHINE</span><span>ENTER TO SEND</span></div>
       </footer>
     </main>
   </div>
