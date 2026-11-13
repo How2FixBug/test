@@ -9,7 +9,6 @@
   const toast = $("#toast");
   const modalBackdrop = $("#modal-backdrop");
   const modalTitle = $("#modal-title");
-  const modalKicker = $("#modal-kicker");
   const modalContent = $("#modal-content");
   const modalActions = $("#modal-actions");
   const editButton = $("#edit-chat-button");
@@ -104,8 +103,7 @@
     modalContent.replaceChildren();
     modalActions.replaceChildren();
   };
-  const openModal = (kicker, title, contentNode, actions) => {
-    modalKicker.textContent = kicker;
+  const openModal = (title, contentNode, actions) => {
     modalTitle.textContent = title;
     modalContent.replaceChildren(contentNode);
     modalActions.replaceChildren(...actions);
@@ -136,7 +134,7 @@
       closeModal();
       showToast("Conversation renamed.");
     };
-    openModal("EDIT CHAT", "Rename conversation", inputField, [
+    openModal("Rename conversation", inputField, [
       makeModalButton("Cancel", "", closeModal),
       makeModalButton("Save changes", "primary", saveName)
     ]);
@@ -149,7 +147,7 @@
     if (!chat) { showToast("Choose a conversation first."); return; }
     const message = document.createElement("p");
     message.textContent = "Delete “" + chat.title + "”? This conversation will be removed from this browser.";
-    openModal("EDIT CHAT", "Delete conversation?", message, [
+    openModal("Delete conversation?", message, [
       makeModalButton("Keep chat", "", closeModal),
       makeModalButton("Delete", "danger", () => {
         chats = chats.filter(entry => entry.id !== chat.id);
@@ -187,7 +185,7 @@
     toggle.addEventListener("click", applyMotion);
     row.append(labels, toggle);
     content.append(row);
-    openModal("ASTRA", "Settings", content, [makeModalButton("Done", "primary", closeModal)]);
+    openModal("Settings", content, [makeModalButton("Done", "primary", closeModal)]);
   };
 
   const renderMessages = () => {
