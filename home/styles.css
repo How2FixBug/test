@@ -87,3 +87,14 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
 @keyframes input-reform{0%{opacity:.55;transform:translateY(8px) scale(.985)}100%{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:760px){.composer-shell{gap:8px}.input-box{padding:9px 13px}.composer-shell .send-button{width:50px;height:50px;flex-basis:50px}}
 @media(prefers-reduced-motion:reduce){.message-flight,.bot-arriving,.composer-shell.input-refresh .input-box{animation:none!important;transition:none!important;transform:none!important;opacity:1!important;filter:none!important}}
+
+/* Composer alignment and Apple-style message handoff */
+.composer-area{align-self:stretch;width:100%;display:flex;justify-content:center;margin:0;padding:14px 28px 22px}
+.composer-shell{width:100%;max-width:844px}
+.input-box textarea,.input-box textarea:not(:placeholder-shown),.input-box textarea::placeholder{text-align:left}
+.input-box textarea{justify-content:flex-start}
+.message-morph-target{animation:none;visibility:hidden}
+.message-morph-flight{position:fixed;z-index:50;display:flex;align-items:center;overflow:hidden;padding:10px 18px;border:1px solid rgba(141,177,231,.28);border-radius:12px;background:linear-gradient(135deg,rgba(54,82,119,.96),rgba(40,57,91,.98));box-shadow:0 12px 42px rgba(0,0,0,.28);color:#edf0ff;font:13px/1.55 "DM Sans",sans-serif;white-space:pre-wrap;overflow-wrap:anywhere;pointer-events:none;will-change:left,top,width,height,border-radius}
+.input-box.composer-reform{animation:composer-return .42s cubic-bezier(.2,.8,.2,1) both}
+@keyframes composer-return{0%{opacity:.65;transform:scale(.985)}100%{opacity:1;transform:scale(1)}}
+@media(max-width:760px){.composer-area{padding:12px 15px 16px}}
