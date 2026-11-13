@@ -257,6 +257,7 @@
 
     save();
     window.setTimeout(() => {
+      if (activeId !== chat.id) return;
       userRow.classList.remove("message-flight", "flight-start");
       userRow.style.removeProperty("--flight-x");
       userRow.style.removeProperty("--flight-y");
