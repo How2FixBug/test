@@ -60,3 +60,5 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
 .toggle[aria-checked="true"]:after{transform:translateX(16px);background:#d3d0ff}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}@keyframes modal-in{from{opacity:0;transform:translateY(9px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes menu-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:760px){.topbar-actions{gap:7px}.icon-button{width:35px;height:35px}}
+
+.motion-off *, .motion-off *:before, .motion-off *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
