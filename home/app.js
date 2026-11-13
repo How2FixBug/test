@@ -11,6 +11,7 @@
   let chats = [];
   let activeId = null;
   let toastTimer;
+  let animateNewConversation = false;
 
   const icon = (name) => {
     const paths = {
@@ -38,6 +39,7 @@
     const chat = { id: id(), title: "New conversation", messages: [], created: Date.now() };
     chats.unshift(chat);
     activeId = chat.id;
+    animateNewConversation = true;
     save();
     render();
     input.focus();
@@ -47,7 +49,7 @@
     count.textContent = String(chats.length).padStart(2, "0");
     chats.forEach(chat => {
       const item = document.createElement("div");
-      item.className = "chat-item" + (chat.id === activeId ? " active" : "");
+      item.className = "chat-item" + (chat.id === activeId ? " active" : "") + (animateNewConversation ? (chat.id === activeId ? " entering" : " shifting") : "");
       item.tabIndex = 0;
       item.setAttribute("role", "button");
       item.setAttribute("aria-label", chat.title);
@@ -90,6 +92,7 @@
       });
       chatList.append(item);
     });
+    animateNewConversation = false;
   };
   const renderMessages = () => {
     const chat = activeChat();
