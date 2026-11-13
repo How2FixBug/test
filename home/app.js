@@ -230,42 +230,72 @@
       renderList();
     }
 
-    const sourceRect = input.getBoundingClientRect();
+    const inputBox = $(".input-box");
+    const sourceRect = inputBox.getBoundingClientRect();
     const wasWelcome = !messages.classList.contains("visible");
     welcome.hidden = true;
     messages.classList.add("visible");
-    const userRow = buildMessage(userMessage, "message-arriving");
+
+    const userRow = buildMessage(userMessage);
+    userRow.classList.add("message-morph-target");
     messages.append(userRow);
-    const targetRect = userRow.getBoundingClientRect();
-    const dx = sourceRect.left - targetRect.left;
-    const dy = sourceRect.top - targetRect.top;
-    userRow.style.setProperty("--flight-x", dx + "px");
-    userRow.style.setProperty("--flight-y", dy + "px");
-    userRow.classList.add("message-flight");
-    if (wasWelcome) messages.classList.add("first-message");
+    const targetBubble = userRow.querySelector(".bubble");
+    const targetRect = targetBubble.getBoundingClientRect();
+    userRow.style.visibility = "hidden";
+
+    // The old composer surface travels to the message's exact final position.
+    const flight = document.createElement("div");
+    flight.className = "message-morph-flight";
+    flight.textContent = value;
+    flight.style.left = sourceRect.left + "px";
+    flight.style.top = sourceRect.top + "px";
+    flight.style.width = sourceRect.width + "px";
+    flight.style.height = sourceRect.height + "px";
+    document.body.append(flight);
 
     input.value = "";
     input.style.height = "24px";
-    form.classList.remove("input-refresh");
-    void form.offsetWidth;
-    form.classList.add("input-refresh");
-    requestAnimationFrame(() => {
-      userRow.classList.add("flight-start");
-      userRow.classList.remove("message-arriving");
-      $("#conversation").scrollTop = $("#conversation").scrollHeight;
+    inputBox.classList.remove("composer-reform");
+    void inputBox.offsetWidth;
+    inputBox.classList.add("composer-reform");
+
+    const animation = flight.animate([
+      {
+        left: sourceRect.left + "px",
+        top: sourceRect.top + "px",
+        width: sourceRect.width + "px",
+        height: sourceRect.height + "px",
+        borderRadius: "12px",
+        opacity: 1
+      },
+      {
+        left: targetRect.left + "px",
+        top: targetRect.top + "px",
+        width: targetRect.width + "px",
+        height: targetRect.height + "px",
+        borderRadius: "12px",
+        opacity: 1
+      }
+    ], {
+      duration: 640,
+      easing: "cubic-bezier(.22,.78,.18,1)",
+      fill: "forwards"
     });
 
     save();
-    window.setTimeout(() => {
+    animation.finished.then(() => {
+      flight.remove();
       if (activeId !== chat.id) return;
-      userRow.classList.remove("message-flight", "flight-start");
-      userRow.style.removeProperty("--flight-x");
-      userRow.style.removeProperty("--flight-y");
-      const botRow = buildMessage(botMessage, "bot-arriving");
-      messages.append(botRow);
-      requestAnimationFrame(() => botRow.classList.add("bot-visible"));
+      userRow.style.visibility = "visible";
       $("#conversation").scrollTop = $("#conversation").scrollHeight;
-    }, 520);
+      window.setTimeout(() => {
+        if (activeId !== chat.id) return;
+        const botRow = buildMessage(botMessage, "bot-arriving");
+        messages.append(botRow);
+        requestAnimationFrame(() => botRow.classList.add("bot-visible"));
+        $("#conversation").scrollTop = $("#conversation").scrollHeight;
+      }, 90);
+    }).catch(() => flight.remove());
     input.focus();
   };
   form.addEventListener("submit", event => { event.preventDefault(); sendMessage(input.value); });
