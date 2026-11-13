@@ -142,7 +142,6 @@
   });
   $("#new-chat").addEventListener("click", createChat);
   $("#mobile-menu").addEventListener("click", () => $("#sidebar").classList.toggle("open"));
-  document.querySelectorAll("[data-prompt]").forEach(button => button.addEventListener("click", () => sendMessage(button.dataset.prompt)));
   document.addEventListener("keydown", event => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); createChat(); }
     if (event.key === "Escape") $("#sidebar").classList.remove("open");
