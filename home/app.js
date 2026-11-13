@@ -7,6 +7,14 @@
   const input = $("#message-input");
   const count = $("#chat-count");
   const toast = $("#toast");
+  const modalBackdrop = $("#modal-backdrop");
+  const modalTitle = $("#modal-title");
+  const modalKicker = $("#modal-kicker");
+  const modalContent = $("#modal-content");
+  const modalActions = $("#modal-actions");
+  const editButton = $("#edit-chat-button");
+  const editMenu = $("#edit-chat-menu");
+  let reducedMotion = false;
   const storageKey = "sol-conversations-v1";
   let chats = [];
   let activeId = null;
@@ -67,8 +75,8 @@
       rename.innerHTML = icon("edit");
       rename.addEventListener("click", event => {
         event.stopPropagation();
-        const next = prompt("Rename conversation:", chat.title);
-        if (next && next.trim()) { chat.title = next.trim().slice(0, 60); save(); renderList(); }
+        activeId = chat.id;
+        openRenameDialog();
       });
       const remove = document.createElement("button");
       remove.className = "chat-action";
@@ -77,12 +85,8 @@
       remove.innerHTML = icon("trash");
       remove.addEventListener("click", event => {
         event.stopPropagation();
-        if (!confirm("Delete this conversation?")) return;
-        chats = chats.filter(entry => entry.id !== chat.id);
-        if (activeId === chat.id) activeId = chats[0]?.id || null;
-        save();
-        render();
-        if (!activeId) showToast("Conversation deleted.");
+        activeId = chat.id;
+        openDeleteDialog();
       });
       actions.append(rename, remove);
       item.append(glyph, title, actions);
@@ -94,6 +98,98 @@
     });
     animateNewConversation = false;
   };
+
+  const closeModal = () => {
+    modalBackdrop.hidden = true;
+    modalContent.replaceChildren();
+    modalActions.replaceChildren();
+  };
+  const openModal = (kicker, title, contentNode, actions) => {
+    modalKicker.textContent = kicker;
+    modalTitle.textContent = title;
+    modalContent.replaceChildren(contentNode);
+    modalActions.replaceChildren(...actions);
+    modalBackdrop.hidden = false;
+  };
+  const makeModalButton = (label, kind, action) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "modal-button" + (kind ? " " + kind : "");
+    button.textContent = label;
+    button.addEventListener("click", action);
+    return button;
+  };
+  const openRenameDialog = () => {
+    const chat = activeChat();
+    if (!chat) { showToast("Choose a conversation first."); return; }
+    const inputField = document.createElement("input");
+    inputField.className = "modal-input";
+    inputField.maxLength = 60;
+    inputField.value = chat.title;
+    inputField.setAttribute("aria-label", "Conversation name");
+    const saveName = () => {
+      const next = inputField.value.trim();
+      if (!next) { inputField.focus(); return; }
+      chat.title = next;
+      save();
+      renderList();
+      closeModal();
+      showToast("Conversation renamed.");
+    };
+    openModal("EDIT CHAT", "Rename conversation", inputField, [
+      makeModalButton("Cancel", "", closeModal),
+      makeModalButton("Save changes", "primary", saveName)
+    ]);
+    inputField.addEventListener("keydown", event => { if (event.key === "Enter") saveName(); });
+    inputField.focus();
+    inputField.select();
+  };
+  const openDeleteDialog = () => {
+    const chat = activeChat();
+    if (!chat) { showToast("Choose a conversation first."); return; }
+    const message = document.createElement("p");
+    message.textContent = "Delete “" + chat.title + ””? This conversation will be removed from this browser.";
+    openModal("EDIT CHAT", "Delete conversation?", message, [
+      makeModalButton("Keep chat", "", closeModal),
+      makeModalButton("Delete", "danger", () => {
+        chats = chats.filter(entry => entry.id !== chat.id);
+        if (activeId === chat.id) activeId = chats[0]?.id || null;
+        save();
+        render();
+        closeModal();
+        showToast("Conversation deleted.");
+      })
+    ]);
+  };
+  const openSettingsDialog = () => {
+    const content = document.createElement("div");
+    const row = document.createElement("div");
+    row.className = "settings-row";
+    const labels = document.createElement("div");
+    const label = document.createElement("div");
+    label.className = "settings-label";
+    label.textContent = "Motion";
+    const note = document.createElement("div");
+    note.className = "settings-note";
+    note.textContent = "Enable interface animations";
+    labels.append(label, note);
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "toggle";
+    toggle.setAttribute("role", "switch");
+    toggle.setAttribute("aria-label", "Enable animations");
+    toggle.setAttribute("aria-checked", String(!reducedMotion));
+    const applyMotion = () => {
+      reducedMotion = !reducedMotion;
+      toggle.setAttribute("aria-checked", String(!reducedMotion));
+      document.documentElement.classList.toggle("motion-off", reducedMotion);
+    };
+    toggle.addEventListener("click", applyMotion);
+    row.append(labels, toggle);
+    content.append(row);
+    openModal("ASTRA", "Settings", content, [makeModalButton("Done", "primary", closeModal)]);
+  };
+
   const renderMessages = () => {
     const chat = activeChat();
     const hasMessages = !!chat && chat.messages.length > 0;
@@ -144,10 +240,38 @@
     if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); }
   });
   $("#new-chat").addEventListener("click", createChat);
+  editButton.addEventListener("click", () => {
+    const opening = editMenu.hidden;
+    editMenu.hidden = !opening;
+    editButton.setAttribute("aria-expanded", String(opening));
+  });
+  editMenu.addEventListener("click", event => {
+    const action = event.target.closest("button")?.dataset.action;
+    if (!action) return;
+    editMenu.hidden = true;
+    editButton.setAttribute("aria-expanded", "false");
+    if (!activeChat()) { showToast("Choose a conversation first."); return; }
+    if (action === "rename") openRenameDialog();
+    if (action === "delete") openDeleteDialog();
+  });
+  $("#settings-button").addEventListener("click", openSettingsDialog);
+  $("#modal-close").addEventListener("click", closeModal);
+  modalBackdrop.addEventListener("click", event => { if (event.target === modalBackdrop) closeModal(); });
+  document.addEventListener("click", event => {
+    if (!event.target.closest(".edit-menu-wrap")) {
+      editMenu.hidden = true;
+      editButton.setAttribute("aria-expanded", "false");
+    }
+  });
   $("#mobile-menu").addEventListener("click", () => $("#sidebar").classList.toggle("open"));
   document.addEventListener("keydown", event => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); createChat(); }
-    if (event.key === "Escape") $("#sidebar").classList.remove("open");
+    if (event.key === "Escape") {
+      $("#sidebar").classList.remove("open");
+      editMenu.hidden = true;
+      editButton.setAttribute("aria-expanded", "false");
+      if (!modalBackdrop.hidden) closeModal();
+    }
   });
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
