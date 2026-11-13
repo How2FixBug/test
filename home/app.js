@@ -108,7 +108,7 @@
       wrap.className = "bubble-wrap";
       const author = document.createElement("div");
       author.className = "message-author";
-      author.textContent = message.role === "user" ? "YOU" : "SOL";
+      author.textContent = message.role === "user" ? "YOU" : "ASTRA";
       const bubble = document.createElement("div");
       bubble.className = "bubble";
       bubble.textContent = message.text;
@@ -125,7 +125,7 @@
     if (!activeChat()) createChat();
     const chat = activeChat();
     chat.messages.push({ role: "user", text: value });
-    chat.messages.push({ role: "sol", text: "Sol has no brain yet. Come back later!" });
+    chat.messages.push({ role: "sol", text: "Astra has no brain yet. Come back later!" });
     if (chat.messages.filter(message => message.role === "user").length === 1) {
       chat.title = value.length > 30 ? value.slice(0, 27) + "..." : value;
     }
