@@ -188,6 +188,24 @@
     openModal("Settings", content, [makeModalButton("Done", "primary", closeModal)]);
   };
 
+  const buildMessage = (message, extraClass = "") => {
+    const row = document.createElement("article");
+    row.className = "message " + message.role + (extraClass ? " " + extraClass : "");
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.innerHTML = icon(message.role === "user" ? "user" : "sol");
+    const wrap = document.createElement("div");
+    wrap.className = "bubble-wrap";
+    const author = document.createElement("div");
+    author.className = "message-author";
+    author.textContent = message.role === "user" ? "YOU" : "ASTRA";
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = message.text;
+    wrap.append(author, bubble);
+    row.append(avatar, wrap);
+    return row;
+  };
   const renderMessages = () => {
     const chat = activeChat();
     const hasMessages = !!chat && chat.messages.length > 0;
@@ -195,24 +213,7 @@
     messages.classList.toggle("visible", hasMessages);
     messages.replaceChildren();
     if (!hasMessages) return;
-    chat.messages.forEach(message => {
-      const row = document.createElement("article");
-      row.className = "message " + message.role;
-      const avatar = document.createElement("div");
-      avatar.className = "avatar";
-      avatar.innerHTML = icon(message.role === "user" ? "user" : "sol");
-      const wrap = document.createElement("div");
-      wrap.className = "bubble-wrap";
-      const author = document.createElement("div");
-      author.className = "message-author";
-      author.textContent = message.role === "user" ? "YOU" : "ASTRA";
-      const bubble = document.createElement("div");
-      bubble.className = "bubble";
-      bubble.textContent = message.text;
-      wrap.append(author, bubble);
-      row.append(avatar, wrap);
-      messages.append(row);
-    });
+    chat.messages.forEach(message => messages.append(buildMessage(message)));
     $("#conversation").scrollTop = $("#conversation").scrollHeight;
   };
   const render = () => { renderList(); renderMessages(); };
@@ -221,15 +222,49 @@
     if (!value) return;
     if (!activeChat()) createChat();
     const chat = activeChat();
-    chat.messages.push({ role: "user", text: value });
-    chat.messages.push({ role: "sol", text: "Astra has no brain yet. Come back later!" });
+    const userMessage = { role: "user", text: value };
+    const botMessage = { role: "sol", text: "Astra has no brain yet. Come back later!" };
+    chat.messages.push(userMessage, botMessage);
     if (chat.messages.filter(message => message.role === "user").length === 1) {
       chat.title = value.length > 30 ? value.slice(0, 27) + "..." : value;
+      renderList();
     }
-    save();
-    render();
+
+    const sourceRect = input.getBoundingClientRect();
+    const wasWelcome = !messages.classList.contains("visible");
+    welcome.hidden = true;
+    messages.classList.add("visible");
+    const userRow = buildMessage(userMessage, "message-arriving");
+    messages.append(userRow);
+    const targetRect = userRow.getBoundingClientRect();
+    const dx = sourceRect.left - targetRect.left;
+    const dy = sourceRect.top - targetRect.top;
+    userRow.style.setProperty("--flight-x", dx + "px");
+    userRow.style.setProperty("--flight-y", dy + "px");
+    userRow.classList.add("message-flight");
+    if (wasWelcome) messages.classList.add("first-message");
+
     input.value = "";
-    input.style.height = "auto";
+    input.style.height = "24px";
+    form.classList.remove("input-refresh");
+    void form.offsetWidth;
+    form.classList.add("input-refresh");
+    requestAnimationFrame(() => {
+      userRow.classList.add("flight-start");
+      userRow.classList.remove("message-arriving");
+      $("#conversation").scrollTop = $("#conversation").scrollHeight;
+    });
+
+    save();
+    window.setTimeout(() => {
+      userRow.classList.remove("message-flight", "flight-start");
+      userRow.style.removeProperty("--flight-x");
+      userRow.style.removeProperty("--flight-y");
+      const botRow = buildMessage(botMessage, "bot-arriving");
+      messages.append(botRow);
+      requestAnimationFrame(() => botRow.classList.add("bot-visible"));
+      $("#conversation").scrollTop = $("#conversation").scrollHeight;
+    }, 520);
     input.focus();
   };
   form.addEventListener("submit", event => { event.preventDefault(); sendMessage(input.value); });
