@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b09">
+  <meta name="description" content="UltraGPT terminal interface">
+  <title>UltraGPT — Terminal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="desktop">
+    <section class="terminal" aria-label="UltraGPT terminal">
+      <header class="titlebar">
+        <div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="window-title">ULTRAGPT <span>TERMINAL</span></div>
+        <div class="titlebar-version">BUILD 0001</div>
+      </header>
+
+      <div class="terminal-body" id="terminal">
+        <div class="boot-mark" aria-hidden="true">
+          <pre class="ascii"> __  __ _ _             ____ ____ _____
+|  \/  | | |_ _ __ __ _/ ___|  _ \_   _|
+| |\/| | | __| '__/ _` \___ \ |_) || |
+| |  | | | |_| | | (_| |___) |  __/ | |
+|_|  |_|_|\__|_|  \__,_|____/|_|    |_|</pre>
+        </div>
+
+        <div class="boot-log" aria-live="polite">
+          <p><span class="muted">[SYS]</span> ULTRAGPT TERMINAL ENVIRONMENT</p>
+          <p><span class="muted">[SYS]</span> Initializing interface <span class="ok">OK</span></p>
+          <p><span class="muted">[SYS]</span> Loading response engine <span class="warn">OFFLINE</span></p>
+          <p><span class="muted">[SYS]</span> Session ready</p>
+        </div>
+
+        <div class="separator"><span>SESSION 001</span><span>LOCAL CONSOLE</span></div>
+
+        <div class="output" id="output" aria-live="polite">
+          <p class="welcome">Welcome to UltraGPT.</p>
+          <p class="hint">Enter a command below to continue.</p>
+        </div>
+
+        <form class="command-line" id="command-form" autocomplete="off">
+          <label for="command-input"><span class="prompt">guest@ultragpt</span><span class="path">:~$</span></label>
+          <input id="command-input" name="command" type="text" spellcheck="false" autocapitalize="off" aria-label="Terminal input" autofocus>
+          <span class="cursor" aria-hidden="true"></span>
+          <button type="submit" aria-label="Submit command">↵</button>
+        </form>
+      </div>
+
+      <footer class="statusbar">
+        <span><b class="status-dot"></b> SYSTEM ONLINE</span>
+        <span>ULTRAGPT CORE <b>—</b> NOT CONNECTED</span>
+        <span>UTF-8</span>
+      </footer>
+    </section>
+    <div class="desktop-note">A NEW KIND OF INTELLIGENCE IS UNDER CONSTRUCTION.</div>
+  </main>
+</body>
+</html>
