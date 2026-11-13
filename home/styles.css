@@ -102,16 +102,6 @@ body {
   caret-color: transparent;
   font: inherit;
 }
-.command-line button {
-  border: 1px solid var(--line);
-  background: #121b14;
-  color: var(--green);
-  width: 29px;
-  height: 27px;
-  font: inherit;
-  cursor: pointer;
-}
-.command-line button:hover { border-color: var(--green); background: #19251b; }
 .cursor {
   position: absolute;
   top: 50%;
