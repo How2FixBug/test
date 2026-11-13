@@ -37,8 +37,10 @@
 
         <form class="command-line" id="command-form" autocomplete="off">
           <label for="command-input"><span class="prompt">guest@ultragpt</span><span class="path">:~$</span></label>
-          <input id="command-input" name="command" type="text" spellcheck="false" autocapitalize="off" aria-label="Terminal input" autofocus>
-          <span class="cursor" aria-hidden="true"></span>
+          <span class="input-wrap">
+            <input id="command-input" name="command" type="text" spellcheck="false" autocapitalize="off" aria-label="Terminal input" autofocus>
+            <span class="cursor" aria-hidden="true"></span>
+          </span>
           <button type="submit" aria-label="Submit command">↵</button>
         </form>
       </div>
