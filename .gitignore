@@ -1,6 +1,0 @@
-
-# LittleGPT local training files
-checkpoint-v7-25k.pt
-checkpoint-v7.pt
-training_stories_v7.json
-validation_stories_v7.json
