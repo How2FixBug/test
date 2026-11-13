@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  color-scheme: dark;
+  --bg: #080b09;
+  --panel: #0d120f;
+  --panel-top: #111813;
+  --line: #26372b;
+  --line-soft: #1a281e;
+  --text: #c3d8c7;
+  --muted: #64796a;
+  --green: #a5d6ad;
+  --bright: #c5f3c9;
+  --amber: #c5a66a;
+  --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .01em;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  background-image: linear-gradient(rgba(142, 190, 150, .018) 1px, transparent 1px);
+  background-size: 100% 4px;
+}
+.desktop { width: min(940px, 100%); }
+.terminal {
+  overflow: hidden;
+  border: 1px solid #344a39;
+  background: var(--panel);
+  box-shadow: 0 24px 80px #0009, 0 0 0 5px #0b100c;
+}
+.titlebar {
+  min-height: 43px;
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background: var(--panel-top);
+  border-bottom: 1px solid var(--line);
+}
+.window-controls { display: flex; gap: 6px; }
+.window-controls i {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #627568;
+  border-radius: 50%;
+}
+.window-title { color: var(--bright); font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+.window-title span { color: var(--muted); font-weight: 400; margin-left: 7px; }
+.titlebar-version { justify-self: end; color: var(--muted); font-size: 10px; letter-spacing: .12em; }
+.terminal-body { padding: clamp(22px, 5vw, 48px); min-height: 510px; }
+.ascii {
+  margin: 0 0 28px;
+  color: var(--green);
+  font: 500 clamp(8px, 1.5vw, 13px)/1.35 var(--mono);
+  white-space: pre;
+  text-shadow: 0 0 14px #8acb9633;
+}
+.boot-log { color: #8ba391; font-size: 11px; line-height: 1.9; }
+.boot-log p { margin: 0; }
+.muted { color: var(--muted); }
+.ok { color: var(--green); margin-left: 8px; }
+.warn { color: var(--amber); margin-left: 8px; }
+.separator {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 30px 0 22px;
+  padding: 9px 0;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .13em;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.output { min-height: 100px; line-height: 1.8; }
+.output p { margin: 0 0 4px; }
+.welcome { color: var(--bright); }
+.hint { color: var(--muted); font-size: 11px; }
+.error { color: #d5a77a; }
+.command-line {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  border-bottom: 1px solid #4b7053;
+  color: var(--green);
+}
+.command-line label { flex: 0 0 auto; white-space: nowrap; }
+.prompt { color: var(--bright); }
+.path { color: var(--muted); }
+.command-line input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  padding: 10px 0;
+  background: transparent;
+  color: var(--bright);
+  caret-color: var(--bright);
+  font: inherit;
+}
+.command-line button {
+  border: 1px solid var(--line);
+  background: #121b14;
+  color: var(--green);
+  width: 29px;
+  height: 27px;
+  font: inherit;
+  cursor: pointer;
+}
+.command-line button:hover { border-color: var(--green); background: #19251b; }
+.cursor {
+  width: 7px;
+  height: 15px;
+  margin-left: -8px;
+  background: var(--green);
+  opacity: .8;
+  animation: blink 1.1s steps(2, start) infinite;
+  pointer-events: none;
+}
+@keyframes blink { to { visibility: hidden; } }
+.statusbar {
+  min-height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 15px;
+  border-top: 1px solid var(--line);
+  background: #0a0f0b;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+.statusbar b { color: var(--green); font-weight: 500; }
+.status-dot { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--green); }
+.desktop-note {
+  padding: 16px 2px;
+  color: #435447;
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-align: right;
+}
+@media (max-width: 560px) {
+  body { padding: 16px 10px; }
+  .terminal-body { min-height: 470px; padding: 24px 18px; }
+  .ascii { font-size: clamp(6px, 1.65vw, 9px); }
+  .statusbar { flex-wrap: wrap; justify-content: flex-start; padding: 8px 12px; }
+  .separator { font-size: 9px; }
+  .command-line { gap: 6px; }
+  .command-line label { font-size: 10px; }
+}
