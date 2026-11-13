@@ -148,7 +148,7 @@
     const chat = activeChat();
     if (!chat) { showToast("Choose a conversation first."); return; }
     const message = document.createElement("p");
-    message.textContent = "Delete “" + chat.title + ””? This conversation will be removed from this browser.";
+    message.textContent = "Delete “" + chat.title + "”? This conversation will be removed from this browser.";
     openModal("EDIT CHAT", "Delete conversation?", message, [
       makeModalButton("Keep chat", "", closeModal),
       makeModalButton("Delete", "danger", () => {
