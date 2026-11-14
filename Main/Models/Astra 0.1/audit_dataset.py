@@ -9,7 +9,10 @@ from collections import Counter
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-PAIR_RE = re.compile(\n    r"(?m)^<user>\\s*\\n([\\s\\S]*?)\\n</user>\\s*\\n"\n    r"<astra>\\s*\\n(?:<think>[\\s\\S]*?</think>\\s*)?([\\s\\S]*?)\\n</astra>"\n)
+PAIR_RE = re.compile(
+    r"(?m)^<user>\s*\n([\s\S]*?)\n</user>\s*\n"
+    r"<astra>\s*\n(?:<think>[\s\S]*?</think>\s*)?([\s\S]*?)\n</astra>"
+)
 
 
 def normalize(value: str) -> str:
@@ -41,8 +44,7 @@ def main():
         raise SystemExit("No training examples found.")
     matches = list(PAIR_RE.finditer(raw[marker.start():]))
     users = [m.group(1).strip() for m in matches]
-    thinks = [m.group(2).strip() for m in matches]
-    answers = [m.group(3).strip() for m in matches]
+    answers = [m.group(2).strip() for m in matches]
     pairs = [(normalize(u), normalize(a)) for u, a in zip(users, answers)]
     source_counts = Counter(re.findall(r"<!-- ASTRA_SOURCE: ([^>]+) -->", raw))
     lengths = [len(u) + len(a) for u, a in zip(users, answers)]
