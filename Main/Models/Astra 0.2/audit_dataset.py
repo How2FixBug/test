@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 import re
 from collections import Counter
 from pathlib import Path
@@ -46,6 +47,14 @@ def main() -> None:
     parser.add_argument(
         "--config", type=Path, default=HERE / "tokenizer_config.json"
     )
+    parser.add_argument(
+        "--sample-count", type=int, default=30,
+        help="Print this many reproducible random examples (default: 30; use 0 to disable).",
+    )
+    parser.add_argument(
+        "--sample-seed", type=int, default=42,
+        help="Seed for reproducible quality samples (default: 42).",
+    )
     args = parser.parse_args()
 
     raw = args.dataset.read_text(encoding="utf-8")
@@ -87,6 +96,23 @@ def main() -> None:
     print("Most repeated prompts:")
     for count, value in top_groups(users):
         print(f"  x{count}: {value}")
+
+    if args.sample_count < 0:
+        raise SystemExit("--sample-count cannot be negative.")
+    if args.sample_count:
+        sample_size = min(args.sample_count, len(matches))
+        rng = random.Random(args.sample_seed)
+        sample_indices = sorted(rng.sample(range(len(matches)), sample_size))
+        print(
+            f"\\nQUALITY SAMPLE ({sample_size} of {len(matches):,}; "
+            f"seed={args.sample_seed})"
+        )
+        for number, index in enumerate(sample_indices, 1):
+            user = users[index].replace("\\n", " ")
+            answer = answers[index].replace("\\n", " ")
+            print(f"\\n[{number}/{sample_size}]")
+            print(f"USER: {user}")
+            print(f"ASTRA: {answer}")
 
     if not args.tokenized.exists():
         print("\nTokenized dataset not found; skipping token statistics.")
