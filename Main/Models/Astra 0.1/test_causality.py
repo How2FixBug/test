@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import torch
-from model import LoopCore
+from model import AstraGPT
 from tokenizer import encode, decode
 
 HERE = Path(__file__).resolve().parent
@@ -24,9 +24,9 @@ def main():
     print("PASS: tokenizer round-trip (including Unicode and special markers)")
 
     torch.manual_seed(7)
-    model = LoopCore(
+    model = AstraGPT(
         vocab_size=config["vocab_size"], width=64, heads=4,
-        ff_width=128, max_seq_len=32, local_window=8, loop_passes=3,
+        ff_width=128, max_seq_len=32, layers=3, dropout=0.0,
     ).eval()
     prefix = torch.tensor([[10, 11, 12, 13, 14, 15, 16, 17]])
     changed_future = torch.tensor([[10, 11, 12, 13, 14, 15, 16, 17, 31, 32, 33]])
