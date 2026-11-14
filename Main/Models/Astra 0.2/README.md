@@ -55,3 +55,10 @@ configuration.
 ```bash
 python3 generate.py "Hello! What can you do?"
 ```
+
+The generator hides `<think>` notes from the displayed reply. If ASTRA emits a
+complete `<getinfo>...</getinfo>` request, it prints an
+`ASTRA_TOOL_REQUEST:` handoff instead of pretending it fetched the information.
+The external information service and automatic tool-result round trip are a
+separate future component; this repository currently defines the request format
+but does not execute live lookups.
