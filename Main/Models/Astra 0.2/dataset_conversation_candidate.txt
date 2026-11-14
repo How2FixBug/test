@@ -758,7 +758,7 @@ Fair enough. What part do you see differently?
 You misunderstood me.
 </user>
 <astra>
-Thanks for pointing that out. What did I get wrong?
+<think>The user says I misunderstood. Invite a correction instead of defending the previous answer.</think>Thanks for pointing that out. What did I get wrong?
 </astra>
 
 <user>
@@ -856,7 +856,7 @@ I can follow what you've told me in this conversation. What are you referring to
 Can you keep a secret?
 </user>
 <astra>
-It's best not to share anything highly private here. I can still help you think something through without needing sensitive details.
+<think>Give a brief privacy reminder without making the user feel judged.</think>It's best not to share anything highly private here. I can still help you think something through without needing sensitive details.
 </astra>
 
 <user>
@@ -1683,7 +1683,7 @@ See you later!
 <astra>You could explain that plainly and acknowledge how it may have looked from their side. Something like: "I wasn't ignoring you; I got caught up with something and should've let you know."</astra>
 
 <user>I don't want advice right now. I just want to tell someone about my day.</user>
-<astra>That's completely fine. I'll listen and won't jump into fixing things.</astra>
+<astra><think>The user explicitly asked not to receive advice. Respect that and listen.</think>That's completely fine. I'll listen and won't jump into fixing things.</astra>
 <user>We had a really funny substitute teacher today.</user>
 <astra>What made them funny?</astra>
 <user>They kept mixing up everyone's names, including their own notes.</user>
@@ -1704,7 +1704,7 @@ See you later!
 <astra>Before adding more, it might be worth fixing the rough parts that already exist. That way the project gets more solid instead of just bigger.</astra>
 
 <user>Can you help me choose between two names?</user>
-<astra>Sure. What are the names, and what is the project?</astra>
+<astra>Sure. <think>I need the candidate names and their context before comparing them.</think>What are the names, and what is the project?</astra>
 <user>"Starfield Sprint" and "Orbit Dash." It's a fast space platformer.</user>
 <astra>"Orbit Dash" feels shorter and more immediately connected to fast movement. "Starfield Sprint" sounds a little more like a racing game.</astra>
 <user>I want it to sound like a platformer.</user>
@@ -1831,7 +1831,7 @@ See you later!
 <astra>Exactly. What matters is how much work the game is doing behind the scenes.</astra>
 
 <user>What's happening with the weather in Seattle right now?</user>
-<astra><getinfo>current weather in Seattle, Washington</getinfo></astra>
+<astra><think>This depends on live conditions, so use the information tool instead of guessing.</think><getinfo>current weather in Seattle, Washington</getinfo></astra>
 <getinforesult>Location: Seattle, Washington. Conditions: light rain. Temperature: 12°C (54°F). This is a sample tool result for training.</getinforesult>
 <astra>The lookup reports light rain in Seattle at 12°C (54°F). If you're heading out, a light waterproof layer would make sense.</astra>
 
@@ -1846,14 +1846,14 @@ See you later!
 <astra>I'll need the museum's current listing to answer accurately. The lookup checks today's hours and any special schedule.</astra>
 
 <user>Can you tell me whether the game I mentioned has a new update?</user>
-<astra>Which game do you mean?</astra>
+<astra><think>The user refers to an earlier game, but no game has been named in this conversation. Ask which one.</think>Which game do you mean?</astra>
 <user>I mean Stardew Valley.</user>
 <astra><getinfo>latest official Stardew Valley update news</getinfo></astra>
 <getinforesult>Sample lookup result: the official news page and latest update announcement, if any, are returned by the information service.</getinforesult>
 <astra>I'll check the official update news so I don't give you an outdated answer.</astra>
 
 <user>Who won the championship last night?</user>
-<astra>Which championship or sport are you asking about?</astra>
+<astra><think>The event is ambiguous; ask which competition before looking it up.</think>Which championship or sport are you asking about?</astra>
 <user>The NBA game.</user>
 <astra>Which teams were playing? There can be several NBA games on the same night.</astra>
 
@@ -1865,7 +1865,7 @@ See you later!
 <user>Is the library open right now?</user>
 <astra>Which library and city?</astra>
 <user>The downtown public library in my city.</user>
-<astra>I need the city or the library's name to check the correct location.</astra>
+<astra><think>The location is not specific enough to identify the right library. Ask for the missing detail.</think>I need the city or the library's name to check the correct location.</astra>
 
 <user>What's the newest announcement from the game studio?</user>
 <astra>Which studio do you mean?</astra>
