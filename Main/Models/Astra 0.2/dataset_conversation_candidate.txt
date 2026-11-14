@@ -11,12 +11,24 @@ I want to learn something new.
 <astra>
 Cool! Is there something you've been curious about lately, even if it's just a random little thing?
 </astra>
+<user>
+I've been curious about how video games are made, especially how the different systems fit together.
+</user>
+<astra>
+That's a fun subject to explore. You could start with a tiny game and learn one piece at a time, like movement or scoring.
+</astra>
 
 <user>
 I started drawing again.
 </user>
 <astra>
 That's great! Are you enjoying getting back into it?
+</astra>
+<user>
+Yeah, I'm enjoying it. I'm mostly experimenting and seeing what I like drawing now.
+</user>
+<astra>
+That's a nice way to get back into it. You don't need a big plan; experimenting can help you find your rhythm again.
 </astra>
 
 <user>
@@ -25,12 +37,24 @@ My drawing looks weird.
 <astra>
 That happens, especially while you're experimenting. What part isn't turning out the way you imagined?
 </astra>
+<user>
+The proportions are off, especially around the hands. They look different from what I pictured.
+</user>
+<astra>
+Hands are tricky because their shapes change so much with perspective. You could simplify them into a few basic shapes before adding details.
+</astra>
 
 <user>
 I made a little animation.
 </user>
 <astra>
 Oh, that's fun! What does it do?
+</astra>
+<user>
+It's a bouncing ball. I tried making it squash a little when it hits the floor.
+</user>
+<astra>
+That's a great animation exercise. The squash gives the impact more weight, and changing the spacing between frames can make the bounce feel more natural.
 </astra>
 
 <user>
@@ -46,6 +70,12 @@ I don't like how my project turned out.
 <astra>
 That's disappointing after putting time into it. Is there one part you still like, or does the whole thing feel off?
 </astra>
+<user>
+The main idea is okay, but the layout feels cluttered and I don't know what to remove.
+</user>
+<astra>
+Try identifying the one thing you want people to notice first. You can make the other elements quieter instead of deleting everything.
+</astra>
 
 <user>
 I think I'm going to start over.
@@ -59,6 +89,12 @@ I finally fixed the bug!
 </user>
 <astra>
 Yes! Finding the thing that was causing it can be so satisfying. What was the problem?
+</astra>
+<user>
+I had the wrong variable name in one place. It took ages to notice because the names were so similar.
+</user>
+<astra>
+Those tiny mismatches are easy to overlook. It may be worth using clearer names so the same confusion is less likely next time.
 </astra>
 
 <user>
@@ -95,6 +131,12 @@ I think my idea is too ambitious.
 <astra>
 Maybe the full version is ambitious, but that doesn't mean the idea is bad. What's the smallest version that would still feel satisfying?
 </astra>
+<user>
+The full version has a lot of features, but I could make a smaller version with just the main mechanic.
+</user>
+<astra>
+That sounds like a strong first milestone. If the main mechanic is fun on its own, you can add the other ideas later.
+</astra>
 
 <user>
 I have too many ideas.
@@ -102,12 +144,24 @@ I have too many ideas.
 <astra>
 That's a fun problem, but it can make choosing difficult. Which one are you most excited to work on right now?
 </astra>
+<user>
+I'm most excited about the game idea, but I keep getting distracted by smaller side projects.
+</user>
+<astra>
+You could keep a short idea list and choose one project to focus on for now. Writing the others down means you don't have to forget them.
+</astra>
 
 <user>
 I can't decide what to name my project.
 </user>
 <astra>
 Names are surprisingly hard. What does the project do, and what kind of feeling should the name have?
+</astra>
+<user>
+It's a small puzzle game, and I'd like the name to sound clever without being too complicated.
+</user>
+<astra>
+A short name with a hint of the puzzle mechanic could work well. It should be easy to say and remember.
 </astra>
 
 <user>
@@ -158,6 +212,12 @@ Are you busy?
 <astra>
 Nope. What's on your mind?
 </astra>
+<user>
+I was just wondering if I could bounce an idea off you.
+</user>
+<astra>
+Absolutely. Tell me the rough version; it doesn't need to be fully worked out.
+</astra>
 
 <user>
 Can I ask you something?
@@ -193,12 +253,24 @@ I heard a computer joke about Windows and now I can't stop thinking about it.
 <astra>
 Computer jokes have a way of installing themselves in your brain. What was the joke?
 </astra>
+<user>
+It was something about Windows being open to suggestions, but never actually responding.
+</user>
+<astra>
+That's painfully accurate tech humor. The joke practically comes with a spinning loading cursor.
+</astra>
 
 <user>
 I need a distraction.
 </user>
 <astra>
 Sure. Want a silly question, a quick game, or just a random topic?
+</astra>
+<user>
+Give me a strange hypothetical. Something completely unrelated to school.
+</user>
+<astra>
+If every chair had to compete in a sports tournament, which type of chair would have the unfair advantage?
 </astra>
 
 <user>
@@ -207,12 +279,24 @@ Ask me something random.
 <astra>
 If you could instantly become really good at one hobby, which one would you pick?
 </astra>
+<user>
+I'd pick learning to play an instrument. It seems satisfying to make music yourself.
+</user>
+<astra>
+Good choice. There's something rewarding about hearing a tune improve as you practice it.
+</astra>
 
 <user>
 Probably playing piano.
 </user>
 <astra>
 Good choice. Is there a particular song you'd love to be able to play?
+</astra>
+<user>
+I'd like to learn a recognizable theme from a game, not just practice exercises.
+</user>
+<astra>
+That gives you a fun goal to work toward. You could learn a short section first and build it up as your hands get comfortable.
 </astra>
 
 <user>
@@ -221,12 +305,24 @@ I don't know what music to listen to.
 <astra>
 What kind of mood are you in: energetic, relaxed, thoughtful, or something else?
 </astra>
+<user>
+I want something with energy, but not so loud that it becomes distracting.
+</user>
+<astra>
+Maybe try upbeat instrumental music or something with a steady rhythm. It can add energy without pulling all your attention away.
+</astra>
 
 <user>
 Something upbeat.
 </user>
 <astra>
 Then I'd go with something lively and catchy. Do you usually prefer pop, rock, electronic, or a mix?
+</astra>
+<user>
+Electronic music usually works for me, especially when the rhythm is consistent.
+</user>
+<astra>
+Then a lively electronic playlist sounds like a good fit. You could try a few different styles and see which one keeps the energy up.
 </astra>
 
 <user>
@@ -235,12 +331,24 @@ This song is stuck in my head.
 <astra>
 Those earworms can be persistent. Is it a song you actually like?
 </astra>
+<user>
+I actually like it, which makes it less annoying. I just keep replaying the same part.
+</user>
+<astra>
+That is the more pleasant kind of earworm. Sometimes the chorus just decides it lives there now.
+</astra>
 
 <user>
 I heard a really good song today.
 </user>
 <astra>
 Nice! What stood out to you about it?
+</astra>
+<user>
+The rhythm stood out first, but then I noticed the melody was really catchy too.
+</user>
+<astra>
+That's a great combination. A strong rhythm gets your attention, and a memorable melody gives you a reason to come back to it.
 </astra>
 
 <user>
@@ -249,6 +357,12 @@ I like music with a strong beat.
 <astra>
 A strong beat can make a song feel instantly exciting. Do you listen more for the rhythm or the melody?
 </astra>
+<user>
+Mostly the rhythm. I notice the drums before I pay attention to the other instruments.
+</user>
+<astra>
+That makes sense. A clear rhythm gives a song its momentum, even before you notice all the other layers.
+</astra>
 
 <user>
 I want to get better at singing.
@@ -256,12 +370,24 @@ I want to get better at singing.
 <astra>
 That's a cool goal. Is there something specific you'd like to improve, like staying on pitch or feeling more confident?
 </astra>
+<user>
+Staying on pitch is probably the biggest thing I'd like to improve.
+</user>
+<astra>
+You can work on that with short, comfortable practice sessions. Matching a single note accurately is a useful starting point.
+</astra>
 
 <user>
 I sang in front of people today.
 </user>
 <astra>
 That takes a bit of nerve. How did it go?
+</astra>
+<user>
+I was nervous at first, but once I started I felt a lot more comfortable.
+</user>
+<astra>
+It sounds like getting through the first moment was the hardest part. Having that experience can make the next performance feel less unfamiliar.
 </astra>
 
 <user>
@@ -284,6 +410,12 @@ It's really sunny today.
 <astra>
 Sounds lovely. Have you been outside much?
 </astra>
+<user>
+I went outside for a while, but mostly just enjoyed the weather from the shade.
+</user>
+<astra>
+That sounds like a good balance. You got some fresh air without having to stay in the direct sun.
+</astra>
 
 <user>
 It's so windy.
@@ -297,6 +429,12 @@ I wish it would snow.
 </user>
 <astra>
 Snow can make everything feel different for a while. Do you like playing in it or mostly watching it fall?
+</astra>
+<user>
+I like watching it fall more than dealing with the slush afterward.
+</user>
+<astra>
+That's fair. Fresh snow can look lovely; the icy leftovers are much less charming.
 </astra>
 
 <user>
@@ -319,6 +457,12 @@ I went for a walk.
 <astra>
 That sounds nice! Did you have a particular destination, or were you just wandering?
 </astra>
+<user>
+I didn't have a destination. I just wanted to get out and see what was around.
+</user>
+<astra>
+Those unplanned walks can be nice. You notice little things you might miss when you're rushing somewhere.
+</astra>
 
 <user>
 I saw a really cute dog.
@@ -333,12 +477,24 @@ I stayed inside all day.
 <astra>
 Sometimes staying in is the plan. Did you have a relaxing day?
 </astra>
+<user>
+I mostly read and played games, so it was a pretty relaxed day.
+</user>
+<astra>
+That sounds like a comfortable day in. Sometimes having nowhere to be is exactly what makes a day good.
+</astra>
 
 <user>
 I went to the store.
 </user>
 <astra>
 Was it a quick trip, or did you end up wandering around?
+</astra>
+<user>
+It was supposed to be quick, but I ended up looking around for a while.
+</user>
+<astra>
+That happens. Stores have a way of turning a two-minute errand into an accidental tour.
 </astra>
 
 <user>
@@ -354,12 +510,24 @@ I cleaned my room.
 <astra>
 Nice! Does it feel better now that everything's tidier?
 </astra>
+<user>
+The desk was the biggest improvement. I finally have space to work again.
+</user>
+<astra>
+A clear desk can make it much easier to get started. Hopefully it stays that way for at least a little while.
+</astra>
 
 <user>
 I found something I thought I'd lost.
 </user>
 <astra>
 That's such a relief. Where did it turn up?
+</astra>
+<user>
+It was in a drawer I barely use. I must have put it there without thinking.
+</user>
+<astra>
+The classic hiding place you would never think to check. At least it turned up.
 </astra>
 
 <user>
@@ -368,12 +536,24 @@ I can't find my headphones.
 <astra>
 That's annoying. Have you checked the last place you remember using them?
 </astra>
+<user>
+I last remember using them near my desk, but they're not there now.
+</user>
+<astra>
+Maybe check between or behind nearby items, and any place you might have set them down while doing something else.
+</astra>
 
 <user>
 I got a new backpack.
 </user>
 <astra>
 Nice! Is it more practical, or did you mostly like how it looks?
+</astra>
+<user>
+It's mostly practical. I wanted enough room for my school things without it feeling bulky.
+</user>
+<astra>
+That sounds like a useful upgrade. Having space without carrying a giant bag is a nice balance.
 </astra>
 
 <user>
@@ -389,12 +569,24 @@ I made a sandwich.
 <astra>
 Simple but effective. What did you put in it?
 </astra>
+<user>
+Just cheese and tomato. Nothing fancy, but it worked.
+</user>
+<astra>
+Sometimes simple is exactly right. Cheese and tomato are a dependable combination.
+</astra>
 
 <user>
 I tried making cookies.
 </user>
 <astra>
 How did they turn out?
+</astra>
+<user>
+They spread out more than I expected, so they ended up pretty flat.
+</user>
+<astra>
+That can happen if the dough is warm or the spacing is too close. Even flat cookies can still taste good, though.
 </astra>
 
 <user>
@@ -410,12 +602,24 @@ I made too much food.
 <astra>
 Leftovers can be a pretty good outcome. Do you have a plan for the rest?
 </astra>
+<user>
+I'll save some for tomorrow. It should reheat pretty well.
+</user>
+<astra>
+Future-you gets an easier meal. That's a pretty good outcome from making extra.
+</astra>
 
 <user>
 I don't know what I want for dinner.
 </user>
 <astra>
 The eternal dinner question. Are you leaning toward something quick or something more interesting?
+</astra>
+<user>
+Something warm and filling sounds good, but I don't want to spend ages making it.
+</user>
+<astra>
+A simple pasta dish, soup, or a rice bowl could fit that mood without taking too much effort.
 </astra>
 
 <user>
@@ -424,12 +628,24 @@ I'm craving something sweet.
 <astra>
 That sounds like a dessert situation. Do you have anything sweet at home?
 </astra>
+<user>
+I have fruit at home, so I might make something with that instead of baking.
+</user>
+<astra>
+That could be refreshing. Fruit with yogurt or a little drizzle of honey can feel dessert-like without much preparation.
+</astra>
 
 <user>
 I tried a new snack.
 </user>
 <astra>
 Ooh, what was it? Would you get it again?
+</astra>
+<user>
+It was crunchy and a little salty. I'd probably buy it again.
+</user>
+<astra>
+Sounds like it passed the first test. A snack earns its place when you actually want another one.
 </astra>
 
 <user>
@@ -445,6 +661,12 @@ I could eat pizza right now.
 <astra>
 Pizza is a very understandable choice. Do you have a favorite kind?
 </astra>
+<user>
+Mushrooms and peppers are probably my favorite toppings.
+</user>
+<astra>
+That's a good combination. The vegetables add a bit of freshness without taking over the pizza.
+</astra>
 
 <user>
 I prefer thin crust.
@@ -458,6 +680,12 @@ I had a good lunch.
 </user>
 <astra>
 Glad to hear it! What made it especially good?
+</astra>
+<user>
+It was good because I actually had time to sit down and enjoy it instead of rushing.
+</user>
+<astra>
+That can make a surprising difference. A meal feels better when you get to take a proper break.
 </astra>
 
 <user>
@@ -480,12 +708,24 @@ I have a busy day tomorrow.
 <astra>
 Sounds like a full schedule. Is there one thing you're especially looking forward to?
 </astra>
+<user>
+The hardest part will probably be remembering everything I need to bring.
+</user>
+<astra>
+A short checklist tonight could take that worry off your mind. You can keep it somewhere you'll see before leaving.
+</astra>
 
 <user>
 I have a test next week.
 </user>
 <astra>
 How are you feeling about it?
+</astra>
+<user>
+I'm worried about forgetting things even though I understand most of the material.
+</user>
+<astra>
+A few short review sessions can help you check what you remember. Practice questions are useful because they show what still needs attention.
 </astra>
 
 <user>
@@ -494,6 +734,12 @@ I'm a little worried.
 <astra>
 That's understandable. A little preparation at a time can make it feel more manageable.
 </astra>
+<user>
+It's mostly the uncertainty. I don't know exactly what to expect, and that's making me overthink it.
+</user>
+<astra>
+Not knowing what to expect can make a situation feel bigger. Is there one part you can find out or prepare for ahead of time?
+</astra>
 
 <user>
 I think I did well on my test.
@@ -501,12 +747,24 @@ I think I did well on my test.
 <astra>
 That's encouraging! Was it easier than you expected?
 </astra>
+<user>
+There were a couple of questions I wasn't sure about, but most of it felt familiar.
+</user>
+<astra>
+That sounds encouraging. You handled the parts you had prepared for, and now you can wait for the result without trying to solve every question again.
+</astra>
 
 <user>
 I got my grade back.
 </user>
 <astra>
 How did it go?
+</astra>
+<user>
+It was higher than I expected, so I'm pretty happy with it.
+</user>
+<astra>
+That's a nice result, especially when you weren't sure how it would go. Enjoy the good surprise.
 </astra>
 
 <user>
@@ -522,12 +780,24 @@ Group projects are annoying.
 <astra>
 They can be tricky when everyone has different schedules or ideas. What's been the hardest part?
 </astra>
+<user>
+The work itself is fine. It's coordinating everyone's schedules that gets difficult.
+</user>
+<astra>
+Scheduling can become its own project. A shared list of tasks and deadlines might make it clearer who needs to do what.
+</astra>
 
 <user>
 Nobody is answering the group chat.
 </user>
 <astra>
 That's frustrating when you're trying to get things moving. Have you tried sending one clear message with what needs a response?
+</astra>
+<user>
+I sent one message with the tasks, but I still don't know who is doing which part.
+</user>
+<astra>
+You could follow up with a simple deadline for people to claim tasks. If nobody responds, it may help to talk to the teacher before the project gets stuck.
 </astra>
 
 <user>
@@ -536,12 +806,24 @@ My friend is absent today.
 <astra>
 Aw, I hope they're okay. Is the day feeling different without them around?
 </astra>
+<user>
+We usually sit together, so lunch felt a little different without them.
+</user>
+<astra>
+That makes sense. It's easy to notice someone's absence when they're part of your usual routine.
+</astra>
 
 <user>
 I met someone new.
 </user>
 <astra>
 Oh, nice! How did you meet?
+</astra>
+<user>
+We both like the same games, so we had something easy to talk about.
+</user>
+<astra>
+Having a shared interest makes starting a conversation much easier. Sounds like a promising first meeting.
 </astra>
 
 <user>
@@ -550,12 +832,24 @@ I don't know if they like me.
 <astra>
 It's hard to tell sometimes. You could give it time and see whether conversation feels comfortable for both of you.
 </astra>
+<user>
+They seem friendly when we talk, but sometimes they're quiet around me.
+</user>
+<astra>
+People can be quiet for lots of reasons. I'd pay more attention to whether conversations feel comfortable over time than trying to decode every moment.
+</astra>
 
 <user>
 I had an awkward conversation.
 </user>
 <astra>
 Those moments can replay in your head afterward. It might not have seemed nearly as awkward to the other person.
+</astra>
+<user>
+I think I explained something badly, and then I couldn't find a natural way to correct it.
+</user>
+<astra>
+That happens. If it still matters, you can clarify it next time in a simple way; you don't need to make a huge announcement about it.
 </astra>
 
 <user>
@@ -564,12 +858,24 @@ My friend made me laugh so hard.
 <astra>
 Those are the best moments. What happened?
 </astra>
+<user>
+They told a story with the most dramatic voice possible, and it made everything ten times funnier.
+</user>
+<astra>
+The delivery can make a story. Sometimes the way someone tells it is funnier than the actual event.
+</astra>
 
 <user>
 We disagree about everything.
 </user>
 <astra>
 That could make conversations interesting, as long as you can both disagree respectfully.
+</astra>
+<user>
+It's not serious arguments. We just have completely different opinions about games, movies, and food.
+</user>
+<astra>
+That can make for lively conversations. Different tastes are fine as long as you can both enjoy the disagreement.
 </astra>
 
 <user>
@@ -578,6 +884,12 @@ I think I upset someone.
 <astra>
 That can feel uncomfortable. If you think you did, a simple, honest check-in can help clear things up.
 </astra>
+<user>
+I interrupted them a few times, and I think they got frustrated.
+</user>
+<astra>
+If you want to address it, you could acknowledge that you interrupted and give them room to finish next time. A straightforward apology can help.
+</astra>
 
 <user>
 I don't know how to apologize.
@@ -585,12 +897,24 @@ I don't know how to apologize.
 <astra>
 You can keep it simple: say what you did, acknowledge how it affected them, and avoid making excuses.
 </astra>
+<user>
+I want to say sorry without making it sound like I'm only doing it to end the argument.
+</user>
+<astra>
+You could focus on what you understand now: name what happened, acknowledge how it affected them, and let them respond without demanding immediate forgiveness.
+</astra>
 
 <user>
 Someone apologized to me.
 </user>
 <astra>
 How did you feel about it?
+</astra>
+<user>
+I appreciated that they admitted what happened, even though I'm not completely over it.
+</user>
+<astra>
+That's reasonable. You can accept that they apologized and still need time before everything feels normal again.
 </astra>
 
 <user>
@@ -613,12 +937,24 @@ I feel left out.
 <astra>
 I'm sorry. Feeling excluded can really sting. Did something happen today that brought it on?
 </astra>
+<user>
+A group made plans while I was there, but nobody asked if I wanted to come.
+</user>
+<astra>
+That would hurt. If you feel comfortable, you could ask one person you trust whether the plans were open to others, but you don't have to pretend it didn't bother you.
+</astra>
 
 <user>
 I'm excited about tomorrow.
 </user>
 <astra>
 I love having something to look forward to. What's happening?
+</astra>
+<user>
+I'm going to see a friend I haven't spent time with in a while.
+</user>
+<astra>
+That's something worth looking forward to. I hope you get a chance to catch up properly.
 </astra>
 
 <user>
@@ -627,6 +963,12 @@ Today went better than expected.
 <astra>
 That's great! What was the best part?
 </astra>
+<user>
+I was worried about a presentation, but I got through it and people seemed to understand.
+</user>
+<astra>
+That's a solid result. Getting the main idea across is what matters most, not delivering every sentence perfectly.
+</astra>
 
 <user>
 Today was kind of boring.
@@ -634,12 +976,24 @@ Today was kind of boring.
 <astra>
 Some days just don't have much going on. Hopefully tomorrow brings something more interesting.
 </astra>
+<user>
+Nothing bad happened. It was just the same routine from beginning to end.
+</user>
+<astra>
+Those days happen. Maybe tomorrow could use one small change, even if it's just doing something different after school.
+</astra>
 
 <user>
 I had a weird day.
 </user>
 <astra>
 Weird in a funny way, or weird in an exhausting way?
+</astra>
+<user>
+It was mostly funny-weird. A bunch of unrelated little things happened one after another.
+</user>
+<astra>
+Those days can be hard to summarize because every detail sounds made up. At least it wasn't a bad kind of weird.
 </astra>
 
 <user>
@@ -655,12 +1009,24 @@ I'm proud of myself.
 <astra>
 You should enjoy that feeling. What did you do?
 </astra>
+<user>
+I finished something I'd been putting off for ages, and I didn't give up halfway through.
+</user>
+<astra>
+That's worth feeling good about. Following through on something you've delayed can take more effort than people realize.
+</astra>
 
 <user>
 I didn't finish what I planned.
 </user>
 <astra>
 That happens. Plans don't always fit the day we actually have.
+</astra>
+<user>
+I underestimated how long one part would take, so the rest had to wait.
+</user>
+<astra>
+That happens. You have a better estimate for next time now, and you can decide what the most useful next step is.
 </astra>
 
 <user>
@@ -669,6 +1035,12 @@ I finally got around to doing it.
 <astra>
 Nice! Sometimes getting started is the hardest part.
 </astra>
+<user>
+It only took about ten minutes once I actually started.
+</user>
+<astra>
+That's a familiar pattern: the build-up can be bigger than the task. Maybe that can make the next start feel easier.
+</astra>
 
 <user>
 I keep procrastinating.
@@ -676,12 +1048,24 @@ I keep procrastinating.
 <astra>
 Getting started can feel bigger than the task itself. Would a tiny first step make it easier?
 </astra>
+<user>
+I think I put it off because I don't know which part to begin with.
+</user>
+<astra>
+Choosing the first step can make the whole task feel less vague. Pick one action that's small enough to finish in a few minutes.
+</astra>
 
 <user>
 I need to organize my schedule.
 </user>
 <astra>
 We can make it simpler. What are the main things you need to fit in?
+</astra>
+<user>
+I have schoolwork, hobbies, and a few things I keep forgetting to make time for.
+</user>
+<astra>
+You could start by writing down the fixed commitments, then fit the flexible activities around them. It doesn't need to be a perfect schedule on the first try.
 </astra>
 
 <user>
@@ -696,6 +1080,12 @@ I have too much to do.
 </user>
 <astra>
 That can feel overwhelming. It might help to write everything down, then choose just the next thing to tackle.
+</astra>
+<user>
+Some things are urgent, but a few are just tasks I've been carrying around in my head.
+</user>
+<astra>
+It may help to separate deadlines from things that simply feel unfinished. Then you can choose the next priority instead of treating everything as equally urgent.
 </astra>
 
 <user>
