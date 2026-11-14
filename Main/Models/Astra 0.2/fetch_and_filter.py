@@ -57,6 +57,57 @@ PERSONA_RE = re.compile(
 MAX_USER_CHARS = 350
 MAX_ASSISTANT_CHARS = 300
 
+# ASTRA is a conversational chatbot with one narrow knowledge area: astronomy.
+ASTRONOMY_RE = re.compile(
+    r"\b(?:astronomy|astronomical|space|universe|cosmos|planet|moon|"
+    r"star|constellation|galaxy|galaxies|nebula|black hole|supernova|"
+    r"asteroid|comet|meteor|eclipse|orbit|solar system|milky way|"
+    r"exoplanet|telescope|satellite|rocket|spacecraft|mars|jupiter|"
+    r"saturn|venus|mercury|uranus|neptune|pluto|earth|sun|"
+    r"nasa|apollo|hubble|james webb|iss|international space station)\b",
+    re.I,
+)
+ADVICE_REQUEST_RE = re.compile(
+    r"\b(?:how (?:do|can|should|would) i|how to|what should i do|"
+    r"what(?:'s| is) the best way|what are some (?:ways|tips|steps)|"
+    r"give me (?:some )?(?:tips|advice|instructions)|"
+    r"can you recommend|recommendations? for|"
+    r"help me (?:with|to)|steps to|instructions for|"
+    r"how can i improve|is it safe to|what do i need to|"
+    r"how do i (?:make|build|fix|find|prepare|start|learn|cook|use))\b",
+    re.I,
+)
+FACTUAL_QA_RE = re.compile(
+    r"\b(?:explain|describe|define|what is|what are|who is|who was|"
+    r"when did|where is|where are|why does|why do|why is|"
+    r"what causes|causes of|difference between|compare|"
+    r"how does|how do|how many|how much|which (?:one|is|are))\b",
+    re.I,
+)
+LIVE_INFO_RE = re.compile(
+    r"\b(?:weather|forecast|traffic|stock price|breaking news|"
+    r"right now|currently|today's|tomorrow's)\b",
+    re.I,
+)
+DIRECTIVE_ANSWER_RE = re.compile(
+    r"\b(?:you should|you need to|make sure to|remember to|"
+    r"first,|start by|begin by|try doing|consider doing|"
+    r"here are \d+|the steps are|to do this,)\b",
+    re.I,
+)
+
+
+def acceptable_pair(user: str, assistant: str) -> bool:
+    """Keep casual dialogue and astronomy; reject general assistant tasks."""
+    astronomy = bool(ASTRONOMY_RE.search(user))
+    if LIVE_INFO_RE.search(user):
+        return False
+    if not astronomy and (ADVICE_REQUEST_RE.search(user) or FACTUAL_QA_RE.search(user)):
+        return False
+    if not astronomy and DIRECTIVE_ANSWER_RE.search(assistant):
+        return False
+    return True
+
 
 def normalize(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip().casefold()
@@ -156,6 +207,9 @@ def collect_candidates(rows: list[dict]) -> tuple[list[tuple[str, str]], Counter
                 continue
             if not acceptable_turn(assistant, assistant=True):
                 stats["filtered_assistant_turn"] += 1
+                continue
+            if not acceptable_pair(user, assistant):
+                stats["filtered_nonconversational_pair"] += 1
                 continue
             candidates.append((user, assistant))
             stats["passed_filters"] += 1
