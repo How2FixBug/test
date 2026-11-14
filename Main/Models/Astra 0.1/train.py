@@ -60,14 +60,15 @@ def split_records(records, validation_fraction: float, seed: int):
         raise ValueError("Validation split left no training examples.")
     return training, validation, len(groups)
 
-def get_batch(records, batch_size: int, block_size: int, device: torch.device):
+def get_batch(records, batch_size: int, block_size: int, device: torch.device, rng=None):
     """Sample rows from individual conversations, never across boundaries."""
+    rng = rng or random
     x_batch = torch.zeros((batch_size, block_size), dtype=torch.long)
     y_batch = torch.full((batch_size, block_size), IGNORE_INDEX, dtype=torch.long)
     for row in range(batch_size):
-        record = records[random.randrange(len(records))]
+        record = records[rng.randrange(len(records))]
         max_start = max(0, len(record) - (block_size + 1))
-        start = random.randint(0, max_start)
+        start = rng.randint(0, max_start)
         chunk = record[start:start + block_size + 1]
         chunk_tensor = torch.tensor(chunk, dtype=torch.long)
         usable = len(chunk) - 1
@@ -81,10 +82,13 @@ def get_batch(records, batch_size: int, block_size: int, device: torch.device):
 def estimate_loss(model, train_records, val_records, batch_size, block_size, device):
     model.eval()
     result = {}
-    for name, records in (("train", train_records), ("val", val_records)):
+    for name, records, seed in (
+        ("train", train_records, 1234), ("val", val_records, 5678)
+    ):
         losses = []
+        rng = random.Random(seed)
         for _ in range(20):
-            x, y = get_batch(records, batch_size, block_size, device)
+            x, y = get_batch(records, batch_size, block_size, device, rng=rng)
             logits = model(x)
             losses.append(F.cross_entropy(
                 logits.reshape(-1, logits.size(-1)), y.reshape(-1),
