@@ -5,20 +5,15 @@ It is not a wrapper around another model and does not use pretrained weights.
 
 ## Architecture
 
-- **LoopCore:** one shared neural block is reused for four recurrent passes.
-- **Local causal attention:** each token can attend only to earlier/current tokens
-  within a 128-token sliding window.
-- **Causal recurrent memory:** each token has its own gated memory, updated from a
-  prefix summary containing only that token and earlier tokens. No future-token pooling.
-- **Causal loop controller:** computes the update strength separately at each position
-  from that position's causal prefix.
+- **AstraGPT:** a decoder-only Transformer with four distinct layers.
+- **Causal self-attention:** each position can use only itself and earlier tokens.
+- **Gated feed-forward network:** each layer uses a SiLU-gated MLP.
+- **Pre-normalization and residual connections:** stabilize optimization through depth.
 - **Tied embeddings:** input embeddings are reused as the output vocabulary projection.
-- **Next-token objective:** the model predicts the next token, including conversation
-  structure markers.
+- **Assistant-only loss:** user prompts provide context; training loss is applied to replies.
 
-The initial configuration uses width 512, 8 attention heads, an MLP width of 1792,
-four shared passes, and a maximum context of 512 tokens. The shared block is reused;
-there are not four separate transformer blocks.
+The default configuration uses width 384, 6 attention heads, an MLP width of 1024,
+four distinct layers, and a maximum context of 512 tokens.
 
 ## Dataset
 
@@ -101,8 +96,7 @@ The trainer:
 - Saves a versioned best checkpoint to `checkpoints/astra-0.1-best.pt`.
 
 Training starts from random weights every run; this initial version does not resume
-optimizer state from an interrupted run. The revised causal-memory architecture
-requires a fresh training run; old checkpoints are rejected by the generator.
+optimizer state from an interrupted run. The AstraGPT architecture requires a fresh training run; older LoopCore checkpoints are rejected by the trainer and generator.
 
 ## Generate
 
