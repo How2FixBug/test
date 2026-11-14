@@ -20,6 +20,9 @@ BASE_VOCAB_SIZE = 256
 SPECIAL_TOKENS = {
     "<user>": 256, "</user>": 257,
     "<astra>": 258, "</astra>": 259,
+    "<think>": 260, "</think>": 261,
+    "<getinfo>": 262, "</getinfo>": 263,
+    "<getinforesult>": 264, "</getinforesult>": 265,
 }
 SPECIAL_RE = re.compile("(" + "|".join(
     re.escape(token) for token in sorted(SPECIAL_TOKENS, key=len, reverse=True)
