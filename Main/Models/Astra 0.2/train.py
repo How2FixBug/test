@@ -96,7 +96,10 @@ def build_windows(records, block_size: int):
             input_start = max(0, target_start - context_size - 1)
             inputs = record[input_start:target_end - 1]
             targets = record[input_start + 1:target_end]
-            for offset, position in enumerate(range(input_start + 1, target_end)):
+            mask_count = target_start - (input_start + 1)
+            if mask_count:
+                targets[:mask_count] = [IGNORE_INDEX] * mask_count
+            for offset, position in enumerate(range(input_start + 1, target_end), start=mask_count):
                 if not assistant_targets[position]:
                     targets[offset] = IGNORE_INDEX
             if not inputs or len(inputs) != len(targets) or len(inputs) > block_size:
