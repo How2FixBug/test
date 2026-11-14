@@ -20,16 +20,7 @@
   let toastTimer;
   let animateNewConversation = false;
 
-  const icon = (name) => {
-    const paths = {
-      chat: '<path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H5l1.8-3A7.5 7.5 0 1 1 20 11.5Z"/>',
-      edit: '<path d="m14 5 5 5M4 20l4.2-.9L19 8.3 15.7 5 4.9 15.8 4 20Z"/>',
-      trash: '<path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 3v6m4-6v6"/>',
-      user: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.5-3.4 2.8-5 7-5s6.5 1.6 7 5"/>',
-      sol: '<circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-28 12 12)"/>'
-    };
-    return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (paths[name] || paths.chat) + '</svg>';
-  };
+  const icon = (name) => '<img class="ui-icon" src="assets/icons/' + name + '.svg" alt="" aria-hidden="true">';
   const id = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
   const save = () => {
     try { localStorage.setItem(storageKey, JSON.stringify(chats)); }
@@ -193,7 +184,7 @@
     row.className = "message " + message.role + (extraClass ? " " + extraClass : "");
     const avatar = document.createElement("div");
     avatar.className = "avatar";
-    avatar.innerHTML = icon(message.role === "user" ? "user" : "sol");
+    avatar.innerHTML = icon(message.role === "user" ? "user" : "astra");
     const wrap = document.createElement("div");
     wrap.className = "bubble-wrap";
     const author = document.createElement("div");
