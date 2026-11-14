@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 import torch
 from torch.nn import functional as F
-from model import LoopCore
+from model import AstraGPT
 
 HERE = Path(__file__).resolve().parent
 ASTRA_TOKEN = 258
@@ -146,7 +146,7 @@ def main():
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     torch.manual_seed(args.seed)
     random.seed(args.seed)
-    model = LoopCore(vocab_size=vocab_size, max_seq_len=512).to(device)
+    model = AstraGPT(vocab_size=vocab_size, max_seq_len=512).to(device)
     parameter_count = sum(p.numel() for p in model.parameters())
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=args.learning_rate, weight_decay=0.1
@@ -159,7 +159,7 @@ def main():
         if not checkpoint_path.exists():
             raise SystemExit("Cannot resume: checkpoint not found.")
         checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
-        if checkpoint.get("architecture_version") != 2:
+        if checkpoint.get("architecture_version") != 3:
             raise SystemExit("Cannot resume: checkpoint architecture version does not match.")
         if checkpoint.get("tokenizer_fingerprint") != config["fingerprint"]:
             raise SystemExit("Cannot resume: checkpoint tokenizer does not match current dataset.")
@@ -172,13 +172,13 @@ def main():
     stale_evaluations = 0
     started = time.time()
 
-    print("ASTRA 0.1 — LoopCore (causal-memory revision)")
+    print("ASTRA 0.1 — AstraGPT (decoder-only Transformer)")
     print(
         f"Examples: {len(records):,} | Train: {len(train_records):,} | "
         f"Validation: {len(val_records):,} | Unique response groups: {response_groups:,}"
     )
     print(f"Vocabulary: {vocab_size:,} | Parameters: {parameter_count:,}")
-    print(f"Device: {device} | Context: {block_size} | Shared passes: {model.loop_passes}")
+    print(f"Device: {device} | Context: {block_size} | Transformer layers: {model.num_layers}")
     print("Validation groups are isolated by exact response.")
     print("Loss is calculated on assistant replies only; user prompts are context, not targets.")
     if args.resume:
@@ -213,11 +213,11 @@ def main():
                 torch.save({
                     "model_state_dict": model.state_dict(),
                     "model_config": {
-                        "vocab_size": vocab_size, "width": 512, "heads": 8,
-                        "ff_width": 1792, "max_seq_len": 512,
-                        "local_window": 128, "loop_passes": 4,
+                        "vocab_size": vocab_size, "width": 384, "heads": 6,
+                        "ff_width": 1024, "max_seq_len": 512,
+                        "layers": 4, "dropout": 0.05,
                     },
-                    "architecture_version": 2,
+                    "architecture_version": 3,
                     "tokenizer_fingerprint": config["fingerprint"],
                     "step": step,
                     "best_val_loss": best_val,
