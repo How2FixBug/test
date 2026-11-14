@@ -98,3 +98,10 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
 .input-box.composer-reform{animation:composer-return .42s cubic-bezier(.2,.8,.2,1) both}
 @keyframes composer-return{0%{opacity:.65;transform:scale(.985)}100%{opacity:1;transform:scale(1)}}
 @media(max-width:760px){.composer-area{padding:12px 15px 16px}}
+
+/* Custom scrollbar inside the message input */
+.input-box textarea{overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(153,158,218,.48) rgba(255,255,255,.035);scrollbar-gutter:stable}
+.input-box textarea::-webkit-scrollbar{width:7px}
+.input-box textarea::-webkit-scrollbar-track{margin:5px 0;border-radius:8px;background:rgba(255,255,255,.035)}
+.input-box textarea::-webkit-scrollbar-thumb{border:2px solid transparent;border-radius:8px;background:rgba(153,158,218,.48);background-clip:padding-box}
+.input-box textarea::-webkit-scrollbar-thumb:hover{background:rgba(185,181,255,.72);background-clip:padding-box}
