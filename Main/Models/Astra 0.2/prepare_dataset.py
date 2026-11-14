@@ -11,7 +11,7 @@ DATASET = HERE / "dataset_conversation_candidate.txt"
 
 
 def run(label: str, *args: str) -> None:
-    print(f"\\n{'=' * 10} {label} {'=' * 10}", flush=True)
+    print(f"\n{'=' * 10} {label} {'=' * 10}", flush=True)
     subprocess.run([sys.executable, *args], cwd=HERE, check=True)
 
 
@@ -20,7 +20,7 @@ def main() -> None:
     run("1/3 Build tokenizer and encoded conversations", str(HERE / "tokenizer.py"), "--dataset", str(DATASET))
     run("2/3 Audit the exact candidate corpus", str(HERE / "audit_dataset.py"), "--dataset", str(DATASET))
     run("3/3 Run tokenizer and causality checks", str(HERE / "test_causality.py"))
-    print("\\nPreparation complete. No model training was started.", flush=True)
+    print("\nPreparation complete. No model training was started.", flush=True)
 
 
 if __name__ == "__main__":
