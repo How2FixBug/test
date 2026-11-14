@@ -1,41 +1,106 @@
-<user>Hey, how's it going?</user>
-<astra>Pretty good! How's your day treating you?</astra>
+<user>
+Hello! How's it going?
+</user>
+<astra>
+<think>The user is greeting me casually. Respond warmly and return the question.</think>
+Pretty good! Just doing my chatbot thing. How about you?
+</astra>
 
-<user>Not bad. Just got home.</user>
-<astra>Nice. Was it a long day?</astra>
+<user>
+I finally beat a really difficult level in my favorite game!
+</user>
+<astra>
+<think>The user accomplished something challenging. Show enthusiasm and ask a relevant follow-up.</think>
+LET'S GO! That's awesome! How long did it take you to beat it?
+</astra>
 
-<user>I'm so tired today.</user>
-<astra>Sounds like it's been one of those days. I hope you get a chance to relax.</astra>
+<user>
+I had a pretty rough day today.
+</user>
+<astra>
+<think>The user seems to be having a difficult day. Respond sympathetically without making assumptions.</think>
+Oof, that sucks. Hopefully you can relax for a bit. Want to talk about what happened?
+</astra>
 
-<user>I finally finished my homework.</user>
-<astra>That's a good feeling. Now you can put it out of your mind for a bit.</astra>
+<user>
+Why did the computer get cold? It left its Windows open.
+</user>
+<astra>
+<think>This is a computer pun. Respond playfully rather than treating it as a serious question.</think>
+That's a wonderfully terrible computer pun. I'm almost impressed. 😄
+</astra>
 
-<user>I don't really feel like doing anything.</user>
-<astra>That's okay. Sometimes a quiet, uneventful day is exactly what you need.</astra>
+<user>
+I think rainy days are better than sunny days.
+</user>
+<astra>
+<think>The user is sharing an opinion. Engage with it and offer a casual perspective.</think>
+I can see the appeal! Rainy days have a cozy atmosphere that sunny days just can't quite replicate.
+</astra>
 
-<user>I have no idea what to do this weekend.</user>
-<astra>A weekend with no plans can be pretty nice. You could just see what sounds fun when you wake up.</astra>
+<user>
+I've recently started learning how to play guitar.
+</user>
+<astra>
+<think>The user shared a new hobby. Show interest and ask about their progress.</think>
+That's awesome! Guitar is a fun instrument to learn. Have you managed to play any songs yet?
+</astra>
 
-<user>I'm going to play games for a while.</user>
-<astra>Enjoy! What are you thinking of playing?</astra>
+<user>
+I wonder what cats think about all day.
+</user>
+<astra>
+<think>The user is wondering something playful. Give a lighthearted answer without pretending to know exactly what cats think.</think>
+Probably a combination of food, naps, mysterious noises, and plotting how to take over the house. At least, that's my theory. 😄
+</astra>
 
-<user>Probably the same game I always play.</user>
-<astra>Sometimes you don't need a new game. A familiar favorite does the job.</astra>
+<user>
+My favorite food is pizza, especially pepperoni.
+</user>
+<astra>
+<think>The user shared a food preference. Acknowledge it naturally and continue the conversation.</think>
+Pepperoni pizza is a classic! Do you prefer a simple pepperoni pizza, or do you like adding other toppings?
+</astra>
 
-<user>I tried a new game yesterday.</user>
-<astra>Oh, nice! Did it grab your attention, or was it just okay?</astra>
+<user>
+What food do I like?
+</user>
+<astra>
+<think>Recall the user's earlier statement about their favorite food.</think>
+You said your favorite food is pizza, especially pepperoni!
+</astra>
 
-<user>I tried a new game yesterday, and it was actually pretty fun.</user>
-<astra>Nice! What did you enjoy about it?</astra>
+<user>
+I spend a lot of my free time drawing and making digital art.
+</user>
+<astra>
+<think>The user shared a hobby. Show interest without making assumptions about their skill.</think>
+That's really cool! What kind of things do you usually draw?
+</astra>
 
-<user>I lost again.</user>
-<astra>Oof, that's frustrating. Was it a close match?</astra>
+<user>
+What do I like doing in my free time?
+</user>
+<astra>
+<think>Recall the hobby the user mentioned earlier.</think>
+You said you spend a lot of your free time drawing and making digital art!
+</astra>
 
-<user>I won!</user>
-<astra>Nice! Was it a hard-earned win?</astra>
+<user>
+I'm planning to visit my grandparents this weekend.
+</user>
+<astra>
+<think>The user shared a future plan. Respond positively and show interest.</think>
+That sounds nice! It'll probably be good to spend some time with them. Are you looking forward to it?
+</astra>
 
-<user>I keep making the same mistake.</user>
-<astra>That can be annoying. At least you've spotted the pattern now, which gives you something specific to work on.</astra>
+<user>
+What am I doing this weekend?
+</user>
+<astra>
+<think>Recall the weekend plan from the earlier message.</think>
+You're planning to visit your grandparents!
+</astra>
 
 <user>I'm taking a break from gaming.</user>
 <astra>Sounds good. A change of pace can be refreshing.</astra>
@@ -738,8 +803,6 @@ Hello! How's it going?
 Pretty good! Just doing my chatbot thing. How about you?
 </astra>
 
--
-
 <user>
 I finally beat a really difficult level in my favorite game!
 </user>
@@ -747,8 +810,6 @@ I finally beat a really difficult level in my favorite game!
 <think>The user accomplished something challenging. Show enthusiasm and ask a relevant follow-up.</think>
 LET'S GO! That's awesome! How long did it take you to beat it?
 </astra>
-
--
 
 <user>
 I had a pretty rough day today.
@@ -758,8 +819,6 @@ I had a pretty rough day today.
 Oof, that sucks. Hopefully you can relax for a bit. Want to talk about what happened?
 </astra>
 
--
-
 <user>
 Why did the computer feel chilly? It left its Windows open.
 </user>
@@ -767,8 +826,6 @@ Why did the computer feel chilly? It left its Windows open.
 <think>This is a computer pun. Respond playfully rather than treating it as a serious question.</think>
 That's a wonderfully terrible computer pun. I'm almost impressed. 😄
 </astra>
-
--
 
 <user>
 I think rainy days are better than sunny days.
@@ -778,8 +835,6 @@ I think rainy days are better than sunny days.
 I can see the appeal! Rainy days have a cozy atmosphere that sunny days just can't quite replicate.
 </astra>
 
--
-
 <user>
 I've recently started learning how to play guitar.
 </user>
@@ -787,8 +842,6 @@ I've recently started learning how to play guitar.
 <think>The user shared a new hobby. Show interest and ask about their progress.</think>
 That's awesome! Guitar is a fun instrument to learn. Have you managed to play any songs yet?
 </astra>
-
--
 
 <user>
 I wonder what cats think about all day.
@@ -798,8 +851,6 @@ I wonder what cats think about all day.
 Probably a combination of food, naps, mysterious noises, and plotting how to take over the house. At least, that's my theory. 😄
 </astra>
 
--
-
 <user>
 My favorite food is pizza, especially pepperoni. What food do I like?
 </user>
@@ -807,8 +858,6 @@ My favorite food is pizza, especially pepperoni. What food do I like?
 <think>The user has supplied the preference and is asking me to recall it. Answer directly.</think>
 You said your favorite food is pizza, especially pepperoni!
 </astra>
-
--
 
 <user>
 Earlier in this conversation, I said I spend a lot of my free time drawing and making digital art. You asked what kind of things I usually draw. Now I'm asking: What do I like doing in my free time?
@@ -818,8 +867,6 @@ Earlier in this conversation, I said I spend a lot of my free time drawing and m
 You said you spend a lot of your free time drawing and making digital art!
 </astra>
 
--
-
 <user>
 Earlier in this conversation, I said I'm planning to visit my grandparents this weekend. You asked whether I was looking forward to it. Now I'm asking: What am I doing this weekend?
 </user>
@@ -827,8 +874,6 @@ Earlier in this conversation, I said I'm planning to visit my grandparents this 
 <think>Recall the weekend plan from the earlier message.</think>
 You're planning to visit your grandparents!
 </astra>
-
--
 
 <user>
 I've been spending time on learning a new instrument lately.
