@@ -100,30 +100,62 @@ def train_bpe(pairs: list[tuple[str, str]], target_size: int):
     return vocab, merges
 
 
-def encode_plain(text: str, merges: list[tuple[int, int]]) -> list[int]:
+def encode_plain(text: str, merge_ranks: dict[tuple[int, int], int]) -> list[int]:
+    """Apply ranked BPE merges efficiently with a min-heap."""
+    import heapq
+
     ids: list[int] = []
     for piece in text_pieces(text):
-        sequence = list(piece.encode("utf-8"))
-        for merge_index, pair in enumerate(merges):
-            new_id = BASE_VOCAB_SIZE + len(SPECIAL_TOKENS) + merge_index
-            merged = []
-            index = 0
-            changed = False
-            while index < len(sequence):
-                if index + 1 < len(sequence) and (sequence[index], sequence[index + 1]) == pair:
-                    merged.append(new_id)
-                    index += 2
-                    changed = True
-                else:
-                    merged.append(sequence[index])
-                    index += 1
-            if changed:
-                sequence = merged
-        ids.extend(sequence)
+        values = list(piece.encode("utf-8"))
+        size = len(values)
+        if size < 2:
+            ids.extend(values)
+            continue
+
+        previous = [i - 1 for i in range(size)]
+        following = [i + 1 for i in range(size)]
+        following[-1] = -1
+        alive = [True] * size
+        heap = []
+
+        def add_pair(left: int):
+            right = following[left]
+            if right != -1:
+                rank = merge_ranks.get((values[left], values[right]))
+                if rank is not None:
+                    heapq.heappush(heap, (rank, left, right))
+
+        for i in range(size - 1):
+            add_pair(i)
+
+        while heap:
+            rank, left, right = heapq.heappop(heap)
+            if not alive[left] or not alive[right] or following[left] != right:
+                continue
+            if merge_ranks.get((values[left], values[right])) != rank:
+                continue
+
+            values[left] = BASE_VOCAB_SIZE + len(SPECIAL_TOKENS) + rank
+            alive[right] = False
+            after = following[right]
+            following[left] = after
+            if after != -1:
+                previous[after] = left
+
+            before = previous[left]
+            if before != -1:
+                add_pair(before)
+            add_pair(left)
+
+        index = 0
+        while index != -1:
+            if alive[index]:
+                ids.append(values[index])
+            index = following[index]
     return ids
 
 
-def encode(text: str, merges: list[tuple[int, int]]) -> list[int]:
+def encode(text: str, merge_ranks: dict[tuple[int, int], int]) -> list[int]:
     ids: list[int] = []
     for part in SPECIAL_RE.split(text):
         if not part:
@@ -131,9 +163,8 @@ def encode(text: str, merges: list[tuple[int, int]]) -> list[int]:
         if part in SPECIAL_TOKENS:
             ids.append(SPECIAL_TOKENS[part])
         else:
-            ids.extend(encode_plain(part, merges))
+            ids.extend(encode_plain(part, merge_ranks))
     return ids
-
 
 def decode(ids: list[int], vocab: list[bytes | None]) -> str:
     reverse = {value: key for key, value in SPECIAL_TOKENS.items()}
@@ -189,18 +220,21 @@ def save_tokenizer(config_path: Path, vocab: list[bytes | None], merges: list[tu
     return fingerprint
 
 
-def tokenize_dataset(pairs, output_path: Path, merges, fingerprint: str):
+def tokenize_dataset(pairs, output_path: Path, merge_ranks, fingerprint: str):
+    total_tokens = 0
     with output_path.open("w", encoding="utf-8") as output:
         for index, (user, astra) in enumerate(pairs):
-            sample = f"<user>\n{user}\n</user>\n<astra>\n{astra}\n</astra>"
+            sample = f"<user>\\n{user}\\n</user>\\n<astra>\\n{astra}\\n</astra>"
+            input_ids = encode(sample, merge_ranks)
+            total_tokens += len(input_ids)
             record = {
                 "id": index,
                 "tokenizer_fingerprint": fingerprint,
-                "input_ids": encode(sample, merges),
+                "input_ids": input_ids,
             }
             output.write(json.dumps(record, separators=(",", ":"), ensure_ascii=False))
-            output.write("\n")
-
+            output.write("\\n")
+    return total_tokens
 
 def main():
     parser = argparse.ArgumentParser(
@@ -218,10 +252,8 @@ def main():
     pairs = load_pairs(args.dataset)
     vocab, merges = train_bpe(pairs, args.vocab_size)
     fingerprint = save_tokenizer(args.config, vocab, merges, args.vocab_size)
-    tokenize_dataset(pairs, args.output, merges, fingerprint)
-
-    total_tokens = sum(len(encode(f"<user>\n{u}\n</user>\n<astra>\n{a}\n</astra>", merges))
-                       for u, a in pairs)
+    merge_ranks = {pair: rank for rank, pair in enumerate(merges)}
+    total_tokens = tokenize_dataset(pairs, args.output, merge_ranks, fingerprint)
     actual_size = len(vocab)
     print(f"Tokenizer trained on {len(pairs)} conversation pairs.")
     print(f"Vocabulary: {actual_size:,} tokens (target: {args.vocab_size:,}).")
