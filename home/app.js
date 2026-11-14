@@ -297,8 +297,9 @@
     inputBox.classList.add("input-box-flight");
     document.body.append(inputBox);
 
+    let activeFlightAnimation = null;
     try {
-      const lift = inputBox.animate([
+      activeFlightAnimation = inputBox.animate([
         { top: sourceRect.top + "px" },
         { top: targetRect.top + "px" }
       ], {
@@ -306,12 +307,14 @@
         easing: "cubic-bezier(.2,.75,.2,1)",
         fill: "forwards"
       });
-      await lift.finished;
+      await activeFlightAnimation.finished;
+      activeFlightAnimation.cancel();
+      activeFlightAnimation = null;
       if (activeId !== chat.id) throw new Error("Conversation changed");
 
       userRow.style.visibility = "visible";
       userRow.classList.add("morph-avatar-in");
-      const shrink = inputBox.animate([
+      activeFlightAnimation = inputBox.animate([
         {
           left: sourceRect.left + "px",
           top: targetRect.top + "px",
@@ -331,7 +334,9 @@
         easing: "cubic-bezier(.22,.78,.18,1)",
         fill: "forwards"
       });
-      await shrink.finished;
+      await activeFlightAnimation.finished;
+      activeFlightAnimation.cancel();
+      activeFlightAnimation = null;
       if (activeId !== chat.id) throw new Error("Conversation changed");
 
       restoreComposer();
@@ -347,6 +352,8 @@
         easeScrollToBottom(conversation, 360);
       }, 100);
     } catch {
+      activeFlightAnimation?.cancel();
+      activeFlightAnimation = null;
       restoreComposer();
       if (activeId === chat.id) {
         userRow.style.visibility = "visible";
