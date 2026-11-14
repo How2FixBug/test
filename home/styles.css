@@ -157,7 +157,7 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
 .message-morph-target .bubble { opacity: 0; }
 .message-morph-target.morph-message-in .bubble {
   opacity: 1;
-  transition: opacity .16s ease;
+  transition: none;
 }
 .input-box.input-fade-back { opacity: 0; transition: opacity .26s ease; }
 .input-box.input-fade-back.input-fade-visible { opacity: 1; }
