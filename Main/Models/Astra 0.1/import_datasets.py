@@ -12,6 +12,7 @@ import argparse
 import gzip
 import json
 import re
+import random
 import time
 import urllib.parse
 import urllib.request
@@ -122,9 +123,10 @@ def import_oasst(limit: int) -> list[tuple[str, str]]:
     for pair in pairs:
         unique[(normalize(pair[0]), normalize(pair[1]))] = pair
     result = list(unique.values())
-    result.sort(key=lambda pair: (len(pair[0]) + len(pair[1]), normalize(pair[0])))
     print(f"OASST1: {len(result):,} clean English prompt/answer pairs available.")
-    return result[:limit]
+    # Sample across the full eligible corpus instead of taking only its shortest rows.
+    rng = random.Random(20261114)
+    return rng.sample(result, min(limit, len(result)))
 
 
 def import_aya(limit: int) -> list[tuple[str, str]]:
