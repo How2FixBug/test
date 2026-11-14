@@ -38,9 +38,20 @@ python3 tokenizer.py
 ```
 
 This produces a BPE `tokenizer_config.json` containing `vocab_hex` and `merges`,
-plus a matching `tokenized_dataset.jsonl`. The currently committed generated
-artifacts may be from the older 262-token byte tokenizer, so regenerate them before
-training. Keep the two generated files together; they must come from the same run.
+plus a matching `tokenized_dataset.jsonl`. Both files carry a shared fingerprint;
+the trainer rejects mismatched or outdated artifacts. The currently committed
+generated artifacts may be from the older 262-token byte tokenizer, so regenerate
+them before training. Keep the two generated files together; they must come from
+the same run.
+
+Run the correctness checks:
+
+```bash
+python3 test_causality.py
+```
+
+This checks tokenizer round-tripping (including Unicode) and verifies that changing
+future input tokens cannot change earlier-position model outputs.
 
 ## Train
 
