@@ -271,11 +271,11 @@ def main() -> None:
     # Rebuild this source section on every import so improved filters replace
     # old imported examples instead of leaving stale low-quality records behind.
     source_block_re = re.compile(
-        r"(?ms)^<!-- ASTRA_SOURCE: BYU-PCCL/chitchat-dataset -->\\n"
-        r"<user>\\n.*?\\n</astra>(?:\\n\\s*---)?\\n*"
+        r"(?ms)^<!-- ASTRA_SOURCE: BYU-PCCL/chitchat-dataset -->\n"
+        r"<user>\n.*?\n</astra>(?:\n\s*---)?\n*"
     )
     raw_dataset = source_block_re.sub("", raw_dataset)
-    raw_dataset = re.sub(r"(?m)^TOTAL:.*\\n?", "", raw_dataset, count=1)
+    raw_dataset = re.sub(r"(?m)^TOTAL:.*\n?", "", raw_dataset, count=1)
     known = existing_pairs(raw_dataset)
     additions = []
     for user, answer in candidates:
