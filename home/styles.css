@@ -184,3 +184,9 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
 .modal-close .ui-icon{width:15px;height:15px}
 .message-morph-flight{white-space:pre;overflow-wrap:normal;word-break:normal;align-items:center;text-align:left;line-height:1.65;padding-left:15px;padding-right:15px}
 .message-morph-flight{font-kerning:none;font-variant-ligatures:none}
+
+/* Keep the text laid out at its original width while the outer shape contracts. */
+.message-morph-flight{white-space:normal;overflow-wrap:normal;padding-left:18px;padding-right:18px}
+.message-morph-flight>span{display:block;flex:0 0 auto;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
+.avatar .ui-icon{width:17px;height:17px}
+.message.sol .avatar .ui-icon{width:19px;height:19px}
