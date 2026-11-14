@@ -13,17 +13,19 @@ layer will handle changing facts and external lookups.
 ## Training source
 
 - `dataset_conversation_candidate.txt` is the current curated conversation corpus.
-- Current corpus target: **2,500 serialized conversations**.
-- Latest structural audit: 2,500 conversations, 2,682 user turns, and 2,690
-  ASTRA turns. All user and ASTRA message bodies are unique.
-- **152 conversations are multi-turn**, including 117 newly added contextual
-  follow-up exchanges. The audit now enforces a minimum of 150 multi-turn
-  conversations. There are 8 information-tool request/result examples and 7
-  concise thinking notes.
-- The audit reports recurring 4–6 word phrases for manual review. Exact
-  uniqueness does not prove every example is semantically distinct or equally
-  useful; review the sampled conversations before training.
-- It contains serialized conversations, including real multi-turn examples.
+- Current corpus: **282 serialized conversations**.
+- Latest structural and exact-duplicate checks: 282 conversations, 484 user
+  turns, and 492 ASTRA turns. No exact duplicate user or ASTRA message bodies
+  were found in the normalized comparison.
+- **162 conversations are multi-turn**. Ten new multi-turn conversations were
+  added in the latest quality pass.
+- The 2,228 formulaic entries from the previous candidate were removed rather
+  than retained to preserve an arbitrary count. The corpus is intentionally
+  smaller while its conversational quality is improved.
+- Eight information-tool request/result examples and seven concise thinking
+  notes remain in the preserved original material.
+- Exact uniqueness does not prove every example is semantically distinct or
+  equally useful; review the sampled conversations before training.
 - `<think>...</think>` notes appear only in selected cases where a short
   decision note is useful. They are inside the corresponding `<astra>` message.
 - `<getinfo>...</getinfo>` marks a request for external information.
