@@ -65,7 +65,7 @@ def train_bpe(pairs: list[tuple[str, str]], target_size: int):
     vocab: list[bytes | None] = [bytes([i]) for i in range(BASE_VOCAB_SIZE)] + [None] * len(SPECIAL_TOKENS)
     merges: list[tuple[int, int]] = []
 
-    while BASE_VOCAB_SIZE + len(merges) < target_size:
+    while len(vocab) < target_size:
         pair_counts: Counter[tuple[int, int]] = Counter()
         for sequence, frequency in sequences:
             for left, right in zip(sequence, sequence[1:]):
@@ -134,7 +134,7 @@ def encode(text: str, merges: list[tuple[int, int]]) -> list[int]:
     return ids
 
 
-def decode(ids: list[int], vocab: list[bytes]) -> str:
+def decode(ids: list[int], vocab: list[bytes | None]) -> str:
     reverse = {value: key for key, value in SPECIAL_TOKENS.items()}
     output: list[str] = []
     byte_buffer = bytearray()
@@ -156,12 +156,12 @@ def decode(ids: list[int], vocab: list[bytes]) -> str:
     return "".join(output)
 
 
-def save_tokenizer(config_path: Path, vocab: list[bytes], merges: list[tuple[int, int]]):
+def save_tokenizer(config_path: Path, vocab: list[bytes | None], merges: list[tuple[int, int]], target_size: int):
     config = {
         "name": "ASTRA 0.1 Byte-Level BPE",
         "type": "byte_level_bpe",
-        "target_vocab_size": TARGET_VOCAB_SIZE,
-        "vocab_size": len(vocab) + len(SPECIAL_TOKENS),
+        "target_vocab_size": target_size,
+        "vocab_size": len(vocab),
         "base_byte_vocab_size": BASE_VOCAB_SIZE,
         "special_tokens": SPECIAL_TOKENS,
         "special_token_count": len(SPECIAL_TOKENS),
@@ -200,7 +200,7 @@ def main():
 
     pairs = load_pairs(args.dataset)
     vocab, merges = train_bpe(pairs, args.vocab_size)
-    save_tokenizer(args.config, vocab, merges)
+    save_tokenizer(args.config, vocab, merges, args.vocab_size)
     tokenize_dataset(pairs, args.output, merges)
 
     total_tokens = sum(len(encode(f"<user>\n{u}\n</user>\n<astra>\n{a}\n</astra>", merges))
