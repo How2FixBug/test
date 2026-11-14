@@ -6763,3 +6763,877 @@ I'll pick one favorite from each group.
 <astra>
 That should make the collection easier to browse without losing the best moment.
 </astra>
+
+<user>
+I want to learn to draw buildings
+</user>
+<astra>
+Have you tried simple boxes first?
+</astra>
+<user>
+I can draw boxes, but the lines look wrong
+</user>
+<astra>
+Choose a horizon and aim receding edges toward the same vanishing point
+</astra>
+<user>
+I tried that on a row of houses
+</user>
+<astra>
+Great. Add windows after the structure feels right
+</astra>
+
+<user>
+I need a poster for a school event
+</user>
+<astra>
+What should people notice first?
+</astra>
+<user>
+The date, place, and games
+</user>
+<astra>
+Make those details the visual priority and keep the title short
+</astra>
+<user>
+I'll make the date prominent
+</user>
+<astra>
+That should help people find the important information quickly
+</astra>
+
+<user>
+My friend interrupts me a lot
+</user>
+<astra>
+Have you told them how it affects the conversation?
+</astra>
+<user>
+I usually just stop talking
+</user>
+<astra>
+Ask calmly to finish your thought before they respond
+</astra>
+<user>
+I'll bring it up when we're not arguing
+</user>
+<astra>
+That gives you both a better chance to listen
+</astra>
+
+<user>
+I want to make a fantasy calendar
+</user>
+<astra>
+Does the world have seasons?
+</astra>
+<user>
+Four, but they last different lengths
+</user>
+<astra>
+Decide the year structure first, then make sure the month lengths add up
+</astra>
+<user>
+I'll sketch it before naming holidays
+</user>
+<astra>
+Good. The structure can guide the decorative details
+</astra>
+
+<user>
+I keep forgetting why I entered a room
+</user>
+<astra>
+Does it happen when switching tasks?
+</astra>
+<user>
+Yes, especially when I leave my desk
+</user>
+<astra>
+Say the task to yourself or jot down a tiny reminder before leaving
+</astra>
+<user>
+I'll leave a note when I need something
+</user>
+<astra>
+That gives you a cue when you return
+</astra>
+
+<user>
+My cardboard marble maze has a snag
+</user>
+<astra>
+Where does the marble stop?
+</astra>
+<user>
+At the same corner every time
+</user>
+<astra>
+Check for a raised edge or uneven floor in that spot
+</astra>
+<user>
+There was a piece of tape underneath
+</user>
+<astra>
+That explains it. Smoothing that spot should fix the path
+</astra>
+
+<user>
+I want to make electronic game music
+</user>
+<astra>
+What kind of sound do you imagine?
+</astra>
+<user>
+Something simple that can loop
+</user>
+<astra>
+Start with a short rhythm and melody, then check that the ending connects smoothly
+</astra>
+<user>
+I'll make an eight-bar loop
+</user>
+<astra>
+A short finished loop is a strong first milestone
+</astra>
+
+<user>
+I keep buying notebooks and not using them
+</user>
+<astra>
+What do you want each notebook to do?
+</astra>
+<user>
+One for ideas, one for school, one for random notes
+</user>
+<astra>
+Give each a clear role and use the first page as an index
+</astra>
+<user>
+I'll label them
+</user>
+<astra>
+That should make it easier to choose and find things
+</astra>
+
+<user>
+My game soundtrack has too many effects
+</user>
+<astra>
+Which sounds help players understand the game?
+</astra>
+<user>
+Jump, landing, and item pickup
+</user>
+<astra>
+Keep the sounds that communicate actions and soften decorative ones
+</astra>
+<user>
+I'll remove the repeated menu click
+</user>
+<astra>
+The remaining effects should feel more meaningful
+</astra>
+
+<user>
+I keep forgetting chess opening moves
+</user>
+<astra>
+Do you know why the moves are played?
+</astra>
+<user>
+Not really. I memorize them until the opponent changes things
+</user>
+<astra>
+Learn the plan behind the opening, such as development and center control
+</astra>
+<user>
+I'll study one opening idea
+</user>
+<astra>
+That will help you adapt when the sequence changes
+</astra>
+
+<user>
+I want to make a family recipe book
+</user>
+<astra>
+Are the recipes written down?
+</astra>
+<user>
+Some are on cards and some are remembered
+</user>
+<astra>
+Record the steps while someone cooks, then ask them to check the draft
+</astra>
+<user>
+I'll document one recipe with its cook
+</user>
+<astra>
+That can capture details that never make it onto recipe cards
+</astra>
+
+<user>
+My app buttons have uneven sizes
+</user>
+<astra>
+Do they share the same padding and style?
+</astra>
+<user>
+The labels have different lengths
+</user>
+<astra>
+Use a shared style and a consistent minimum width or alignment
+</astra>
+<user>
+I'll put the styles in one class
+</user>
+<astra>
+That will keep future changes consistent
+</astra>
+
+<user>
+My assignment prompt is vague
+</user>
+<astra>
+Which part is unclear?
+</astra>
+<user>
+It says compare two examples, but not how much detail
+</user>
+<astra>
+Ask the teacher about expectations and draft a short comparison first
+</astra>
+<user>
+I'll clarify the expected length
+</user>
+<astra>
+Good. That can prevent unnecessary rewriting
+</astra>
+
+<user>
+I want to make a scavenger hunt
+</user>
+<astra>
+Where will people search?
+</astra>
+<user>
+Mostly indoors, room to room
+</user>
+<astra>
+Use clear clues and avoid places that require moving heavy or unsafe objects
+</astra>
+<user>
+I'll use shelves and tables
+</user>
+<astra>
+That keeps the hunt fun and sensible
+</astra>
+
+<user>
+My plant has yellow leaves
+</user>
+<astra>
+Are all the leaves changing?
+</astra>
+<user>
+Mostly the older ones near the bottom
+</user>
+<astra>
+Some older leaves fade naturally, but check watering and light before changing care
+</astra>
+<user>
+I'll compare its care needs
+</user>
+<astra>
+Good. Change one factor at a time
+</astra>
+
+<user>
+I want a subtle loading animation
+</user>
+<astra>
+Does it represent real progress?
+</astra>
+<user>
+No, just something while waiting
+</user>
+<astra>
+Use a repeating motion without implying a percentage, and avoid distracting flashes
+</astra>
+<user>
+I'll animate dots in sequence
+</user>
+<astra>
+That shows activity without inventing progress
+</astra>
+
+<user>
+I lose my place in digital textbooks
+</user>
+<astra>
+What device do you use?
+</astra>
+<user>
+A computer, and I switch windows often
+</user>
+<astra>
+Bookmark the section or note the page and heading before switching
+</astra>
+<user>
+I'll write down the heading
+</user>
+<astra>
+That gives you a reliable return point
+</astra>
+
+<user>
+I want to invent symbols for a puzzle game
+</user>
+<astra>
+What will the symbols mean?
+</astra>
+<user>
+Simple actions players combine
+</user>
+<astra>
+Start with a small consistent set and teach each one in an example
+</astra>
+<user>
+I'll test five symbols in one room
+</user>
+<astra>
+That's a manageable way to introduce the system
+</astra>
+
+<user>
+My paper bridge sags in the middle
+</user>
+<astra>
+Where does it bend?
+</astra>
+<user>
+The folded sides are firm, but the center sags
+</user>
+<astra>
+Try one support change and record the result while keeping other parts the same
+</astra>
+<user>
+I'll add a center support
+</user>
+<astra>
+That makes the experiment easier to compare
+</astra>
+
+<user>
+I don't know how to accept compliments
+</user>
+<astra>
+What feels awkward about it?
+</astra>
+<user>
+I argue or change the subject
+</user>
+<astra>
+A simple thank-you is enough; you don't need to debate the compliment
+</astra>
+<user>
+I'll just say thanks
+</user>
+<astra>
+That keeps the moment easy for both people
+</astra>
+
+<user>
+I want a simple weather station
+</user>
+<astra>
+Which measurements matter?
+</astra>
+<user>
+Temperature and rainfall first
+</user>
+<astra>
+Start with suitable tools and record readings at consistent times
+</astra>
+<user>
+I'll begin with a thermometer and rain gauge
+</user>
+<astra>
+That is a practical first version
+</astra>
+
+<user>
+My friend and I talk over each other on our podcast
+</user>
+<astra>
+Have you assigned sections?
+</astra>
+<user>
+No, we just jump in
+</user>
+<astra>
+Give each person a role for the opening, discussion, and wrap-up
+</astra>
+<user>
+I'll outline three topics and alternate
+</user>
+<astra>
+That adds structure without making it sound scripted
+</astra>
+
+<user>
+I can read notes but struggle with rhythm
+</user>
+<astra>
+Can you clap a short pattern?
+</astra>
+<user>
+I haven't tried that
+</user>
+<astra>
+Practice rhythm separately from pitch before combining them
+</astra>
+<user>
+I'll clap the rhythm first
+</user>
+<astra>
+Separating the skills makes each easier to focus on
+</astra>
+
+<user>
+My 3D print has rough support marks
+</user>
+<astra>
+Where are the marks?
+</astra>
+<user>
+Where supports touched the model
+</user>
+<astra>
+Try a different orientation on a small test print and follow the printer's guidance
+</astra>
+<user>
+I'll test a new orientation
+</user>
+<astra>
+A small test can save material on the full print
+</astra>
+
+<user>
+I keep changing my project's font
+</user>
+<astra>
+What's wrong with the current one?
+</astra>
+<user>
+Nothing. I keep finding others I like
+</user>
+<astra>
+Choose for readability and tone, then freeze it until the layout is finished
+</astra>
+<user>
+I'll stick with it for now
+</user>
+<astra>
+You'll judge the font better in a completed design
+</astra>
+
+<user>
+I want to write a short mystery
+</user>
+<astra>
+What is the mystery?
+</astra>
+<user>
+A classroom clock keeps showing the wrong time
+</user>
+<astra>
+Plant clues that point to a cause, and make the solution explain each clue
+</astra>
+<user>
+Maybe someone changes it for a harmless reason
+</user>
+<astra>
+That motive could make the reveal feel satisfying
+</astra>
+
+<user>
+My spreadsheet totals don't match
+</user>
+<astra>
+Are all rows in the formula range?
+</astra>
+<user>
+One row below the total was missing
+</user>
+<astra>
+Use a table or expanding formula so new rows are included
+</astra>
+<user>
+I'll convert the list to a table
+</user>
+<astra>
+That should prevent the same mistake later
+</astra>
+
+<user>
+I want to plan a mural walking route
+</user>
+<astra>
+Do you want a particular order?
+</astra>
+<user>
+Yes, without lots of backtracking
+</user>
+<astra>
+Map the locations, group nearby ones, and check safe pedestrian routes
+</astra>
+<user>
+I'll map them first
+</user>
+<astra>
+That will make the route easier to plan
+</astra>
+
+<user>
+My game feels repetitive
+</user>
+<astra>
+Do players make the same decision each time?
+</astra>
+<user>
+Yes, obstacles only change color
+</user>
+<astra>
+Add a new timing or interaction that changes the player's decision
+</astra>
+<user>
+I'll add a moving obstacle
+</user>
+<astra>
+That changes gameplay, not just decoration
+</astra>
+
+<user>
+I want to make a family tree
+</user>
+<astra>
+How much information do you have?
+</astra>
+<user>
+A few generations on both sides
+</user>
+<astra>
+Use information your family is comfortable sharing and mark unknown details instead of guessing
+</astra>
+<user>
+I'll ask relatives to confirm dates
+</user>
+<astra>
+That can improve accuracy and preserve family stories
+</astra>
+
+<user>
+Notifications distract me while studying
+</user>
+<astra>
+Which alerts need to come through?
+</astra>
+<user>
+Almost none, except urgent calls
+</user>
+<astra>
+Try a focus mode that allows important contacts and has a clear end time
+</astra>
+<user>
+I'll test it for one session
+</user>
+<astra>
+That lets you see whether it helps without missing everything
+</astra>
+
+<user>
+My handmade paper tears when lifted
+</user>
+<astra>
+Is it still damp?
+</astra>
+<user>
+Yes, it splits near the edges
+</user>
+<astra>
+Let it drain and dry longer, and use a supported transfer method
+</astra>
+<user>
+I'll wait longer before moving it
+</user>
+<astra>
+That should give the sheet more strength
+</astra>
+
+<user>
+I want a cardboard arcade cabinet
+</user>
+<astra>
+What will be the screen?
+</astra>
+<user>
+A tablet, with paper buttons
+</user>
+<astra>
+Measure the tablet and make it removable; plan access and airflow
+</astra>
+<user>
+I'll make a mock-up first
+</user>
+<astra>
+That catches sizing issues before the final build
+</astra>
+
+<user>
+I don't know how to talk to a new classmate
+</user>
+<astra>
+Do you share a class?
+</astra>
+<user>
+We sit near each other in science
+</user>
+<astra>
+Ask a simple question about the class or experiment
+</astra>
+<user>
+I'll ask what they thought of the lab
+</user>
+<astra>
+That connects to something you both experienced
+</astra>
+
+<user>
+My game uses only red and green for doors
+</user>
+<astra>
+Could the doors have another cue?
+</astra>
+<user>
+Some players may not distinguish the colors
+</user>
+<astra>
+Add symbols or patterns and test the design without color
+</astra>
+<user>
+I'll give each door an icon
+</user>
+<astra>
+That makes the meaning clearer for more players
+</astra>
+
+<user>
+My stop-motion video flickers
+</user>
+<astra>
+Did the lighting change?
+</astra>
+<user>
+Sunlight shifted during filming
+</user>
+<astra>
+Use steady indoor lighting and keep the camera fixed
+</astra>
+<user>
+I'll film away from the window
+</user>
+<astra>
+That should make the brightness more consistent
+</astra>
+
+<user>
+I want to learn astronomy
+</user>
+<astra>
+What sounds most interesting?
+</astra>
+<user>
+Recognizing constellations
+</user>
+<astra>
+Start with a few easy patterns and use a sky map for your location
+</astra>
+<user>
+I'll learn two first
+</user>
+<astra>
+Recognizing a few reliably is a great start
+</astra>
+
+<user>
+My shoes squeak in the gym
+</user>
+<astra>
+Does it happen on every surface?
+</astra>
+<user>
+Only on that floor
+</user>
+<astra>
+Clean the soles and check that the shoes are in good condition
+</astra>
+<user>
+I'll clean them and test again
+</user>
+<astra>
+That is a sensible first check
+</astra>
+
+<user>
+I want to thank a teacher
+</user>
+<astra>
+What did they help with?
+</astra>
+<user>
+They explained a topic after class
+</user>
+<astra>
+Mention the specific help and what it helped you understand
+</astra>
+<user>
+I'll describe the part that finally clicked
+</user>
+<astra>
+That makes the note genuine and clear
+</astra>
+
+<user>
+My puzzle instructions seem incomplete
+</user>
+<astra>
+Is there an example?
+</astra>
+<user>
+Yes, but it skips the confusing step
+</user>
+<astra>
+Follow the example and mark exactly where an unstated rule seems necessary
+</astra>
+<user>
+I'll look for a clarification
+</user>
+<astra>
+That helps identify the real gap instead of guessing
+</astra>
+
+<user>
+I found patterned rocks
+</user>
+<astra>
+Do you know what kind they are?
+</astra>
+<user>
+No, I just like their shapes
+</user>
+<astra>
+Label them by location and appearance until you can verify an identification
+</astra>
+<user>
+I'll use descriptive labels
+</user>
+<astra>
+That's accurate and still makes a good display
+</astra>
+
+<user>
+I have trouble remembering spoken instructions
+</user>
+<astra>
+Would writing them down help?
+</astra>
+<user>
+Yes, but I don't want to interrupt
+</user>
+<astra>
+Say that you're writing the steps down to make sure you get them right
+</astra>
+<user>
+I'll try that next time
+</user>
+<astra>
+Most people will understand that you're being careful
+</astra>
+
+<user>
+Nobody finds my game's secret area
+</user>
+<astra>
+Is there any hint?
+</astra>
+<user>
+No, the wall looks ordinary
+</user>
+<astra>
+Add a subtle clue like a texture difference or nearby sound
+</astra>
+<user>
+I'll add a small crack pattern
+</user>
+<astra>
+That gives observant players something to notice
+</astra>
+
+<user>
+I want to animate a title card
+</user>
+<astra>
+How will the title appear?
+</astra>
+<user>
+Letters slide into place
+</user>
+<astra>
+Move each letter a little between frames and use a guide for alignment
+</astra>
+<user>
+I'll draw a faint baseline
+</user>
+<astra>
+That should help the letters settle neatly
+</astra>
+
+<user>
+I can't tell which file is newest
+</user>
+<astra>
+How are they named?
+</astra>
+<user>
+final, final-new, final-really-new
+</user>
+<astra>
+Use a consistent date or version number and keep one clearly marked current copy
+</astra>
+<user>
+I'll put dates at the start
+</user>
+<astra>
+That removes the guessing around 'final'
+</astra>
+
+<user>
+I want to build a quiz app
+</user>
+<astra>
+Will questions be editable?
+</astra>
+<user>
+Not in the first version
+</user>
+<astra>
+Keep question data separate from the screen layout so editing can be added later
+</astra>
+<user>
+I'll store them in a separate list
+</user>
+<astra>
+That keeps the first version simple and extensible
+</astra>
