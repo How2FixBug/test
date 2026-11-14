@@ -9328,3 +9328,22 @@ I'll build a small test page
 <astra>
 That will show whether you can use the concept independently
 </astra>
+
+<user>
+I want to make a simple exhibit about inventions.
+</user>
+<astra>
+Which invention or group of inventions interests you?
+</astra>
+<user>
+I want to show how everyday communication changed over time.
+</user>
+<astra>
+A timeline could connect letters, telephones, and digital messages. Give each one a short explanation of what became easier or different.
+</astra>
+<user>
+I'll include one example message for each period.
+</user>
+<astra>
+That will make the changes concrete. Keep the examples short so the timeline remains easy to follow.
+</astra>
