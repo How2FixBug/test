@@ -158,7 +158,7 @@ def acceptable_pair(user: str, assistant: str) -> bool:
 
     # Explicit requests for facts, advice, explanations, or instructions
     # are outside ASTRA's scope even if phrased as casual follow-ups.
-    if TASK_OR_QA_RE.search(user):
+    if TASK_OR_QA_RE.search(user) and not CASUAL_QUESTION_RE.search(user):
         return False
 
     # Social questions are a narrow, intentional exception to the question rule.
