@@ -63,7 +63,8 @@
       if (!config || config.type !== "byte_level_bpe" || !Array.isArray(config.merges)) {
         throw new Error("Invalid ASTRA tokenizer config.");
       }
-      if (config.fingerprint !== "90084574c2cb150e25edb930f342774e14c09f25920b13e53858933d6301d71f" ||\n          config.vocab_size !== 8192 || config.merges.length !== 7932 || config.vocab_hex?.length !== 8192) {
+      if (config.fingerprint !== "90084574c2cb150e25edb930f342774e14c09f25920b13e53858933d6301d71f" ||
+          config.vocab_size !== 8192 || config.merges.length !== 7932 || config.vocab_hex?.length !== 8192) {
         throw new Error("ASTRA tokenizer config does not match the expected 8,192-token vocabulary.");
       }
       this.config = config;
