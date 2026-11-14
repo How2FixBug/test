@@ -18,7 +18,7 @@ SOURCE_RE = re.compile(r"<!-- ASTRA_SOURCE: ([^>]+) -->")
 # Only flag claims that explicitly present time-sensitive information.
 TIME_RE = re.compile(
     r"\b(?:as of (?:19|20)\d{2}|(?:current|latest|recent) "
-    r"(?:population|price|rate|排名|statistics|figures|data|version|"
+    r"(?:population|price|rate|rankings|statistics|figures|data|version|"
     r"president|prime minister|CEO|weather|forecast|schedule|standings)|"
     r"today's (?:weather|news|forecast|schedule)|"
     r"right now,? (?:the|a) (?:price|rate|population|weather))\b",
