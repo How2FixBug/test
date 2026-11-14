@@ -63,6 +63,8 @@
     $("#sidebar").classList.remove("open");
   };
   const createChat = () => {
+    // Keep only one blank conversation: discard any abandoned empty chats first.
+    chats = chats.filter(existing => existing.messages.length > 0);
     const chat = makeEmptyChat();
     chats.unshift(chat);
     activeId = chat.id;
