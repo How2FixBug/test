@@ -323,6 +323,57 @@
     box?.classList.toggle("input-overflow", overflowing);
   };
 
+  let astraModel = null;
+  let astraModelPromise = null;
+
+  const loadAstraModel = () => {
+    if (astraModel) return Promise.resolve(astraModel);
+    if (!astraModelPromise) {
+      $("#selected-model-status").textContent = "Loading model...";
+      modelPicker.title = "Loading ASTRA 0.1 into this browser";
+      astraModelPromise = window.AstraBrowserModel.load().then(model => {
+        astraModel = model;
+        $("#selected-model-status").textContent = "Ready · In browser";
+        modelPicker.title = "ASTRA 0.1 is loaded in this browser";
+        return model;
+      }).catch(error => {
+        astraModelPromise = null;
+        $("#selected-model-status").textContent = "Load failed";
+        modelPicker.title = error.message || "Could not load ASTRA 0.1";
+        throw error;
+      });
+    }
+    return astraModelPromise;
+  };
+
+  const buildPromptIds = (history, currentMessage, tokenizer) => {
+    const maxPromptTokens = 432;
+    const prefix = tokenizer.encode("<user>\\n");
+    const suffix = tokenizer.encode("\\n</user>\\n<astra>\\n");
+    let currentBody = tokenizer.encode(currentMessage);
+    const currentRoom = Math.max(1, maxPromptTokens - prefix.length - suffix.length);
+    if (currentBody.length > currentRoom) currentBody = currentBody.slice(-currentRoom);
+    let promptIds = prefix.concat(currentBody, suffix);
+
+    const turns = [];
+    for (let i = 0; i < history.length; i++) {
+      if (history[i].role !== "user") continue;
+      const assistant = history[i + 1]?.role === "sol" ? history[i + 1].text : "";
+      turns.push({ user: history[i].text, assistant });
+    }
+
+    for (let i = turns.length - 1; i >= 0; i--) {
+      const turn = turns[i];
+      const turnIds = tokenizer.encode(
+        "<user>\\n" + turn.user + "\\n</user>\\n<astra>\\n" +
+        turn.assistant + "\\n</astra>\\n"
+      );
+      if (promptIds.length + turnIds.length > maxPromptTokens) continue;
+      promptIds = turnIds.concat(promptIds);
+    }
+    return promptIds;
+  };
+
   const sendMessage = async (text) => {
     const value = text.trim();
     if (!value) return;
@@ -331,20 +382,6 @@
     const history = chat.messages.map(message => ({ role: message.role, text: message.text }));
     const userMessage = { role: "user", text: value };
     const botMessage = { role: "sol", text: "Thinking..." };
-    const replyPromise = fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: value, history })
-    }).then(async response => {
-      let data = {};
-      try { data = await response.json(); } catch {}
-      if (!response.ok) throw new Error(data.error || "The local ASTRA server is not running. Start server.py and open http://127.0.0.1:8765/home/.");
-      return data.reply;
-    }).catch(error => ({
-      error: error instanceof TypeError
-        ? new Error("Cannot reach the local ASTRA server. Start server.py and open http://127.0.0.1:8765/home/.")
-        : error
-    }));
     chat.messages.push(userMessage, botMessage);
     if (chat.messages.filter(message => message.role === "user").length === 1) {
       chat.title = value.length > 30 ? value.slice(0, 27) + "..." : value;
@@ -496,19 +533,23 @@
         messages.append(botRow);
         requestAnimationFrame(() => botRow.classList.add("bot-visible"));
         easeScrollToBottom(conversation, 360);
-        replyPromise.then(result => {
-          if (result.error) throw result.error;
-          const reply = result.reply;
-          botMessage.text = reply;
-          botRow.querySelector(".bubble").textContent = reply;
-          save();
-          easeScrollToBottom(conversation, 260);
-        }).catch(error => {
-          botMessage.text = error.message || "ASTRA could not generate a response.";
-          botRow.querySelector(".bubble").textContent = botMessage.text;
-          save();
-          easeScrollToBottom(conversation, 260);
-        });
+        (async () => {
+          try {
+            const model = await loadAstraModel();
+            const promptIds = buildPromptIds(history, value, model.tokenizer);
+            const reply = await model.generate(promptIds, { maxNewTokens: 80 });
+            if (!reply) throw new Error("ASTRA did not generate a response. Try sending that again.");
+            botMessage.text = reply;
+            botRow.querySelector(".bubble").textContent = reply;
+            save();
+            easeScrollToBottom(conversation, 260);
+          } catch (error) {
+            botMessage.text = error.message || "ASTRA could not generate a response.";
+            botRow.querySelector(".bubble").textContent = botMessage.text;
+            save();
+            easeScrollToBottom(conversation, 260);
+          }
+        })();
       }, 100);
     } catch {
       activeFlightAnimation?.cancel();
@@ -605,14 +646,7 @@
       if (!modalBackdrop.hidden) closeModal();
     }
   });
-  fetch("/api/status").then(response => response.json()).then(status => {
-    const label = $("#selected-model-status");
-    label.textContent = status.ready ? "Ready · " + status.device : "Model files not added";
-    modelPicker.title = status.ready ? "ASTRA 0.1 is ready" : (status.error || "ASTRA 0.1 is not loaded");
-  }).catch(() => {
-    $("#selected-model-status").textContent = "Local server offline";
-    modelPicker.title = "Start the local ASTRA server to connect";
-  });
+  loadAstraModel().catch(() => {});
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
     if (Array.isArray(saved)) chats = saved.filter(chat => chat && typeof chat.id === "string" && Array.isArray(chat.messages));
