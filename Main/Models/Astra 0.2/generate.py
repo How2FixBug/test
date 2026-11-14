@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a direct reply with a trained ASTRA 0.2 checkpoint."""
+"""Generate an ASTRA reply or an external-information request."""
 from __future__ import annotations
 
 import argparse
