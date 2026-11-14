@@ -43,6 +43,16 @@ The starter set also contains additional original ASTRA examples across science,
 For Apple Silicon, the trainer automatically selects Apple's MPS backend when available.
 Otherwise it falls back to CPU.
 
+## Audit the dataset
+
+Before spending time on another training run, inspect the actual local corpus and token distribution:
+
+```bash
+python3 audit_dataset.py
+```
+
+This reports unique prompts and answers, repeated-answer clusters, empty think sections, sequence lengths, and the most frequent token pieces. It does not modify the dataset.
+
 ## Prepare
 
 After pulling the latest code, regenerate the tokenizer artifacts:
