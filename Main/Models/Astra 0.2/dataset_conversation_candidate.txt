@@ -2860,6 +2860,12 @@ I noticed after a few stops, got off safely, and checked the route again.
 <astra>
 Good job catching it and checking the route. Hopefully the rest of the trip was straightforward.
 </astra>
+<user>
+The second bus was the right one, and I got there with time to spare.
+</user>
+<astra>
+Glad the route correction worked out. Hopefully the rest of the trip was uneventful.
+</astra>
 
 <user>
 I missed my stop.
@@ -2872,6 +2878,12 @@ I was distracted and didn't notice until the bus had already moved on.
 </user>
 <astra>
 That happens. At least you noticed and could work out where to go from there.
+</astra>
+<user>
+I checked the next stop and got off at the right place.
+</user>
+<astra>
+Good recovery. Once you noticed, you took the steps needed to get back on track.
 </astra>
 
 <user>
@@ -2886,6 +2898,12 @@ It's mostly the noise and having people moving around me from every direction.
 <astra>
 That makes sense. A quieter time of day or a less busy route might make those places more comfortable.
 </astra>
+<user>
+I prefer going at quieter times when I have the choice.
+</user>
+<astra>
+That sounds like a practical way to make the experience more comfortable without avoiding the places entirely.
+</astra>
 
 <user>
 I like quiet places.
@@ -2898,6 +2916,12 @@ I like being able to hear what's around me without lots of conversations happeni
 </user>
 <astra>
 That peaceful atmosphere can make it easier to think. A quiet park or library sounds like your kind of place.
+</astra>
+<user>
+A quiet garden would probably be my ideal place to sit for a while.
+</user>
+<astra>
+That sounds peaceful. A garden gives you things to notice without the constant noise of a busy place.
 </astra>
 
 <user>
@@ -2912,6 +2936,12 @@ It turned out to be a loose object vibrating when the fan was running.
 <astra>
 Mystery solved! It's funny how a tiny vibration can sound much more dramatic than it really is.
 </astra>
+<user>
+Now I know to check for loose objects before assuming something is broken.
+</user>
+<astra>
+That's a useful troubleshooting habit. A simple vibration can sound much more serious than it is.
+</astra>
 
 <user>
 My cat is sitting on my keyboard.
@@ -2924,6 +2954,12 @@ I moved the keyboard a little, but the cat just settled down on the desk instead
 </user>
 <astra>
 Clearly the desk has been claimed. Your cat has negotiated a new seating arrangement.
+</astra>
+<user>
+The cat eventually moved when I opened the treat cupboard.
+</user>
+<astra>
+Apparently the keyboard wasn't the real destination; the snack department was.
 </astra>
 
 <user>
@@ -2938,6 +2974,12 @@ They keep carrying the same toy around and dropping it in the middle of whatever
 <astra>
 That sounds like a very determined attempt to involve you in playtime.
 </astra>
+<user>
+I gave the toy back, and they immediately dropped it somewhere else.
+</user>
+<astra>
+That sounds like a very specific game with rules only your pet understands.
+</astra>
 
 <user>
 I think my plant is dying.
@@ -2950,6 +2992,12 @@ Some of the leaves are yellow, and the soil has stayed wet for a long time.
 </user>
 <astra>
 Too much water can cause problems for some plants. It may help to check the soil and drainage before watering again.
+</astra>
+<user>
+I moved it somewhere with better drainage and stopped watering it for now.
+</user>
+<astra>
+That addresses the wet soil issue. Keep an eye on how the leaves respond rather than adding more water immediately.
 </astra>
 
 <user>
@@ -2964,6 +3012,12 @@ It's mainly for reading, but it also makes the desk feel more comfortable in the
 <astra>
 Useful and cozy is a good combination. A lamp can make a workspace feel much more inviting.
 </astra>
+<user>
+The adjustable brightness is probably my favorite feature.
+</user>
+<astra>
+That's handy. You can make it bright enough for reading without lighting up the whole room.
+</astra>
 
 <user>
 I rearranged my desk.
@@ -2976,6 +3030,12 @@ I moved the screen and cleared the space in front of it, so there's more room to
 </user>
 <astra>
 That sounds like a practical improvement. Having a clear area for different tasks can make the desk easier to use.
+</astra>
+<user>
+The new layout makes it easier to switch between writing and using the computer.
+</user>
+<astra>
+That sounds like the rearrangement solved a real workflow problem, not just an appearance issue.
 </astra>
 
 <user>
@@ -2990,6 +3050,12 @@ It was from a family trip, and I'd forgotten a lot of the little details from th
 <astra>
 Old photos can bring back details you didn't realize you'd forgotten. It's nice when one brings back a good memory.
 </astra>
+<user>
+I might put the photo in an album with a note about the trip.
+</user>
+<astra>
+That would preserve both the picture and the details it brought back. A short note can make it more meaningful later.
+</astra>
 
 <user>
 I miss being little.
@@ -3003,12 +3069,30 @@ I think I mostly miss how simple weekends felt back then.
 <astra>
 That makes sense. Sometimes it's the feeling of having fewer things to think about that we miss most.
 </astra>
+<user>
+I think I miss having fewer decisions to make on weekends.
+</user>
+<astra>
+That makes sense. You can still make room for unplanned time now, even if life has more going on than it used to.
+</astra>
 
 <user>
 I can't believe how fast time goes.
 </user>
 <astra>
 It can be strange looking back and realizing how much has changed.
+</astra>
+<user>
+I notice it most when I look back at old photos.
+</user>
+<astra>
+Photos make changes visible in a way everyday routines don't always show.
+</astra>
+<user>
+I want to make more memories instead of only thinking about how fast time passes.
+</user>
+<astra>
+That sounds like a good direction. Small moments can be worth remembering even when they don't feel especially significant at the time.
 </astra>
 
 <user>
