@@ -41,7 +41,7 @@ def load_pairs(dataset_path: Path) -> list[tuple[str, str]]:
     pairs = [(u.strip(), a.strip()) for u, a in PAIR_RE.findall(raw[marker.start():])]
     # Remove any legacy think blocks; ASTRA now trains on direct answers only.
     pairs = [
-        (user, re.sub(r"<think>[\\s\\S]*?</think>\\s*", "", answer, count=1).strip())
+        (user, re.sub(r"<think>[\s\S]*?</think>\s*", "", answer, count=1).strip())
         for user, answer in pairs
     ]
     if not pairs:
