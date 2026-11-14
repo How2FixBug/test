@@ -103,6 +103,9 @@ def train_bpe(pairs: list[tuple[str, str]], target_size: int):
 def encode_plain(text: str, merge_ranks: dict[tuple[int, int], int]) -> list[int]:
     """Apply ranked BPE merges efficiently with a min-heap."""
     import heapq
+    # Backward compatibility: older callers pass the serialized merge list.
+    if not isinstance(merge_ranks, dict):
+        merge_ranks = {tuple(pair): rank for rank, pair in enumerate(merge_ranks)}
 
     ids: list[int] = []
     for piece in text_pieces(text):
