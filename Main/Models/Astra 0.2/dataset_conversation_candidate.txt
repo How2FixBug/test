@@ -1835,22 +1835,20 @@ See you later!
 <getinforesult>Location: Seattle, Washington. Conditions: light rain. Temperature: 12°C (54°F). This is a sample tool result for training.</getinforesult>
 <astra>The lookup reports light rain in Seattle at 12°C (54°F). If you're heading out, a light waterproof layer would make sense.</astra>
 
-<user>Has the latest version of Python changed recently?</user>
-<astra><getinfo>latest stable Python release and release date</getinfo></astra>
-<getinforesult>Sample lookup result: Python 3.x is listed as the latest stable release, with its release date and official download page included by the information service.</getinforesult>
-<astra>I should check the current release information rather than guess. The lookup lists the latest stable version and its release date; I can use that result to give you the exact version.</astra>
+<user>When was Python 3.14.0 released?</user>
+<astra><getinfo>official Python 3.14.0 release date</getinfo></astra>
+<getinforesult>Python 3.14.0 final release date: October 7, 2025. Source: Python.org release notes.</getinforesult>
+<astra>Python 3.14.0 was released on October 7, 2025, according to the official Python release notes.</astra>
 
 <user>What time does the science museum close today?</user>
 <astra><getinfo>today's opening hours for the science museum in Denver, Colorado</getinfo></astra>
-<getinforesult>Sample lookup result: today's hours and any special schedule are returned by the museum's official listing.</getinforesult>
-<astra>I'll need the museum's current listing to answer accurately. The lookup checks today's hours and any special schedule.</astra>
+<getinforesult>The museum's official listing was found, but the returned page does not show today's closing time.</getinforesult>
+<astra>I found the official listing, but it doesn't include today's closing time. I don't want to guess; the museum's current hours page is the best place to confirm it.</astra>
 
-<user>Can you tell me whether the game I mentioned has a new update?</user>
-<astra><think>The user refers to an earlier game, but no game has been named in this conversation. Ask which one.</think>Which game do you mean?</astra>
-<user>I mean Stardew Valley.</user>
-<astra><getinfo>latest official Stardew Valley update news</getinfo></astra>
-<getinforesult>Sample lookup result: the official news page and latest update announcement, if any, are returned by the information service.</getinforesult>
-<astra>I'll check the official update news so I don't give you an outdated answer.</astra>
+<user>Where can I read official update notes for Stardew Valley?</user>
+<astra><getinfo>official Stardew Valley news and update notes page</getinfo></astra>
+<getinforesult>Official source found: https://www.stardewvalley.net/blog/ . The page publishes news and update announcements for Stardew Valley.</getinforesult>
+<astra>The official Stardew Valley site publishes its news and update announcements. I'd use that page rather than relying on reposts.</astra>
 
 <user>Who won the championship last night?</user>
 <astra><think>The event is ambiguous; ask which competition before looking it up.</think>Which championship or sport are you asking about?</astra>
@@ -1859,8 +1857,8 @@ See you later!
 
 <user>What is the current exchange rate from US dollars to euros?</user>
 <astra><getinfo>current USD to EUR exchange rate</getinfo></astra>
-<getinforesult>Sample lookup result: current USD/EUR rate, timestamp, and source are returned by the information service.</getinforesult>
-<astra>Exchange rates change throughout the day, so I'll use the latest timestamped rate from the lookup rather than rely on an old figure.</astra>
+<getinforesult>Illustrative rate for this training example: 1 USD = 0.92 EUR. This is sample data, not a live quote.</getinforesult>
+<astra>Using the sample rate of 0.92 euros per dollar, 100 US dollars would be 92 euros. That's only an illustrative calculation, not a live exchange quote.</astra>
 
 <user>Is the library open right now?</user>
 <astra>Which library and city?</astra>
@@ -1871,19 +1869,17 @@ See you later!
 <astra>Which studio do you mean?</astra>
 <user>ConcernedApe.</user>
 <astra><getinfo>latest official announcements from ConcernedApe</getinfo></astra>
-<getinforesult>Sample lookup result: the creator's latest official public post or announcement, with publication date and source.</getinforesult>
-<astra>I'll check the creator's official updates and use the publication date so we can tell how recent the announcement is.</astra>
+<getinforesult>Sample lookup result: the official feed has no post dated today. Its newest returned item is from the previous day.</getinforesult>
+<astra>The sample lookup didn't find a post dated today; its newest returned official item was from the previous day. That doesn't rule out an announcement elsewhere, but I wouldn't claim there was a new one today.</astra>
 
 <user>Can you find the current system requirements for this game?</user>
 <astra>Sure—what game?</astra>
 <user>Hollow Knight: Silksong.</user>
 <astra><getinfo>official current PC system requirements for Hollow Knight: Silksong</getinfo></astra>
-<getinforesult>Sample lookup result: official minimum and recommended PC requirements, source, and retrieval date.</getinforesult>
-<astra>I'll use the official requirements rather than guess from older previews or unofficial listings.</astra>
+<getinforesult>The official store page was found, but the returned result does not include confirmed PC system requirements.</getinforesult>
+<astra>I couldn't confirm the PC requirements from the official result. I'd rather say that than repeat unofficial estimates as if they were confirmed.</astra>
 
-<user>Is there a new version of the app I use?</user>
-<astra>What's the app called, and what device are you using?</astra>
-<user>Firefox on Mac.</user>
-<astra><getinfo>latest stable Firefox version for macOS and release notes</getinfo></astra>
-<getinforesult>Sample lookup result: current stable Firefox version for macOS, release date, and official release notes.</getinforesult>
-<astra>I'll check the current macOS release and its official notes. Browser versions change often, so a live lookup is the reliable way to answer.</astra>
+<user>Where can I find the official Firefox release notes?</user>
+<astra><getinfo>Mozilla official Firefox release notes page</getinfo></astra>
+<getinforesult>Official source: https://www.mozilla.org/firefox/releases/ . The page lists Firefox releases and their changes.</getinforesult>
+<astra>Mozilla's official Firefox release notes are at https://www.mozilla.org/firefox/releases/ . They list version changes and release information.</astra>
