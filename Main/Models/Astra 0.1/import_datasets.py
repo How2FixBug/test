@@ -208,7 +208,7 @@ def append_pairs(pairs: list[tuple[str, str]], source: str) -> int:
 
 def main():
     parser = argparse.ArgumentParser(description="Add clean, credited public datasets to ASTRA.")
-    parser.add_argument("--limit-per-source", type=int, default=5000)
+    parser.add_argument("--limit-per-source", type=int, default=15000)
     parser.add_argument("--sources", nargs="+", choices=("oasst", "aya"), default=("oasst", "aya"))
     args = parser.parse_args()
     if args.limit_per_source < 1:
@@ -220,6 +220,7 @@ def main():
         total += append_pairs(import_aya(args.limit_per_source), AYA_SOURCE)
     print(f"Done. Added {total:,} examples. Now run python3 tokenizer.py.")
     print("Review the resulting dataset and credits before training.")
+    print("The default limit is now 15,000 examples per source; imports are deduplicated.")
 
 
 if __name__ == "__main__":
