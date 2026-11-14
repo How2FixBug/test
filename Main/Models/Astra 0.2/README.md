@@ -22,19 +22,16 @@ The starter `dataset.txt` is the original 280-example seed corpus copied from
 (OASST1) and Aya, with source credits and exact-pair deduplication. Inspect the
 corpus after importing; the importer is a filter, not a guarantee of quality.
 
-Run:
+Prepare the expanded corpus, rebuild its tokenizer, audit it, and run correctness checks with one command:
 
 ```bash
-python3 import_datasets.py --limit-per-source 4000
-python3 audit_dataset.py
+python3 prepare_dataset.py
 ```
 
-Then regenerate the tokenizer and encoded dataset:
-
-```bash
-python3 tokenizer.py
-python3 test_causality.py
-```
+This imports up to 4,000 examples per source (OASST1 and Aya), deduplicates
+against existing pairs, regenerates the tokenizer artifacts, prints an audit,
+and runs the correctness checks. Review the audit and sample records before
+training.
 
 **Important:** the current cloned trainer still treats each record as one
 user/assistant exchange. Multi-turn conversation records and assistant-turn
