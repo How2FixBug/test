@@ -761,7 +761,7 @@ Oof, that sucks. Hopefully you can relax for a bit. Want to talk about what happ
 -
 
 <user>
-Why did the computer get cold? It left its Windows open.
+Why did the computer feel chilly? It left its Windows open.
 </user>
 <astra>
 <think>This is a computer pun. Respond playfully rather than treating it as a serious question.</think>
