@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import codecs
 import json
+import sys
 from pathlib import Path
 
 import torch
@@ -78,6 +80,7 @@ def main():
     parser.add_argument("--repetition-penalty", type=float, default=1.08)
     parser.add_argument("--repeat-window", type=int, default=64)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--no-stream", action="store_true", help="Print the completed answer all at once")
     args = parser.parse_args()
 
     if args.max_new_tokens < 1:
@@ -138,6 +141,8 @@ def main():
     astra_end = SPECIAL_TOKENS["</astra>"]
     special_ids = set(SPECIAL_TOKENS.values())
     answer_start = None
+    answer_ids: list[int] = []
+    decoder = codecs.getincrementaldecoder("utf-8")()
 
     with torch.inference_mode():
         for _ in range(args.max_new_tokens):
@@ -167,13 +172,28 @@ def main():
             generated.append(next_id)
             if answer_start is None and next_id == think_end:
                 answer_start = len(generated)
+                continue
+
+            if answer_start is not None:
+                answer_ids.append(next_id)
+                if not args.no_stream and vocab[next_id] is not None:
+                    piece = decoder.decode(vocab[next_id], final=False)
+                    if piece:
+                        sys.stdout.write(piece)
+                        sys.stdout.flush()
 
     if answer_start is None:
         raise SystemExit(
             "ASTRA did not finish its think section. Try increasing --max-new-tokens."
         )
 
-    print(decode(generated[answer_start:], vocab).strip())
+    if args.no_stream:
+        print(decode(answer_ids, vocab).strip())
+    else:
+        tail = decoder.decode(b"", final=True)
+        if tail:
+            sys.stdout.write(tail)
+        print()
 
 
 if __name__ == "__main__":
