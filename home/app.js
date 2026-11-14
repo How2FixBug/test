@@ -340,10 +340,11 @@
       try { data = await response.json(); } catch {}
       if (!response.ok) throw new Error(data.error || "The local ASTRA server is not running. Start server.py and open http://127.0.0.1:8765/home/.");
       return data.reply;
-    }).catch(error => {
-      if (error instanceof TypeError) throw new Error("Cannot reach the local ASTRA server. Start server.py and open http://127.0.0.1:8765/home/.");
-      throw error;
-    });
+    }).catch(error => ({
+      error: error instanceof TypeError
+        ? new Error("Cannot reach the local ASTRA server. Start server.py and open http://127.0.0.1:8765/home/.")
+        : error
+    }));
     chat.messages.push(userMessage, botMessage);
     if (chat.messages.filter(message => message.role === "user").length === 1) {
       chat.title = value.length > 30 ? value.slice(0, 27) + "..." : value;
@@ -495,7 +496,9 @@
         messages.append(botRow);
         requestAnimationFrame(() => botRow.classList.add("bot-visible"));
         easeScrollToBottom(conversation, 360);
-        replyPromise.then(reply => {
+        replyPromise.then(result => {
+          if (result.error) throw result.error;
+          const reply = result.reply;
           botMessage.text = reply;
           botRow.querySelector(".bubble").textContent = reply;
           save();
