@@ -81,27 +81,27 @@ ASSISTANT_BIO_RE = re.compile(
 # first-person claims about tastes, possessions, relationships, locations,
 # memories, and offline experiences so ASTRA does not learn a fake biography.
 PERSONAL_CLAIM_RE = re.compile(
-    r"\\b(?:"
-    r"i\\s+(?:love|loved|like|liked|hate|hated|prefer|preferred|enjoy|"
+    r"\b(?:"
+    r"i\s+(?:love|loved|like|liked|hate|hated|prefer|preferred|enjoy|"
     r"enjoyed|adore|miss|remember|recall|own|owned|live|lived|work|"
     r"worked|study|studied|went|visited|travelled|traveled|made|cooked|"
     r"bought|played|used to|grew up|am from|come from|"
     r"have a|have an|have two|have three|have got|"
-    r"am dating|am married|am single|can relate)\\b|"
-    r"i(?:'m| am)\\s+(?:tall|short|awful|terrible|great at|bad at|"
+    r"am dating|am married|am single|can relate)\b|"
+    r"i(?:'m| am)\s+(?:tall|short|awful|terrible|great at|bad at|"
     r"a fan of|not a fan of|from |a [a-z]+|an [a-z]+)|"
-    r"my\\s+(?:cat|dog|pet|wife|husband|girlfriend|boyfriend|"
+    r"my\s+(?:cat|dog|pet|wife|husband|girlfriend|boyfriend|"
     r"children|kids|brother|sister|parents|family|house|car|school|"
-    r"job|favorite|favourite|type)\\b|"
-    r"until i\\s+(?:meet|find|see)|"
+    r"job|favorite|favourite|type)\b|"
+    r"until i\s+(?:meet|find|see)|"
     r"she's not my type|he's not my type"
     r")",
     re.I,
 )
 LOW_QUALITY_RE = re.compile(
-    r"\\b(?:wre|teh|thier|becuase|definately|defiantly|"
+    r"\b(?:wre|teh|thier|becuase|definately|defiantly|"
     r"recieve|seperate|occured|doesnt|dont|wont|cant|"
-    r"imma|gonna|wanna)\\b",
+    r"imma|gonna|wanna)\b",
     re.I,
 )
 
