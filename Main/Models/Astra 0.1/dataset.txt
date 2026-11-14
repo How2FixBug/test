@@ -6,9 +6,2667 @@ ASTRA 0.1 — TOKEN MEANINGS
 <astra>     Begins an ASTRA response.
 </astra>    Ends an ASTRA response.
 
-<think>     Begins ASTRA's internal thinking section.
-</think>    Ends the thinking section.
+<think>     Begins a user-visible reasoning summary.
+</think>    Ends a user-visible reasoning summary.
 
-Use the tokens exactly as written. Register each one as a separate special
-token in the tokenizer. Keep thinking separate from the response shown to
-the user.
+In this dataset, <think> contains a brief explanation of the response approach
+or the key idea being used. It is not private internal deliberation. The frontend
+may display this section in a collapsible block labeled "Reasoning summary".
+The text after </think> is the user-facing answer.
+
+Register each token exactly as written as a separate special token.
+
+Each example contains one user message and one ASTRA response.
+There are 250 examples: 500 message blocks in total.
+
+ASTRA 0.1 — TRAINING EXAMPLES
+
+<user>
+Why does ice floating work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind ice floating in a focused way.
+</think>
+Ice is less dense than liquid water. As water freezes, hydrogen bonds arrange molecules into an open structure that takes up more space.
+</astra>
+
+<user>
+Can you explain ice floating using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make ice floating easier to picture, while keeping the comparison accurate.
+</think>
+Think of people standing farther apart in the same group: the group occupies more room without gaining people.
+</astra>
+
+<user>
+Show me a practical example of ice floating.
+</user>
+<astra>
+<think>
+A concrete situation will show how ice floating appears outside a definition.
+</think>
+An ice cube floats because its density is lower than the water around it.
+</astra>
+
+<user>
+What's a common misunderstanding about ice floating?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Floating depends on density, not simply on whether something is cold.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about ice floating, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about ice floating.
+</think>
+Why does ice float?
+
+**Answer:** Because it is less dense than liquid water.
+</astra>
+
+<user>
+Explain ice floating in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about ice floating without unnecessary detail.
+</think>
+Ice is less dense than liquid water. As water freezes, hydrogen bonds arrange molecules into an open structure that takes up more space.
+</astra>
+
+<user>
+When might I use or notice ice floating in real life?
+</user>
+<astra>
+<think>
+I should connect ice floating to a practical situation that makes its relevance clear.
+</think>
+An ice cube floats because its density is lower than the water around it.
+</astra>
+
+<user>
+What is the most important thing to remember about ice floating?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Ice is less dense than liquid water. As water freezes, hydrogen bonds arrange molecules into an open structure that takes up more space.
+</astra>
+
+<user>
+I'm confused about ice floating. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+Think of people standing farther apart in the same group: the group occupies more room without gaining people.
+
+The key idea is this: Ice is less dense than liquid water. As water freezes, hydrogen bonds arrange molecules into an open structure that takes up more space.
+</astra>
+
+<user>
+Can you test whether I understand ice floating? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Why does ice float?
+
+**Answer:** Because it is less dense than liquid water.
+</astra>
+
+<user>
+Why does seasons work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind seasons in a focused way.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere alternately tilts toward or away from sunlight, changing daylight length and sunlight angle.
+</astra>
+
+<user>
+Can you explain seasons using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make seasons easier to picture, while keeping the comparison accurate.
+</think>
+A tilted lamp shines more directly on one side of a ball than the other as the ball turns.
+</astra>
+
+<user>
+Show me a practical example of seasons.
+</user>
+<astra>
+<think>
+A concrete situation will show how seasons appears outside a definition.
+</think>
+During Northern Hemisphere summer, that hemisphere tilts toward the Sun and receives longer days and more direct sunlight.
+</astra>
+
+<user>
+What's a common misunderstanding about seasons?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Seasons are mainly caused by Earth's axial tilt, not by Earth being much closer to the Sun.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about seasons, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about seasons.
+</think>
+What causes the seasons?
+
+**Answer:** Earth's axial tilt as it orbits the Sun.
+</astra>
+
+<user>
+Explain seasons in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about seasons without unnecessary detail.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere alternately tilts toward or away from sunlight, changing daylight length and sunlight angle.
+</astra>
+
+<user>
+When might I use or notice seasons in real life?
+</user>
+<astra>
+<think>
+I should connect seasons to a practical situation that makes its relevance clear.
+</think>
+During Northern Hemisphere summer, that hemisphere tilts toward the Sun and receives longer days and more direct sunlight.
+</astra>
+
+<user>
+What is the most important thing to remember about seasons?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere alternately tilts toward or away from sunlight, changing daylight length and sunlight angle.
+</astra>
+
+<user>
+I'm confused about seasons. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A tilted lamp shines more directly on one side of a ball than the other as the ball turns.
+
+The key idea is this: Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere alternately tilts toward or away from sunlight, changing daylight length and sunlight angle.
+</astra>
+
+<user>
+Can you test whether I understand seasons? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What causes the seasons?
+
+**Answer:** Earth's axial tilt as it orbits the Sun.
+</astra>
+
+<user>
+Why does rainbows work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind rainbows in a focused way.
+</think>
+Raindrops refract sunlight as it enters, reflect some light inside, and refract it again as it exits. Different wavelengths bend by different amounts, separating white light into colors.
+</astra>
+
+<user>
+Can you explain rainbows using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make rainbows easier to picture, while keeping the comparison accurate.
+</think>
+A raindrop can act like a tiny curved prism, spreading mixed light into its component colors.
+</astra>
+
+<user>
+Show me a practical example of rainbows.
+</user>
+<astra>
+<think>
+A concrete situation will show how rainbows appears outside a definition.
+</think>
+A rainbow can appear when sunlight shines through droplets with the Sun behind the observer.
+</astra>
+
+<user>
+What's a common misunderstanding about rainbows?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+A rainbow is not a colored object at one fixed location; its appearance depends on the observer's position.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about rainbows, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about rainbows.
+</think>
+What makes the colors separate in a rainbow?
+
+**Answer:** Different wavelengths of light refract by different amounts.
+</astra>
+
+<user>
+Explain rainbows in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about rainbows without unnecessary detail.
+</think>
+Raindrops refract sunlight as it enters, reflect some light inside, and refract it again as it exits. Different wavelengths bend by different amounts, separating white light into colors.
+</astra>
+
+<user>
+When might I use or notice rainbows in real life?
+</user>
+<astra>
+<think>
+I should connect rainbows to a practical situation that makes its relevance clear.
+</think>
+A rainbow can appear when sunlight shines through droplets with the Sun behind the observer.
+</astra>
+
+<user>
+What is the most important thing to remember about rainbows?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Raindrops refract sunlight as it enters, reflect some light inside, and refract it again as it exits. Different wavelengths bend by different amounts, separating white light into colors.
+</astra>
+
+<user>
+I'm confused about rainbows. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A raindrop can act like a tiny curved prism, spreading mixed light into its component colors.
+
+The key idea is this: Raindrops refract sunlight as it enters, reflect some light inside, and refract it again as it exits. Different wavelengths bend by different amounts, separating white light into colors.
+</astra>
+
+<user>
+Can you test whether I understand rainbows? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What makes the colors separate in a rainbow?
+
+**Answer:** Different wavelengths of light refract by different amounts.
+</astra>
+
+<user>
+Why does photosynthesis work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind photosynthesis in a focused way.
+</think>
+Plants use light energy to convert carbon dioxide and water into sugars, releasing oxygen as a by-product. Chlorophyll captures much of the needed light.
+</astra>
+
+<user>
+Can you explain photosynthesis using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make photosynthesis easier to picture, while keeping the comparison accurate.
+</think>
+A plant uses sunlight as an energy source to build food from simple ingredients.
+</astra>
+
+<user>
+Show me a practical example of photosynthesis.
+</user>
+<astra>
+<think>
+A concrete situation will show how photosynthesis appears outside a definition.
+</think>
+A leaf takes in carbon dioxide through tiny openings and uses light energy to make sugars.
+</astra>
+
+<user>
+What's a common misunderstanding about photosynthesis?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Plants do not get most of their food by absorbing soil; they make sugars through photosynthesis.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about photosynthesis, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about photosynthesis.
+</think>
+What two raw materials are used in photosynthesis?
+
+**Answer:** Carbon dioxide and water.
+</astra>
+
+<user>
+Explain photosynthesis in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about photosynthesis without unnecessary detail.
+</think>
+Plants use light energy to convert carbon dioxide and water into sugars, releasing oxygen as a by-product. Chlorophyll captures much of the needed light.
+</astra>
+
+<user>
+When might I use or notice photosynthesis in real life?
+</user>
+<astra>
+<think>
+I should connect photosynthesis to a practical situation that makes its relevance clear.
+</think>
+A leaf takes in carbon dioxide through tiny openings and uses light energy to make sugars.
+</astra>
+
+<user>
+What is the most important thing to remember about photosynthesis?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Plants use light energy to convert carbon dioxide and water into sugars, releasing oxygen as a by-product. Chlorophyll captures much of the needed light.
+</astra>
+
+<user>
+I'm confused about photosynthesis. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A plant uses sunlight as an energy source to build food from simple ingredients.
+
+The key idea is this: Plants use light energy to convert carbon dioxide and water into sugars, releasing oxygen as a by-product. Chlorophyll captures much of the needed light.
+</astra>
+
+<user>
+Can you test whether I understand photosynthesis? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What two raw materials are used in photosynthesis?
+
+**Answer:** Carbon dioxide and water.
+</astra>
+
+<user>
+Why does gravity work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind gravity in a focused way.
+</think>
+Gravity is an attraction between objects with mass. On Earth, it pulls objects toward the planet's center and gives them weight.
+</astra>
+
+<user>
+Can you explain gravity using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make gravity easier to picture, while keeping the comparison accurate.
+</think>
+Gravity is an invisible attraction shared by objects with mass.
+</astra>
+
+<user>
+Show me a practical example of gravity.
+</user>
+<astra>
+<think>
+A concrete situation will show how gravity appears outside a definition.
+</think>
+A dropped ball accelerates toward Earth's center because Earth attracts it.
+</astra>
+
+<user>
+What's a common misunderstanding about gravity?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Astronauts in orbit are still affected by gravity; they and their spacecraft are continually falling around Earth.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about gravity, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about gravity.
+</think>
+Why do astronauts in orbit appear weightless?
+
+**Answer:** They and their spacecraft are in continuous free fall together.
+</astra>
+
+<user>
+Explain gravity in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about gravity without unnecessary detail.
+</think>
+Gravity is an attraction between objects with mass. On Earth, it pulls objects toward the planet's center and gives them weight.
+</astra>
+
+<user>
+When might I use or notice gravity in real life?
+</user>
+<astra>
+<think>
+I should connect gravity to a practical situation that makes its relevance clear.
+</think>
+A dropped ball accelerates toward Earth's center because Earth attracts it.
+</astra>
+
+<user>
+What is the most important thing to remember about gravity?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Gravity is an attraction between objects with mass. On Earth, it pulls objects toward the planet's center and gives them weight.
+</astra>
+
+<user>
+I'm confused about gravity. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+Gravity is an invisible attraction shared by objects with mass.
+
+The key idea is this: Gravity is an attraction between objects with mass. On Earth, it pulls objects toward the planet's center and gives them weight.
+</astra>
+
+<user>
+Can you test whether I understand gravity? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Why do astronauts in orbit appear weightless?
+
+**Answer:** They and their spacecraft are in continuous free fall together.
+</astra>
+
+<user>
+Why does electric circuits work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind electric circuits in a focused way.
+</think>
+A simple circuit needs a closed conducting path and an energy source. Charges move through the loop, transferring energy to components such as a bulb.
+</astra>
+
+<user>
+Can you explain electric circuits using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make electric circuits easier to picture, while keeping the comparison accurate.
+</think>
+A circuit is like a complete looped road: if the road is broken, traffic cannot make the trip.
+</astra>
+
+<user>
+Show me a practical example of electric circuits.
+</user>
+<astra>
+<think>
+A concrete situation will show how electric circuits appears outside a definition.
+</think>
+A battery, wires, and a bulb work together when connected in a closed loop.
+</astra>
+
+<user>
+What's a common misunderstanding about electric circuits?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+A battery alone will not light a bulb; the circuit must be connected properly.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about electric circuits, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about electric circuits.
+</think>
+What happens when a switch opens a simple circuit?
+
+**Answer:** The path is broken, so current stops flowing.
+</astra>
+
+<user>
+Explain electric circuits in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about electric circuits without unnecessary detail.
+</think>
+A simple circuit needs a closed conducting path and an energy source. Charges move through the loop, transferring energy to components such as a bulb.
+</astra>
+
+<user>
+When might I use or notice electric circuits in real life?
+</user>
+<astra>
+<think>
+I should connect electric circuits to a practical situation that makes its relevance clear.
+</think>
+A battery, wires, and a bulb work together when connected in a closed loop.
+</astra>
+
+<user>
+What is the most important thing to remember about electric circuits?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A simple circuit needs a closed conducting path and an energy source. Charges move through the loop, transferring energy to components such as a bulb.
+</astra>
+
+<user>
+I'm confused about electric circuits. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A circuit is like a complete looped road: if the road is broken, traffic cannot make the trip.
+
+The key idea is this: A simple circuit needs a closed conducting path and an energy source. Charges move through the loop, transferring energy to components such as a bulb.
+</astra>
+
+<user>
+Can you test whether I understand electric circuits? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What happens when a switch opens a simple circuit?
+
+**Answer:** The path is broken, so current stops flowing.
+</astra>
+
+<user>
+Why does moon phases work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind moon phases in a focused way.
+</think>
+The Moon's phases happen because we see different portions of its sunlit half as it orbits Earth. The Moon does not make its own visible light.
+</astra>
+
+<user>
+Can you explain moon phases using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make moon phases easier to picture, while keeping the comparison accurate.
+</think>
+A ball lit by a lamp looks different as you walk around it; the lit half stays lit, but your viewing angle changes.
+</astra>
+
+<user>
+Show me a practical example of moon phases.
+</user>
+<astra>
+<think>
+A concrete situation will show how moon phases appears outside a definition.
+</think>
+At full moon, the Moon's sunlit side mostly faces Earth; at new moon, it mostly faces away.
+</astra>
+
+<user>
+What's a common misunderstanding about moon phases?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Moon phases are not usually caused by Earth's shadow. Earth's shadow causes lunar eclipses.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about moon phases, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about moon phases.
+</think>
+What causes the Moon's phases?
+
+**Answer:** Our changing view of its sunlit half as it orbits Earth.
+</astra>
+
+<user>
+Explain moon phases in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about moon phases without unnecessary detail.
+</think>
+The Moon's phases happen because we see different portions of its sunlit half as it orbits Earth. The Moon does not make its own visible light.
+</astra>
+
+<user>
+When might I use or notice moon phases in real life?
+</user>
+<astra>
+<think>
+I should connect moon phases to a practical situation that makes its relevance clear.
+</think>
+At full moon, the Moon's sunlit side mostly faces Earth; at new moon, it mostly faces away.
+</astra>
+
+<user>
+What is the most important thing to remember about moon phases?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+The Moon's phases happen because we see different portions of its sunlit half as it orbits Earth. The Moon does not make its own visible light.
+</astra>
+
+<user>
+I'm confused about moon phases. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A ball lit by a lamp looks different as you walk around it; the lit half stays lit, but your viewing angle changes.
+
+The key idea is this: The Moon's phases happen because we see different portions of its sunlit half as it orbits Earth. The Moon does not make its own visible light.
+</astra>
+
+<user>
+Can you test whether I understand moon phases? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What causes the Moon's phases?
+
+**Answer:** Our changing view of its sunlit half as it orbits Earth.
+</astra>
+
+<user>
+Why does fractions work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind fractions in a focused way.
+</think>
+A fraction represents part of a whole or a ratio. The denominator tells how many equal parts make the whole; the numerator tells how many parts are counted.
+</astra>
+
+<user>
+Can you explain fractions using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make fractions easier to picture, while keeping the comparison accurate.
+</think>
+If a pizza is cut into eight equal slices, each slice is one eighth.
+</astra>
+
+<user>
+Show me a practical example of fractions.
+</user>
+<astra>
+<think>
+A concrete situation will show how fractions appears outside a definition.
+</think>
+In 3/5, the whole is divided into five equal parts and three are selected.
+</astra>
+
+<user>
+What's a common misunderstanding about fractions?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+A larger denominator does not automatically mean a larger fraction; one eighth is smaller than one quarter.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about fractions, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about fractions.
+</think>
+In 4/7, what does the 7 represent?
+
+**Answer:** The whole is divided into seven equal parts.
+</astra>
+
+<user>
+Explain fractions in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about fractions without unnecessary detail.
+</think>
+A fraction represents part of a whole or a ratio. The denominator tells how many equal parts make the whole; the numerator tells how many parts are counted.
+</astra>
+
+<user>
+When might I use or notice fractions in real life?
+</user>
+<astra>
+<think>
+I should connect fractions to a practical situation that makes its relevance clear.
+</think>
+In 3/5, the whole is divided into five equal parts and three are selected.
+</astra>
+
+<user>
+What is the most important thing to remember about fractions?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A fraction represents part of a whole or a ratio. The denominator tells how many equal parts make the whole; the numerator tells how many parts are counted.
+</astra>
+
+<user>
+I'm confused about fractions. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+If a pizza is cut into eight equal slices, each slice is one eighth.
+
+The key idea is this: A fraction represents part of a whole or a ratio. The denominator tells how many equal parts make the whole; the numerator tells how many parts are counted.
+</astra>
+
+<user>
+Can you test whether I understand fractions? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+In 4/7, what does the 7 represent?
+
+**Answer:** The whole is divided into seven equal parts.
+</astra>
+
+<user>
+Why does percentages work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind percentages in a focused way.
+</think>
+A percentage is a ratio expressed out of 100. Convert it to a decimal or fraction, then multiply by the quantity to find that percentage of it.
+</astra>
+
+<user>
+Can you explain percentages using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make percentages easier to picture, while keeping the comparison accurate.
+</think>
+A 25% share is one quarter of the whole, written with 100 as the reference.
+</astra>
+
+<user>
+Show me a practical example of percentages.
+</user>
+<astra>
+<think>
+A concrete situation will show how percentages appears outside a definition.
+</think>
+20% of 50 is 10 because 0.20 multiplied by 50 equals 10.
+</astra>
+
+<user>
+What's a common misunderstanding about percentages?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+A 50% increase followed by a 50% decrease does not return to the starting value because the second change uses a different base.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about percentages, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about percentages.
+</think>
+What is 10% of 80?
+
+**Answer:** 8.
+</astra>
+
+<user>
+Explain percentages in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about percentages without unnecessary detail.
+</think>
+A percentage is a ratio expressed out of 100. Convert it to a decimal or fraction, then multiply by the quantity to find that percentage of it.
+</astra>
+
+<user>
+When might I use or notice percentages in real life?
+</user>
+<astra>
+<think>
+I should connect percentages to a practical situation that makes its relevance clear.
+</think>
+20% of 50 is 10 because 0.20 multiplied by 50 equals 10.
+</astra>
+
+<user>
+What is the most important thing to remember about percentages?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A percentage is a ratio expressed out of 100. Convert it to a decimal or fraction, then multiply by the quantity to find that percentage of it.
+</astra>
+
+<user>
+I'm confused about percentages. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A 25% share is one quarter of the whole, written with 100 as the reference.
+
+The key idea is this: A percentage is a ratio expressed out of 100. Convert it to a decimal or fraction, then multiply by the quantity to find that percentage of it.
+</astra>
+
+<user>
+Can you test whether I understand percentages? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What is 10% of 80?
+
+**Answer:** 8.
+</astra>
+
+<user>
+Why does prime numbers work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind prime numbers in a focused way.
+</think>
+A prime number is a whole number greater than 1 with exactly two positive factors: 1 and itself.
+</astra>
+
+<user>
+Can you explain prime numbers using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make prime numbers easier to picture, while keeping the comparison accurate.
+</think>
+A prime number is a basic building block that cannot be split into smaller whole-number factor groups other than 1 times itself.
+</astra>
+
+<user>
+Show me a practical example of prime numbers.
+</user>
+<astra>
+<think>
+A concrete situation will show how prime numbers appears outside a definition.
+</think>
+13 is prime because its only positive factors are 1 and 13.
+</astra>
+
+<user>
+What's a common misunderstanding about prime numbers?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+The number 1 is not prime because it has only one positive factor.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about prime numbers, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about prime numbers.
+</think>
+Is 21 prime?
+
+**Answer:** No. It has factors 1, 3, 7, and 21.
+</astra>
+
+<user>
+Explain prime numbers in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about prime numbers without unnecessary detail.
+</think>
+A prime number is a whole number greater than 1 with exactly two positive factors: 1 and itself.
+</astra>
+
+<user>
+When might I use or notice prime numbers in real life?
+</user>
+<astra>
+<think>
+I should connect prime numbers to a practical situation that makes its relevance clear.
+</think>
+13 is prime because its only positive factors are 1 and 13.
+</astra>
+
+<user>
+What is the most important thing to remember about prime numbers?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A prime number is a whole number greater than 1 with exactly two positive factors: 1 and itself.
+</astra>
+
+<user>
+I'm confused about prime numbers. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A prime number is a basic building block that cannot be split into smaller whole-number factor groups other than 1 times itself.
+
+The key idea is this: A prime number is a whole number greater than 1 with exactly two positive factors: 1 and itself.
+</astra>
+
+<user>
+Can you test whether I understand prime numbers? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Is 21 prime?
+
+**Answer:** No. It has factors 1, 3, 7, and 21.
+</astra>
+
+<user>
+Why does area and perimeter work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind area and perimeter in a focused way.
+</think>
+Area measures the surface inside a two-dimensional shape. Perimeter measures the total distance around its boundary.
+</astra>
+
+<user>
+Can you explain area and perimeter using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make area and perimeter easier to picture, while keeping the comparison accurate.
+</think>
+Area is the carpet needed to cover a floor; perimeter is the trim needed around its edge.
+</astra>
+
+<user>
+Show me a practical example of area and perimeter.
+</user>
+<astra>
+<think>
+A concrete situation will show how area and perimeter appears outside a definition.
+</think>
+A 4-by-3 rectangle has area 12 square units and perimeter 14 units.
+</astra>
+
+<user>
+What's a common misunderstanding about area and perimeter?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+A shape with a larger perimeter does not necessarily have a larger area.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about area and perimeter, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about area and perimeter.
+</think>
+What units should area use?
+
+**Answer:** Square units, because area measures two-dimensional space.
+</astra>
+
+<user>
+Explain area and perimeter in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about area and perimeter without unnecessary detail.
+</think>
+Area measures the surface inside a two-dimensional shape. Perimeter measures the total distance around its boundary.
+</astra>
+
+<user>
+When might I use or notice area and perimeter in real life?
+</user>
+<astra>
+<think>
+I should connect area and perimeter to a practical situation that makes its relevance clear.
+</think>
+A 4-by-3 rectangle has area 12 square units and perimeter 14 units.
+</astra>
+
+<user>
+What is the most important thing to remember about area and perimeter?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Area measures the surface inside a two-dimensional shape. Perimeter measures the total distance around its boundary.
+</astra>
+
+<user>
+I'm confused about area and perimeter. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+Area is the carpet needed to cover a floor; perimeter is the trim needed around its edge.
+
+The key idea is this: Area measures the surface inside a two-dimensional shape. Perimeter measures the total distance around its boundary.
+</astra>
+
+<user>
+Can you test whether I understand area and perimeter? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What units should area use?
+
+**Answer:** Square units, because area measures two-dimensional space.
+</astra>
+
+<user>
+Why does algebra variables work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind algebra variables in a focused way.
+</think>
+A variable is a symbol that represents a number or value. Equations use variables to describe relationships and solve for unknowns.
+</astra>
+
+<user>
+Can you explain algebra variables using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make algebra variables easier to picture, while keeping the comparison accurate.
+</think>
+A variable is an empty labeled box; the equation gives clues about what number belongs inside.
+</astra>
+
+<user>
+Show me a practical example of algebra variables.
+</user>
+<astra>
+<think>
+A concrete situation will show how algebra variables appears outside a definition.
+</think>
+If x + 5 = 12, subtract 5 from both sides to find x = 7.
+</astra>
+
+<user>
+What's a common misunderstanding about algebra variables?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+A variable does not always mean a value that changes; it can represent one unknown fixed value.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about algebra variables, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about algebra variables.
+</think>
+Solve x - 3 = 9.
+
+**Answer:** x = 12.
+</astra>
+
+<user>
+Explain algebra variables in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about algebra variables without unnecessary detail.
+</think>
+A variable is a symbol that represents a number or value. Equations use variables to describe relationships and solve for unknowns.
+</astra>
+
+<user>
+When might I use or notice algebra variables in real life?
+</user>
+<astra>
+<think>
+I should connect algebra variables to a practical situation that makes its relevance clear.
+</think>
+If x + 5 = 12, subtract 5 from both sides to find x = 7.
+</astra>
+
+<user>
+What is the most important thing to remember about algebra variables?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A variable is a symbol that represents a number or value. Equations use variables to describe relationships and solve for unknowns.
+</astra>
+
+<user>
+I'm confused about algebra variables. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A variable is an empty labeled box; the equation gives clues about what number belongs inside.
+
+The key idea is this: A variable is a symbol that represents a number or value. Equations use variables to describe relationships and solve for unknowns.
+</astra>
+
+<user>
+Can you test whether I understand algebra variables? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Solve x - 3 = 9.
+
+**Answer:** x = 12.
+</astra>
+
+<user>
+Why does probability work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind probability in a focused way.
+</think>
+Probability measures how likely an event is, from 0 for impossible to 1 for certain. For equally likely outcomes, divide favorable outcomes by total outcomes.
+</astra>
+
+<user>
+Can you explain probability using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make probability easier to picture, while keeping the comparison accurate.
+</think>
+A probability of one quarter means one favorable outcome for every four equally likely possibilities.
+</astra>
+
+<user>
+Show me a practical example of probability.
+</user>
+<astra>
+<think>
+A concrete situation will show how probability appears outside a definition.
+</think>
+A fair six-sided die has a one-in-six chance of landing on a particular number.
+</astra>
+
+<user>
+What's a common misunderstanding about probability?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+A one-in-six chance does not mean an event must happen exactly once every six rolls; random results can cluster.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about probability, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about probability.
+</think>
+What is the chance of rolling an even number on a fair six-sided die?
+
+**Answer:** 3/6, or 1/2.
+</astra>
+
+<user>
+Explain probability in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about probability without unnecessary detail.
+</think>
+Probability measures how likely an event is, from 0 for impossible to 1 for certain. For equally likely outcomes, divide favorable outcomes by total outcomes.
+</astra>
+
+<user>
+When might I use or notice probability in real life?
+</user>
+<astra>
+<think>
+I should connect probability to a practical situation that makes its relevance clear.
+</think>
+A fair six-sided die has a one-in-six chance of landing on a particular number.
+</astra>
+
+<user>
+What is the most important thing to remember about probability?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Probability measures how likely an event is, from 0 for impossible to 1 for certain. For equally likely outcomes, divide favorable outcomes by total outcomes.
+</astra>
+
+<user>
+I'm confused about probability. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A probability of one quarter means one favorable outcome for every four equally likely possibilities.
+
+The key idea is this: Probability measures how likely an event is, from 0 for impossible to 1 for certain. For equally likely outcomes, divide favorable outcomes by total outcomes.
+</astra>
+
+<user>
+Can you test whether I understand probability? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What is the chance of rolling an even number on a fair six-sided die?
+
+**Answer:** 3/6, or 1/2.
+</astra>
+
+<user>
+Why does python functions work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind python functions in a focused way.
+</think>
+A function is a reusable block of code that can accept inputs, perform work, and optionally return a result. In Python, `def` starts a function definition.
+</astra>
+
+<user>
+Can you explain python functions using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make python functions easier to picture, while keeping the comparison accurate.
+</think>
+A function is like a small machine: give it inputs, let it follow its instructions, and receive an output.
+</astra>
+
+<user>
+Show me a practical example of python functions.
+</user>
+<astra>
+<think>
+A concrete situation will show how python functions appears outside a definition.
+</think>
+`def double(n): return n * 2` defines a function that doubles a number.
+</astra>
+
+<user>
+What's a common misunderstanding about python functions?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Defining a function does not run its body; the function must be called.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about python functions, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about python functions.
+</think>
+What keyword starts a function definition in Python?
+
+**Answer:** `def`.
+</astra>
+
+<user>
+Explain python functions in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about python functions without unnecessary detail.
+</think>
+A function is a reusable block of code that can accept inputs, perform work, and optionally return a result. In Python, `def` starts a function definition.
+</astra>
+
+<user>
+When might I use or notice python functions in real life?
+</user>
+<astra>
+<think>
+I should connect python functions to a practical situation that makes its relevance clear.
+</think>
+`def double(n): return n * 2` defines a function that doubles a number.
+</astra>
+
+<user>
+What is the most important thing to remember about python functions?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A function is a reusable block of code that can accept inputs, perform work, and optionally return a result. In Python, `def` starts a function definition.
+</astra>
+
+<user>
+I'm confused about python functions. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A function is like a small machine: give it inputs, let it follow its instructions, and receive an output.
+
+The key idea is this: A function is a reusable block of code that can accept inputs, perform work, and optionally return a result. In Python, `def` starts a function definition.
+</astra>
+
+<user>
+Can you test whether I understand python functions? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What keyword starts a function definition in Python?
+
+**Answer:** `def`.
+</astra>
+
+<user>
+Why does html css javascript work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind html css javascript in a focused way.
+</think>
+HTML describes page structure and content, CSS controls presentation, and JavaScript adds behavior and interactivity.
+</astra>
+
+<user>
+Can you explain html css javascript using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make html css javascript easier to picture, while keeping the comparison accurate.
+</think>
+HTML is the structure, CSS is the appearance, and JavaScript is the behavior and controls.
+</astra>
+
+<user>
+Show me a practical example of html css javascript.
+</user>
+<astra>
+<think>
+A concrete situation will show how html css javascript appears outside a definition.
+</think>
+A button can be written in HTML, styled with CSS, and given a click action with JavaScript.
+</astra>
+
+<user>
+What's a common misunderstanding about html css javascript?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+JavaScript is not required for every website; many useful pages work with HTML and CSS alone.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about html css javascript, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about html css javascript.
+</think>
+Which technology primarily styles a web page?
+
+**Answer:** CSS.
+</astra>
+
+<user>
+Explain html css javascript in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about html css javascript without unnecessary detail.
+</think>
+HTML describes page structure and content, CSS controls presentation, and JavaScript adds behavior and interactivity.
+</astra>
+
+<user>
+When might I use or notice html css javascript in real life?
+</user>
+<astra>
+<think>
+I should connect html css javascript to a practical situation that makes its relevance clear.
+</think>
+A button can be written in HTML, styled with CSS, and given a click action with JavaScript.
+</astra>
+
+<user>
+What is the most important thing to remember about html css javascript?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+HTML describes page structure and content, CSS controls presentation, and JavaScript adds behavior and interactivity.
+</astra>
+
+<user>
+I'm confused about html css javascript. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+HTML is the structure, CSS is the appearance, and JavaScript is the behavior and controls.
+
+The key idea is this: HTML describes page structure and content, CSS controls presentation, and JavaScript adds behavior and interactivity.
+</astra>
+
+<user>
+Can you test whether I understand html css javascript? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Which technology primarily styles a web page?
+
+**Answer:** CSS.
+</astra>
+
+<user>
+Why does debugging work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind debugging in a focused way.
+</think>
+Debugging means finding, understanding, and fixing the cause of a software problem. Reproduce the issue, inspect evidence, isolate the cause, and test a focused fix.
+</astra>
+
+<user>
+Can you explain debugging using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make debugging easier to picture, while keeping the comparison accurate.
+</think>
+Debugging is detective work: reproduce the clue, narrow down its source, then verify the explanation.
+</astra>
+
+<user>
+Show me a practical example of debugging.
+</user>
+<astra>
+<think>
+A concrete situation will show how debugging appears outside a definition.
+</think>
+If a button does nothing, first check whether its click handler runs before rewriting the whole page.
+</astra>
+
+<user>
+What's a common misunderstanding about debugging?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Changing many unrelated things at once makes it harder to identify which change fixed or caused a bug.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about debugging, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about debugging.
+</think>
+What is a useful first step when debugging?
+
+**Answer:** Reproduce the issue reliably and observe what actually happens.
+</astra>
+
+<user>
+Explain debugging in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about debugging without unnecessary detail.
+</think>
+Debugging means finding, understanding, and fixing the cause of a software problem. Reproduce the issue, inspect evidence, isolate the cause, and test a focused fix.
+</astra>
+
+<user>
+When might I use or notice debugging in real life?
+</user>
+<astra>
+<think>
+I should connect debugging to a practical situation that makes its relevance clear.
+</think>
+If a button does nothing, first check whether its click handler runs before rewriting the whole page.
+</astra>
+
+<user>
+What is the most important thing to remember about debugging?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Debugging means finding, understanding, and fixing the cause of a software problem. Reproduce the issue, inspect evidence, isolate the cause, and test a focused fix.
+</astra>
+
+<user>
+I'm confused about debugging. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+Debugging is detective work: reproduce the clue, narrow down its source, then verify the explanation.
+
+The key idea is this: Debugging means finding, understanding, and fixing the cause of a software problem. Reproduce the issue, inspect evidence, isolate the cause, and test a focused fix.
+</astra>
+
+<user>
+Can you test whether I understand debugging? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What is a useful first step when debugging?
+
+**Answer:** Reproduce the issue reliably and observe what actually happens.
+</astra>
+
+<user>
+Why does programming loops work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind programming loops in a focused way.
+</think>
+A loop repeats a block of instructions. A `for` loop commonly iterates over items, while a `while` loop repeats as long as its condition remains true.
+</astra>
+
+<user>
+Can you explain programming loops using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make programming loops easier to picture, while keeping the comparison accurate.
+</think>
+A loop is like repeating a checklist step for each item, or until a stopping condition is reached.
+</astra>
+
+<user>
+Show me a practical example of programming loops.
+</user>
+<astra>
+<think>
+A concrete situation will show how programming loops appears outside a definition.
+</think>
+A `for` loop can print each name in a list without writing a separate print statement for every name.
+</astra>
+
+<user>
+What's a common misunderstanding about programming loops?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+A loop needs a sensible stopping condition or finite sequence; otherwise it may run indefinitely.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about programming loops, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about programming loops.
+</think>
+Which Python loop is useful for visiting every item in a list?
+
+**Answer:** A `for` loop.
+</astra>
+
+<user>
+Explain programming loops in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about programming loops without unnecessary detail.
+</think>
+A loop repeats a block of instructions. A `for` loop commonly iterates over items, while a `while` loop repeats as long as its condition remains true.
+</astra>
+
+<user>
+When might I use or notice programming loops in real life?
+</user>
+<astra>
+<think>
+I should connect programming loops to a practical situation that makes its relevance clear.
+</think>
+A `for` loop can print each name in a list without writing a separate print statement for every name.
+</astra>
+
+<user>
+What is the most important thing to remember about programming loops?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A loop repeats a block of instructions. A `for` loop commonly iterates over items, while a `while` loop repeats as long as its condition remains true.
+</astra>
+
+<user>
+I'm confused about programming loops. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A loop is like repeating a checklist step for each item, or until a stopping condition is reached.
+
+The key idea is this: A loop repeats a block of instructions. A `for` loop commonly iterates over items, while a `while` loop repeats as long as its condition remains true.
+</astra>
+
+<user>
+Can you test whether I understand programming loops? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Which Python loop is useful for visiting every item in a list?
+
+**Answer:** A `for` loop.
+</astra>
+
+<user>
+Why does git commits work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind git commits in a focused way.
+</think>
+A Git commit records a snapshot of tracked project changes with a message. Commits make it easier to review history and return to earlier states.
+</astra>
+
+<user>
+Can you explain git commits using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make git commits easier to picture, while keeping the comparison accurate.
+</think>
+A commit is a labeled checkpoint in a project's timeline.
+</astra>
+
+<user>
+Show me a practical example of git commits.
+</user>
+<astra>
+<think>
+A concrete situation will show how git commits appears outside a definition.
+</think>
+After changing a website's navigation, you might commit with the message `Improve navigation layout`.
+</astra>
+
+<user>
+What's a common misunderstanding about git commits?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Committing and pushing are different: committing records changes, while pushing sends commits to a remote repository.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about git commits, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about git commits.
+</think>
+What does a Git commit create?
+
+**Answer:** A recorded snapshot in the repository history.
+</astra>
+
+<user>
+Explain git commits in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about git commits without unnecessary detail.
+</think>
+A Git commit records a snapshot of tracked project changes with a message. Commits make it easier to review history and return to earlier states.
+</astra>
+
+<user>
+When might I use or notice git commits in real life?
+</user>
+<astra>
+<think>
+I should connect git commits to a practical situation that makes its relevance clear.
+</think>
+After changing a website's navigation, you might commit with the message `Improve navigation layout`.
+</astra>
+
+<user>
+What is the most important thing to remember about git commits?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A Git commit records a snapshot of tracked project changes with a message. Commits make it easier to review history and return to earlier states.
+</astra>
+
+<user>
+I'm confused about git commits. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A commit is a labeled checkpoint in a project's timeline.
+
+The key idea is this: A Git commit records a snapshot of tracked project changes with a message. Commits make it easier to review history and return to earlier states.
+</astra>
+
+<user>
+Can you test whether I understand git commits? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What does a Git commit create?
+
+**Answer:** A recorded snapshot in the repository history.
+</astra>
+
+<user>
+Why does dns work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind dns in a focused way.
+</think>
+DNS translates human-readable domain names into IP addresses that computers use to route network traffic.
+</astra>
+
+<user>
+Can you explain dns using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make dns easier to picture, while keeping the comparison accurate.
+</think>
+DNS is like a contacts list: look up a name to find the number used to reach it.
+</astra>
+
+<user>
+Show me a practical example of dns.
+</user>
+<astra>
+<think>
+A concrete situation will show how dns appears outside a definition.
+</think>
+When you visit a domain, your device may ask a DNS resolver for its IP address.
+</astra>
+
+<user>
+What's a common misunderstanding about dns?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+DNS does not host the website's page content; it helps locate the server.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about dns, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about dns.
+</think>
+What does DNS translate?
+
+**Answer:** Domain names into IP addresses.
+</astra>
+
+<user>
+Explain dns in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about dns without unnecessary detail.
+</think>
+DNS translates human-readable domain names into IP addresses that computers use to route network traffic.
+</astra>
+
+<user>
+When might I use or notice dns in real life?
+</user>
+<astra>
+<think>
+I should connect dns to a practical situation that makes its relevance clear.
+</think>
+When you visit a domain, your device may ask a DNS resolver for its IP address.
+</astra>
+
+<user>
+What is the most important thing to remember about dns?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+DNS translates human-readable domain names into IP addresses that computers use to route network traffic.
+</astra>
+
+<user>
+I'm confused about dns. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+DNS is like a contacts list: look up a name to find the number used to reach it.
+
+The key idea is this: DNS translates human-readable domain names into IP addresses that computers use to route network traffic.
+</astra>
+
+<user>
+Can you test whether I understand dns? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What does DNS translate?
+
+**Answer:** Domain names into IP addresses.
+</astra>
+
+<user>
+Why does password security work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind password security in a focused way.
+</think>
+Strong passwords should be long, unique, and difficult to guess. A password manager can create and store unique passwords, while multifactor authentication adds another layer of protection.
+</astra>
+
+<user>
+Can you explain password security using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make password security easier to picture, while keeping the comparison accurate.
+</think>
+Reusing one password everywhere is like using one key for every door; if it is copied, every door is at risk.
+</astra>
+
+<user>
+Show me a practical example of password security.
+</user>
+<astra>
+<think>
+A concrete situation will show how password security appears outside a definition.
+</think>
+A password manager can generate a different random password for each account and store them securely.
+</astra>
+
+<user>
+What's a common misunderstanding about password security?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Adding a predictable suffix to a reused password does not make it reliably unique or secure.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about password security, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about password security.
+</think>
+Why should accounts have different passwords?
+
+**Answer:** A breach of one account then does not automatically expose the others.
+</astra>
+
+<user>
+Explain password security in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about password security without unnecessary detail.
+</think>
+Strong passwords should be long, unique, and difficult to guess. A password manager can create and store unique passwords, while multifactor authentication adds another layer of protection.
+</astra>
+
+<user>
+When might I use or notice password security in real life?
+</user>
+<astra>
+<think>
+I should connect password security to a practical situation that makes its relevance clear.
+</think>
+A password manager can generate a different random password for each account and store them securely.
+</astra>
+
+<user>
+What is the most important thing to remember about password security?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Strong passwords should be long, unique, and difficult to guess. A password manager can create and store unique passwords, while multifactor authentication adds another layer of protection.
+</astra>
+
+<user>
+I'm confused about password security. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+Reusing one password everywhere is like using one key for every door; if it is copied, every door is at risk.
+
+The key idea is this: Strong passwords should be long, unique, and difficult to guess. A password manager can create and store unique passwords, while multifactor authentication adds another layer of protection.
+</astra>
+
+<user>
+Can you test whether I understand password security? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Why should accounts have different passwords?
+
+**Answer:** A breach of one account then does not automatically expose the others.
+</astra>
+
+<user>
+Why does cells work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind cells in a focused way.
+</think>
+A cell is the basic structural and functional unit of living organisms. Some organisms consist of one cell, while others contain many specialized cells.
+</astra>
+
+<user>
+Can you explain cells using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make cells easier to picture, while keeping the comparison accurate.
+</think>
+A cell is like a tiny workshop, with parts that perform jobs needed for life.
+</astra>
+
+<user>
+Show me a practical example of cells.
+</user>
+<astra>
+<think>
+A concrete situation will show how cells appears outside a definition.
+</think>
+Bacteria are single-celled organisms; humans are made of many kinds of cells working together.
+</astra>
+
+<user>
+What's a common misunderstanding about cells?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Not all cells have a nucleus; bacteria and other prokaryotes do not.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about cells, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about cells.
+</think>
+What is the basic unit of life?
+
+**Answer:** The cell.
+</astra>
+
+<user>
+Explain cells in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about cells without unnecessary detail.
+</think>
+A cell is the basic structural and functional unit of living organisms. Some organisms consist of one cell, while others contain many specialized cells.
+</astra>
+
+<user>
+When might I use or notice cells in real life?
+</user>
+<astra>
+<think>
+I should connect cells to a practical situation that makes its relevance clear.
+</think>
+Bacteria are single-celled organisms; humans are made of many kinds of cells working together.
+</astra>
+
+<user>
+What is the most important thing to remember about cells?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+A cell is the basic structural and functional unit of living organisms. Some organisms consist of one cell, while others contain many specialized cells.
+</astra>
+
+<user>
+I'm confused about cells. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A cell is like a tiny workshop, with parts that perform jobs needed for life.
+
+The key idea is this: A cell is the basic structural and functional unit of living organisms. Some organisms consist of one cell, while others contain many specialized cells.
+</astra>
+
+<user>
+Can you test whether I understand cells? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What is the basic unit of life?
+
+**Answer:** The cell.
+</astra>
+
+<user>
+Why does dna work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind dna in a focused way.
+</think>
+DNA is a molecule that stores hereditary information. Sections called genes contain instructions that help cells make functional products, often proteins.
+</astra>
+
+<user>
+Can you explain dna using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make dna easier to picture, while keeping the comparison accurate.
+</think>
+DNA is like a biological instruction library, with genes as particular sets of instructions.
+</astra>
+
+<user>
+Show me a practical example of dna.
+</user>
+<astra>
+<think>
+A concrete situation will show how dna appears outside a definition.
+</think>
+A gene can contain information used to make a protein that contributes to a cell's structure or activity.
+</astra>
+
+<user>
+What's a common misunderstanding about dna?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+DNA is not a complete description of everything a person will become; development also involves environment and many interacting factors.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about dna, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about dna.
+</think>
+What kind of information does DNA store?
+
+**Answer:** Hereditary biological information.
+</astra>
+
+<user>
+Explain dna in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about dna without unnecessary detail.
+</think>
+DNA is a molecule that stores hereditary information. Sections called genes contain instructions that help cells make functional products, often proteins.
+</astra>
+
+<user>
+When might I use or notice dna in real life?
+</user>
+<astra>
+<think>
+I should connect dna to a practical situation that makes its relevance clear.
+</think>
+A gene can contain information used to make a protein that contributes to a cell's structure or activity.
+</astra>
+
+<user>
+What is the most important thing to remember about dna?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+DNA is a molecule that stores hereditary information. Sections called genes contain instructions that help cells make functional products, often proteins.
+</astra>
+
+<user>
+I'm confused about dna. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+DNA is like a biological instruction library, with genes as particular sets of instructions.
+
+The key idea is this: DNA is a molecule that stores hereditary information. Sections called genes contain instructions that help cells make functional products, often proteins.
+</astra>
+
+<user>
+Can you test whether I understand dna? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What kind of information does DNA store?
+
+**Answer:** Hereditary biological information.
+</astra>
+
+<user>
+Why does evolution work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind evolution in a focused way.
+</think>
+Evolution is change in inherited characteristics of populations across generations. Natural selection can make traits more common when they help organisms leave more offspring in a particular environment.
+</astra>
+
+<user>
+Can you explain evolution using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make evolution easier to picture, while keeping the comparison accurate.
+</think>
+A population changes across generations; versions that work better in a particular setting may become more common.
+</astra>
+
+<user>
+Show me a practical example of evolution.
+</user>
+<astra>
+<think>
+A concrete situation will show how evolution appears outside a definition.
+</think>
+If a color variation helps an insect avoid predators and reproduce, that variation may increase in the population over time.
+</astra>
+
+<user>
+What's a common misunderstanding about evolution?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+Individual organisms do not evolve because they decide they need a trait; populations evolve across generations.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about evolution, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about evolution.
+</think>
+What changes through biological evolution?
+
+**Answer:** Inherited characteristics of populations across generations.
+</astra>
+
+<user>
+Explain evolution in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about evolution without unnecessary detail.
+</think>
+Evolution is change in inherited characteristics of populations across generations. Natural selection can make traits more common when they help organisms leave more offspring in a particular environment.
+</astra>
+
+<user>
+When might I use or notice evolution in real life?
+</user>
+<astra>
+<think>
+I should connect evolution to a practical situation that makes its relevance clear.
+</think>
+If a color variation helps an insect avoid predators and reproduce, that variation may increase in the population over time.
+</astra>
+
+<user>
+What is the most important thing to remember about evolution?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Evolution is change in inherited characteristics of populations across generations. Natural selection can make traits more common when they help organisms leave more offspring in a particular environment.
+</astra>
+
+<user>
+I'm confused about evolution. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+A population changes across generations; versions that work better in a particular setting may become more common.
+
+The key idea is this: Evolution is change in inherited characteristics of populations across generations. Natural selection can make traits more common when they help organisms leave more offspring in a particular environment.
+</astra>
+
+<user>
+Can you test whether I understand evolution? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+What changes through biological evolution?
+
+**Answer:** Inherited characteristics of populations across generations.
+</astra>
+
+<user>
+Why does ecosystems work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind ecosystems in a focused way.
+</think>
+An ecosystem includes living organisms and the nonliving parts of their environment, interacting as a system.
+</astra>
+
+<user>
+Can you explain ecosystems using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make ecosystems easier to picture, while keeping the comparison accurate.
+</think>
+An ecosystem is like a connected neighborhood where organisms, water, soil, sunlight, and climate affect one another.
+</astra>
+
+<user>
+Show me a practical example of ecosystems.
+</user>
+<astra>
+<think>
+A concrete situation will show how ecosystems appears outside a definition.
+</think>
+A pond ecosystem includes fish, algae, insects, water, dissolved nutrients, and sunlight.
+</astra>
+
+<user>
+What's a common misunderstanding about ecosystems?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+An ecosystem is not only the animals; nonliving conditions are part of it too.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about ecosystems, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about ecosystems.
+</think>
+Name one nonliving part of an ecosystem.
+
+**Answer:** Sunlight, water, soil, temperature, or air.
+</astra>
+
+<user>
+Explain ecosystems in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about ecosystems without unnecessary detail.
+</think>
+An ecosystem includes living organisms and the nonliving parts of their environment, interacting as a system.
+</astra>
+
+<user>
+When might I use or notice ecosystems in real life?
+</user>
+<astra>
+<think>
+I should connect ecosystems to a practical situation that makes its relevance clear.
+</think>
+A pond ecosystem includes fish, algae, insects, water, dissolved nutrients, and sunlight.
+</astra>
+
+<user>
+What is the most important thing to remember about ecosystems?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+An ecosystem includes living organisms and the nonliving parts of their environment, interacting as a system.
+</astra>
+
+<user>
+I'm confused about ecosystems. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+An ecosystem is like a connected neighborhood where organisms, water, soil, sunlight, and climate affect one another.
+
+The key idea is this: An ecosystem includes living organisms and the nonliving parts of their environment, interacting as a system.
+</astra>
+
+<user>
+Can you test whether I understand ecosystems? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Name one nonliving part of an ecosystem.
+
+**Answer:** Sunlight, water, soil, temperature, or air.
+</astra>
+
+<user>
+Why does weather and climate work the way it does?
+</user>
+<astra>
+<think>
+I should explain the central principle behind weather and climate in a focused way.
+</think>
+Weather describes short-term atmospheric conditions at a particular time and place. Climate describes long-term patterns and averages over many years.
+</astra>
+
+<user>
+Can you explain weather and climate using an analogy?
+</user>
+<astra>
+<think>
+A familiar comparison can make weather and climate easier to picture, while keeping the comparison accurate.
+</think>
+Weather is today's mood; climate is the long-term personality of a region.
+</astra>
+
+<user>
+Show me a practical example of weather and climate.
+</user>
+<astra>
+<think>
+A concrete situation will show how weather and climate appears outside a definition.
+</think>
+A rainy afternoon is weather; a region's typical wet and dry seasons are part of its climate.
+</astra>
+
+<user>
+What's a common misunderstanding about weather and climate?
+</user>
+<astra>
+<think>
+I should identify a likely misconception and replace it with the more accurate idea.
+</think>
+One cold day does not disprove a long-term warming trend; weather and climate describe different time scales.
+</astra>
+
+<user>
+Give me a quick knowledge-check question about weather and climate, with the answer.
+</user>
+<astra>
+<think>
+A short question and answer can reinforce the central idea about weather and climate.
+</think>
+Which describes long-term patterns: weather or climate?
+
+**Answer:** Climate.
+</astra>
+
+<user>
+Explain weather and climate in a short version I can remember.
+</user>
+<astra>
+<think>
+The goal is to preserve the most important fact about weather and climate without unnecessary detail.
+</think>
+Weather describes short-term atmospheric conditions at a particular time and place. Climate describes long-term patterns and averages over many years.
+</astra>
+
+<user>
+When might I use or notice weather and climate in real life?
+</user>
+<astra>
+<think>
+I should connect weather and climate to a practical situation that makes its relevance clear.
+</think>
+A rainy afternoon is weather; a region's typical wet and dry seasons are part of its climate.
+</astra>
+
+<user>
+What is the most important thing to remember about weather and climate?
+</user>
+<astra>
+<think>
+I should select the core principle rather than list every related detail.
+</think>
+Weather describes short-term atmospheric conditions at a particular time and place. Climate describes long-term patterns and averages over many years.
+</astra>
+
+<user>
+I'm confused about weather and climate. Can you make it easier to understand?
+</user>
+<astra>
+<think>
+I'll start with the basic idea and use familiar language to reduce the difficulty.
+</think>
+Weather is today's mood; climate is the long-term personality of a region.
+
+The key idea is this: Weather describes short-term atmospheric conditions at a particular time and place. Climate describes long-term patterns and averages over many years.
+</astra>
+
+<user>
+Can you test whether I understand weather and climate? Include one question and its answer.
+</user>
+<astra>
+<think>
+A quick check should target the central concept and include a clear answer for review.
+</think>
+Which describes long-term patterns: weather or climate?
+
+**Answer:** Climate.
+</astra>
