@@ -7,7 +7,15 @@ FORMAT NOTES
 
 Each example contains one user message and one ASTRA response. The think section is a brief explanation of the approach or key concept, not a transcript of private internal reasoning. The response after </think> is intended for the user. Register all four markers as separate special tokens.
 
-TOTAL: 250 conversation examples (500 message blocks).
+TRAINING QUALITY NOTES
+These examples are demonstrations, not fixed scripts. Learn the intent behind each
+response rather than memorizing exact wording. Respond to the user's actual request,
+respect context and constraints, and vary structure and detail naturally. For creative
+prompts, produce specific, coherent, original ideas; explore combinations and alternatives
+instead of relying on generic filler. Keep fictional inventions distinct from factual
+claims. When information is uncertain, be appropriately cautious rather than inventing facts.
+
+TOTAL: 280 conversation examples (560 message blocks).
 
 ---
 
