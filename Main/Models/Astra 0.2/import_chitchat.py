@@ -338,15 +338,15 @@ def main() -> None:
         if len(additions) >= args.max_examples:
             break
 
-    review_block = "\\n\\n---\\n\\n".join(
-        f"{SOURCE_MARKER}\\n<user>\\n{user}\\n</user>\\n<astra>\\n{answer}\\n</astra>"
+    review_block = "\n\n---\n\n".join(
+        f"{SOURCE_MARKER}\n<user>\n{user}\n</user>\n<astra>\n{answer}\n</astra>"
         for user, answer in additions
     )
     REVIEW_PATH = HERE / "byu_review_candidates.txt"
     REVIEW_PATH.write_text(
-        "# REVIEW CANDIDATES ONLY — NOT TRAINING DATA\\n"
-        "# Check every prompt/response pair before copying approved examples into dataset.txt.\\n\\n"
-        + review_block + ("\\n" if review_block else ""),
+        "# REVIEW CANDIDATES ONLY — NOT TRAINING DATA\n"
+        "# Check every prompt/response pair before copying approved examples into dataset.txt.\n\n"
+        + review_block + ("\n" if review_block else ""),
         encoding="utf-8",
     )
     total = len(additions)
