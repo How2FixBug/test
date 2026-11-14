@@ -74,11 +74,11 @@ def generate_reply(message: str, history: list[dict]) -> str:
         if not text:
             continue
         if role == "user":
-            parts.append(f"<user>\\n{text}\\n</user>\\n")
+            parts.append(f"<user>\n{text}\n</user>\n")
         elif role in ("assistant", "sol", "astra"):
-            parts.append(f"<astra>\\n{text}\\n</astra>\\n")
+            parts.append(f"<astra>\n{text}\n</astra>\n")
 
-    parts.append(f"<user>\\n{message.strip()}\\n</user>\\n<astra>\\n")
+    parts.append(f"<user>\n{message.strip()}\n</user>\n<astra>\n")
     token_ids = encode("".join(parts), {tuple(pair): rank for rank, pair in enumerate(MERGES)})
     generated = list(token_ids)
     answer_ids = []
