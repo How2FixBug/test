@@ -9,6 +9,7 @@ import random
 import re
 import urllib.parse
 import urllib.request
+import time
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -211,8 +212,28 @@ def fetch_rows() -> tuple[list[dict], str]:
             f"{SOURCE_API}?{params}",
             headers={"User-Agent": "ASTRA-0.2-dataset-importer"},
         )
-        with urllib.request.urlopen(request, timeout=60) as response:
-            page = json.loads(response.read().decode("utf-8"))
+        page = None
+        for attempt in range(7):
+            try:
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    page = json.loads(response.read().decode("utf-8"))
+                break
+            except urllib.error.HTTPError as error:
+                if error.code != 429 or attempt == 6:
+                    raise
+                retry_after = error.headers.get("Retry-After")
+                try:
+                    delay = max(1, min(120, int(retry_after))) if retry_after else min(60, 5 * (2 ** attempt))
+                except ValueError:
+                    delay = min(60, 5 * (2 ** attempt))
+                print(
+                    f"Hugging Face rate limit (429). Retrying in {delay}s "
+                    f"(attempt {attempt + 1}/6)...",
+                    flush=True,
+                )
+                time.sleep(delay)
+        if page is None:
+            raise RuntimeError(f"Could not fetch dataset page at offset {offset}.")
         if total is None:
             total = int(page.get("num_rows_total", -1))
             if total != EXPECTED_ROWS:
