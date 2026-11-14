@@ -66,21 +66,28 @@ def split_records(records, validation_fraction: float, seed: int):
     return training, validation, len(groups)
 
 def get_batch(records, batch_size: int, block_size: int, device: torch.device, rng=None):
-    """Sample rows from individual conversations, never across boundaries."""
+    """Keep the prompt at the start and train loss only on assistant tokens."""
     rng = rng or random
     x_batch = torch.zeros((batch_size, block_size), dtype=torch.long)
     y_batch = torch.full((batch_size, block_size), IGNORE_INDEX, dtype=torch.long)
     for row in range(batch_size):
         record = records[rng.randrange(len(records))]
-        max_start = max(0, len(record) - (block_size + 1))
-        start = rng.randint(0, max_start)
-        chunk = record[start:start + block_size + 1]
+        chunk = record[:block_size + 1]
+        try:
+            assistant_start = chunk.index(ASTRA_TOKEN)
+        except ValueError:
+            raise ValueError("A training example is missing its <astra> marker.")
+        if len(chunk) < 2:
+            raise ValueError("A training example must contain at least two tokens.")
+
         chunk_tensor = torch.tensor(chunk, dtype=torch.long)
         usable = len(chunk) - 1
-        if usable < 1:
-            raise ValueError("A training example must contain at least two tokens.")
         x_batch[row, :usable] = chunk_tensor[:-1]
-        y_batch[row, :usable] = chunk_tensor[1:]
+        # The model sees the user prompt, but is not rewarded for copying it.
+        for position in range(usable):
+            target_position = position + 1
+            if target_position > assistant_start:
+                y_batch[row, position] = chunk_tensor[target_position]
     return x_batch.to(device), y_batch.to(device)
 
 @torch.no_grad()
@@ -107,7 +114,7 @@ def main():
     parser = argparse.ArgumentParser(description="Train ASTRA's LoopCore neural network.")
     parser.add_argument("--steps", type=int, default=2000)
     parser.add_argument("--batch-size", type=int, default=8)
-    parser.add_argument("--block-size", type=int, default=256)
+    parser.add_argument("--block-size", type=int, default=512)
     parser.add_argument("--learning-rate", type=float, default=2e-4)
     parser.add_argument("--eval-interval", type=int, default=100)
     parser.add_argument("--patience", type=int, default=8)
@@ -173,6 +180,7 @@ def main():
     print(f"Vocabulary: {vocab_size:,} | Parameters: {parameter_count:,}")
     print(f"Device: {device} | Context: {block_size} | Shared passes: {model.loop_passes}")
     print("Validation groups are isolated by exact response.")
+    print("Loss is calculated on assistant replies only; user prompts are context, not targets.")
     if args.resume:
         print("Continuing from the saved checkpoint; optimizer state is freshly initialized.")
     else:
