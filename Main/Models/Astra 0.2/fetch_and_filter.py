@@ -140,7 +140,7 @@ def looks_corrupted(value: str) -> bool:
         useful = sum(ch.isalnum() or ch.isspace() for ch in value)
         if useful / len(value) < 0.65:
             return True
-    if re.search(r"\b(?:lol|haha|hehe)(?:\s+\1){3,}", value, re.I):
+    if re.search(r"\b(lol|haha|hehe)(?:\s+\1){3,}", value, re.I):
         return True
     return False
 
