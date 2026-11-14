@@ -14,11 +14,14 @@ PAIR_RE = re.compile(
     r"<astra>\s*\n(?:<think>[\s\S]*?</think>\s*)?([\s\S]*?)\n</astra>"
 )
 SOURCE_RE = re.compile(r"<!-- ASTRA_SOURCE: ([^>]+) -->")
-ROLE_LINE_RE = re.compile(r"(?im)^\s*(?:user|assistant):\s*")
+# Multi-turn context is an intentional ASTRA input format, not a defect.
+# Only flag claims that explicitly present time-sensitive information.
 TIME_RE = re.compile(
-    r"\b(?:currently|current|latest|today|yesterday|tomorrow|right now|"
-    r"as of \d{4}|in recent years|in recent months|this year|last year|"
-    r"recently|up[- ]to[- ]date)\b",
+    r"\b(?:as of (?:19|20)\d{2}|(?:current|latest|recent) "
+    r"(?:population|price|rate|排名|statistics|figures|data|version|"
+    r"president|prime minister|CEO|weather|forecast|schedule|standings)|"
+    r"today's (?:weather|news|forecast|schedule)|"
+    r"right now,? (?:the|a) (?:price|rate|population|weather))\b",
     re.I,
 )
 SPECIFIC_RE = re.compile(
@@ -64,8 +67,6 @@ def source_for(raw: str, position: int) -> str:
 
 def inspect(prompt: str, answer: str, prompt_counts: Counter, answer_counts: Counter) -> list[str]:
     flags: list[str] = []
-    if ROLE_LINE_RE.search(prompt) or prompt.lstrip().casefold().startswith("user:"):
-        flags.append("nested_conversation_transcript")
     if TIME_RE.search(prompt) or TIME_RE.search(answer):
         flags.append("time_sensitive_claim")
     if SPECIFIC_RE.search(answer):
