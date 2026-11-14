@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Import approved conversation data, then prepare and audit ASTRA 0.2."""
+"""Clean unreviewed imports, then prepare and audit ASTRA 0.2."""
 from __future__ import annotations
 
 import subprocess
@@ -16,12 +16,12 @@ def run(label: str, *args: str) -> None:
 
 def main() -> None:
     print("ASTRA 0.2: BASIC CONVERSATION ONLY", flush=True)
-    run("1/4 Import and filter BYU Chit-Chat conversations", str(HERE / "import_chitchat.py"))
+    run("1/4 Remove unreviewed source imports", str(HERE / "clean_dataset.py"))
     run("2/4 Build tokenizer and encoded dataset", str(HERE / "tokenizer.py"))
-    run("3/4 Audit conversation corpus", str(HERE / "audit_dataset.py"))
+    run("3/4 Audit curated conversation corpus", str(HERE / "audit_dataset.py"))
     run("4/4 Run correctness checks", str(HERE / "test_causality.py"))
     print("\nPreparation complete. Review the audit before training.", flush=True)
-    print("To refresh the source data later: python3 import_chitchat.py --refresh", flush=True)
+    print("Optional: generate separate BYU review candidates with python3 import_chitchat.py", flush=True)
 
 
 if __name__ == "__main__":
