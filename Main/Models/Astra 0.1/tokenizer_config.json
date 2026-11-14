@@ -1,0 +1,19 @@
+{
+  "name": "ASTRA 0.1 Byte Tokenizer",
+  "type": "utf8_byte_level",
+  "vocab_size": 262,
+  "byte_ids": {
+    "start": 0,
+    "end": 255
+  },
+  "special_tokens": {
+    "<user>": 256,
+    "</user>": 257,
+    "<astra>": 258,
+    "</astra>": 259,
+    "<think>": 260,
+    "</think>": 261
+  },
+  "special_token_count": 6,
+  "notes": "UTF-8 bytes are lossless. Six conversation markers are atomic tokens."
+}
