@@ -113,6 +113,7 @@ def main():
     parser.add_argument("--patience", type=int, default=8)
     parser.add_argument("--validation-fraction", type=float, default=0.1)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--resume", action="store_true", help="Continue from the best checkpoint")
     args = parser.parse_args()
 
     config_path = HERE / "tokenizer_config.json"
@@ -145,7 +146,23 @@ def main():
     )
     output_dir = HERE / "checkpoints"
     output_dir.mkdir(exist_ok=True)
-    best_val, stale_evaluations = float("inf"), 0
+    checkpoint_path = output_dir / "astra-0.1-best.pt"
+    start_step, best_val = 0, float("inf")
+    if args.resume:
+        if not checkpoint_path.exists():
+            raise SystemExit("Cannot resume: checkpoint not found.")
+        checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
+        if checkpoint.get("architecture_version") != 2:
+            raise SystemExit("Cannot resume: checkpoint architecture version does not match.")
+        if checkpoint.get("tokenizer_fingerprint") != config["fingerprint"]:
+            raise SystemExit("Cannot resume: checkpoint tokenizer does not match current dataset.")
+        if checkpoint.get("model_config", {}).get("vocab_size") != vocab_size:
+            raise SystemExit("Cannot resume: checkpoint vocabulary size does not match.")
+        model.load_state_dict(checkpoint["model_state_dict"])
+        start_step = int(checkpoint.get("step", 0))
+        best_val = float(checkpoint.get("best_val_loss", float("inf")))
+        print("Resuming from step {} | previous best val {:.4f}".format(start_step, best_val))
+    stale_evaluations = 0
     started = time.time()
 
     print("ASTRA 0.1 — LoopCore (causal-memory revision)")
@@ -156,9 +173,13 @@ def main():
     print(f"Vocabulary: {vocab_size:,} | Parameters: {parameter_count:,}")
     print(f"Device: {device} | Context: {block_size} | Shared passes: {model.loop_passes}")
     print("Validation groups are isolated by exact response.")
-    print("Training from random initialization. No pretrained weights are used.")
+    if args.resume:
+        print("Continuing from the saved checkpoint; optimizer state is freshly initialized.")
+    else:
+        print("Training from random initialization. No pretrained weights are used.")
 
-    for step in range(1, args.steps + 1):
+    final_step = start_step + args.steps
+    for step in range(start_step + 1, final_step + 1):
         x, y = get_batch(train_records, args.batch_size, block_size, device)
         logits = model(x)
         loss = F.cross_entropy(
@@ -170,7 +191,7 @@ def main():
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         optimizer.step()
 
-        if step == 1 or step % args.eval_interval == 0 or step == args.steps:
+        if step == start_step + 1 or step % args.eval_interval == 0 or step == final_step:
             metrics = estimate_loss(
                 model, train_records, val_records, args.batch_size, block_size, device
             )
@@ -192,7 +213,7 @@ def main():
                     "tokenizer_fingerprint": config["fingerprint"],
                     "step": step,
                     "best_val_loss": best_val,
-                }, output_dir / "astra-0.1-best.pt")
+                }, checkpoint_path)
                 print("  saved new best checkpoint")
             else:
                 stale_evaluations += 1
