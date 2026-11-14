@@ -77,6 +77,25 @@ def normalize(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip().casefold()
 
 
+def looks_corrupted(text: str) -> bool:
+    """Reject obvious transcription/formatting noise without judging meaning."""
+    words = re.findall(r"[a-z']+", text.casefold())
+    if len(words) >= 8:
+        # Obvious repeated-word corruption, e.g. "the the the the".
+        for index in range(len(words) - 3):
+            if words[index] == words[index + 1] == words[index + 2] == words[index + 3]:
+                return True
+    # Long runs of one character are almost always scraping noise.
+    if re.search(r"(.)\\1{5,}", text):
+        return True
+    # Reject symbol-heavy fragments, but allow ordinary punctuation and emoji.
+    if len(text) >= 16:
+        useful = sum(char.isalnum() or char.isspace() for char in text)
+        if useful / len(text) < 0.55:
+            return True
+    return False
+
+
 def clean_turn(messages) -> tuple[str, str] | None:
     if not isinstance(messages, list) or not messages:
         return None
@@ -95,7 +114,7 @@ def clean_turn(messages) -> tuple[str, str] | None:
         return None
     if URL_RE.search(text) or EMAIL_RE.search(text) or DIGIT_RE.search(text):
         return None
-    if UNSUITABLE_RE.search(text):
+    if UNSUITABLE_RE.search(text) or looks_corrupted(text):
         return None
     return next(iter(senders)), text
 
