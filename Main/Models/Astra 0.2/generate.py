@@ -157,7 +157,9 @@ def main():
                 device=device,
             )
             logits = model(context)[0, -1]
-            if inside_think:
+            if tool_request_complete:
+                allowed = {astra_end}
+            elif inside_think:
                 allowed = {think_end}
             elif inside_getinfo:
                 allowed = {getinfo_end}
@@ -193,7 +195,7 @@ def main():
             if next_id == getinfo_end:
                 inside_getinfo = False
                 tool_request_complete = True
-                break
+                continue
 
             if (
                 not args.no_stream
