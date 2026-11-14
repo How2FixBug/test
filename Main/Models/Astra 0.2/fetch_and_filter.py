@@ -45,10 +45,13 @@ PERSONA_RE = re.compile(
     r"grew up|used to|remember|recall|love|loved|like|liked|hate|hated|"
     r"prefer|preferred|enjoy|enjoyed|adore|miss|made|cooked|bought|played|"
     r"travelled|traveled|am from|come from|have a (?:dog|cat|pet|wife|husband|"
-    r"girlfriend|boyfriend|brother|sister|mom|dad)|"
-    r"my (?:mom|mother|dad|father|family|parents|brother|sister|friend|"
-    r"girlfriend|boyfriend|wife|husband|kids|children|pet|dog|cat))|"
-    r"i(?:'m| am)\s+(?:from |at |in |a [a-z]+|an [a-z]+))\b",
+    r"girlfriend|boyfriend|brother|sister|mom|dad))|"
+    r"i(?:'ve| have)\s+(?:been|visited|lived|worked|studied|owned|travelled|traveled)|"
+    r"i(?:'m| am)\s+(?:from|at|in)\b|"
+    r"i(?:'m| am)\s+(?:a|an)\s+(?!ai\b|chatbot\b|assistant\b|language model\b)[a-z]+\b|"
+    r"my\s+(?:mom|mother|dad|father|family|parents|brother|sister|friend|"
+    r"girlfriend|boyfriend|wife|husband|kids|children|pet|dog|cat)\b"
+    r")",
     re.I,
 )
 MAX_USER_CHARS = 350
