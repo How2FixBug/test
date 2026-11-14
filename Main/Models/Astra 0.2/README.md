@@ -65,6 +65,38 @@ The source is [BYU-PCCL/chitchat-dataset](https://github.com/BYU-PCCL/chitchat-d
 It lists an MIT license and should be credited if any reviewed examples are retained.
 The source is mixed open-domain conversation, so filtering is heuristic.
 
+## Generate and review new examples
+
+Use the local Ollama model to draft a small batch, then personally approve each
+candidate before it enters the training dataset:
+
+```bash
+python3 conversation_workbench.py
+```
+
+The workbench defaults to `qwen3:4b` on the local Ollama server and generates
+20 candidates per run. It shows each prompt/response pair with automatic warning
+flags for likely duplicates, factual content, invented human biography, unsuitable
+topics, and suspicious length. The flags are only a first-pass aid: read every
+pair yourself.
+
+- `y`: approve and append to `dataset.txt`
+- `n`: reject
+- `e`: edit the pair, then review it again
+- `q`: stop; previously approved examples remain saved
+
+Candidates are never added automatically. The workbench checks duplicates and
+shows progress toward the 2,000-example milestone. You can change the batch size
+or model, for example:
+
+```bash
+python3 conversation_workbench.py --count 30 --batch-size 10
+```
+
+Ollama must be running locally, with the selected model already available.
+The workbench uses only Python's standard library and the local Ollama API; it
+does not upload prompts or dataset contents to an external service.
+
 ## Train
 
 ```bash
