@@ -167,7 +167,15 @@ def main():
             if next_id == astra_end:
                 break
 
-            generated.append(next_id)\n            answer_ids.append(next_id)\n            if not args.no_stream and vocab[next_id] is not None:\n                piece = decoder.decode(vocab[next_id], final=False)\n                if piece:\n                    sys.stdout.write(piece)\n                    sys.stdout.flush()\n\n    if args.no_stream:
+            generated.append(next_id)
+            answer_ids.append(next_id)
+            if not args.no_stream and vocab[next_id] is not None:
+                piece = decoder.decode(vocab[next_id], final=False)
+                if piece:
+                    sys.stdout.write(piece)
+                    sys.stdout.flush()
+
+    if args.no_stream:
         print(decode(answer_ids, vocab).strip())
     else:
         tail = decoder.decode(b"", final=True)
