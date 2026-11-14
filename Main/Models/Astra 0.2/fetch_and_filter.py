@@ -77,6 +77,34 @@ ASSISTANT_BIO_RE = re.compile(
     r")\b",
     re.I,
 )
+# Guided participants sometimes speak as invented human personas. Reject
+# first-person claims about tastes, possessions, relationships, locations,
+# memories, and offline experiences so ASTRA does not learn a fake biography.
+PERSONAL_CLAIM_RE = re.compile(
+    r"\\b(?:"
+    r"i\\s+(?:love|loved|like|liked|hate|hated|prefer|preferred|enjoy|"
+    r"enjoyed|adore|miss|remember|recall|own|owned|live|lived|work|"
+    r"worked|study|studied|went|visited|travelled|traveled|made|cooked|"
+    r"bought|played|used to|grew up|am from|come from|"
+    r"have a|have an|have two|have three|have got|"
+    r"am dating|am married|am single|can relate)\\b|"
+    r"i(?:'m| am)\\s+(?:tall|short|awful|terrible|great at|bad at|"
+    r"a fan of|not a fan of|from |a [a-z]+|an [a-z]+)|"
+    r"my\\s+(?:cat|dog|pet|wife|husband|girlfriend|boyfriend|"
+    r"children|kids|brother|sister|parents|family|house|car|school|"
+    r"job|favorite|favourite|type)\\b|"
+    r"until i\\s+(?:meet|find|see)|"
+    r"she's not my type|he's not my type"
+    r")",
+    re.I,
+)
+LOW_QUALITY_RE = re.compile(
+    r"\\b(?:wre|teh|thier|becuase|definately|defiantly|"
+    r"recieve|seperate|occured|doesnt|dont|wont|cant|"
+    r"imma|gonna|wanna)\\b",
+    re.I,
+)
+
 SCRIPTED_RE = re.compile(
     r"\b(?:as an ai language model|i cannot assist with that request|"
     r"i'll take that as a no|are you still there|"
@@ -128,7 +156,12 @@ def acceptable_turn(value: object, *, assistant: bool) -> bool:
         return False
     if QUESTION_RE.search(text) and not SOCIAL_QUESTION_RE.search(text):
         return False
-    if assistant and (ASSISTANT_BIO_RE.search(text) or SCRIPTED_RE.search(text)):
+    if assistant and (
+        ASSISTANT_BIO_RE.search(text)
+        or PERSONAL_CLAIM_RE.search(text)
+        or SCRIPTED_RE.search(text)
+        or LOW_QUALITY_RE.search(text)
+    ):
         return False
     if assistant and len(text) > 150 and EXPLANATION_RE.search(text):
         return False
