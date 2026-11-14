@@ -307,14 +307,39 @@
     document.body.append(inputBox);
 
     let activeFlightAnimation = null;
+    let inputHeightAnimation = null;
     try {
       // Move and contract the real composer together: one continuous morph.
       userRow.style.visibility = "visible";
       userRow.classList.add("morph-avatar-in");
       const sourceStyle = getComputedStyle(inputBox);
       const targetStyle = getComputedStyle(bubble);
+      const inputStyle = getComputedStyle(input);
+      const targetInputHeight = Math.max(1,
+        targetRect.height -
+        parseFloat(targetStyle.paddingTop) -
+        parseFloat(targetStyle.paddingBottom) -
+        parseFloat(targetStyle.borderTopWidth) -
+        parseFloat(targetStyle.borderBottomWidth)
+      );
       inputBox.style.backgroundImage = "linear-gradient(135deg, rgba(54,82,119,0), rgba(40,57,91,0))";
       const duration = reducedMotion ? 1 : 1050;
+      inputHeightAnimation = input.animate([
+        {
+          height: input.getBoundingClientRect().height + "px",
+          paddingTop: inputStyle.paddingTop,
+          paddingBottom: inputStyle.paddingBottom
+        },
+        {
+          height: targetInputHeight + "px",
+          paddingTop: "0px",
+          paddingBottom: "0px"
+        }
+      ], {
+        duration,
+        easing: "cubic-bezier(.22,.78,.18,1)",
+        fill: "forwards"
+      });
       activeFlightAnimation = inputBox.animate([
         {
           left: sourceRect.left + "px",
@@ -363,11 +388,13 @@
         easing: "linear",
         fill: "forwards"
       });
-      await Promise.all([activeFlightAnimation.finished, inputFade.finished, bubbleReveal.finished]);
+      await Promise.all([activeFlightAnimation.finished, inputHeightAnimation.finished, inputFade.finished, bubbleReveal.finished]);
       activeFlightAnimation.cancel();
+      inputHeightAnimation.cancel();
       inputFade.cancel();
       bubbleReveal.cancel();
       activeFlightAnimation = null;
+      inputHeightAnimation = null;
       if (activeId !== chat.id) throw new Error("Conversation changed");
       restoreComposer();
       userRow.classList.add("morph-message-in");
@@ -383,7 +410,9 @@
       }, 100);
     } catch {
       activeFlightAnimation?.cancel();
+      inputHeightAnimation?.cancel();
       activeFlightAnimation = null;
+      inputHeightAnimation = null;
       restoreComposer();
       if (activeId === chat.id) {
         userRow.style.visibility = "visible";
