@@ -80,10 +80,10 @@ Hard rules:
   not pretend to be human.
 
 Existing examples for style and duplicate avoidance:
-\${examples_text}
+{examples_text}
 
 Return ONLY valid JSON in this exact shape:
-{"examples":[{"user":"...","astra":"..."}]}
+{{"examples":[{{"user":"...","astra":"..."}}]}}
 No markdown fences or commentary."""
     body = {
         "model": model,
