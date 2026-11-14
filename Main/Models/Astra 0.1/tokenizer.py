@@ -17,11 +17,7 @@ from pathlib import Path
 
 TARGET_VOCAB_SIZE = 8192
 BASE_VOCAB_SIZE = 256
-SPECIAL_TOKENS = {
-    "<user>": 256, "</user>": 257,
-    "<astra>": 258, "</astra>": 259,
-    "<think>": 260, "</think>": 261,
-}
+SPECIAL_TOKENS = {\n    "<user>": 256, "</user>": 257,\n    "<astra>": 258, "</astra>": 259,\n}
 SPECIAL_RE = re.compile("(" + "|".join(
     re.escape(token) for token in sorted(SPECIAL_TOKENS, key=len, reverse=True)
 ) + ")")
@@ -40,19 +36,11 @@ def load_pairs(dataset_path: Path) -> list[tuple[str, str]]:
     if not marker:
         raise ValueError("No standalone <user> training marker found.")
     pairs = [(u.strip(), a.strip()) for u, a in PAIR_RE.findall(raw[marker.start():])]
-    # Source examples may contain inconsistent explanatory think text. ASTRA
-    # learns to produce a direct answer; normalize every think section to empty.
-    pairs = [
-        (user, re.sub(r"<think>[\s\S]*?</think>", "<think>\n</think>", answer, count=1))
-        for user, answer in pairs
-    ]
-    if not pairs:
+    # Legacy datasets may contain think blocks; remove them completely.\n    pairs = [\n        (user, re.sub(r"<think>[\\s\\S]*?</think>\\s*", "", answer, count=1).strip())\n        for user, answer in pairs\n    ]\n    if not pairs:
         raise ValueError("No complete user/ASTRA pairs found.")
     for index, (user, astra) in enumerate(pairs, 1):
         if not user or not astra:
             raise ValueError(f"Example {index} has an empty message.")
-        if "<think>" not in astra or "</think>" not in astra:
-            raise ValueError(f"Example {index} is missing a think section.")
     return pairs
 
 
