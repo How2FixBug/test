@@ -12,6 +12,7 @@ from model import AstraGPT
 
 HERE = Path(__file__).resolve().parent
 ASTRA_TOKEN = 258
+ASTRA_END_TOKEN = 259
 IGNORE_INDEX = -100
 
 def read_records(dataset_path: Path, expected_fingerprint: str):
@@ -37,11 +38,10 @@ def read_records(dataset_path: Path, expected_fingerprint: str):
     return records
 
 def split_records(records, validation_fraction: float, seed: int):
-    """Split by exact response so paraphrases cannot leak across splits."""
+    """Split by complete conversation so identical histories cannot leak."""
     groups = {}
     for record in records:
-        key = tuple(record[record.index(ASTRA_TOKEN) + 1:])
-        groups.setdefault(key, []).append(record)
+        groups.setdefault(tuple(record), []).append(record)
     target = max(1, round(len(records) * validation_fraction))
     rng = random.Random(seed)
     buckets = {}
@@ -56,49 +56,56 @@ def split_records(records, validation_fraction: float, seed: int):
                 count += len(group)
     if not validation:
         raise ValueError("Could not create a non-empty validation split.")
-    held_out = {tuple(r[r.index(ASTRA_TOKEN) + 1:]) for r in validation}
-    training = [
-        r for r in records
-        if tuple(r[r.index(ASTRA_TOKEN) + 1:]) not in held_out
-    ]
+    held_out = {tuple(record) for record in validation}
+    training = [record for record in records if tuple(record) not in held_out]
     if not training:
         raise ValueError("Validation split left no training examples.")
     return training, validation, len(groups)
 
+
 def build_windows(records, block_size: int):
-    """Cover every assistant token using overlapping context windows."""
+    """Create windows that predict ASTRA messages, but never user/tool-result text."""
     target_size = max(1, block_size // 2)
     context_size = block_size - target_size
     windows = []
 
     for record in records:
-        try:
-            assistant_start = record.index(ASTRA_TOKEN)
-        except ValueError:
-            raise ValueError("A training example is missing its <astra> marker.")
+        assistant_targets = [False] * len(record)
+        inside_astra = False
+        for position, token in enumerate(record):
+            if token == ASTRA_TOKEN:
+                if inside_astra:
+                    raise ValueError("Nested <astra> message found.")
+                inside_astra = True
+                continue
+            if token == ASTRA_END_TOKEN:
+                if not inside_astra:
+                    raise ValueError("Unmatched </astra> marker found.")
+                assistant_targets[position] = True
+                inside_astra = False
+                continue
+            if inside_astra:
+                assistant_targets[position] = True
+        if inside_astra:
+            raise ValueError("A training example has an unclosed <astra> message.")
+        if not any(assistant_targets):
+            raise ValueError("A training example has no ASTRA response tokens.")
 
-        first_target = assistant_start + 1
-        if first_target >= len(record):
-            raise ValueError("A training example has no assistant response tokens.")
-
-        # Each target token appears in exactly one window. Later windows retain
-        # up to context_size preceding tokens, including earlier assistant text.
-        for target_start in range(first_target, len(record), target_size):
+        for target_start in range(1, len(record), target_size):
             target_end = min(len(record), target_start + target_size)
             input_start = max(0, target_start - context_size - 1)
-
             inputs = record[input_start:target_end - 1]
             targets = record[input_start + 1:target_end]
-            mask_count = target_start - (input_start + 1)
-            if mask_count:
-                targets[:mask_count] = [IGNORE_INDEX] * mask_count
-
+            for offset, position in enumerate(range(input_start + 1, target_end)):
+                if not assistant_targets[position]:
+                    targets[offset] = IGNORE_INDEX
             if not inputs or len(inputs) != len(targets) or len(inputs) > block_size:
-                raise ValueError("Invalid training window generated from a tokenized example.")
-            windows.append((inputs, targets))
+                raise ValueError("Invalid training window generated from a tokenized conversation.")
+            if any(token != IGNORE_INDEX for token in targets):
+                windows.append((inputs, targets))
 
     if not windows:
-        raise ValueError("No assistant training windows were generated.")
+        raise ValueError("No ASTRA response training windows were generated.")
     return windows
 
 
