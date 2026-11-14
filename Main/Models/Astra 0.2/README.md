@@ -1,43 +1,46 @@
 # ASTRA 0.2 — Basic Conversation
 
-ASTRA 0.2 is a separate development copy of ASTRA 0.1. The first milestone is
-basic, coherent conversation: natural greetings, small talk, relevant answers,
-simple instructions, explanations, and follow-up context.
+## Goal
 
-## Starting point
+ASTRA 0.2 is a small chatbot focused exclusively on basic, natural conversation.
+It should handle greetings, small talk, casual reactions, preferences, simple
+back-and-forth exchanges, and conversational follow-ups.
 
-This directory was cloned from the ASTRA 0.1 code and its 280-example starter
-corpus. It has its own tokenizer artifacts, tokenized dataset, checkpoints, and
-training outputs. It does not reuse the ASTRA 0.1 checkpoint.
-
-The initial model architecture and training pipeline are intentionally kept
-unchanged while the 0.2 data pipeline is prepared. The next dataset milestone
-is a reviewed corpus of roughly 8,000 high-quality examples, with a stronger
-focus on conversational variety and multi-turn context.
+**It is not a factual assistant.** Do not add trivia, science, history, geography,
+encyclopedic answers, general knowledge, or instruction-following datasets.
+The goal is conversational behavior, not answering factual questions.
 
 ## Dataset
 
-The starter `dataset.txt` is the original 280-example seed corpus copied from
-0.1. `import_datasets.py` can add filtered English examples from OpenAssistant
-(OASST1) and Aya, with source credits and exact-pair deduplication. Inspect the
-corpus after importing; the importer is a filter, not a guarantee of quality.
+`dataset.txt` contains a small, curated seed corpus of original everyday
+conversation examples. Some prompts include short prior conversation transcripts
+to teach context-aware replies. There are no external knowledge datasets.
 
-Prepare the expanded corpus, rebuild its tokenizer, audit it, and run correctness checks with one command:
+`import_datasets.py` is deliberately disabled so broad datasets cannot be
+accidentally imported into this version.
+
+When expanding the corpus, add only natural everyday conversation:
+- Greetings and goodbyes.
+- Check-ins and small talk.
+- Casual reactions and acknowledgements.
+- Preferences, hobbies, and everyday plans.
+- Listening, empathy, apologies, thanks, and topic changes.
+- Follow-up replies that depend on earlier conversational context.
+
+Avoid repetitive paraphrase spam. Prefer varied, believable exchanges. If an
+example mainly tests factual knowledge or teaches information about the world,
+it does not belong in ASTRA 0.2.
+
+## Prepare
+
+Run the whole local preparation pipeline with one command:
 
 ```bash
 python3 prepare_dataset.py
 ```
 
-This imports up to 4,000 examples per source (OASST1 and Aya), deduplicates
-against existing pairs, regenerates the tokenizer artifacts, prints an audit,
-and runs the correctness checks. Review the audit and sample records before
-training.
-
-**Important:** the current cloned trainer still treats each record as one
-user/assistant exchange. Multi-turn conversation records and assistant-turn
-masking are a separate required data/training upgrade before ASTRA 0.2 can
-properly learn multi-turn dialogue. Do not train on concatenated turns until
-that support is implemented.
+This builds the tokenizer, encodes the dataset, audits it, and runs correctness
+checks. It does not download or import external data.
 
 ## Train
 
@@ -45,26 +48,20 @@ that support is implemented.
 python3 train.py
 ```
 
-Optional quick smoke run:
-
-```bash
-python3 train.py --steps 100 --batch-size 4 --block-size 128
-```
-
-Training starts from random initialization. It does not load the ASTRA 0.1
-checkpoint.
+Training starts from random initialization and uses ASTRA 0.2's own checkpoint.
 
 ## Generate
 
 ```bash
-python3 generate.py "Hello! What can you do?"
+python3 generate.py "Hey! How's it going?"
 ```
 
-## Current status
+## Status
 
-- [x] Separate ASTRA 0.2 directory created from the 0.1 baseline.
-- [x] Independent checkpoint naming.
-- [x] Starter dataset copied.
-- [ ] Expand and review the 0.2 corpus.
-- [ ] Add multi-turn conversation encoding and assistant-only loss masking.
+- [x] Separate ASTRA 0.2 copy created from 0.1.
+- [x] Replaced the inherited knowledge-heavy seed data with conversation-only examples.
+- [x] Disabled external general-purpose dataset imports.
+- [x] Preparation pipeline no longer downloads outside datasets.
+- [ ] Expand the curated conversation corpus with more varied multi-turn examples.
+- [ ] Improve training to represent longer conversational histories directly.
 - [ ] Train and evaluate ASTRA 0.2.
