@@ -275,7 +275,6 @@ def main() -> None:
         r"<user>\n.*?\n</astra>(?:\n\s*---)?\n*"
     )
     raw_dataset = source_block_re.sub("", raw_dataset)
-    raw_dataset = re.sub(r"(?m)^TOTAL:.*\n?", "", raw_dataset, count=1)
     known = existing_pairs(raw_dataset)
     additions = []
     for user, answer in candidates:
