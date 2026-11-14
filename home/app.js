@@ -494,6 +494,14 @@
     input.focus();
   };
   form.addEventListener("submit", event => { event.preventDefault(); sendMessage(input.value); });
+  document.querySelectorAll(".idea-card[data-prompt]").forEach(card => {
+    card.addEventListener("click", () => {
+      input.value = card.dataset.prompt || "";
+      syncInputHeight();
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+    });
+  });
   input.addEventListener("input", syncInputHeight);
   input.addEventListener("keydown", event => {
     if (event.key === "Enter" && !event.shiftKey && settings.enterToSend) {
