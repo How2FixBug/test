@@ -63,8 +63,8 @@ def main() -> None:
     parser.add_argument(
         "--config", type=Path, default=HERE / "tokenizer_config.json"
     )
-    parser.add_argument("--expected-count", type=int, default=282, help="Expected conversation count; use 0 to disable.")
-    parser.add_argument("--minimum-multi-turn", type=int, default=282, help="Minimum number of multi-turn conversations.")
+    parser.add_argument("--expected-count", type=int, default=312, help="Expected conversation count; use 0 to disable.")
+    parser.add_argument("--minimum-multi-turn", type=int, default=312, help="Minimum number of multi-turn conversations.")
     parser.add_argument("--exact-user-turns", type=int, default=3, help="Require exactly this many user messages in every conversation; use 0 to disable.")
     parser.add_argument("--sample-count", type=int, default=12)
     parser.add_argument("--sample-seed", type=int, default=42)
