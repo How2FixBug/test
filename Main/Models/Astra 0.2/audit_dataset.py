@@ -13,13 +13,13 @@ from tokenizer import load_conversations
 
 HERE = Path(__file__).resolve().parent
 MESSAGE_RE = {
-    "user": re.compile(r"<user>([\\s\\S]*?)</user>"),
-    "astra": re.compile(r"<astra>([\\s\\S]*?)</astra>"),
+    "user": re.compile(r"<user>([\s\S]*?)</user>"),
+    "astra": re.compile(r"<astra>([\s\S]*?)</astra>"),
 }
 
 
 def normalize(value: str) -> str:
-    return re.sub(r"\\s+", " ", value).strip().casefold()
+    return re.sub(r"\s+", " ", value).strip().casefold()
 
 
 def percentile(values: list[int], fraction: float) -> int:
@@ -31,7 +31,7 @@ def percentile(values: list[int], fraction: float) -> int:
 
 def repeated(values: list[str], limit: int = 8):
     counts = Counter(normalize(value) for value in values)
-    return [(count, value[:130].replace("\\n", " ")) for value, count in counts.most_common(limit) if count > 1]
+    return [(count, value[:130].replace("\n", " ")) for value, count in counts.most_common(limit) if count > 1]
 
 
 def main() -> None:
@@ -99,13 +99,13 @@ def main() -> None:
         count = min(args.sample_count, len(conversations))
         rng = random.Random(args.sample_seed)
         indices = sorted(rng.sample(range(len(conversations)), count))
-        print(f"\\nQUALITY SAMPLE ({count} of {len(conversations)}; seed={args.sample_seed})")
+        print(f"\nQUALITY SAMPLE ({count} of {len(conversations)}; seed={args.sample_seed})")
         for number, index in enumerate(indices, 1):
-            print(f"\\n[{number}/{count}]")
+            print(f"\n[{number}/{count}]")
             print(conversations[index])
 
     if not args.tokenized.exists():
-        print("\\nTokenized dataset not found; skipping token statistics.")
+        print("\nTokenized dataset not found; skipping token statistics.")
         return
 
     records = 0
@@ -132,7 +132,7 @@ def main() -> None:
             sequence_lengths.append(len(ids))
             token_counts.update(int(token) for token in ids)
 
-    print("\\nTOKENIZED DATA")
+    print("\nTOKENIZED DATA")
     print(f"Records: {records:,}")
     print(f"Total tokens: {sum(token_counts.values()):,}")
     print(f"Distinct token IDs used: {len(token_counts):,}")
