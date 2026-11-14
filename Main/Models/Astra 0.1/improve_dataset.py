@@ -127,8 +127,6 @@ def main() -> None:
     preamble = raw[:re.search(r"(?m)^<user>\s*$", raw).start()].rstrip()
     sections = [preamble, "", f"<!-- ASTRA curated additions: {added} -->"]
     for user, answer in kept:
-        if "<think>" not in answer:
-            answer = "<think>\n</think>\n" + answer
         sections.extend(["", "<user>", user, "</user>", "<astra>", answer, "</astra>"])
     DATASET.write_text("\n".join(sections).rstrip() + "\n", encoding="utf-8")
     print(f"Removed redundant/repeated examples; retained {len(kept) - added:,} existing examples.")
