@@ -65,47 +65,68 @@ def split_records(records, validation_fraction: float, seed: int):
         raise ValueError("Validation split left no training examples.")
     return training, validation, len(groups)
 
-def get_batch(records, batch_size: int, block_size: int, device: torch.device, rng=None):
-    """Keep the prompt at the start and train loss only on assistant tokens."""
-    rng = rng or random
-    x_batch = torch.zeros((batch_size, block_size), dtype=torch.long)
-    y_batch = torch.full((batch_size, block_size), IGNORE_INDEX, dtype=torch.long)
-    for row in range(batch_size):
-        record = records[rng.randrange(len(records))]
+def build_windows(records, block_size: int):
+    """Cover every assistant token using overlapping context windows."""
+    target_size = max(1, block_size // 2)
+    context_size = block_size - target_size
+    windows = []
+
+    for record in records:
         try:
-            full_assistant_start = record.index(ASTRA_TOKEN)
+            assistant_start = record.index(ASTRA_TOKEN)
         except ValueError:
             raise ValueError("A training example is missing its <astra> marker.")
 
-        # Long prompts can place <astra> beyond the context window. Keep the
-        # end of the prompt plus the marker, rather than truncating the marker.
-        start = max(0, full_assistant_start - (block_size - 1))
-        chunk = record[start:start + block_size + 1]
-        assistant_start = full_assistant_start - start
-        if len(chunk) < 2:
-            raise ValueError("A training example must contain at least two tokens.")
+        first_target = assistant_start + 1
+        if first_target >= len(record):
+            raise ValueError("A training example has no assistant response tokens.")
 
-        chunk_tensor = torch.tensor(chunk, dtype=torch.long)
-        usable = len(chunk) - 1
-        x_batch[row, :usable] = chunk_tensor[:-1]
-        # The model sees the user prompt, but is not rewarded for copying it.
-        for position in range(usable):
-            target_position = position + 1
-            if target_position > assistant_start:
-                y_batch[row, position] = chunk_tensor[target_position]
+        # Each target token appears in exactly one window. Later windows retain
+        # up to context_size preceding tokens, including earlier assistant text.
+        for target_start in range(first_target, len(record), target_size):
+            target_end = min(len(record), target_start + target_size)
+            input_start = max(0, target_start - context_size - 1)
+
+            inputs = record[input_start:target_end - 1]
+            targets = record[input_start + 1:target_end]
+            mask_count = target_start - (input_start + 1)
+            if mask_count:
+                targets[:mask_count] = [IGNORE_INDEX] * mask_count
+
+            if not inputs or len(inputs) != len(targets) or len(inputs) > block_size:
+                raise ValueError("Invalid training window generated from a tokenized example.")
+            windows.append((inputs, targets))
+
+    if not windows:
+        raise ValueError("No assistant training windows were generated.")
+    return windows
+
+
+def get_batch(windows, batch_size: int, block_size: int, device: torch.device, rng=None):
+    """Sample fixed-size batches from prebuilt assistant-response windows."""
+    rng = rng or random
+    x_batch = torch.zeros((batch_size, block_size), dtype=torch.long)
+    y_batch = torch.full((batch_size, block_size), IGNORE_INDEX, dtype=torch.long)
+
+    for row in range(batch_size):
+        inputs, targets = windows[rng.randrange(len(windows))]
+        length = len(inputs)
+        x_batch[row, :length] = torch.tensor(inputs, dtype=torch.long)
+        y_batch[row, :length] = torch.tensor(targets, dtype=torch.long)
+
     return x_batch.to(device), y_batch.to(device)
 
 @torch.no_grad()
-def estimate_loss(model, train_records, val_records, batch_size, block_size, device):
+def estimate_loss(model, train_windows, val_windows, batch_size, block_size, device):
     model.eval()
     result = {}
-    for name, records, seed in (
-        ("train", train_records, 1234), ("val", val_records, 5678)
+    for name, windows, seed in (
+        ("train", train_windows, 1234), ("val", val_windows, 5678)
     ):
         losses = []
         rng = random.Random(seed)
         for _ in range(20):
-            x, y = get_batch(records, batch_size, block_size, device, rng=rng)
+            x, y = get_batch(windows, batch_size, block_size, device, rng=rng)
             logits = model(x)
             losses.append(F.cross_entropy(
                 logits.reshape(-1, logits.size(-1)), y.reshape(-1),
@@ -145,8 +166,10 @@ def main():
         records, args.validation_fraction, args.seed
     )
     block_size = min(args.block_size, 512)
-    if min(min(map(len, train_records)), min(map(len, val_records))) < 2:
-        raise SystemExit("A training or validation example is too short.")
+    if block_size < 2:
+        raise SystemExit("Block size must be at least 2 tokens.")
+    train_windows = build_windows(train_records, block_size)
+    val_windows = build_windows(val_records, block_size)
 
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     torch.manual_seed(args.seed)
@@ -184,6 +207,7 @@ def main():
     )
     print(f"Vocabulary: {vocab_size:,} | Parameters: {parameter_count:,}")
     print(f"Device: {device} | Context: {block_size} | Transformer layers: {model.num_layers}")
+    print(f"Response windows: {len(train_windows):,} train | {len(val_windows):,} validation")
     print("Validation groups are isolated by exact response.")
     print("Loss is calculated on assistant replies only; user prompts are context, not targets.")
     if args.resume:
@@ -193,7 +217,7 @@ def main():
 
     final_step = start_step + args.steps
     for step in range(start_step + 1, final_step + 1):
-        x, y = get_batch(train_records, args.batch_size, block_size, device)
+        x, y = get_batch(train_windows, args.batch_size, block_size, device)
         logits = model(x)
         loss = F.cross_entropy(
             logits.reshape(-1, vocab_size), y.reshape(-1),
@@ -206,7 +230,7 @@ def main():
 
         if step == start_step + 1 or step % args.eval_interval == 0 or step == final_step:
             metrics = estimate_loss(
-                model, train_records, val_records, args.batch_size, block_size, device
+                model, train_windows, val_windows, args.batch_size, block_size, device
             )
             elapsed = time.time() - started
             print(
