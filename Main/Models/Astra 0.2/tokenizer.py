@@ -311,7 +311,7 @@ def main():
     args = parser.parse_args()
 
     if args.vocab_size <= BASE_VOCAB_SIZE + len(SPECIAL_TOKENS):
-        parser.error("--vocab-size must be greater than 262")
+        parser.error("--vocab-size must be greater than 266")
 
     conversations = load_conversations(args.dataset)
     vocab, merges = train_bpe(conversations, args.vocab_size)
