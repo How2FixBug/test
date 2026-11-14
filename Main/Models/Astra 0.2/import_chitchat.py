@@ -355,14 +355,14 @@ def main() -> None:
     print(f"Source conversations: {len(conversations):,}")
     for key, value in stats.items():
         print(f"{key.replace('_', ' ').title()}: {value:,}")
-    print(f"New unique examples added: {len(additions):,}")
+    print(f"Unique review candidates exported: {len(additions):,}")
     print(f"Review candidates exported (not added to training): {imported_total:,}")
-    print(f"Total unique ASTRA examples: {total:,}")
+    print(f"Total review candidates: {total:,}")
     if total < 5000:
-        print(f"Still need {5000 - total:,} examples to reach the 5,000-example milestone.")
+        print("These candidates do not count toward the reviewed training-data milestone.")
     else:
-        print("5,000-example milestone reached.")
-    print("\nReview dataset.txt and audit_dataset.py output before training.")
+        print("Candidate export complete; training-data milestone is unchanged.")
+    print("\nReview candidates in byu_review_candidates.txt; they are not training data.")
 
 
 if __name__ == "__main__":
