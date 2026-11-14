@@ -331,14 +331,12 @@
           top: targetRect.top + "px",
           width: sourceRect.width + "px",
           height: sourceRect.height + "px",
-          borderRadius: "12px"
         },
         {
           left: targetRect.left + "px",
           top: targetRect.top + "px",
           width: targetRect.width + "px",
-          height: targetRect.height + "px",
-          borderRadius: "12px"
+          height: targetRect.height + "px"
         }
       ], {
         duration: reducedMotion ? 1 : 430,
