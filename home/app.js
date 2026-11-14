@@ -236,6 +236,14 @@
     requestAnimationFrame(frame);
   });
 
+  const syncInputHeight = () => {
+    input.style.height = "auto";
+    input.style.height = Math.min(input.scrollHeight, 7 * 21) + "px";
+    const box = input.closest(".input-box");
+    const overflowing = input.scrollHeight > input.clientHeight + 1;
+    box?.classList.toggle("input-overflow", overflowing);
+  };
+
   const sendMessage = async (text) => {
     const value = text.trim();
     if (!value) return;
@@ -254,75 +262,108 @@
     welcome.hidden = true;
     messages.classList.add("visible");
 
-    // Add the destination to the document first, so the conversation gains
-    // its full height before scrolling. Keep it invisible until the handoff.
     const userRow = buildMessage(userMessage);
     userRow.classList.add("message-morph-target");
     messages.append(userRow);
+    const bubble = userRow.querySelector(".bubble");
+    const avatar = userRow.querySelector(".avatar");
+    const conversation = $("#conversation");
+
     input.value = "";
     input.style.height = "24px";
-    inputBox.classList.remove("composer-reform");
-    void inputBox.offsetWidth;
-    inputBox.classList.add("composer-reform");
+    input.closest(".input-box").classList.remove("input-overflow");
+    syncInputHeight();
+    inputBox.classList.add("input-hidden-for-flight");
     save();
 
-    const conversation = $("#conversation");
     await easeScrollToBottom(conversation, 520);
-    if (activeId !== chat.id) return;
+    if (activeId !== chat.id) {
+      inputBox.classList.remove("input-hidden-for-flight");
+      return;
+    }
 
-    const targetRect = userRow.querySelector(".bubble").getBoundingClientRect();
+    const targetRect = bubble.getBoundingClientRect();
+    const avatarRect = avatar.getBoundingClientRect();
     const flight = document.createElement("div");
     flight.className = "message-morph-flight";
     flight.textContent = value;
-    flight.style.left = sourceRect.left + "px";
-    flight.style.top = sourceRect.top + "px";
-    flight.style.width = sourceRect.width + "px";
-    flight.style.height = sourceRect.height + "px";
+    Object.assign(flight.style, {
+      left: sourceRect.left + "px",
+      top: sourceRect.top + "px",
+      width: sourceRect.width + "px",
+      height: sourceRect.height + "px"
+    });
     document.body.append(flight);
 
-    const animation = flight.animate([
-      {
-        left: sourceRect.left + "px",
-        top: sourceRect.top + "px",
-        width: sourceRect.width + "px",
-        height: sourceRect.height + "px",
-        borderRadius: "12px",
-        opacity: 1
-      },
-      {
-        left: targetRect.left + "px",
-        top: targetRect.top + "px",
-        width: targetRect.width + "px",
-        height: targetRect.height + "px",
-        borderRadius: "12px",
-        opacity: 1
-      }
+    // Stage one: lift the complete input box to the message's vertical position.
+    const lift = flight.animate([
+      { top: sourceRect.top + "px" },
+      { top: targetRect.top + "px" }
     ], {
-      duration: reducedMotion ? 1 : 640,
-      easing: "cubic-bezier(.22,.78,.18,1)",
+      duration: reducedMotion ? 1 : 390,
+      easing: "cubic-bezier(.2,.75,.2,1)",
       fill: "forwards"
     });
 
     try {
-      await animation.finished;
+      await lift.finished;
+      if (activeId !== chat.id) throw new Error("Conversation changed");
+
+      // Stage two: reveal the profile icon, then contract the box into the
+      // final message bubble, keeping its right edge aligned with the bubble.
+      userRow.style.visibility = "visible";
+      userRow.classList.add("morph-avatar-in");
+      const shrink = flight.animate([
+        {
+          left: sourceRect.left + "px",
+          top: targetRect.top + "px",
+          width: sourceRect.width + "px",
+          height: sourceRect.height + "px",
+          borderRadius: "12px"
+        },
+        {
+          left: targetRect.left + "px",
+          top: targetRect.top + "px",
+          width: targetRect.width + "px",
+          height: targetRect.height + "px",
+          borderRadius: "12px"
+        }
+      ], {
+        duration: reducedMotion ? 1 : 430,
+        easing: "cubic-bezier(.22,.78,.18,1)",
+        fill: "forwards"
+      });
+      await shrink.finished;
       flight.remove();
       if (activeId !== chat.id) return;
-      userRow.style.visibility = "visible";
+
+      userRow.classList.add("morph-message-in");
+      inputBox.classList.remove("input-hidden-for-flight");
+      inputBox.classList.add("input-fade-back");
+      requestAnimationFrame(() => inputBox.classList.add("input-fade-visible"));
+      window.setTimeout(() => {
+        inputBox.classList.remove("input-fade-back", "input-fade-visible");
+      }, reducedMotion ? 1 : 320);
+
       window.setTimeout(() => {
         if (activeId !== chat.id) return;
         const botRow = buildMessage(botMessage, "bot-arriving");
         messages.append(botRow);
         requestAnimationFrame(() => botRow.classList.add("bot-visible"));
         easeScrollToBottom(conversation, 360);
-      }, 90);
+      }, 100);
     } catch {
       flight.remove();
-      if (activeId === chat.id) userRow.style.visibility = "visible";
+      if (activeId === chat.id) {
+        userRow.style.visibility = "visible";
+        userRow.classList.add("morph-message-in");
+      }
+      inputBox.classList.remove("input-hidden-for-flight");
     }
     input.focus();
   };
   form.addEventListener("submit", event => { event.preventDefault(); sendMessage(input.value); });
-  input.addEventListener("input", () => { input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight, 140) + "px"; });
+  input.addEventListener("input", syncInputHeight);
   input.addEventListener("keydown", event => {
     if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); }
   });
