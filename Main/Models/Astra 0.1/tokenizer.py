@@ -7,12 +7,9 @@ import re
 from pathlib import Path
 
 SPECIAL_TOKENS = {
-    "<user>": 256,
-    "</user>": 257,
-    "<astra>": 258,
-    "</astra>": 259,
-    "<think>": 260,
-    "</think>": 261,
+    "<user>": 256, "</user>": 257,
+    "<astra>": 258, "</astra>": 259,
+    "<think>": 260, "</think>": 261,
 }
 VOCAB_SIZE = 262
 PAIR_RE = re.compile(
@@ -24,7 +21,6 @@ MARKER_RE = re.compile("(" + "|".join(
 ) + ")")
 
 def encode(text: str) -> list[int]:
-    """Encode UTF-8 bytes, while keeping ASTRA markers atomic."""
     ids: list[int] = []
     for part in MARKER_RE.split(text):
         if not part:
@@ -36,7 +32,6 @@ def encode(text: str) -> list[int]:
     return ids
 
 def decode(ids: list[int]) -> str:
-    """Restore UTF-8 text and all six special markers."""
     reverse = {value: key for key, value in SPECIAL_TOKENS.items()}
     output: list[str] = []
     byte_buffer = bytearray()
@@ -57,11 +52,12 @@ def decode(ids: list[int]) -> str:
 
 def load_pairs(dataset_path: Path) -> list[tuple[str, str]]:
     raw = dataset_path.read_text(encoding="utf-8")
-    # Drop all explanatory text before the first actual training sample.
-    start = raw.find("<user>")
-    if start < 0:
-        raise ValueError("No <user> training sample found.")
-    pairs = [(u.strip(), a.strip()) for u, a in PAIR_RE.findall(raw[start:])]
+    # The token guide mentions marker strings inline. The real dataset begins
+    # only when <user> appears alone on a line; everything before it is ignored.
+    match = re.search(r"(?m)^<user>\s*$", raw)
+    if not match:
+        raise ValueError("No standalone <user> training marker found.")
+    pairs = [(u.strip(), a.strip()) for u, a in PAIR_RE.findall(raw[match.start():])]
     if not pairs:
         raise ValueError("No complete user/ASTRA pairs found.")
     for index, (user, astra) in enumerate(pairs, 1):
