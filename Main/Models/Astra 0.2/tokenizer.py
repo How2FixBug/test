@@ -304,7 +304,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Train ASTRA's BPE tokenizer and tokenize its dataset. Does not train ASTRA."
     )
-    parser.add_argument("--dataset", type=Path, default=Path(__file__).with_name("dataset.txt"))
+    parser.add_argument("--dataset", type=Path, default=Path(__file__).with_name("dataset_conversation_candidate.txt"))
     parser.add_argument("--output", type=Path, default=Path(__file__).with_name("tokenized_dataset.jsonl"))
     parser.add_argument("--config", type=Path, default=Path(__file__).with_name("tokenizer_config.json"))
     parser.add_argument("--vocab-size", type=int, default=TARGET_VOCAB_SIZE)
