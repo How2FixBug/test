@@ -97,17 +97,83 @@ DIRECTIVE_ANSWER_RE = re.compile(
 )
 
 
+CASUAL_QUESTION_RE = re.compile(
+    r"\b(?:how are you|how's it going|what about you|and you\??|"
+    r"do you (?:like|love|enjoy|prefer|play|watch|listen to|use)|"
+    r"have you ever|what(?:'s| is) your favorite|"
+    r"what do you think|do you agree|isn't it|don't you think|"
+    r"are you into|what kind of music|what games do you|"
+    r"good to see you|nice to meet you)\b",
+    re.I,
+)
+CASUAL_OPENING_RE = re.compile(
+    r"^(?:hi|hey|hello|yo|good morning|good afternoon|good evening|"
+    r"thanks|thank you|sorry|no worries|haha|lol|wow|nice|cool|"
+    r"that(?:'s| is) (?:cool|great|awesome|fun|interesting)|"
+    r"i (?:think|guess|agree|see|know|love|like|prefer|enjoy|"
+    r"am|was|feel|hope|wish)|yeah|yep|nope|exactly|right)\b",
+    re.I,
+)
+TASK_OR_QA_RE = re.compile(
+    r"\b(?:help me|give me|show me|tell me how|"
+    r"tips?|advice|instructions?|recommend(?:ation)?s?|"
+    r"recipe|what should i|should i|do i need|what do i need|"
+    r"how (?:do|can|should|would) (?:i|we|you)|how to|"
+    r"what(?:'s| is) the best|what are some|"
+    r"what is|what are|who is|who was|when did|where is|where are|"
+    r"why does|why do|why is|what causes|causes of|"
+    r"difference between|compare|define|explain|describe|"
+    r"how does|how many|how much|which (?:one|is|are)|"
+    r"is it safe|are there (?:any|many)|can i use|"
+    r"what happens if|what happened in)\b",
+    re.I,
+)
+ADVICE_ANSWER_RE = re.compile(
+    r"\b(?:you should|you need to|you can (?:use|try|make|start|"
+    r"consider|also|simply)|you could|make sure|remember to|"
+    r"don't forget|always |it's (?:a good idea|recommended)|"
+    r"i recommend|i would recommend|here are (?:some|a few)|"
+    r"one (?:way|tip|option) is|start by|begin by|"
+    r"first,|simply |to do this|you'll want to)\b",
+    re.I,
+)
+FACTUAL_ANSWER_RE = re.compile(
+    r"\b(?:refers to|is defined as|is the study of|"
+    r"include(?:s)?|is known for|is one of the|"
+    r"there are (?:many|several|three|four|five)|"
+    r"the main (?:cause|reason|event)|"
+    r"such as .{0,100}, .{0,100})\b",
+    re.I,
+)
+
+
 def acceptable_pair(user: str, assistant: str) -> bool:
-    """Keep casual dialogue and astronomy; reject general assistant tasks."""
+    """Require casual social dialogue, except for the astronomy topic."""
     astronomy = bool(ASTRONOMY_RE.search(user))
     if LIVE_INFO_RE.search(user):
         return False
-    if not astronomy and (ADVICE_REQUEST_RE.search(user) or FACTUAL_QA_RE.search(user)):
-        return False
-    if not astronomy and DIRECTIVE_ANSWER_RE.search(assistant):
-        return False
-    return True
 
+    if astronomy:
+        return True
+
+    # Explicit requests for facts, advice, explanations, or instructions
+    # are outside ASTRA's scope even if phrased as casual follow-ups.
+    if TASK_OR_QA_RE.search(user):
+        return False
+
+    # Social questions are a narrow, intentional exception to the question rule.
+    if "?" in user and not CASUAL_QUESTION_RE.search(user):
+        return False
+
+    # Non-question turns should look like ordinary conversation, not a task.
+    if "?" not in user and not CASUAL_OPENING_RE.search(user):
+        return False
+
+    # Keep replies conversational rather than turning them into advice or mini-essays.
+    if ADVICE_ANSWER_RE.search(assistant) or FACTUAL_ANSWER_RE.search(assistant):
+        return False
+
+    return True
 
 def normalize(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip().casefold()
