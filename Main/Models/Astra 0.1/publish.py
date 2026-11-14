@@ -4,12 +4,13 @@
 Run from any directory:
     python3 "/path/to/Main/Models/Astra 0.1/publish.py"
 
-The script exports ONNX, verifies that the checkpoint and tokenizer match,
-stages only the two browser model artifacts, commits them if changed, and
-pushes the current branch to its configured upstream.
+The script validates the checkpoint/tokenizer pair, exports and checks ONNX,
+commits only the browser model artifacts when they changed, then pushes the
+current branch to its configured upstream.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -61,6 +62,20 @@ def validate_source_artifacts() -> dict:
     if config["vocab_size"] != len(config["vocab_hex"]):
         raise SystemExit("Tokenizer vocab_size does not match vocab_hex length.")
 
+    fingerprint_payload = {
+        "vocab_hex": config["vocab_hex"],
+        "merges": config["merges"],
+    }
+    canonical = json.dumps(
+        fingerprint_payload, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    actual_fingerprint = hashlib.sha256(canonical).hexdigest()
+    if actual_fingerprint != config["fingerprint"]:
+        raise SystemExit(
+            "Tokenizer fingerprint is invalid. Regenerate tokenizer artifacts "
+            "with tokenizer.py before publishing."
+        )
+
     checkpoint = torch.load(CHECKPOINT, map_location="cpu", weights_only=False)
     if checkpoint.get("architecture_version") != 3:
         raise SystemExit("Checkpoint is not an ASTRA 0.1 architecture-v3 checkpoint.")
@@ -89,7 +104,7 @@ def main() -> None:
         f"| fingerprint {config['fingerprint'][:12]}..."
     )
 
-    print("\n[2/5] Exporting ONNX model...")
+    print("\n[2/5] Exporting and validating ONNX model...")
     run([sys.executable, str(HERE / "export_onnx.py")], cwd=HERE)
     if not ONNX_MODEL.is_file() or ONNX_MODEL.stat().st_size == 0:
         raise SystemExit("ONNX export did not produce a model file.")
@@ -107,21 +122,25 @@ def main() -> None:
     )
     if upstream.returncode:
         raise SystemExit(
-            "This branch has no configured Git upstream. Set its upstream before publishing."
+            "This branch has no configured Git upstream. Configure its upstream "
+            "once before using publish.py."
         )
     print(f"Branch: {branch} -> {upstream.stdout.strip()}")
 
-    print("\n[4/5] Staging browser model files...")
+    print("\n[4/5] Publishing only the browser model files...")
     run(["git", "add", "--", *[str(path) for path in RELEASE_FILES]])
     changed = subprocess.run(
-        ["git", "diff", "--cached", "--quiet"],
+        ["git", "diff", "--quiet", "HEAD", "--", *[str(path) for path in RELEASE_FILES]],
         cwd=REPO_ROOT,
     ).returncode != 0
 
     if changed:
+        # --only prevents unrelated files already staged by the user from
+        # accidentally being included in this release commit.
         run([
-            "git", "commit",
+            "git", "commit", "--only",
             "-m", "Publish ASTRA 0.1 browser model",
+            "--", *[str(path) for path in RELEASE_FILES],
         ])
     else:
         print("Browser model files are already up to date; no commit needed.")
