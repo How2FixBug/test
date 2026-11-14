@@ -13,7 +13,14 @@
   const modalActions = $("#modal-actions");
   const editButton = $("#edit-chat-button");
   const editMenu = $("#edit-chat-menu");
-  let reducedMotion = false;
+  const settingsKey = "astra-settings-v1";
+  let settings = { animations: true, enterToSend: true };
+  try {
+    const storedSettings = JSON.parse(localStorage.getItem(settingsKey) || "{}");
+    settings = { ...settings, ...storedSettings };
+  } catch {}
+  let reducedMotion = !settings.animations;
+  document.documentElement.classList.toggle("motion-off", reducedMotion);
   const storageKey = "sol-conversations-v1";
   let chats = [];
   let activeId = null;
@@ -25,6 +32,10 @@
   const save = () => {
     try { localStorage.setItem(storageKey, JSON.stringify(chats)); }
     catch { showToast("Could not save conversations in this browser."); }
+  };
+  const saveSettings = () => {
+    try { localStorage.setItem(settingsKey, JSON.stringify(settings)); }
+    catch { showToast("Could not save settings in this browser."); }
   };
   const showToast = (message) => {
     toast.textContent = message;
@@ -39,7 +50,8 @@
     activeId = chat.id;
     animateNewConversation = true;
     save();
-    render();
+    render("new");
+    $("#sidebar").classList.remove("open");
     input.focus();
   };
   const renderList = () => {
@@ -80,9 +92,19 @@
       });
       actions.append(rename, remove);
       item.append(glyph, title, actions);
-      item.addEventListener("click", () => { activeId = chat.id; render(); });
+      item.addEventListener("click", () => {
+        if (activeId === chat.id) return;
+        activeId = chat.id;
+        render("switch");
+        $("#sidebar").classList.remove("open");
+      });
       item.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); activeId = chat.id; render(); }
+        if (event.target !== item) return;
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          if (activeId !== chat.id) { activeId = chat.id; render("switch"); }
+          $("#sidebar").classList.remove("open");
+        }
       });
       chatList.append(item);
     });
@@ -150,32 +172,68 @@
       })
     ]);
   };
-  const openSettingsDialog = () => {
-    const content = document.createElement("div");
+  const makeSettingRow = (title, description, key) => {
     const row = document.createElement("div");
     row.className = "settings-row";
     const labels = document.createElement("div");
     const label = document.createElement("div");
     label.className = "settings-label";
-    label.textContent = "Motion";
+    label.textContent = title;
     const note = document.createElement("div");
     note.className = "settings-note";
-    note.textContent = "Enable interface animations";
+    note.textContent = description;
     labels.append(label, note);
+
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "toggle";
     toggle.setAttribute("role", "switch");
-    toggle.setAttribute("aria-label", "Enable animations");
-    toggle.setAttribute("aria-checked", String(!reducedMotion));
-    const applyMotion = () => {
-      reducedMotion = !reducedMotion;
-      toggle.setAttribute("aria-checked", String(!reducedMotion));
-      document.documentElement.classList.toggle("motion-off", reducedMotion);
-    };
-    toggle.addEventListener("click", applyMotion);
+    toggle.setAttribute("aria-label", title);
+    const sync = () => toggle.setAttribute("aria-checked", String(!!settings[key]));
+    sync();
+    toggle.addEventListener("click", () => {
+      settings[key] = !settings[key];
+      if (key === "animations") {
+        reducedMotion = !settings.animations;
+        document.documentElement.classList.toggle("motion-off", reducedMotion);
+      }
+      sync();
+      saveSettings();
+    });
     row.append(labels, toggle);
-    content.append(row);
+    return row;
+  };
+
+  const openClearAllDialog = () => {
+    if (!chats.length) { showToast("There are no conversations to clear."); return; }
+    const message = document.createElement("p");
+    message.textContent = "Delete all " + chats.length + " conversations from this browser? This cannot be undone.";
+    openModal("Clear all conversations?", message, [
+      makeModalButton("Cancel", "", openSettingsDialog),
+      makeModalButton("Delete all", "danger", () => {
+        chats = [];
+        activeId = null;
+        save();
+        closeModal();
+        render("new");
+        showToast("All conversations cleared.");
+      })
+    ]);
+  };
+
+  function openSettingsDialog() {
+    const content = document.createElement("div");
+    content.className = "settings-panel";
+    content.append(
+      makeSettingRow("Interface animations", "Enable motion throughout ASTRA", "animations"),
+      makeSettingRow("Enter to send", "Use Enter to send; Shift + Enter for a new line", "enterToSend")
+    );
+    const clear = document.createElement("button");
+    clear.type = "button";
+    clear.className = "settings-danger-action";
+    clear.textContent = "Clear all conversations";
+    clear.addEventListener("click", openClearAllDialog);
+    content.append(clear);
     openModal("Settings", content, [makeModalButton("Done", "primary", closeModal)]);
   };
 
@@ -197,17 +255,29 @@
     row.append(avatar, wrap);
     return row;
   };
-  const renderMessages = () => {
+  const renderMessages = (transition = "switch") => {
     const chat = activeChat();
     const hasMessages = !!chat && chat.messages.length > 0;
     welcome.hidden = hasMessages;
     messages.classList.toggle("visible", hasMessages);
     messages.replaceChildren();
-    if (!hasMessages) return;
+    welcome.classList.remove("welcome-enter");
+    messages.classList.remove("chat-switch-enter");
+    if (!hasMessages) {
+      if (transition === "new") {
+        void welcome.offsetWidth;
+        welcome.classList.add("welcome-enter");
+      }
+      return;
+    }
     chat.messages.forEach(message => messages.append(buildMessage(message)));
+    if (transition === "switch" && !reducedMotion) {
+      void messages.offsetWidth;
+      messages.classList.add("chat-switch-enter");
+    }
     $("#conversation").scrollTop = $("#conversation").scrollHeight;
   };
-  const render = () => { renderList(); renderMessages(); };
+  const render = (transition = "switch") => { renderList(); renderMessages(transition); };
   const easeScrollToBottom = (element, duration = 480) => new Promise(resolve => {
     const startY = element.scrollTop;
     const distance = element.scrollHeight - element.clientHeight - startY;
@@ -410,7 +480,10 @@
   form.addEventListener("submit", event => { event.preventDefault(); sendMessage(input.value); });
   input.addEventListener("input", syncInputHeight);
   input.addEventListener("keydown", event => {
-    if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); }
+    if (event.key === "Enter" && !event.shiftKey && settings.enterToSend) {
+      event.preventDefault();
+      form.requestSubmit();
+    }
   });
   $("#new-chat").addEventListener("click", createChat);
   editButton.addEventListener("click", () => {
@@ -439,6 +512,15 @@
   $("#mobile-menu").addEventListener("click", () => $("#sidebar").classList.toggle("open"));
   document.addEventListener("keydown", event => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); createChat(); }
+    if (event.key === "Tab" && !modalBackdrop.hidden) {
+      const focusable = [...modalBackdrop.querySelectorAll("button:not([disabled]), input:not([disabled]), textarea:not([disabled])")];
+      if (focusable.length) {
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    }
     if (event.key === "Escape") {
       $("#sidebar").classList.remove("open");
       editMenu.hidden = true;
@@ -451,5 +533,5 @@
     if (Array.isArray(saved)) chats = saved.filter(chat => chat && typeof chat.id === "string" && Array.isArray(chat.messages));
   } catch { chats = []; }
   if (chats.length) activeId = chats[0].id;
-  render();
+  render("initial");
 })();
