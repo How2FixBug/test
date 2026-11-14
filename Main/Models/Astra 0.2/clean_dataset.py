@@ -7,8 +7,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DATASET_PATH = HERE / "dataset.txt"
-# Older candidate exports used this marker without a license suffix. The new
-# verified importer uses "(MIT)" and must remain in the training corpus.
+# Older candidate exports used this marker without a license suffix. Verified imports from any reviewed source must remain in the training corpus.
 LEGACY_BLOCK_RE = re.compile(
     r"(?ms)^<!-- ASTRA_SOURCE: BYU-PCCL/chitchat-dataset -->\n"
     r"<user>\n.*?\n</astra>(?:\n\s*---)?\n*"
@@ -24,7 +23,7 @@ def main() -> None:
     if removed:
         DATASET_PATH.write_text(cleaned.rstrip() + "\n", encoding="utf-8")
     print(f"Legacy unreviewed BYU candidate blocks removed: {removed:,}")
-    print("Curated examples and verified MIT imports preserved.")
+    print("Curated examples and verified imports preserved.")
 
 
 if __name__ == "__main__":
