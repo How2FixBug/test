@@ -3008,3 +3008,313 @@ Identify the central concept, explain it at the user's level, and keep the answe
 </think>
 Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
 </astra>
+
+
+ASTRA 0.1 — CREATIVE THINKING EXAMPLES
+
+<user>
+Invent a tiny creature that could live inside a library.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+A **whispermoth** is a thumb-sized creature with paper-thin wings. It lives between old book pages, eats dust and loose thread, and glows softly whenever someone reads aloud. It doesn't understand the words—it just loves the rhythm.
+</astra>
+
+<user>
+What if clouds were solid for one day?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The sky would become a giant obstacle course. Some clouds might feel like soft stone, while others crumble like packed snow. Airports would shut down, climbers would find new routes, and everyone would argue over who owns the best cloud-shaped balcony.
+</astra>
+
+<user>
+Create a game idea where the player controls gravity.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Downshift:** You play as a tiny maintenance robot in a space station. Rotate gravity so floors become walls and ceilings become paths. Each room is a puzzle about moving objects, redirecting energy cells, and finding the exit.
+</astra>
+
+<user>
+Give me a strange but useful invention.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+A **lost-item lighthouse** remembers where you last placed tagged objects. If your keys go missing, it projects a tiny arrow pointing toward their last detected location.
+</astra>
+
+<user>
+Write the opening two sentences of a story about a city built on a giant tree.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Every morning, the city of Brindle woke when the great tree stretched its branches toward the sun. This morning, one of the branches was missing.
+</astra>
+
+<user>
+Make a worldbuilding idea for a planet with very long nights.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+On Nox, night lasts for eleven months and daylight lasts for one. Towns are built around heat-storing towers, calendars count down to sunrise, and the brief bright season is when people travel, celebrate, and repair the roads.
+</astra>
+
+<user>
+Give me a metaphor for curiosity.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Curiosity is a key that keeps making copies of itself every time it opens a door.
+</astra>
+
+<user>
+Invent a holiday that doesn't exist yet.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Second First Day** is a yearly reset holiday. People choose one small thing to begin again—learning a skill, organizing a drawer, or starting a project. The point isn't a huge resolution; it's enjoying a fresh start.
+</astra>
+
+<user>
+Design a simple puzzle involving three switches and one lamp.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Three switches are outside a closed room. Only one controls the lamp inside. You may enter once. Turn A on for a few minutes, then off. Turn B on and enter. If the lamp is on, B is correct; if it's off but warm, A is correct; if it's off and cool, C is correct.
+</astra>
+
+<user>
+What could be a funny name for a dragon who is afraid of fire?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Smokey the Cautious.** He insists he's not afraid of fire—he just prefers dragons with excellent ventilation.
+</astra>
+
+<user>
+Give me an original superpower with a clever limitation.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Bookmark:** You can instantly return to any place you've touched, but you can keep only three locations bookmarked at once. Choosing where to place a bookmark becomes part of the strategy.
+</astra>
+
+<user>
+What would a library for aliens contain?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Some shelves might hold recorded magnetic fields, scent-based histories, or crystals that change color as you approach. The quietest section might be reserved for species that communicate through tiny movements of light.
+</astra>
+
+<user>
+Give me three different ways to make a game feel mysterious without using darkness.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+1. **Incomplete maps:** show places the player hasn't learned how to reach.
+2. **Unusual patterns:** repeat symbols whose meaning becomes clearer over time.
+3. **Quiet changes:** let familiar rooms contain one subtle difference after important events.
+</astra>
+
+<user>
+Invent a new sport that could be played in a school gym.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Zoneball:** Teams score by passing a soft ball to a teammate standing in one of three marked floor zones. Players cannot run while holding the ball, so teamwork and quick passing matter more than speed.
+</astra>
+
+<user>
+Write a four-line poem about an abandoned spaceship.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The engines sleep beneath a coat of dust,
+A silent map still points to somewhere new.
+One little light keeps blinking through the rust,
+As if the ship remembers its old crew.
+</astra>
+
+<user>
+Give me an unexpected twist for a story about a treasure hunt.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The treasure map was drawn by the treasure itself: an ancient tree that wanted someone to find the buried seeds of its lost forest.
+</astra>
+
+<user>
+Imagine the Moon had rings. What might change in the night sky?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The Moon would look dramatically different: a thin ring system could stretch across part of the sky, changing shape with the viewing angle. The rings might make some nights brighter, depending on their composition and orientation.
+</astra>
+
+<user>
+Create a fictional city where nobody owns anything.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+In **Borrowell**, tools, homes, and clothes belong to the city collectively. People reserve what they need at public stations. Sharing is normal, but the city must solve tricky problems when many people need the same thing.
+</astra>
+
+<user>
+Give me a silly explanation for why socks disappear in the laundry.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Tiny sock explorers sneak out during the spin cycle to map the mysterious land behind the washing machine. They send back one sock as a postcard, but the return address is always smudged.
+</astra>
+
+<user>
+Give me an idea for a character who is smart but not good at everything.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Mira can solve almost any mechanical puzzle, but she struggles to explain her ideas to other people. Her story isn't about becoming smarter—it's about learning that sharing knowledge is a skill of its own.
+</astra>
+
+<user>
+Invent a new color and describe it.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Velune** is a fictional color between blue and green, with the soft warmth of late-afternoon sunlight. It looks different on every surface, almost like it is remembering the light around it.
+</astra>
+
+<user>
+Give me a plot idea where the villain has a reasonable goal.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+A city planner wants to seal an ancient forest because it is damaging the city's foundations. The heroes want to protect it, but the planner is trying to prevent thousands of people from losing their homes. Both sides need a solution neither considered.
+</astra>
+
+<user>
+Give me a creative coding project idea.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Make a **procedural island generator**. Each click creates a new island, then places beaches, hills, forests, and tiny settlements. Start with simple rules, then add seeds so people can share the same generated island.
+</astra>
+
+<user>
+Imagine a world where shadows move independently. What is one interesting consequence?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Shadows could become a second kind of body language. Someone might stand perfectly still while their shadow waves at a friend across the street—or refuses to follow them somewhere it considers dangerous.
+</astra>
+
+<user>
+Combine a toaster and a telescope into a ridiculous invention.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The **Toastoscope** lets you inspect distant galaxies while breakfast cooks. Its only flaw is that it announces every discovery with a loud pop, which is also how you know the toast is ready.
+</astra>
+
+<user>
+How could a fictional underwater civilization send messages?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+They could send patterned pulses through coral towers. Each tower vibrates at a different frequency, and nearby communities recognize the rhythm like a combination of music and language.
+</astra>
+
+<user>
+What could make a fictional robot feel like a unique character?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Give it a peculiar way of noticing the world. Maybe it collects unfinished sounds, labels every chair by how comfortable it looks, or believes its job is to make sure nobody's small accomplishments go unnoticed.
+</astra>
+
+<user>
+Give me a creative alternative to a traditional classroom presentation.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Turn the presentation into a mini museum. Each slide becomes an exhibit with one object, one short explanation, and one question visitors can answer before moving to the next station.
+</astra>
+
+<user>
+Give me three possible explanations for a mysterious signal from space in a science-fiction story.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+1. An automated beacon repeats a warning from a civilization that no longer exists.
+2. A ship is still traveling toward the solar system and sending its navigation signal.
+3. A natural phenomenon creates an accidental pattern—and humans are the ones assigning it meaning.
+</astra>
+
+<user>
+Create a tiny mystery with a surprising but fair solution.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+A classroom plant is wet on Monday, dry Tuesday, and wet again Wednesday. The watering can is empty. A student notices a damp trail from the sink to the plant: someone has been carrying water in a cup.
+</astra>
