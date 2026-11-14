@@ -147,10 +147,13 @@ def import_aya(limit: int) -> list[tuple[str, str]]:
                 payload = json.load(response)
         except Exception as exc:
             if offset == 0:
-                raise RuntimeError(
-                    "Aya viewer endpoint was unavailable. OASST1 can still be imported; "
-                    "rerun with --sources oasst to skip Aya."
-                ) from exc
+                print(
+                    "WARNING: Aya viewer is currently unavailable; skipping Aya. "
+                    "Any OASST1 examples already imported are safe. "
+                    "You can retry Aya later with: python3 import_datasets.py --sources aya"
+                )
+                break
+            print(f"WARNING: Aya request failed at row {offset}; keeping the rows collected so far: {exc}")
             break
         rows = payload.get("rows", [])
         if not rows:
