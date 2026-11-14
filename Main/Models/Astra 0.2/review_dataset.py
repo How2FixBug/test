@@ -98,6 +98,8 @@ def main() -> None:
     )
     parser.add_argument("--dataset", type=Path, default=HERE / "dataset.txt")
     parser.add_argument("--output", type=Path, default=HERE / "quality_review.jsonl")
+    parser.add_argument("--priority-output", type=Path, default=HERE / "quality_review_priority.jsonl",
+                        help="Separate queue for placeholders, unsupported source claims, and capability claims.")
     parser.add_argument("--show", type=int, default=12,
                         help="Print up to this many flagged examples (default: 12; 0 disables).")
     args = parser.parse_args()
@@ -131,9 +133,21 @@ def main() -> None:
         reviewed.append(record)
         totals.update(flags)
 
+    priority_flags = {
+        "template_placeholder",
+        "unsupported_source_or_research_claim",
+        "capability_claim_check",
+    }
+    priority = [record for record in reviewed if priority_flags.intersection(record["flags"])]
+
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8") as stream:
         for record in reviewed:
+            stream.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+    args.priority_output.parent.mkdir(parents=True, exist_ok=True)
+    with args.priority_output.open("w", encoding="utf-8") as stream:
+        for record in priority:
             stream.write(json.dumps(record, ensure_ascii=False) + "\n")
 
     print("ASTRA HUMAN-REVIEW QUEUE")
@@ -145,15 +159,17 @@ def main() -> None:
     for flag, count in totals.most_common():
         print(f"  {flag}: {count:,}")
 
-    if args.show and reviewed:
-        print(f"\nFIRST {min(args.show, len(reviewed))} FLAGGED EXAMPLES")
-        for record in reviewed[:args.show]:
+    print(f"\nPriority review examples: {len(priority):,}")
+    print(f"Priority review file: {args.priority_output}")
+    if args.show and priority:
+        print(f"\nFIRST {min(args.show, len(priority))} PRIORITY EXAMPLES")
+        for record in priority[:args.show]:
             print(f"\n[{record['example']}] {', '.join(record['flags'])}")
             print(f"SOURCE: {record['source']}")
             print(f"USER: {record['prompt'][:500].replace(chr(10), ' ')}")
             print(f"ASTRA: {record['answer'][:700].replace(chr(10), ' ')}")
 
-    print("\nReview queue only. dataset.txt, tokenizer files, and model weights were not changed.")
+    print("\nReview queues only. dataset.txt, tokenizer files, and model weights were not changed.")
     print("Flags are heuristics, not proof of an error. Unflagged examples are not certified as correct.")
 
 
