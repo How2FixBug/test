@@ -10,7 +10,9 @@ import argparse
 import hashlib
 import json
 import re
-from collections import Counter
+from collections import Counter, defaultdict
+import heapq
+import time
 from pathlib import Path
 
 TARGET_VOCAB_SIZE = 8192
@@ -59,7 +61,12 @@ def text_pieces(text: str) -> list[str]:
 
 
 def train_bpe(pairs: list[tuple[str, str]], target_size: int):
-    # Frequency-compress identical pieces before learning merges.
+    """Train BPE using incremental pair counts instead of rescanning all text.
+
+    A merge only changes sequences that currently contain the selected pair.
+    Pair counts are maintained with a lazy priority queue, so unrelated
+    sequences are not revisited on every vocabulary step.
+    """
     piece_counts: Counter[tuple[int, ...]] = Counter()
     for user, astra in pairs:
         clean_user = SPECIAL_RE.sub("", user)
@@ -68,41 +75,85 @@ def train_bpe(pairs: list[tuple[str, str]], target_size: int):
             piece_counts[tuple(piece.encode("utf-8"))] += 1
 
     sequences = [(list(piece), count) for piece, count in piece_counts.items()]
-    # Reserve IDs 256–261 for ASTRA’s six structural tokens.
-    vocab: list[bytes | None] = [bytes([i]) for i in range(BASE_VOCAB_SIZE)] + [None] * len(SPECIAL_TOKENS)
+    vocab: list[bytes | None] = (
+        [bytes([i]) for i in range(BASE_VOCAB_SIZE)]
+        + [None] * len(SPECIAL_TOKENS)
+    )
     merges: list[tuple[int, int]] = []
 
-    while len(vocab) < target_size:
-        pair_counts: Counter[tuple[int, int]] = Counter()
-        for sequence, frequency in sequences:
-            for left, right in zip(sequence, sequence[1:]):
-                pair_counts[(left, right)] += frequency
-        if not pair_counts:
-            break
-        pair, frequency = pair_counts.most_common(1)[0]
-        # Don't add arbitrary one-off merges just to fill the vocabulary.
+    # pair -> {sequence index: occurrences in that sequence}
+    pair_sequences: dict[tuple[int, int], dict[int, int]] = defaultdict(dict)
+    pair_totals: Counter[tuple[int, int]] = Counter()
+
+    def sequence_pairs(sequence: list[int]) -> Counter:
+        return Counter(zip(sequence, sequence[1:]))
+
+    def add_sequence_pairs(index: int) -> None:
+        sequence, frequency = sequences[index]
+        for pair, occurrences in sequence_pairs(sequence).items():
+            pair_sequences[pair][index] = occurrences
+            pair_totals[pair] += frequency * occurrences
+            heapq.heappush(heap, (-pair_totals[pair], pair))
+
+    def remove_sequence_pairs(index: int) -> None:
+        sequence, frequency = sequences[index]
+        for pair, occurrences in sequence_pairs(sequence).items():
+            pair_totals[pair] -= frequency * occurrences
+            pair_sequences[pair].pop(index, None)
+            if pair_totals[pair] <= 0:
+                pair_totals.pop(pair, None)
+                pair_sequences.pop(pair, None)
+            else:
+                heapq.heappush(heap, (-pair_totals[pair], pair))
+
+    heap: list[tuple[int, tuple[int, int]]] = []
+    for index in range(len(sequences)):
+        add_sequence_pairs(index)
+
+    started = time.time()
+    while len(vocab) < target_size and heap:
+        negative_count, pair = heapq.heappop(heap)
+        frequency = -negative_count
+        if pair_totals.get(pair, 0) != frequency:
+            continue
         if frequency < 2:
             break
 
-        new_id = len(vocab)
         left, right = pair
+        new_id = len(vocab)
         merges.append(pair)
         vocab.append(vocab[left] + vocab[right])
 
-        updated = []
-        for sequence, count in sequences:
+        # Only sequences containing this pair need to be updated.
+        affected = list(pair_sequences.get(pair, {}).keys())
+        for index in affected:
+            remove_sequence_pairs(index)
+            sequence, _ = sequences[index]
             merged = []
-            index = 0
-            while index < len(sequence):
-                if index + 1 < len(sequence) and (sequence[index], sequence[index + 1]) == pair:
+            cursor = 0
+            while cursor < len(sequence):
+                if (
+                    cursor + 1 < len(sequence)
+                    and sequence[cursor] == left
+                    and sequence[cursor + 1] == right
+                ):
                     merged.append(new_id)
-                    index += 2
+                    cursor += 2
                 else:
-                    merged.append(sequence[index])
-                    index += 1
-            updated.append((merged, count))
-        sequences = updated
+                    merged.append(sequence[cursor])
+                    cursor += 1
+            sequences[index] = (merged, sequences[index][1])
+            add_sequence_pairs(index)
 
+        if len(merges) % 250 == 0:
+            elapsed = time.time() - started
+            print(
+                f"  BPE merges: {len(merges):,}/{target_size - BASE_VOCAB_SIZE - len(SPECIAL_TOKENS):,} "
+                f"| {elapsed:.1f}s",
+                flush=True,
+            )
+
+    print(f"  BPE training finished: {len(merges):,} merges in {time.time() - started:.1f}s")
     return vocab, merges
 
 
