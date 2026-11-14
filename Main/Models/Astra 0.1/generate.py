@@ -64,8 +64,14 @@ def main():
                 if token_id != allowed:
                     logits[token_id] = -float("inf")
             if args.top_k > 0:
-                values, _ = torch.topk(logits, min(args.top_k, logits.numel()))
-                logits[logits < values[-1]] = -float("inf")
+                # Preserve the required closing marker even when it is not
+                # among the top-k ordinary token candidates.
+                required_logit = logits[allowed].clone()
+                values, indices = torch.topk(logits, min(args.top_k, logits.numel()))
+                filtered = torch.full_like(logits, -float("inf"))
+                filtered[indices] = logits[indices]
+                filtered[allowed] = required_logit
+                logits = filtered
             probabilities = torch.softmax(logits, dim=-1)
             next_id = int(torch.multinomial(probabilities, 1).item())
             generated.append(next_id)
