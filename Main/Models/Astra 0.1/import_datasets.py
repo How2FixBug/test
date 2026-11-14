@@ -44,6 +44,17 @@ def safe_pair(user: str, answer: str) -> bool:
         return False
     if re.search(r"<\s*/?\s*(user|astra|think)\s*>", user + answer, re.I):
         return False
+    # Conservative screen for content unsuitable for this small, general-purpose
+    # starter corpus. This is not a complete safety classifier; inspect samples.
+    blocked = re.compile(
+        r"\b(?:suicide|self[- ]harm|kill myself|how to make a bomb|"
+        r"make an explosive|build a weapon|make a firearm|"
+        r"buy illegal drugs|synthesize meth|cocaine|heroin|fentanyl|"
+        r"pornography|explicit sexual|gambling strategy|sports betting)\b",
+        re.I,
+    )
+    if blocked.search(user + " " + answer):
+        return False
     return True
 
 
@@ -179,7 +190,8 @@ def append_pairs(pairs: list[tuple[str, str]], source: str) -> int:
             continue
         known.add(key)
         added.append(
-            "\n\n---\n\n<user>\n" + user + "\n</user>\n<astra>\n<think>\n</think>\n"
+            "\n\n<!-- ASTRA_SOURCE: " + source + " -->\n"
+            "<user>\n" + user + "\n</user>\n<astra>\n<think>\n</think>\n"
             + answer + "\n</astra>"
         )
     if added:
