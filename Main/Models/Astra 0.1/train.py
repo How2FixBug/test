@@ -14,13 +14,18 @@ HERE = Path(__file__).resolve().parent
 ASTRA_TOKEN = 258
 IGNORE_INDEX = -100
 
-def read_records(dataset_path: Path):
+def read_records(dataset_path: Path, expected_fingerprint: str):
     records = []
     with dataset_path.open("r", encoding="utf-8") as source:
         for line_number, line in enumerate(source, 1):
             if not line.strip():
                 continue
             record = json.loads(line)
+            if record.get("tokenizer_fingerprint") != expected_fingerprint:
+                raise ValueError(
+                    f"Tokenizer fingerprint mismatch on line {line_number}. "
+                    "Run python3 tokenizer.py to regenerate both artifacts."
+                )
             ids = record.get("input_ids")
             if not isinstance(ids, list) or len(ids) < 4:
                 raise ValueError(f"Invalid token sequence on line {line_number}")
@@ -112,10 +117,10 @@ def main():
 
     config_path = HERE / "tokenizer_config.json"
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    if "vocab_hex" not in config or "merges" not in config:
+    if "vocab_hex" not in config or "merges" not in config or "fingerprint" not in config:
         raise SystemExit("Tokenizer artifacts are outdated. Run python3 tokenizer.py first.")
     vocab_size = int(config["vocab_size"])
-    records = read_records(HERE / "tokenized_dataset.jsonl")
+    records = read_records(HERE / "tokenized_dataset.jsonl", config["fingerprint"])
     largest_id = max(max(record) for record in records)
     if largest_id >= vocab_size:
         raise SystemExit(
@@ -184,6 +189,7 @@ def main():
                         "local_window": 128, "loop_passes": 4,
                     },
                     "architecture_version": 2,
+                    "tokenizer_fingerprint": config["fingerprint"],
                     "step": step,
                     "best_val_loss": best_val,
                 }, output_dir / "astra-0.1-best.pt")
