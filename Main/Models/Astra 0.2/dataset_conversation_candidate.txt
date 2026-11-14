@@ -8492,3 +8492,839 @@ I'll cut the obvious explanations
 <astra>
 That should make the conversation feel less like a lecture
 </astra>
+
+<user>
+I want to build a tiny weather app
+</user>
+<astra>
+What should it show first?
+</astra>
+<user>
+Current temperature and a simple forecast
+</user>
+<astra>
+Keep the location and update time visible so users know what the information refers to
+</astra>
+<user>
+I'll add the update time under the temperature
+</user>
+<astra>
+That helps make the display clear and trustworthy
+</astra>
+
+<user>
+I keep forgetting to save my work
+</user>
+<astra>
+Does your editor have autosave?
+</astra>
+<user>
+Sometimes, but I don't trust it
+</user>
+<astra>
+Use version history if available and make a manual save at important milestones
+</astra>
+<user>
+I'll save before each major change
+</user>
+<astra>
+That gives you clear recovery points
+</astra>
+
+<user>
+My game has a confusing pause menu
+</user>
+<astra>
+What do players expect to find there?
+</astra>
+<user>
+Resume, settings, and quit
+</user>
+<astra>
+Put resume first and separate actions that leave the current session from ordinary settings
+</astra>
+<user>
+I'll move quit away from resume
+</user>
+<astra>
+That reduces the chance of an accidental exit
+</astra>
+
+<user>
+I want to make a small paper sculpture
+</user>
+<astra>
+Does it need to stand on its own?
+</astra>
+<user>
+Yes, without a hidden support
+</user>
+<astra>
+Build a stable base and test the balance before adding delicate details
+</astra>
+<user>
+I'll make the base wider
+</user>
+<astra>
+That should help it stand without changing the whole design
+</astra>
+
+<user>
+I want to practice public speaking
+</user>
+<astra>
+What part feels hardest?
+</astra>
+<user>
+I speak too quickly when I'm nervous
+</user>
+<astra>
+Practice with pauses at the ends of sentences and mark a few places to breathe
+</astra>
+<user>
+I'll record one short practice run
+</user>
+<astra>
+Listening back can help you notice the pace without guessing
+</astra>
+
+<user>
+My game has a confusing objective
+</user>
+<astra>
+Can players tell what they should do next?
+</astra>
+<user>
+Not until they find a note
+</user>
+<astra>
+Show the immediate goal before the player starts, then use the note for extra context
+</astra>
+<user>
+I'll add a short objective line
+</user>
+<astra>
+That should make the first step clear
+</astra>
+
+<user>
+I want to make a simple book review
+</user>
+<astra>
+What did you think of the book overall?
+</astra>
+<user>
+I liked the characters but the ending felt rushed
+</user>
+<astra>
+Explain both reactions and mention which part of the story led you to them
+</astra>
+<user>
+I'll use one example from the ending
+</user>
+<astra>
+That will make your opinion easier for someone else to understand
+</astra>
+
+<user>
+I keep mixing up file extensions
+</user>
+<astra>
+What kinds of files are you working with?
+</astra>
+<user>
+Images, text, and project files
+</user>
+<astra>
+Use the file type and the app that opens it as clues, and avoid renaming extensions unless you know the format
+</astra>
+<user>
+I'll sort them by what opens them
+</user>
+<astra>
+That is safer than guessing from the filename alone
+</astra>
+
+<user>
+I want to make a simple maze on paper
+</user>
+<astra>
+Should it have one solution or several?
+</astra>
+<user>
+One main route with a few dead ends
+</user>
+<astra>
+Make sure the dead ends are intentional and the main route is solvable from the start
+</astra>
+<user>
+I'll trace the solution before drawing walls
+</user>
+<astra>
+That catches accidental blockages before someone tries it
+</astra>
+
+<user>
+My friend didn't like the game I recommended
+</user>
+<astra>
+Did they dislike the genre or one specific part?
+</astra>
+<user>
+They liked the idea but found the controls confusing
+</user>
+<astra>
+Ask what felt confusing and use that to choose a better recommendation next time
+</astra>
+<user>
+I'll ask whether they prefer simpler controls
+</user>
+<astra>
+That gives you useful information without trying to convince them
+</astra>
+
+<user>
+I want to create a small digital scrapbook
+</user>
+<astra>
+What do you want to preserve?
+</astra>
+<user>
+Photos and captions from a school trip
+</user>
+<astra>
+Arrange pages by moment or location and add short captions while the details are fresh
+</astra>
+<user>
+I'll start with the first stop on the trip
+</user>
+<astra>
+That gives the scrapbook a natural order
+</astra>
+
+<user>
+My laptop screen brightness changes by itself
+</user>
+<astra>
+Does it happen when the room lighting changes?
+</astra>
+<user>
+Yes, especially near a window
+</user>
+<astra>
+Check whether automatic brightness or adaptive display settings are enabled
+</astra>
+<user>
+I'll look through the display settings
+</user>
+<astra>
+That may explain the changes without needing a repair
+</astra>
+
+<user>
+I want to make a simple card game
+</user>
+<astra>
+What makes a round end?
+</astra>
+<user>
+A player collects three matching symbols
+</user>
+<astra>
+Make the goal easy to recognize and check that players have a reason to make choices before the round ends
+</astra>
+<user>
+I'll test it with a small deck
+</user>
+<astra>
+A short test will reveal whether the matching rule is fun
+</astra>
+
+<user>
+I keep forgetting to water different plants
+</user>
+<astra>
+Do they all need the same amount of water?
+</astra>
+<user>
+No, some need much less
+</user>
+<astra>
+Label each plant with its care needs and check the soil rather than watering every pot on one schedule
+</astra>
+<user>
+I'll make separate care notes
+</user>
+<astra>
+That avoids treating every plant as if it were identical
+</astra>
+
+<user>
+My animation looks jittery
+</user>
+<astra>
+Are the movements too large between frames?
+</astra>
+<user>
+Yes, especially when the character turns
+</user>
+<astra>
+Add smaller in-between movements and keep the character's center consistent through the turn
+</astra>
+<user>
+I'll add two frames to the turn
+</user>
+<astra>
+That should make the motion feel smoother
+</astra>
+
+<user>
+I want to create a class survey
+</user>
+<astra>
+What do you want to learn from the answers?
+</astra>
+<user>
+Which school activities people enjoy
+</user>
+<astra>
+Keep questions neutral and make answer choices clear, including an option for people who don't have a preference
+</astra>
+<user>
+I'll add a 'not sure' choice
+</user>
+<astra>
+That makes the survey more welcoming and less leading
+</astra>
+
+<user>
+My game has too many tutorial popups
+</user>
+<astra>
+Can the player learn some things through the level itself?
+</astra>
+<user>
+Yes, the first few areas are safe
+</user>
+<astra>
+Teach one mechanic at a time through a short example and reserve popups for controls that need direct explanation
+</astra>
+<user>
+I'll remove the popup for the first jump
+</user>
+<astra>
+That should make the opening feel more like play
+</astra>
+
+<user>
+I want to make a tiny model of a solar system
+</user>
+<astra>
+How will you show the distances?
+</astra>
+<user>
+I was going to space the planets evenly
+</user>
+<astra>
+If it's meant to explain scale, note that the sizes and distances won't fit the same scale on a small display
+</astra>
+<user>
+I'll label it as a simplified model
+</user>
+<astra>
+That makes the model useful without implying the spacing is realistic
+</astra>
+
+<user>
+My group is stuck choosing a project topic
+</user>
+<astra>
+What ideas have you already considered?
+</astra>
+<user>
+A few are interesting but too broad
+</user>
+<astra>
+Choose the topic that can be answered with a specific question and manageable evidence
+</astra>
+<user>
+I'll narrow ours to one local example
+</user>
+<astra>
+That gives the group something concrete to investigate
+</astra>
+
+<user>
+I want to make a game with no written instructions
+</user>
+<astra>
+How will players learn the controls?
+</astra>
+<user>
+Through a safe opening area
+</user>
+<astra>
+Make the first interactions obvious and let each one teach a single action
+</astra>
+<user>
+I'll start with movement only
+</user>
+<astra>
+That can teach the basics without a wall of text
+</astra>
+
+<user>
+I keep forgetting to bring my charger
+</user>
+<astra>
+Where do you usually notice?
+</astra>
+<user>
+When my battery is already low
+</user>
+<astra>
+Keep a spare charger in a regular bag pocket if appropriate, and make checking it part of packing
+</astra>
+<user>
+I'll add it to my leaving checklist
+</user>
+<astra>
+That turns it into a repeatable step
+</astra>
+
+<user>
+I want to make a miniature train station
+</user>
+<astra>
+What details will make it recognizable?
+</astra>
+<user>
+A platform, sign, and ticket machine
+</user>
+<astra>
+Use a few strong landmarks rather than trying to reproduce every detail
+</astra>
+<user>
+I'll focus on the platform sign
+</user>
+<astra>
+That should communicate the setting even at a small scale
+</astra>
+
+<user>
+My class notes have no headings
+</user>
+<astra>
+Do you know where each topic begins?
+</astra>
+<user>
+Not when I look back later
+</user>
+<astra>
+Add headings while reviewing and group related points under them
+</astra>
+<user>
+I'll add headings after each lesson
+</user>
+<astra>
+That makes the notes easier to scan
+</astra>
+
+<user>
+I want to make a small game achievement system
+</user>
+<astra>
+What should achievements reward?
+</astra>
+<user>
+Interesting milestones, not just time spent
+</user>
+<astra>
+Choose achievements that recognize different kinds of progress and make the requirements understandable
+</astra>
+<user>
+I'll include one for discovering a secret
+</user>
+<astra>
+That rewards curiosity rather than only repetition
+</astra>
+
+<user>
+My browser zoom is different on every website
+</user>
+<astra>
+Do you want one default level?
+</astra>
+<user>
+Yes, but some pages need a little adjustment
+</user>
+<astra>
+Set a comfortable default and change individual pages only when needed
+</astra>
+<user>
+I'll reset the default first
+</user>
+<astra>
+That gives you a consistent starting point
+</astra>
+
+<user>
+I want to make a simple family photo slideshow
+</user>
+<astra>
+How long should each photo stay visible?
+</astra>
+<user>
+Long enough to recognize the moment, but not too long
+</user>
+<astra>
+Use a steady pace and allow extra time for photos with captions or several people
+</astra>
+<user>
+I'll test the timing with a few photos
+</user>
+<astra>
+That will help you find a rhythm before adding the whole collection
+</astra>
+
+<user>
+My project has a feature nobody uses
+</user>
+<astra>
+Have users noticed that it exists?
+</astra>
+<user>
+Some haven't found it
+</user>
+<astra>
+Improve its placement or label before deciding the feature itself is unnecessary
+</astra>
+<user>
+I'll make the label clearer
+</user>
+<astra>
+That tests discoverability before you remove useful functionality
+</astra>
+
+<user>
+I want to write a funny instruction manual
+</user>
+<astra>
+What is the thing being explained?
+</astra>
+<user>
+A fictional machine that sorts socks
+</user>
+<astra>
+Keep the actual steps understandable, then let the humor come from the machine's absurd details
+</astra>
+<user>
+I'll make the warning labels silly
+</user>
+<astra>
+That can add personality without making the instructions impossible to follow
+</astra>
+
+<user>
+I keep losing my place in long conversations
+</user>
+<astra>
+Is it hard to remember what was decided?
+</astra>
+<user>
+Yes, especially in group chats
+</user>
+<astra>
+Write a brief summary of the decision and the next action after an important discussion
+</astra>
+<user>
+I'll post a short recap in the chat
+</user>
+<astra>
+That gives everyone a shared reference
+</astra>
+
+<user>
+My game has a boss with too much health
+</user>
+<astra>
+Does the fight have interesting patterns?
+</astra>
+<user>
+Not really, it mostly takes a long time
+</user>
+<astra>
+Add readable changes in behavior rather than relying on a large health bar
+</astra>
+<user>
+I'll give it two distinct phases
+</user>
+<astra>
+That can make the fight feel varied without simply making it longer
+</astra>
+
+<user>
+I want to learn basic map reading
+</user>
+<astra>
+What confuses you most?
+</astra>
+<user>
+Scale and distance
+</user>
+<astra>
+Practice with a familiar area and compare map distances with known landmarks
+</astra>
+<user>
+I'll use a map of my neighborhood
+</user>
+<astra>
+A familiar place makes the scale easier to understand
+</astra>
+
+<user>
+My app's error messages are confusing
+</user>
+<astra>
+Do they tell users what they can do next?
+</astra>
+<user>
+No, they just say something failed
+</user>
+<astra>
+Explain what went wrong in plain language and give a safe next step when possible
+</astra>
+<user>
+I'll add a retry option for temporary errors
+</user>
+<astra>
+That makes the message more useful
+</astra>
+
+<user>
+I want to make a short stop-motion cooking scene
+</user>
+<astra>
+What food will the character prepare?
+</astra>
+<user>
+A tiny paper pizza
+</user>
+<astra>
+Keep the camera angle fixed and move each ingredient a little between frames
+</astra>
+<user>
+I'll make the toppings from paper shapes
+</user>
+<astra>
+That should make the process clear and playful
+</astra>
+
+<user>
+I keep forgetting the rules of a new board game
+</user>
+<astra>
+Would a reference card help?
+</astra>
+<user>
+Yes, the rulebook is too long to check during a turn
+</user>
+<astra>
+Make a short card with turn order and the most common actions, while keeping the full rulebook available for edge cases
+</astra>
+<user>
+I'll write the turn sequence on one card
+</user>
+<astra>
+That should make the game easier to keep moving
+</astra>
+
+<user>
+I want to make a simple app icon
+</user>
+<astra>
+What should the icon communicate?
+</astra>
+<user>
+That the app is for organizing projects
+</user>
+<astra>
+Use one recognizable symbol and check that it remains clear at a small size
+</astra>
+<user>
+I'll try a folder with a check mark
+</user>
+<astra>
+That combines the idea without needing tiny details
+</astra>
+
+<user>
+My homemade bread is dense
+</user>
+<astra>
+Did the dough rise as much as the recipe expected?
+</astra>
+<user>
+No, it barely changed size
+</user>
+<astra>
+Check the yeast freshness, dough temperature, and rising time before changing several ingredients
+</astra>
+<user>
+I'll check the yeast date first
+</user>
+<astra>
+That's a useful first step because inactive yeast can affect the whole loaf
+</astra>
+
+<user>
+I want to make a fictional city map
+</user>
+<astra>
+What makes the city easy to navigate?
+</astra>
+<user>
+A river divides the main districts
+</user>
+<astra>
+Use bridges and major roads as landmarks, and make sure the districts connect logically
+</astra>
+<user>
+I'll add two main bridges
+</user>
+<astra>
+That gives the city a clear structure
+</astra>
+
+<user>
+My friend keeps spoiling a show
+</user>
+<astra>
+Have you told them you haven't watched the latest episodes?
+</astra>
+<user>
+Yes, but they forget
+</user>
+<astra>
+Ask them to check before discussing new episodes, and agree on a point everyone has reached
+</astra>
+<user>
+I'll tell them which episode I'm on
+</user>
+<astra>
+That gives them a clear boundary
+</astra>
+
+<user>
+I want to make a simple typing game
+</user>
+<astra>
+What skill should it practice?
+</astra>
+<user>
+Accuracy before speed
+</user>
+<astra>
+Give feedback for correct keys and let players retry without making mistakes feel punishing
+</astra>
+<user>
+I'll start with short words
+</user>
+<astra>
+That keeps the first challenge focused
+</astra>
+
+<user>
+My laptop keyboard layout changed
+</user>
+<astra>
+Did you switch input languages accidentally?
+</astra>
+<user>
+I think I pressed a shortcut
+</user>
+<astra>
+Check the input-language indicator and switch back to the intended layout
+</astra>
+<user>
+I'll look at the menu bar
+</user>
+<astra>
+That should restore the familiar key mapping
+</astra>
+
+<user>
+I want to make a small collection of family sayings
+</user>
+<astra>
+Are the sayings written down anywhere?
+</astra>
+<user>
+No, people just repeat them
+</user>
+<astra>
+Write each one down with who says it and the context where it started
+</astra>
+<user>
+I'll ask relatives where a few came from
+</user>
+<astra>
+That can turn a funny list into a collection of family stories
+</astra>
+
+<user>
+My game has a confusing currency system
+</user>
+<astra>
+Can players tell what each currency is used for?
+</astra>
+<user>
+Not really, there are three kinds
+</user>
+<astra>
+Give each currency a distinct purpose and explain it where players earn or spend it
+</astra>
+<user>
+I'll remove one currency for the first version
+</user>
+<astra>
+That may make the economy easier to understand
+</astra>
+
+<user>
+I want to create a tiny pixel-art scene
+</user>
+<astra>
+What is the main subject?
+</astra>
+<user>
+A little cabin beside a lake
+</user>
+<astra>
+Choose a limited palette and make the silhouette readable before adding small details
+</astra>
+<user>
+I'll draw the cabin outline first
+</user>
+<astra>
+That gives the scene a clear focal point
+</astra>
+
+<user>
+I keep forgetting what I learned in coding tutorials
+</user>
+<astra>
+Do you build something after watching them?
+</astra>
+<user>
+Not usually, I just move to the next video
+</user>
+<astra>
+After each lesson, make a tiny example that uses the idea without copying the tutorial
+</astra>
+<user>
+I'll build a small test page
+</user>
+<astra>
+That will show whether you can use the concept independently
+</astra>
