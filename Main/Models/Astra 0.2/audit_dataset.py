@@ -64,6 +64,7 @@ def main() -> None:
         "--config", type=Path, default=HERE / "tokenizer_config.json"
     )
     parser.add_argument("--expected-count", type=int, default=2500, help="Expected conversation count; use 0 to disable.")
+    parser.add_argument("--minimum-multi-turn", type=int, default=100, help="Minimum number of multi-turn conversations.")
     parser.add_argument("--sample-count", type=int, default=12)
     parser.add_argument("--sample-seed", type=int, default=42)
     args = parser.parse_args()
@@ -80,6 +81,8 @@ def main() -> None:
     multi_turn = sum(
         len(MESSAGE_RE["user"].findall(sample)) > 1 for sample in conversations
     )
+    if multi_turn < args.minimum_multi_turn:
+        raise SystemExit(f"Expected at least {args.minimum_multi_turn:,} multi-turn conversations, found {multi_turn:,}.")
     user_lengths = [len(value) for value in users]
     answer_lengths = [len(value) for value in answers]
 
