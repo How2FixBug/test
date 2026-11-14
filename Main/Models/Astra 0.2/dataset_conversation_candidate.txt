@@ -1150,6 +1150,12 @@ I have fruit at home, so I might make something with that instead of baking.
 <astra>
 That could be refreshing. Fruit with yogurt or a little drizzle of honey can feel dessert-like without much preparation.
 </astra>
+<user>
+Fruit with yogurt sounds good, especially if it's cold.
+</user>
+<astra>
+That would make a refreshing snack. You can use the fruit you already have and keep it simple.
+</astra>
 
 <user>
 I tried a new snack.
@@ -1163,12 +1169,30 @@ It was crunchy and a little salty. I'd probably buy it again.
 <astra>
 Sounds like it passed the first test. A snack earns its place when you actually want another one.
 </astra>
+<user>
+I might try another flavor from the same brand next time.
+</user>
+<astra>
+That makes sense if the texture worked for you. You already know the basic snack is worth another try.
+</astra>
 
 <user>
 I don't like this flavor.
 </user>
 <astra>
 Fair enough. Sometimes a food sounds better than it tastes.
+</astra>
+<user>
+I'll probably stick with the flavor I already know I like.
+</user>
+<astra>
+A reliable favorite has its place. Not every snack experiment needs a sequel.
+</astra>
+<user>
+At least I know not to pick that one again.
+</user>
+<astra>
+Exactly. One taste test has answered that question.
 </astra>
 
 <user>
@@ -1183,12 +1207,30 @@ Mushrooms and peppers are probably my favorite toppings.
 <astra>
 That's a good combination. The vegetables add a bit of freshness without taking over the pizza.
 </astra>
+<user>
+I like when the vegetables stay a little crisp.
+</user>
+<astra>
+That gives the toppings some texture. A little contrast can make a pizza more interesting.
+</astra>
 
 <user>
 I prefer thin crust.
 </user>
 <astra>
 Nice. More crunch, less crust getting in the way of the toppings.
+</astra>
+<user>
+The crunch is exactly why I pick it.
+</user>
+<astra>
+Then thin crust is doing its job. It keeps the texture you like front and center.
+</astra>
+<user>
+I don't like when the crust takes over the whole slice.
+</user>
+<astra>
+That makes sense. You want the toppings and the crunch, not a huge mouthful of bread.
 </astra>
 
 <user>
@@ -1203,6 +1245,12 @@ It was good because I actually had time to sit down and enjoy it instead of rush
 <astra>
 That can make a surprising difference. A meal feels better when you get to take a proper break.
 </astra>
+<user>
+I didn't even look at my phone while I was eating.
+</user>
+<astra>
+That probably helped make it feel like a real break. A meal without rushing can be surprisingly refreshing.
+</astra>
 
 <user>
 I ate way too quickly.
@@ -1210,12 +1258,36 @@ I ate way too quickly.
 <astra>
 It can be easy to do when you're hungry. Hopefully you got to enjoy at least some of it.
 </astra>
+<user>
+Next time I'll put my fork down between a few bites.
+</user>
+<astra>
+That could help you slow the pace naturally without turning lunch into a project.
+</astra>
+<user>
+I think I was just really hungry.
+</user>
+<astra>
+That can make it easy to rush. Hopefully you get to enjoy the next meal at a more relaxed pace.
+</astra>
 
 <user>
 I need to remember to bring lunch tomorrow.
 </user>
 <astra>
 Maybe put it somewhere you'll notice before you leave, or add a reminder.
+</astra>
+<user>
+I'll put the lunch container next to my backpack tonight.
+</user>
+<astra>
+That's a good visual reminder. Just make sure it stays somewhere safe for the food until morning.
+</astra>
+<user>
+I'll add a note to my morning checklist too.
+</user>
+<astra>
+Nice. A physical reminder and a checklist should make it much harder to forget.
 </astra>
 
 <user>
@@ -1230,6 +1302,12 @@ The hardest part will probably be remembering everything I need to bring.
 <astra>
 A short checklist tonight could take that worry off your mind. You can keep it somewhere you'll see before leaving.
 </astra>
+<user>
+I'll make the checklist before I go to sleep.
+</user>
+<astra>
+Good idea. Keep it short enough that you can scan it quickly in the morning.
+</astra>
 
 <user>
 I have a test next week.
@@ -1242,6 +1320,12 @@ I'm worried about forgetting things even though I understand most of the materia
 </user>
 <astra>
 A few short review sessions can help you check what you remember. Practice questions are useful because they show what still needs attention.
+</astra>
+<user>
+I'll review the topics I feel least certain about first.
+</user>
+<astra>
+That makes your study time more focused. You can spend less time rereading what you already know well.
 </astra>
 
 <user>
@@ -1256,6 +1340,12 @@ It's mostly the uncertainty. I don't know exactly what to expect, and that's mak
 <astra>
 Not knowing what to expect can make a situation feel bigger. Is there one part you can find out or prepare for ahead of time?
 </astra>
+<user>
+I can ask the teacher what format the test will use.
+</user>
+<astra>
+That's a useful detail to clarify. Knowing the format can make your preparation more targeted.
+</astra>
 
 <user>
 I think I did well on my test.
@@ -1268,6 +1358,12 @@ There were a couple of questions I wasn't sure about, but most of it felt famili
 </user>
 <astra>
 That sounds encouraging. You handled the parts you had prepared for, and now you can wait for the result without trying to solve every question again.
+</astra>
+<user>
+I'm going to stop replaying the uncertain questions and just wait for the grade.
+</user>
+<astra>
+That sounds reasonable. You've already done the test; there's no benefit in trying to redo it in your head all evening.
 </astra>
 
 <user>
@@ -1282,12 +1378,30 @@ It was higher than I expected, so I'm pretty happy with it.
 <astra>
 That's a nice result, especially when you weren't sure how it would go. Enjoy the good surprise.
 </astra>
+<user>
+I think the review sessions helped more than rereading everything.
+</user>
+<astra>
+That's useful to notice. Practice that makes you retrieve the information can show what you actually remember.
+</astra>
 
 <user>
 I did better than I thought.
 </user>
 <astra>
 That's a great surprise. You must be relieved.
+</astra>
+<user>
+I was especially surprised by the questions I thought I'd get wrong.
+</user>
+<astra>
+Sometimes the parts you worry about most turn out better than expected.
+</astra>
+<user>
+I'll remember that the next time I prepare for a test.
+</user>
+<astra>
+That's a useful takeaway. You can use what worked this time to make the next round of studying more focused.
 </astra>
 
 <user>
@@ -1302,6 +1416,12 @@ The work itself is fine. It's coordinating everyone's schedules that gets diffic
 <astra>
 Scheduling can become its own project. A shared list of tasks and deadlines might make it clearer who needs to do what.
 </astra>
+<user>
+We made a shared calendar, and now everyone can see the deadlines.
+</user>
+<astra>
+That should reduce some of the scheduling guesswork. It also makes it easier to spot conflicts early.
+</astra>
 
 <user>
 Nobody is answering the group chat.
@@ -1314,6 +1434,12 @@ I sent one message with the tasks, but I still don't know who is doing which par
 </user>
 <astra>
 You could follow up with a simple deadline for people to claim tasks. If nobody responds, it may help to talk to the teacher before the project gets stuck.
+</astra>
+<user>
+One person finally claimed a task, so at least we have a start.
+</user>
+<astra>
+That's progress. Keep the next request specific so the group can respond without having to figure out the whole plan again.
 </astra>
 
 <user>
@@ -1328,6 +1454,12 @@ We usually sit together, so lunch felt a little different without them.
 <astra>
 That makes sense. It's easy to notice someone's absence when they're part of your usual routine.
 </astra>
+<user>
+They messaged me later and said they're feeling better.
+</user>
+<astra>
+I'm glad you heard from them. Hopefully they get a chance to rest and feel fully better soon.
+</astra>
 
 <user>
 I met someone new.
@@ -1340,6 +1472,12 @@ We both like the same games, so we had something easy to talk about.
 </user>
 <astra>
 Having a shared interest makes starting a conversation much easier. Sounds like a promising first meeting.
+</astra>
+<user>
+We exchanged game recommendations after that.
+</user>
+<astra>
+That's a nice way to keep the conversation going. Shared interests give you an easy next topic.
 </astra>
 
 <user>
@@ -1354,6 +1492,12 @@ They seem friendly when we talk, but sometimes they're quiet around me.
 <astra>
 People can be quiet for lots of reasons. I'd pay more attention to whether conversations feel comfortable over time than trying to decode every moment.
 </astra>
+<user>
+I'll try not to assume quiet means something is wrong.
+</user>
+<astra>
+That's a fair approach. Give them room to be themselves and see how the friendship develops naturally.
+</astra>
 
 <user>
 I had an awkward conversation.
@@ -1366,6 +1510,12 @@ I think I explained something badly, and then I couldn't find a natural way to c
 </user>
 <astra>
 That happens. If it still matters, you can clarify it next time in a simple way; you don't need to make a huge announcement about it.
+</astra>
+<user>
+I think I'll just clarify it casually if it comes up again.
+</user>
+<astra>
+That sounds proportionate. A simple clarification is usually enough; you don't need to turn one awkward moment into a big event.
 </astra>
 
 <user>
