@@ -33,7 +33,8 @@ The starter set also contains original ASTRA examples across science, computing,
 
 - Python 3.10+
 - PyTorch 2.x
-- No additional Python packages
+- No additional packages for training or generation
+- The `onnx` package for browser-model export
 
 For Apple Silicon, the trainer automatically selects Apple's MPS backend when available.
 Otherwise it falls back to CPU.
@@ -110,6 +111,24 @@ Generation streams answer text to the terminal as tokens arrive. Use `--no-strea
 print the completed answer instead. Generation uses a fixed seed by default for
 reproducible comparisons. Change it with `--seed`. The think section is normalized to
 empty during tokenization, so ASTRA learns to produce direct answers.
+
+## Publish the browser model
+
+After training a new checkpoint, publish the model used by the ASTRA website with one command:
+
+```bash
+python3 publish.py
+```
+
+Run it from this directory. It checks that the checkpoint and tokenizer match, exports
+and validates `astra-0.1.onnx`, stages only `astra-0.1.onnx` and
+`tokenizer_config.json`, commits them if they changed, and pushes the current Git
+branch to its configured upstream. GitHub Pages can then deploy the updated browser
+model. The script does not stage unrelated project files.
+
+The first time, make sure this local branch has a GitHub upstream configured and that
+the `onnx` Python package is installed. If the model files are unchanged, it skips
+creating an empty commit.
 
 This remains an experimental first model, not a capable assistant yet. With a small or repetitive training corpus, it will likely overfit and produce weak or repetitive text. Increase data variety and inspect validation behavior before interpreting training loss. A low
 training loss alone does not mean it has learned general language ability. Evaluate
