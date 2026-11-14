@@ -94,7 +94,7 @@ No markdown fences or commentary."""
             {"role": "system", "content": "You create tightly scoped conversational training data. Follow the JSON format exactly."},
             {"role": "user", "content": prompt},
         ],
-        "options": {"temperature": 0.85, "top_p": 0.9},
+        "options": {"temperature": 0.85, "top_p": 0.9, "num_predict": 4096},
     }
     request = urllib.request.Request(
         OLLAMA_URL,
@@ -190,9 +190,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Generate ASTRA conversation candidates with local Ollama and manually approve them."
     )
-    parser.add_argument("--model", default="qwen3:4b", help="Local Ollama model (default: qwen3:4b).")
+    parser.add_argument("--model", default="qwen2.5:7b", help="Local Ollama model (default: qwen2.5:7b).")
     parser.add_argument("--count", type=int, default=20, help="Number of candidates to generate (default: 20; max: 80).")
-    parser.add_argument("--batch-size", type=int, default=8, help="Candidates per Ollama request (default: 8; max: 20).")
+    parser.add_argument("--batch-size", type=int, default=2, help="Candidates per Ollama request (default: 2; max: 20).")
     args = parser.parse_args()
     if not 1 <= args.count <= 80:
         parser.error("--count must be between 1 and 80")
