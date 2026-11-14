@@ -94,18 +94,23 @@ PERSONAL_CLAIM_RE = re.compile(
     r"my boyfriend|my girlfriend|my wife|my husband|my son|my daughter|"
     r"my kids|my children|my family|my parents|my brother|my sister)\b|"
     r"i(?:'m| am)\s+(?:tall|short|awful|terrible|great at|bad at|"
-    r"a fan of|not a fan of|from |a [a-z]+|an [a-z]+)|"
-    r"my\s+(?:cat|dog|pet|wife|husband|girlfriend|boyfriend|"
-    r"children|kids|brother|sister|parents|family|house|car|school|"
-    r"job|favorite|favourite|type)\b|"
+    r"a fan of|not a fan of|from |a [a-z]+|an [a-z]+|loving |"
+    r"getting in touch|trying to join)|"
+    r"i\s+(?:did not|didn't)\s+(?:mean|intend)|"
+    r"my\s+(?:cat|dog|pet|mom|mother|dad|father|grandma|grandmother|"
+    r"grandpa|grandfather|neighbor|best friend|wife|husband|girlfriend|"
+    r"boyfriend|son|daughter|children|kids|brother|sister|parents|family|"
+    r"house|car|school|job|favorite|favourite|type)\b|"
     r"until i\s+(?:meet|find|see)|"
     r"she's not my type|he's not my type"
     r")",
     re.I,
 )
+
 LOW_QUALITY_RE = re.compile(
     r"\b(?:wre|teh|thier|becuase|definately|defiantly|"
-    r"recieve|seperate|occured)\b",
+    r"recieve|seperate|occured|allerges|belive|skiddish|"
+    r"boadening|phonenix|weast)\b",
     re.I,
 )
 
