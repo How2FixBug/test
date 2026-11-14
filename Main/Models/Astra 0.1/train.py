@@ -72,11 +72,16 @@ def get_batch(records, batch_size: int, block_size: int, device: torch.device, r
     y_batch = torch.full((batch_size, block_size), IGNORE_INDEX, dtype=torch.long)
     for row in range(batch_size):
         record = records[rng.randrange(len(records))]
-        chunk = record[:block_size + 1]
         try:
-            assistant_start = chunk.index(ASTRA_TOKEN)
+            full_assistant_start = record.index(ASTRA_TOKEN)
         except ValueError:
             raise ValueError("A training example is missing its <astra> marker.")
+
+        # Long prompts can place <astra> beyond the context window. Keep the
+        # end of the prompt plus the marker, rather than truncating the marker.
+        start = max(0, full_assistant_start - (block_size - 1))
+        chunk = record[start:start + block_size + 1]
+        assistant_start = full_assistant_start - start
         if len(chunk) < 2:
             raise ValueError("A training example must contain at least two tokens.")
 
