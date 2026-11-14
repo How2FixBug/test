@@ -95,8 +95,8 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
 .input-box textarea{justify-content:flex-start}
 .message-morph-target{animation:none;visibility:hidden}
 .message-morph-flight{position:fixed;z-index:50;display:flex;align-items:center;overflow:hidden;padding:10px 18px;border:1px solid rgba(141,177,231,.28);border-radius:12px;background:linear-gradient(135deg,rgba(54,82,119,.96),rgba(40,57,91,.98));box-shadow:0 12px 42px rgba(0,0,0,.28);color:#edf0ff;font:13px/1.55 "DM Sans",sans-serif;white-space:pre-wrap;overflow-wrap:anywhere;pointer-events:none;will-change:left,top,width,height,border-radius}
-.input-box.composer-reform{animation:composer-return .42s cubic-bezier(.2,.8,.2,1) both}
-@keyframes composer-return{0%{opacity:.65;transform:scale(.985)}100%{opacity:1;transform:scale(1)}}
+.input-box.composer-reform{animation:composer-return .24s ease-out both}
+@keyframes composer-return{0%{opacity:0}100%{opacity:1}}
 @media(max-width:760px){.composer-area{padding:12px 15px 16px}}
 
 /* Custom scrollbar inside the message input */
