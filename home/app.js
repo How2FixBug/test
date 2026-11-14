@@ -325,26 +325,72 @@
 
       userRow.style.visibility = "visible";
       userRow.classList.add("morph-avatar-in");
+      // Morph the real composer into the message bubble, including its visual styling.
+      const sourceStyle = getComputedStyle(inputBox);
+      const targetStyle = getComputedStyle(bubble);
+      const sourceTextStyle = getComputedStyle(input);
+      inputBox.style.backgroundImage = "linear-gradient(135deg, rgba(54,82,119,0), rgba(40,57,91,0))";
+      const duration = reducedMotion ? 1 : 430;
       activeFlightAnimation = inputBox.animate([
         {
           left: sourceRect.left + "px",
           top: targetRect.top + "px",
           width: sourceRect.width + "px",
           height: sourceRect.height + "px",
+          backgroundColor: sourceStyle.backgroundColor,
+          backgroundImage: "linear-gradient(135deg, rgba(54,82,119,0), rgba(40,57,91,0))",
+          borderColor: sourceStyle.borderColor,
+          borderRadius: sourceStyle.borderRadius,
+          boxShadow: sourceStyle.boxShadow,
+          padding: sourceStyle.padding,
+          opacity: 1,
+          offset: 0
         },
         {
           left: targetRect.left + "px",
           top: targetRect.top + "px",
           width: targetRect.width + "px",
-          height: targetRect.height + "px"
+          height: targetRect.height + "px",
+          backgroundColor: targetStyle.backgroundColor,
+          backgroundImage: targetStyle.backgroundImage,
+          borderColor: targetStyle.borderColor,
+          borderRadius: targetStyle.borderRadius,
+          boxShadow: targetStyle.boxShadow,
+          padding: targetStyle.padding,
+          opacity: 1,
+          offset: 0.72
+        },
+        {
+          left: targetRect.left + "px",
+          top: targetRect.top + "px",
+          width: targetRect.width + "px",
+          height: targetRect.height + "px",
+          backgroundColor: targetStyle.backgroundColor,
+          backgroundImage: targetStyle.backgroundImage,
+          borderColor: targetStyle.borderColor,
+          borderRadius: targetStyle.borderRadius,
+          boxShadow: targetStyle.boxShadow,
+          padding: targetStyle.padding,
+          opacity: 0,
+          offset: 1
         }
       ], {
-        duration: reducedMotion ? 1 : 430,
+        duration,
         easing: "cubic-bezier(.22,.78,.18,1)",
         fill: "forwards"
       });
-      await activeFlightAnimation.finished;
+      const bubbleReveal = bubble.animate([
+        { opacity: 0, offset: 0 },
+        { opacity: 0, offset: 0.72 },
+        { opacity: 1, offset: 1 }
+      ], {
+        duration,
+        easing: "linear",
+        fill: "forwards"
+      });
+      await Promise.all([activeFlightAnimation.finished, bubbleReveal.finished]);
       activeFlightAnimation.cancel();
+      bubbleReveal.cancel();
       activeFlightAnimation = null;
       if (activeId !== chat.id) throw new Error("Conversation changed");
 
