@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 import torch
-from model import LoopCore
+from model import AstraGPT
 from tokenizer import SPECIAL_TOKENS, encode, decode
 
 HERE = Path(__file__).resolve().parent
@@ -113,7 +113,7 @@ def main():
         map_location="cpu",
         weights_only=False,
     )
-    if checkpoint.get("architecture_version") != 2:
+    if checkpoint.get("architecture_version") != 3:
         raise SystemExit(
             "This checkpoint uses the old architecture. Run python3 train.py "
             "to create a fresh checkpoint."
@@ -127,7 +127,7 @@ def main():
         )
 
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-    model = LoopCore(**checkpoint["model_config"]).to(device)
+    model = AstraGPT(**checkpoint["model_config"]).to(device)
     model.load_state_dict(checkpoint["model_state_dict"])
     model.eval()
     torch.manual_seed(args.seed)
