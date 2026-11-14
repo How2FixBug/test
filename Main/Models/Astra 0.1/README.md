@@ -22,7 +22,7 @@ there are not four separate transformer blocks.
 
 ## Dataset
 
-The starter corpus includes original ASTRA examples. To expand it with carefully filtered public material, run:
+The starter corpus includes original ASTRA examples. The importer can add up to 15,000 examples per source (subject to availability and filtering). Run:
 
 ```bash
 python3 import_datasets.py
@@ -32,7 +32,7 @@ python3 test_causality.py
 
 The importer adds English examples from OASST1 and Aya, deduplicates prompt/answer pairs, and uses empty `<think>` sections for imported records. It uses only the Python standard library. Source credits and license notes are in the repository-root [CREDITS.md](../../../CREDITS.md). The default import limit is 5,000 examples per source; inspect the imported data before training.
 
-The starter set also contains additional original ASTRA examples across science, computing, writing, creative design, and project skills. More data is not automatically better: quality, licensing, deduplication, and held-out evaluation still matter.
+The starter set also contains original ASTRA examples across science, computing, writing, creative design, and project skills. During tokenization, all think sections are normalized to empty so the model is trained to answer directly rather than imitate inconsistent reasoning notes. More data is not automatically better: quality, licensing, deduplication, and held-out evaluation still matter.
 
 ## Requirements
 
@@ -94,7 +94,9 @@ python3 train.py --steps 100 --batch-size 4 --block-size 128
 The trainer:
 - Splits exact duplicate ASTRA responses as groups, preventing those answers from
   appearing in both training and validation.
-- Samples each batch row from one conversation, never joining unrelated conversations.
+- Keeps each user prompt at the start of its training sequence instead of randomly
+  cropping away the question.
+- Uses the user prompt as context but calculates loss only on assistant reply tokens.
 - Uses padding masks for shorter examples.
 - Saves a versioned best checkpoint to `checkpoints/astra-0.1-best.pt`.
 
@@ -110,9 +112,10 @@ After training:
 python3 generate.py "Why does ice float?"
 ```
 
-Generation uses a fixed seed by default for reproducible comparisons. Change it with
-`--seed`. It also constrains the structural markers so the reasoning-summary section
-closes before the answer and the assistant message closes at the end.
+Generation streams answer text to the terminal as tokens arrive. Use `--no-stream` to
+print the completed answer instead. Generation uses a fixed seed by default for
+reproducible comparisons. Change it with `--seed`. The think section is normalized to
+empty during tokenization, so ASTRA learns to produce direct answers.
 
 This remains an experimental first model, not a capable assistant yet. With a small or repetitive training corpus, it will likely overfit and produce weak or repetitive text. Increase data variety and inspect validation behavior before interpreting training loss. A low
 training loss alone does not mean it has learned general language ability. Evaluate
