@@ -323,15 +323,17 @@
         parseFloat(targetStyle.borderBottomWidth)
       );
       inputBox.style.backgroundImage = "linear-gradient(135deg, rgba(54,82,119,0), rgba(40,57,91,0))";
-      const duration = reducedMotion ? 1 : 1050;
+      const duration = reducedMotion ? 1 : 850;
       inputHeightAnimation = input.animate([
         {
           height: input.getBoundingClientRect().height + "px",
+          minHeight: inputStyle.minHeight,
           paddingTop: inputStyle.paddingTop,
           paddingBottom: inputStyle.paddingBottom
         },
         {
           height: targetInputHeight + "px",
+          minHeight: targetInputHeight + "px",
           paddingTop: "0px",
           paddingBottom: "0px"
         }
@@ -346,6 +348,7 @@
           top: sourceRect.top + "px",
           width: sourceRect.width + "px",
           height: sourceRect.height + "px",
+          minHeight: sourceStyle.minHeight,
           backgroundColor: sourceStyle.backgroundColor,
           backgroundImage: "linear-gradient(135deg, rgba(54,82,119,0), rgba(40,57,91,0))",
           borderColor: sourceStyle.borderColor,
@@ -358,6 +361,7 @@
           top: targetRect.top + "px",
           width: targetRect.width + "px",
           height: targetRect.height + "px",
+          minHeight: targetRect.height + "px",
           backgroundColor: targetStyle.backgroundColor,
           backgroundImage: targetStyle.backgroundImage,
           borderColor: targetStyle.borderColor,
@@ -379,24 +383,20 @@
         easing: "linear",
         fill: "forwards"
       });
-      const bubbleReveal = bubble.animate([
-        { opacity: 0, offset: 0 },
-        { opacity: 0, offset: 0.62 },
-        { opacity: 1, offset: 1 }
-      ], {
-        duration,
-        easing: "linear",
-        fill: "forwards"
-      });
-      await Promise.all([activeFlightAnimation.finished, inputHeightAnimation.finished, inputFade.finished, bubbleReveal.finished]);
+      await Promise.all([activeFlightAnimation.finished, inputHeightAnimation.finished, inputFade.finished]);
       activeFlightAnimation.cancel();
       inputHeightAnimation.cancel();
       inputFade.cancel();
-      bubbleReveal.cancel();
       activeFlightAnimation = null;
       inputHeightAnimation = null;
       if (activeId !== chat.id) throw new Error("Conversation changed");
       restoreComposer();
+      const messageReveal = bubble.animate(
+        [{ opacity: 0 }, { opacity: 1 }],
+        { duration: reducedMotion ? 1 : 180, easing: "ease-out", fill: "forwards" }
+      );
+      await messageReveal.finished;
+      messageReveal.cancel();
       userRow.classList.add("morph-message-in");
       inputBox.classList.add("composer-reform");
       window.setTimeout(() => inputBox.classList.remove("composer-reform"), reducedMotion ? 1 : 440);
