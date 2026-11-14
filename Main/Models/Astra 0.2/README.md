@@ -13,10 +13,14 @@ layer will handle changing facts and external lookups.
 ## Training source
 
 - `dataset_conversation_candidate.txt` is the current curated conversation corpus.
-- Current audit snapshot: 272 serialized conversations, 337 user turns, 345
-  ASTRA turns, and 35 multi-turn conversations.
-- The snapshot has 8 information-tool request/result examples and 7 concise
-  thinking notes. Exact duplicate user and ASTRA messages: none.
+- Current corpus target: **2,500 serialized conversations**.
+- Latest structural audit: 2,500 conversations, 2,565 user turns, and 2,573
+  ASTRA turns. All user and ASTRA message bodies are unique.
+- 35 conversations contain multiple user turns; 8 examples demonstrate an
+  information-tool request/result; 7 include concise thinking notes.
+- The audit reports recurring 4–6 word phrases for manual review. Exact
+  uniqueness does not prove every example is semantically distinct or equally
+  useful; review the sampled conversations before training.
 - It contains serialized conversations, including real multi-turn examples.
 - `<think>...</think>` notes appear only in selected cases where a short
   decision note is useful. They are inside the corresponding `<astra>` message.
