@@ -3481,12 +3481,36 @@ I got something on sale.
 <astra>
 Nice! Did you find exactly what you wanted, or was it an unexpected bargain?
 </astra>
+<user>
+It was something I had been planning to buy anyway.
+</user>
+<astra>
+That's the best kind of sale: it was already on your list, and the lower price made the timing better.
+</astra>
+<user>
+I checked the price history before deciding.
+</user>
+<astra>
+Good call. That helps distinguish a real discount from a sale label that only looks impressive.
+</astra>
 
 <user>
 I lost track of time.
 </user>
 <astra>
 That happens when you're absorbed in something. What were you doing?
+</astra>
+<user>
+I was working on a level and kept testing one more change.
+</user>
+<astra>
+That kind of focused loop can make time disappear. Did you get the result you were aiming for?
+</astra>
+<user>
+I did, and I saved the working version before stopping.
+</user>
+<astra>
+Nice. You have both a finished result and a clear stopping point now.
 </astra>
 
 <user>
@@ -3495,12 +3519,36 @@ I forgot to charge my phone.
 <astra>
 Classic timing. Hopefully there's a charger nearby.
 </astra>
+<user>
+I found a charger, but it was in the other room.
+</user>
+<astra>
+At least you found one before the phone ran out. Maybe leave a charging cable where you usually use it.
+</astra>
+<user>
+I'll plug it in while I'm doing something else.
+</user>
+<astra>
+That should give it some time to charge without making it another task to remember.
+</astra>
 
 <user>
 My battery is almost dead.
 </user>
 <astra>
 Time to look for a charger before it gives up on you.
+</astra>
+<user>
+I turned on low power mode until I can charge it.
+</user>
+<astra>
+That can help stretch the remaining battery. You can also avoid unnecessary background activity until you reach a charger.
+</astra>
+<user>
+I found a cable in my backpack.
+</user>
+<astra>
+Good timing. It might be worth keeping that cable there as a backup.
 </astra>
 
 <user>
@@ -3509,12 +3557,36 @@ The internet is being weird.
 <astra>
 That's frustrating. Is everything slow, or is one particular site not loading?
 </astra>
+<user>
+Only one website is failing; everything else loads normally.
+</user>
+<astra>
+That narrows it down. The issue may be with that site or its connection rather than your whole internet connection.
+</astra>
+<user>
+It started working again after a few minutes.
+</user>
+<astra>
+Then it may have been a temporary issue. If it happens again, checking the site's status can help distinguish an outage from a local problem.
+</astra>
 
 <user>
 My computer is making a strange sound.
 </user>
 <astra>
 That's worth checking out. Does it happen constantly or only when you're doing something demanding?
+</astra>
+<user>
+It only happens when the computer is under load.
+</user>
+<astra>
+That points toward something that changes with activity, such as a fan speeding up. Check whether the sound is airflow or an unusual rattling.
+</astra>
+<user>
+I'll note when it happens instead of guessing at the cause.
+</user>
+<astra>
+Good approach. The timing and workload can help narrow down what needs checking.
 </astra>
 
 <user>
@@ -3523,12 +3595,36 @@ I accidentally closed the wrong tab.
 <astra>
 Hopefully it was easy to reopen. Your browser history might help if it wasn't.
 </astra>
+<user>
+The browser restored it when I reopened the recently closed tabs list.
+</user>
+<astra>
+Excellent. That's one of those small browser features that can save a lot of frustration.
+</astra>
+<user>
+I should probably bookmark important pages instead of leaving them open forever.
+</user>
+<astra>
+That would make them easier to find and reduce the pressure to keep every tab open.
+</astra>
 
 <user>
 I have too many tabs open.
 </user>
 <astra>
 The browser tab collection grows mysteriously. Maybe it's time for a tiny cleanup.
+</astra>
+<user>
+I closed the ones I wasn't using and bookmarked the important pages.
+</user>
+<astra>
+That's a good balance. You kept what matters without making the tab bar carry your entire to-do list.
+</astra>
+<user>
+The browser feels much easier to navigate now.
+</user>
+<astra>
+A little cleanup can make a surprising difference when you're switching between tasks.
 </astra>
 
 <user>
@@ -3537,12 +3633,36 @@ I finally cleaned up my files.
 <astra>
 Nice! Finding things should be a lot easier now.
 </astra>
+<user>
+I made separate folders for each project.
+</user>
+<astra>
+That gives every project a clear home. Consistent names inside those folders should make the next cleanup easier too.
+</astra>
+<user>
+I also deleted a few duplicate downloads.
+</user>
+<astra>
+Nice. Removing obvious duplicates can reduce clutter without risking files you still need.
+</astra>
 
 <user>
 I need a new hobby.
 </user>
 <astra>
 What kind of thing sounds appealing: something creative, hands-on, active, or more relaxing?
+</astra>
+<user>
+Something creative that I can do in short sessions sounds appealing.
+</user>
+<astra>
+You could try sketching, simple music experiments, or small craft projects. Short sessions make it easy to explore without a big commitment.
+</astra>
+<user>
+I might try learning a few basic keyboard shortcuts for drawing software.
+</user>
+<astra>
+That's a practical mini-hobby. You can learn a couple at a time and notice the difference as you use the software.
 </astra>
 
 <user>
@@ -3551,12 +3671,36 @@ I want to try gardening.
 <astra>
 That sounds rewarding. Do you have a little outdoor space, or would you be starting with a plant indoors?
 </astra>
+<user>
+I'd be starting with a couple of pots outside.
+</user>
+<astra>
+Then choose plants suited to your local weather and the amount of sunlight that spot gets. Starting with two pots gives you room to learn without taking on too much.
+</astra>
+<user>
+I'll check the sunlight at different times of day first.
+</user>
+<astra>
+Good plan. Morning and afternoon light can be quite different, and that will help you choose plants that fit the spot.
+</astra>
 
 <user>
 I started collecting things.
 </user>
 <astra>
 Interesting! What have you been collecting?
+</astra>
+<user>
+I've been collecting interesting rocks from walks.
+</user>
+<astra>
+That's a fun collection because each one has a different shape or pattern. You could label where you found them if you want to remember their stories.
+</astra>
+<user>
+I want to display them without making the shelf look crowded.
+</user>
+<astra>
+Try grouping a few at a time and leaving space around them. The empty space can make each interesting shape easier to notice.
 </astra>
 
 <user>
@@ -3565,12 +3709,36 @@ I want to read more.
 <astra>
 Maybe start with something you genuinely want to read, rather than making it feel like homework.
 </astra>
+<user>
+I think short mystery stories would be a good place to start.
+</user>
+<astra>
+That sounds manageable. A complete story in one sitting can make it easier to build a reading habit.
+</astra>
+<user>
+I'll keep a list of stories I want to try.
+</user>
+<astra>
+Nice. Then you can choose based on your mood instead of spending the whole reading session searching for something.
+</astra>
 
 <user>
 I finished a book.
 </user>
 <astra>
 Nice! Did you enjoy the ending?
+</astra>
+<user>
+The ending was satisfying, but I wish one side character had more time.
+</user>
+<astra>
+That's a useful distinction. The main story worked for you, even if one character's arc felt a little underdeveloped.
+</astra>
+<user>
+I might look for another book by the same author.
+</user>
+<astra>
+That makes sense if you liked the writing overall. Another story may handle its characters differently.
 </astra>
 
 <user>
@@ -3579,12 +3747,36 @@ The ending was disappointing.
 <astra>
 That's the worst when a story has been building toward something and doesn't quite deliver.
 </astra>
+<user>
+The mystery was interesting, but the explanation felt rushed.
+</user>
+<astra>
+That's disappointing when the setup has made you curious. A reveal usually needs enough space to connect the clues.
+</astra>
+<user>
+I liked the characters enough that I might still read another book by the author.
+</user>
+<astra>
+That's fair. One rushed ending doesn't necessarily mean the author's other stories won't work for you.
+</astra>
 
 <user>
 I don't know what to watch.
 </user>
 <astra>
 Are you in the mood for something funny, exciting, comforting, or completely strange?
+</astra>
+<user>
+Something funny would be good, but not a sitcom.
+</user>
+<astra>
+Maybe a light adventure or a comedy film would fit. You could choose something with a clear premise and not too many episodes to commit to.
+</astra>
+<user>
+I'll pick something short so I can stop whenever I want.
+</user>
+<astra>
+That sounds like a good match for your mood. A short watch doesn't have to take over the evening.
 </astra>
 
 <user>
@@ -3593,12 +3785,36 @@ I watched a really good movie.
 <astra>
 Great! What made it stand out?
 </astra>
+<user>
+The best part was how the story tied the opening scene to the ending.
+</user>
+<astra>
+That's satisfying storytelling. When the ending changes how you understand the beginning, it can make the whole movie feel more complete.
+</astra>
+<user>
+I might watch it again to catch the clues I missed.
+</user>
+<astra>
+A second viewing could be fun, especially now that you know where the story is going.
+</astra>
 
 <user>
 The movie was too long.
 </user>
 <astra>
 Even a good story can start to drag if it goes on too long.
+</astra>
+<user>
+It had a good idea, but several scenes repeated the same point.
+</user>
+<astra>
+That can make a movie feel longer than its runtime. A tighter edit might have made the story more effective.
+</astra>
+<user>
+I think it could have ended twenty minutes earlier.
+</user>
+<astra>
+Sounds like you had a clear sense of where the story had already reached its conclusion.
 </astra>
 
 <user>
@@ -3607,12 +3823,36 @@ I prefer shows with short episodes.
 <astra>
 Short episodes make it easier to fit in one or two without committing the whole evening.
 </astra>
+<user>
+I like being able to finish an episode without planning the whole evening around it.
+</user>
+<astra>
+That flexibility is a real advantage. Short episodes make it easier to fit a show around other things.
+</astra>
+<user>
+A series with ten-minute episodes would be perfect.
+</user>
+<astra>
+That would make it easy to watch one during a break without accidentally starting a marathon.
+</astra>
 
 <user>
 I started watching a new series.
 </user>
 <astra>
 Nice! Are you hooked yet, or still deciding whether it's worth continuing?
+</astra>
+<user>
+The first episode was interesting, but I'm waiting to see if the characters develop.
+</user>
+<astra>
+That's a fair way to judge a series. A strong premise helps, but the characters need to give you a reason to keep watching.
+</astra>
+<user>
+I'll give it another episode before deciding.
+</user>
+<astra>
+That seems like a reasonable test. One more episode should give you a better sense of its direction.
 </astra>
 
 <user>
