@@ -27,51 +27,55 @@ SPECIAL_TOKENS = {
 SPECIAL_RE = re.compile("(" + "|".join(
     re.escape(token) for token in sorted(SPECIAL_TOKENS, key=len, reverse=True)
 ) + ")")
-PAIR_RE = re.compile(
-    r"<user>\s*([\s\S]*?)\s*</user>\s*"
-    r"(?:<think>[\s\S]*?</think>\s*)?"
-    r"<astra>\s*([\s\S]*?)\s*</astra>"
-)
+TAG_RE = re.compile(r"</?(user|astra|think|getinfo|getinforesult)>")
 # Keep whitespace, words, numbers, and punctuation in separate pieces.
 PRETOKEN_RE = re.compile(r"\s+|[^\W_]+|_+|[^\w\s]+", re.UNICODE)
 
 
-def load_pairs(dataset_path: Path) -> list[tuple[str, str]]:
+def load_conversations(dataset_path: Path) -> list[str]:
     raw = dataset_path.read_text(encoding="utf-8")
-    # Ignore the explanatory material before the first actual training sample.
-    marker = re.search(r"(?m)^<user>\s*$", raw)
+    marker = re.search(r"(?m)^<user>\s*$|<user>", raw)
     if not marker:
-        raise ValueError("No standalone <user> training marker found.")
-    pairs = [(u.strip(), a.strip()) for u, a in PAIR_RE.findall(raw[marker.start():])]
-    # Remove any legacy think blocks; ASTRA now trains on direct answers only.
-    pairs = [
-        (user, re.sub(r"<think>[\s\S]*?</think>\s*", "", answer, count=1).strip())
-        for user, answer in pairs
-    ]
-    if not pairs:
-        raise ValueError("No complete user/ASTRA pairs found.")
-    for index, (user, astra) in enumerate(pairs, 1):
-        if not user or not astra:
-            raise ValueError(f"Example {index} has an empty message.")
-    return pairs
+        raise ValueError("No <user> training marker found.")
+    raw = raw[marker.start():].strip()
+    conversations = re.split(r"\n\s*\n(?=<user>)", raw)
+    valid = []
+    for index, sample in enumerate(conversations, 1):
+        sample = sample.strip()
+        if not sample:
+            continue
+        if not sample.startswith("<user>") or not sample.endswith("</astra>"):
+            raise ValueError(f"Conversation {index} must start with <user> and end with </astra>.")
+        stack = []
+        for match in TAG_RE.finditer(sample):
+            token = match.group(0)
+            name = token.strip("<>/")
+            if token.startswith("</"):
+                if not stack or stack[-1] != name:
+                    raise ValueError(f"Conversation {index} has mismatched {token}.")
+                stack.pop()
+            else:
+                stack.append(name)
+        if stack:
+            raise ValueError(f"Conversation {index} has unclosed tags: {stack}.")
+        if "<user>" not in sample or "<astra>" not in sample:
+            raise ValueError(f"Conversation {index} needs at least one user and ASTRA message.")
+        valid.append(sample)
+    if not valid:
+        raise ValueError("No complete conversations found.")
+    return valid
 
 
 def text_pieces(text: str) -> list[str]:
     return PRETOKEN_RE.findall(text)
 
 
-def train_bpe(pairs: list[tuple[str, str]], target_size: int):
-    """Train BPE using incremental pair counts instead of rescanning all text.
-
-    A merge only changes sequences that currently contain the selected pair.
-    Pair counts are maintained with a lazy priority queue, so unrelated
-    sequences are not revisited on every vocabulary step.
-    """
+def train_bpe(conversations: list[str], target_size: int):
+    """Train BPE on every message in each serialized conversation."""
     piece_counts: Counter[tuple[int, ...]] = Counter()
-    for user, astra in pairs:
-        clean_user = SPECIAL_RE.sub("", user)
-        clean_astra = SPECIAL_RE.sub("", astra)
-        for piece in text_pieces(clean_user) + text_pieces(clean_astra):
+    for conversation in conversations:
+        clean_text = SPECIAL_RE.sub("", conversation)
+        for piece in text_pieces(clean_text):
             piece_counts[tuple(piece.encode("utf-8"))] += 1
 
     sequences = [(list(piece), count) for piece, count in piece_counts.items()]
@@ -280,12 +284,11 @@ def save_tokenizer(config_path: Path, vocab: list[bytes | None], merges: list[tu
     return fingerprint
 
 
-def tokenize_dataset(pairs, output_path: Path, merge_ranks, fingerprint: str):
+def tokenize_dataset(conversations, output_path: Path, merge_ranks, fingerprint: str):
     total_tokens = 0
     with output_path.open("w", encoding="utf-8") as output:
-        for index, (user, astra) in enumerate(pairs):
-            sample = f"<user>\n{user}\n</user>\n<astra>\n{astra}\n</astra>"
-            input_ids = encode(sample, merge_ranks)
+        for index, conversation in enumerate(conversations):
+            input_ids = encode(conversation, merge_ranks)
             total_tokens += len(input_ids)
             record = {
                 "id": index,
@@ -295,6 +298,7 @@ def tokenize_dataset(pairs, output_path: Path, merge_ranks, fingerprint: str):
             output.write(json.dumps(record, separators=(",", ":"), ensure_ascii=False))
             output.write("\n")
     return total_tokens
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -309,13 +313,13 @@ def main():
     if args.vocab_size <= BASE_VOCAB_SIZE + len(SPECIAL_TOKENS):
         parser.error("--vocab-size must be greater than 262")
 
-    pairs = load_pairs(args.dataset)
-    vocab, merges = train_bpe(pairs, args.vocab_size)
+    conversations = load_conversations(args.dataset)
+    vocab, merges = train_bpe(conversations, args.vocab_size)
     fingerprint = save_tokenizer(args.config, vocab, merges, args.vocab_size)
     merge_ranks = {pair: rank for rank, pair in enumerate(merges)}
-    total_tokens = tokenize_dataset(pairs, args.output, merge_ranks, fingerprint)
+    total_tokens = tokenize_dataset(conversations, args.output, merge_ranks, fingerprint)
     actual_size = len(vocab)
-    print(f"Tokenizer trained on {len(pairs)} conversation pairs.")
+    print(f"Tokenizer trained on {len(conversations)} serialized conversations.")
     print(f"Vocabulary: {actual_size:,} tokens (target: {args.vocab_size:,}).")
     print(f"Learned BPE merges: {len(merges):,}.")
     print(f"Encoded dataset: {total_tokens:,} tokens.")
