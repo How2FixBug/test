@@ -7,6 +7,7 @@ train the neural network.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 from collections import Counter
@@ -156,8 +157,19 @@ def decode(ids: list[int], vocab: list[bytes | None]) -> str:
     return "".join(output)
 
 
+def tokenizer_fingerprint(vocab: list[bytes | None], merges: list[tuple[int, int]]) -> str:
+    payload = {
+        "vocab_hex": [token.hex() if token is not None else None for token in vocab],
+        "merges": [list(pair) for pair in merges],
+    }
+    canonical = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(canonical).hexdigest()
+
+
 def save_tokenizer(config_path: Path, vocab: list[bytes | None], merges: list[tuple[int, int]], target_size: int):
+    fingerprint = tokenizer_fingerprint(vocab, merges)
     config = {
+        "fingerprint": fingerprint,
         "name": "ASTRA 0.1 Byte-Level BPE",
         "type": "byte_level_bpe",
         "target_vocab_size": target_size,
@@ -174,13 +186,18 @@ def save_tokenizer(config_path: Path, vocab: list[bytes | None], merges: list[tu
         ),
     }
     config_path.write_text(json.dumps(config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return fingerprint
 
 
-def tokenize_dataset(pairs, output_path: Path, merges):
+def tokenize_dataset(pairs, output_path: Path, merges, fingerprint: str):
     with output_path.open("w", encoding="utf-8") as output:
         for index, (user, astra) in enumerate(pairs):
             sample = f"<user>\n{user}\n</user>\n<astra>\n{astra}\n</astra>"
-            record = {"id": index, "input_ids": encode(sample, merges)}
+            record = {
+                "id": index,
+                "tokenizer_fingerprint": fingerprint,
+                "input_ids": encode(sample, merges),
+            }
             output.write(json.dumps(record, separators=(",", ":"), ensure_ascii=False))
             output.write("\n")
 
@@ -200,8 +217,8 @@ def main():
 
     pairs = load_pairs(args.dataset)
     vocab, merges = train_bpe(pairs, args.vocab_size)
-    save_tokenizer(args.config, vocab, merges, args.vocab_size)
-    tokenize_dataset(pairs, args.output, merges)
+    fingerprint = save_tokenizer(args.config, vocab, merges, args.vocab_size)
+    tokenize_dataset(pairs, args.output, merges, fingerprint)
 
     total_tokens = sum(len(encode(f"<user>\n{u}\n</user>\n<astra>\n{a}\n</astra>", merges))
                        for u, a in pairs)
