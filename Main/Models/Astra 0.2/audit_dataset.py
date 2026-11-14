@@ -64,7 +64,8 @@ def main() -> None:
         "--config", type=Path, default=HERE / "tokenizer_config.json"
     )
     parser.add_argument("--expected-count", type=int, default=282, help="Expected conversation count; use 0 to disable.")
-    parser.add_argument("--minimum-multi-turn", type=int, default=150, help="Minimum number of multi-turn conversations.")
+    parser.add_argument("--minimum-multi-turn", type=int, default=282, help="Minimum number of multi-turn conversations.")
+    parser.add_argument("--exact-user-turns", type=int, default=3, help="Require exactly this many user messages in every conversation; use 0 to disable.")
     parser.add_argument("--sample-count", type=int, default=12)
     parser.add_argument("--sample-seed", type=int, default=42)
     args = parser.parse_args()
@@ -72,6 +73,10 @@ def main() -> None:
     conversations = load_conversations(args.dataset)
     if args.expected_count and len(conversations) != args.expected_count:
         raise SystemExit(f"Expected {args.expected_count:,} conversations, found {len(conversations):,}.")
+    user_turn_counts = [len(MESSAGE_RE["user"].findall(sample)) for sample in conversations]
+    if args.exact_user_turns and any(count != args.exact_user_turns for count in user_turn_counts):
+        bad = [(index + 1, count) for index, count in enumerate(user_turn_counts) if count != args.exact_user_turns]
+        raise SystemExit(f"Expected exactly {args.exact_user_turns} user messages per conversation; mismatches: {bad[:12]}")
     users = [body.strip() for sample in conversations for body in MESSAGE_RE["user"].findall(sample)]
     answers = [body.strip() for sample in conversations for body in MESSAGE_RE["astra"].findall(sample)]
     if len({normalize(value) for value in users}) != len(users):
