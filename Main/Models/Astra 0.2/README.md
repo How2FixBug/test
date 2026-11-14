@@ -13,13 +13,15 @@ layer will handle changing facts and external lookups.
 ## Training source
 
 - `dataset_conversation_candidate.txt` is the current curated conversation corpus.
-- Current corpus: **282 serialized conversations**.
+- Current corpus: **312 serialized conversations**.
 - Every conversation now contains **exactly 3 user messages**.
-- Current totals: **846 user messages** and **854 ASTRA messages**. The eight
+- Current totals: **936 user messages** and **944 ASTRA messages**. The eight
   additional ASTRA messages are part of the information-lookup handoff examples.
-- All 282 conversations are multi-turn.
+- All 312 conversations are multi-turn.
 - The two earlier four-user-message threads were consolidated into three
   messages while preserving their key context.
+- Added 30 new hand-authored conversations in this expansion; each has three
+  user messages and context-specific replies.
 - Exact duplicate user-message bodies: **0**.
 - Exact duplicate ASTRA-message bodies: **0**.
 - These uniqueness checks compare normalized text exactly; they do not prove
@@ -52,7 +54,7 @@ the language model.
 
 The dataset auditor now requires exactly three user messages per conversation
 by default, checks exact normalized uniqueness of user and ASTRA message
-bodies, and requires at least 282 multi-turn conversations.
+bodies, and requires at least 312 multi-turn conversations.
 
 ## Train
 
