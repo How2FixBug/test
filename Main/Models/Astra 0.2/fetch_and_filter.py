@@ -37,27 +37,27 @@ EXPECTED_GIT_BLOB_SHA1 = "9c01c26ec1af30cb2a868708e7be59cb4ee2e441"
 SOURCE_MARKER = f"<!-- ASTRA_SOURCE: {SOURCE_ID} ({SOURCE_LICENSE}) -->"
 
 PAIR_RE = re.compile(
-    r"(?m)^<user>\\s*\\n([\\s\\S]*?)\\n</user>\\s*\\n"
-    r"<astra>\\s*\\n(?:<think>[\\s\\S]*?</think>\\s*)?([\\s\\S]*?)\\n</astra>"
+    r"(?m)^<user>\s*\n([\s\S]*?)\n</user>\s*\n"
+    r"<astra>\s*\n(?:<think>[\s\S]*?</think>\s*)?([\s\S]*?)\n</astra>"
 )
-URL_RE = re.compile(r"(?:https?://|www\\.)\\S+", re.I)
-EMAIL_RE = re.compile(r"\\b[\\w.+-]+@[\\w.-]+\\.[A-Za-z]{2,}\\b")
-PHONE_RE = re.compile(r"(?<!\\w)(?:\\+?\\d[ .()/-]?){8,15}(?!\\w)")
-LONG_NUMBER_RE = re.compile(r"\\b\\d{4,}\\b")
+URL_RE = re.compile(r"(?:https?://|www\.)\S+", re.I)
+EMAIL_RE = re.compile(r"\b[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}\b")
+PHONE_RE = re.compile(r"(?<!\w)(?:\+?\d[ .()/-]?){8,15}(?!\w)")
+LONG_NUMBER_RE = re.compile(r"\b\d{4,}\b")
 UNSAFE_RE = re.compile(
-    r"\\b(?:"
+    r"\b(?:"
     r"porn|nudes?|explicit sex|suicide|self[- ]harm|"
     r"cocaine|heroin|methamphetamine|"
     r"nigger|faggot|cunt|whore|slut|"
     r"fuck(?:ing|ed|er)?|shit(?:ty)?|bitch(?:es)?|asshole"
-    r")\\b", re.I,
+    r")\b", re.I,
 )
 FACTUAL_RE = re.compile(
-    r"\\b(?:"
+    r"\b(?:"
     r"did you know|i learned that|what have you learned|"
     r"capital of|population of|president of|prime minister|"
     r"who (?:was|is|invented|discovered)|when (?:was|did|were)|"
-    r"where (?:is|was|were) .{0,55}\\b(?:located|born|founded)|"
+    r"where (?:is|was|were) .{0,55}\b(?:located|born|founded)|"
     r"how many|how much|what year|which country|"
     r"explain (?:why|how)|define |definition of|according to|"
     r"photosynthesis|quantum mechanics|chemical reaction|"
@@ -66,21 +66,21 @@ FACTUAL_RE = re.compile(
     r"artificial intelligence|stock market|cryptocurrency|"
     r"physics|chemistry|biology|geography|"
     r"the process of|is defined as|in conclusion"
-    r")\\b", re.I,
+    r")\b", re.I,
 )
-DIRECT_QUESTION_RE = re.compile(r"\\b(?:what|who|when|where|which|how)\\b.{0,90}\\?", re.I)
+DIRECT_QUESTION_RE = re.compile(r"\b(?:what|who|when|where|which|how)\b.{0,90}\?", re.I)
 SOCIAL_QUESTION_RE = re.compile(
-    r"\\b(?:how are you|how's it going|what are you up to|"
+    r"\b(?:how are you|how's it going|what are you up to|"
     r"what are you doing|what do you think|what do you like|"
     r"what's your favorite|what are your plans|where are you going|"
     r"what do you want to do|who are you with|when are you free|"
-    r"how was your day|how have you been)\\b", re.I,
+    r"how was your day|how have you been)\b", re.I,
 )
 # Assistant-side human biography, relationships, possessions, identity,
 # locations, memories, tastes, and offline activities are all excluded.
 PERSONA_RE = re.compile(
-    r"\\b(?:"
-    r"i\\s+(?:am|was|have|had|live|lived|work|worked|study|studied|"
+    r"\b(?:"
+    r"i\s+(?:am|was|have|had|live|lived|work|worked|study|studied|"
     r"own|owned|visited|went|grew up|used to|remember|recall|"
     r"love|loved|like|liked|hate|hated|prefer|preferred|enjoy|enjoyed|"
     r"adore|miss|made|cooked|bought|played|travelled|traveled|"
@@ -89,10 +89,10 @@ PERSONA_RE = re.compile(
     r"my mom|my mother|my dad|my father|my family|my parents|"
     r"my brother|my sister|my friend|my best friend|my girlfriend|"
     r"my boyfriend|my wife|my husband|my kids|my children|my pet)|"
-    r"i(?:'m| am)\\s+(?:a |an |from |at |in |on |with |tall|short|"
+    r"i(?:'m| am)\s+(?:a |an |from |at |in |on |with |tall|short|"
     r"single|married|dating|studying|working|living|getting in touch)|"
-    r"my\\s+(?:name|job|wife|husband|girlfriend|boyfriend|children|kids|"
-    r"brother|sister|parents|family|house|car|school|cat|dog|pet|mom|dad)\\b"
+    r"my\s+(?:name|job|wife|husband|girlfriend|boyfriend|children|kids|"
+    r"brother|sister|parents|family|house|car|school|cat|dog|pet|mom|dad)\b"
     r")", re.I,
 )
 # Keep only short conversational stance phrases when first person is used.
@@ -103,20 +103,20 @@ SAFE_FIRST_PERSON_RE = re.compile(
     r"(?:[.!?, ]|$)", re.I,
 )
 SCRIPTED_RE = re.compile(
-    r"\\b(?:as an ai language model|i cannot assist with that request|"
+    r"\b(?:as an ai language model|i cannot assist with that request|"
     r"i'll take that as a no|are you still there|"
     r"let me know if you need anything else|"
     r"when my page first loaded|"
-    r"well, have a nice day|thank you for participating)\\b", re.I,
+    r"well, have a nice day|thank you for participating)\b", re.I,
 )
 LOW_QUALITY_RE = re.compile(
-    r"\\b(?:wre|teh|thier|becuase|definately|defiantly|recieve|"
-    r"seperate|occured|belive|skiddish|phonenix)\\b", re.I,
+    r"\b(?:wre|teh|thier|becuase|definately|defiantly|recieve|"
+    r"seperate|occured|belive|skiddish|phonenix)\b", re.I,
 )
 MARKETING_RE = re.compile(
-    r"\\b(?:subscribe|follow me|check out my channel|"
+    r"\b(?:subscribe|follow me|check out my channel|"
     r"visit my website|click the link|promo code|giveaway|"
-    r"download my app|sign up now)\\b", re.I,
+    r"download my app|sign up now)\b", re.I,
 )
 MAX_USER_CHARS = 180
 MAX_ASSISTANT_CHARS = 170
@@ -125,7 +125,7 @@ MAX_WORDS = 30
 
 
 def normalize(value: str) -> str:
-    return re.sub(r"\\s+", " ", value).strip().casefold()
+    return re.sub(r"\s+", " ", value).strip().casefold()
 
 
 def looks_corrupted(value: str) -> bool:
@@ -134,13 +134,13 @@ def looks_corrupted(value: str) -> bool:
         for i in range(len(words) - 3):
             if words[i] == words[i + 1] == words[i + 2] == words[i + 3]:
                 return True
-    if re.search(r"(.)\\1{5,}", value):
+    if re.search(r"(.)\1{5,}", value):
         return True
     if len(value) >= 14:
         useful = sum(ch.isalnum() or ch.isspace() for ch in value)
         if useful / len(value) < 0.65:
             return True
-    if re.search(r"\\b(?:lol|haha|hehe)(?:\\s+\\1){3,}", value, re.I):
+    if re.search(r"\b(?:lol|haha|hehe)(?:\s+\1){3,}", value, re.I):
         return True
     return False
 
@@ -148,7 +148,7 @@ def looks_corrupted(value: str) -> bool:
 def acceptable_turn(value: object, *, assistant: bool) -> bool:
     if not isinstance(value, str):
         return False
-    text = re.sub(r"\\s+", " ", value).strip()
+    text = re.sub(r"\s+", " ", value).strip()
     words = text.split()
     limit = MAX_ASSISTANT_CHARS if assistant else MAX_USER_CHARS
     if not (3 <= len(text) <= limit and MIN_WORDS <= len(words) <= MAX_WORDS):
@@ -169,9 +169,9 @@ def acceptable_turn(value: object, *, assistant: bool) -> bool:
         # Reject explanatory or multi-sentence answers; ASTRA is not a tutor.
         if len(re.findall(r"[.!?]", text)) > 2:
             return False
-        if re.search(r"\\b(?:therefore|for example|in conclusion|"
+        if re.search(r"\b(?:therefore|for example|in conclusion|"
                      r"scientifically|historically|firstly|secondly|"
-                     r"the reason is|this means that)\\b", text, re.I):
+                     r"the reason is|this means that)\b", text, re.I):
             return False
     return True
 
@@ -189,7 +189,7 @@ def clean_turn(messages) -> tuple[str, str] | None:
     for item in messages:
         if not isinstance(item, dict):
             return None
-        value = re.sub(r"\\s+", " ", str(item.get("text", ""))).strip()
+        value = re.sub(r"\s+", " ", str(item.get("text", ""))).strip()
         if value:
             pieces.append(value)
     text = " ".join(pieces).strip()
@@ -223,7 +223,7 @@ def download_dataset(force: bool = False) -> bytes:
         RAW_PATH.write_bytes(payload)
 
     git_blob = hashlib.sha1(
-        b"blob " + str(len(payload)).encode("ascii") + b"\\0" + payload
+        b"blob " + str(len(payload)).encode("ascii") + b"\0" + payload
     ).hexdigest()
     if git_blob != EXPECTED_GIT_BLOB_SHA1:
         RAW_PATH.unlink(missing_ok=True)
@@ -346,7 +346,7 @@ def write_manifest(added: int, stats: Counter, source_sha1: str) -> None:
         "last_run_filter_counts": dict(stats),
     }
     MANIFEST_PATH.write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2) + "\\n",
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
 
@@ -380,7 +380,7 @@ def main() -> None:
         if len(additions) >= args.max_add:
             break
 
-    print("\\nASTRA PUBLIC DATASET IMPORT")
+    print("\nASTRA PUBLIC DATASET IMPORT")
     print(f"Source: {SOURCE_ID}")
     print(f"License: {SOURCE_LICENSE}")
     print(f"Conversations scanned: {stats['conversations_seen']:,}")
@@ -394,30 +394,30 @@ def main() -> None:
 
     if args.sample_count and additions:
         sample = random.Random(42).sample(additions, min(args.sample_count, len(additions)))
-        print(f"\\nQUALITY SAMPLE ({len(sample)} examples)")
+        print(f"\nQUALITY SAMPLE ({len(sample)} examples)")
         for number, (user, assistant) in enumerate(sample, 1):
-            print(f"\\n[{number}/{len(sample)}]")
+            print(f"\n[{number}/{len(sample)}]")
             print(f"USER: {user}")
             print(f"ASTRA: {assistant}")
 
     if args.dry_run:
-        print("\\nDry run only. No files were changed.")
+        print("\nDry run only. No files were changed.")
         return
 
     if additions:
         blocks = [
-            f"{SOURCE_MARKER}\\n<user>\\n{user}\\n</user>\\n"
-            f"<astra>\\n{assistant}\\n</astra>"
+            f"{SOURCE_MARKER}\n<user>\n{user}\n</user>\n"
+            f"<astra>\n{assistant}\n</astra>"
             for user, assistant in additions
         ]
         with DATASET_PATH.open("a", encoding="utf-8") as output:
             if DATASET_PATH.stat().st_size:
-                output.write("\\n\\n")
-            output.write("\\n\\n---\\n\\n".join(blocks))
-            output.write("\\n")
+                output.write("\n\n")
+            output.write("\n\n---\n\n".join(blocks))
+            output.write("\n")
     write_manifest(len(additions), stats, EXPECTED_GIT_BLOB_SHA1)
 
-    print(f"\\nAdded {len(additions):,} filtered examples to dataset.txt.")
+    print(f"\nAdded {len(additions):,} filtered examples to dataset.txt.")
     print("MIT source attribution saved in import_manifest.json and dataset markers.")
     print("Next: run python3 prepare_dataset.py to rebuild and audit. No training was started.")
 
