@@ -21,7 +21,7 @@ def main() -> None:
     run("3/4 Audit curated conversation corpus", str(HERE / "audit_dataset.py"))
     run("4/4 Run correctness checks", str(HERE / "test_causality.py"))
     print("\nPreparation complete. Review the audit before training.", flush=True)
-    print("Optional: generate separate BYU review candidates with python3 import_chitchat.py", flush=True)
+    print("Verified BYU Chit-Chat imports are preserved. No training was started.", flush=True)
 
 
 if __name__ == "__main__":
