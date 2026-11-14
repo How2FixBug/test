@@ -105,3 +105,63 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
 .input-box textarea::-webkit-scrollbar-track{margin:5px 0;border-radius:8px;background:rgba(255,255,255,.035)}
 .input-box textarea::-webkit-scrollbar-thumb{border:2px solid transparent;border-radius:8px;background:rgba(153,158,218,.48);background-clip:padding-box}
 .input-box textarea::-webkit-scrollbar-thumb:hover{background:rgba(185,181,255,.72);background-clip:padding-box}
+
+
+/* Input grows naturally; only show a rounded scrollbar after seven lines. */
+.input-box textarea {
+  height: 24px;
+  min-height: 24px;
+  max-height: 147px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  scrollbar-gutter: auto;
+}
+.input-box.input-overflow textarea {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160,166,226,.55) transparent;
+}
+.input-box textarea::-webkit-scrollbar { width: 0; height: 0; }
+.input-box.input-overflow textarea::-webkit-scrollbar { width: 6px; }
+.input-box.input-overflow textarea::-webkit-scrollbar-track {
+  margin: 7px 1px;
+  border-radius: 99px;
+  background: transparent;
+}
+.input-box.input-overflow textarea::-webkit-scrollbar-thumb {
+  min-height: 28px;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  background: rgba(160,166,226,.55);
+  background-clip: padding-box;
+}
+.input-box.input-overflow textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(195,192,255,.82);
+  background-clip: padding-box;
+}
+
+/* The composer lifts first, contracts into the message, then returns empty. */
+.input-box.input-hidden-for-flight { opacity: 0 !important; }
+.message-morph-target { visibility: hidden; }
+.message-morph-target .avatar {
+  opacity: 0;
+  transform: translateX(-8px) scale(.88);
+  transition: opacity .24s ease, transform .3s cubic-bezier(.2,.8,.2,1);
+}
+.message-morph-target.morph-avatar-in .avatar {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+.message-morph-target .bubble { opacity: 0; }
+.message-morph-target.morph-message-in .bubble {
+  opacity: 1;
+  transition: opacity .16s ease;
+}
+.input-box.input-fade-back { opacity: 0; transition: opacity .26s ease; }
+.input-box.input-fade-back.input-fade-visible { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .message-morph-target .avatar, .message-morph-target .bubble,
+  .input-box.input-fade-back { transition: none !important; }
+}
