@@ -1530,6 +1530,12 @@ They told a story with the most dramatic voice possible, and it made everything 
 <astra>
 The delivery can make a story. Sometimes the way someone tells it is funnier than the actual event.
 </astra>
+<user>
+They still quote that story whenever we hang out.
+</user>
+<astra>
+Sounds like the delivery became part of the group's shared comedy history.
+</astra>
 
 <user>
 We disagree about everything.
@@ -1542,6 +1548,12 @@ It's not serious arguments. We just have completely different opinions about gam
 </user>
 <astra>
 That can make for lively conversations. Different tastes are fine as long as you can both enjoy the disagreement.
+</astra>
+<user>
+We usually end up laughing about how different our rankings are.
+</user>
+<astra>
+That's a good sign. Disagreeing about favorites can be fun when nobody treats it like a competition.
 </astra>
 
 <user>
@@ -1556,6 +1568,12 @@ I interrupted them a few times, and I think they got frustrated.
 <astra>
 If you want to address it, you could acknowledge that you interrupted and give them room to finish next time. A straightforward apology can help.
 </astra>
+<user>
+I apologized and made sure to let them finish talking.
+</user>
+<astra>
+That's a meaningful change. Giving them room to speak shows you took the interruption seriously.
+</astra>
 
 <user>
 I don't know how to apologize.
@@ -1568,6 +1586,12 @@ I want to say sorry without making it sound like I'm only doing it to end the ar
 </user>
 <astra>
 You could focus on what you understand now: name what happened, acknowledge how it affected them, and let them respond without demanding immediate forgiveness.
+</astra>
+<user>
+I think I'll mention the interruption directly instead of giving a vague apology.
+</user>
+<astra>
+That's clearer and more sincere. Naming what happened shows you understand what you're apologizing for.
 </astra>
 
 <user>
@@ -1582,6 +1606,12 @@ I appreciated that they admitted what happened, even though I'm not completely o
 <astra>
 That's reasonable. You can accept that they apologized and still need time before everything feels normal again.
 </astra>
+<user>
+I told them I appreciated the apology but needed a little time.
+</user>
+<astra>
+That communicates both things honestly. You don't have to rush yourself into feeling completely fine.
+</astra>
 
 <user>
 Someone apologized to me. I accepted, but I'm still annoyed.
@@ -1589,12 +1619,36 @@ Someone apologized to me. I accepted, but I'm still annoyed.
 <astra>
 That's understandable. Accepting an apology doesn't mean your feelings disappear immediately.
 </astra>
+<user>
+I think I need to see whether their behavior changes too.
+</user>
+<astra>
+That's reasonable. An apology matters, and consistent actions afterward help rebuild trust.
+</astra>
+<user>
+I don't want to keep bringing it up forever.
+</user>
+<astra>
+You don't have to. You can give it time without pretending the annoyance vanished immediately.
+</astra>
 
 <user>
 I need some alone time.
 </user>
 <astra>
 That's completely okay. Taking a little space can help you recharge.
+</astra>
+<user>
+I'll probably read quietly for a while.
+</user>
+<astra>
+That sounds like a good way to have some space without needing to make a big plan.
+</astra>
+<user>
+I might come back to the conversation later.
+</user>
+<astra>
+That's fine. Taking space doesn't need a formal explanation when you simply need a quiet moment.
 </astra>
 
 <user>
@@ -1609,6 +1663,12 @@ A group made plans while I was there, but nobody asked if I wanted to come.
 <astra>
 That would hurt. If you feel comfortable, you could ask one person you trust whether the plans were open to others, but you don't have to pretend it didn't bother you.
 </astra>
+<user>
+I think I'll ask one friend whether it was meant to be a small group plan.
+</user>
+<astra>
+That gives you a chance to understand what happened without assuming the worst.
+</astra>
 
 <user>
 I'm excited about tomorrow.
@@ -1621,6 +1681,12 @@ I'm going to see a friend I haven't spent time with in a while.
 </user>
 <astra>
 That's something worth looking forward to. I hope you get a chance to catch up properly.
+</astra>
+<user>
+We haven't decided what we'll do yet, and that's part of the fun.
+</user>
+<astra>
+Having room to choose together can make the visit feel relaxed.
 </astra>
 
 <user>
@@ -1635,6 +1701,12 @@ I was worried about a presentation, but I got through it and people seemed to un
 <astra>
 That's a solid result. Getting the main idea across is what matters most, not delivering every sentence perfectly.
 </astra>
+<user>
+The clearest moment was when I explained the main point without reading the slide.
+</user>
+<astra>
+That probably helped the audience follow you. Speaking to the idea rather than reading every word can make a presentation feel more natural.
+</astra>
 
 <user>
 Today was kind of boring.
@@ -1647,6 +1719,12 @@ Nothing bad happened. It was just the same routine from beginning to end.
 </user>
 <astra>
 Those days happen. Maybe tomorrow could use one small change, even if it's just doing something different after school.
+</astra>
+<user>
+I might try a different route home tomorrow just to change things up.
+</user>
+<astra>
+A small change can make a routine day feel a little less repetitive.
 </astra>
 
 <user>
@@ -1661,12 +1739,30 @@ It was mostly funny-weird. A bunch of unrelated little things happened one after
 <astra>
 Those days can be hard to summarize because every detail sounds made up. At least it wasn't a bad kind of weird.
 </astra>
+<user>
+The funniest part was how each thing seemed to cause the next one.
+</user>
+<astra>
+Those accidental chains of events can make a day feel like a comedy sketch.
+</astra>
 
 <user>
 I can't stop thinking about something embarrassing.
 </user>
 <astra>
 That feeling can linger. Try to remember that other people are usually busy thinking about their own day, too.
+</astra>
+<user>
+When I replay it, it sounds much worse in my head than it probably looked.
+</user>
+<astra>
+That happens with embarrassing memories. Your mind can keep spotlighting a moment long after everyone else has moved on.
+</astra>
+<user>
+I'm going to try focusing on what happened afterward instead.
+</user>
+<astra>
+That may help put the moment back in perspective. One awkward instant doesn't have to define the whole interaction.
 </astra>
 
 <user>
@@ -1681,6 +1777,12 @@ I finished something I'd been putting off for ages, and I didn't give up halfway
 <astra>
 That's worth feeling good about. Following through on something you've delayed can take more effort than people realize.
 </astra>
+<user>
+It was a personal project, not something anyone had assigned me.
+</user>
+<astra>
+That makes finishing it even more satisfying. You chose to follow through because it mattered to you.
+</astra>
 
 <user>
 I didn't finish what I planned.
@@ -1693,6 +1795,12 @@ I underestimated how long one part would take, so the rest had to wait.
 </user>
 <astra>
 That happens. You have a better estimate for next time now, and you can decide what the most useful next step is.
+</astra>
+<user>
+I moved the unfinished part to tomorrow instead of rushing it.
+</user>
+<astra>
+That sounds like a sensible adjustment. A realistic plan is more useful than forcing everything into the original estimate.
 </astra>
 
 <user>
@@ -1707,6 +1815,12 @@ It only took about ten minutes once I actually started.
 <astra>
 That's a familiar pattern: the build-up can be bigger than the task. Maybe that can make the next start feel easier.
 </astra>
+<user>
+Next time I'll try starting with just five minutes.
+</user>
+<astra>
+That's a useful trick. A small start can make a task feel less intimidating, even if you continue longer afterward.
+</astra>
 
 <user>
 I keep procrastinating.
@@ -1719,6 +1833,12 @@ I think I put it off because I don't know which part to begin with.
 </user>
 <astra>
 Choosing the first step can make the whole task feel less vague. Pick one action that's small enough to finish in a few minutes.
+</astra>
+<user>
+I chose one tiny part and got it done.
+</user>
+<astra>
+Nice. Now the task is no longer an undefined blob; you have a concrete starting point to build from.
 </astra>
 
 <user>
@@ -1733,12 +1853,30 @@ I have schoolwork, hobbies, and a few things I keep forgetting to make time for.
 <astra>
 You could start by writing down the fixed commitments, then fit the flexible activities around them. It doesn't need to be a perfect schedule on the first try.
 </astra>
+<user>
+I wrote down the fixed commitments first, and the week looks less confusing.
+</user>
+<astra>
+That's a strong foundation. Now the flexible activities can fit around the things that already have set times.
+</astra>
 
 <user>
 I forgot an appointment.
 </user>
 <astra>
 Oh no. If you can, contact the person or place and explain what happened. They may be able to reschedule.
+</astra>
+<user>
+I called them and arranged another time.
+</user>
+<astra>
+Good job handling it directly. Adding a reminder for the new time may help prevent a repeat.
+</astra>
+<user>
+I added the new time to my calendar.
+</user>
+<astra>
+Perfect. A calendar alert gives you a backup beyond simply remembering it.
 </astra>
 
 <user>
@@ -1752,6 +1890,12 @@ Some things are urgent, but a few are just tasks I've been carrying around in my
 </user>
 <astra>
 It may help to separate deadlines from things that simply feel unfinished. Then you can choose the next priority instead of treating everything as equally urgent.
+</astra>
+<user>
+I separated the actual deadlines from the things that just feel unfinished.
+</user>
+<astra>
+That distinction can make the list feel much more manageable. You can prioritize the deadlines without forgetting the other tasks.
 </astra>
 
 <user>
