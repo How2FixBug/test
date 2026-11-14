@@ -1,0 +1,14 @@
+.model-picker-wrap {
+  position: fixed;
+  right: 24px;
+  bottom: 18px;
+  margin: 0;
+  z-index: 25;
+}
+
+@media (max-width: 760px) {
+  .model-picker-wrap {
+    right: 14px;
+    bottom: 14px;
+  }
+}
