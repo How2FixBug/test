@@ -20,7 +20,7 @@ def main():
     args = parser.parse_args()
 
     config = json.loads((HERE / "tokenizer_config.json").read_text(encoding="utf-8"))
-    if "vocab_hex" not in config or "merges" not in config:
+    if "vocab_hex" not in config or "merges" not in config or "fingerprint" not in config:
         raise SystemExit("Tokenizer artifacts are outdated. Run python3 tokenizer.py.")
     vocab = [bytes.fromhex(item) if item is not None else None for item in config["vocab_hex"]]
     merges = [tuple(pair) for pair in config["merges"]]
@@ -33,10 +33,11 @@ def main():
             "This checkpoint uses the old architecture. Run python3 train.py "
             "to create a fresh checkpoint."
         )
-    if checkpoint["model_config"]["vocab_size"] != config["vocab_size"]:
+    if checkpoint["model_config"]["vocab_size"] != config["vocab_size"] or (
+        checkpoint.get("tokenizer_fingerprint") != config["fingerprint"]
+    ):
         raise SystemExit(
-            "Checkpoint and tokenizer vocabularies do not match. Run tokenizer.py, "
-            "then train.py."
+            "Checkpoint and tokenizer do not match. Run tokenizer.py, then train.py."
         )
 
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
