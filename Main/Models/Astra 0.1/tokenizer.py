@@ -39,11 +39,12 @@ def load_pairs(dataset_path: Path) -> list[tuple[str, str]]:
     if not marker:
         raise ValueError("No standalone <user> training marker found.")
     pairs = [(u.strip(), a.strip()) for u, a in PAIR_RE.findall(raw[marker.start():])]
-    # Legacy datasets may contain think blocks; remove them completely.
+    # Remove any legacy think blocks; ASTRA now trains on direct answers only.
     pairs = [
         (user, re.sub(r"<think>[\\s\\S]*?</think>\\s*", "", answer, count=1).strip())
         for user, answer in pairs
-    ]\n    if not pairs:
+    ]
+    if not pairs:
         raise ValueError("No complete user/ASTRA pairs found.")
     for index, (user, astra) in enumerate(pairs, 1):
         if not user or not astra:
