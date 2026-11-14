@@ -1,73 +1,14 @@
-ASTRA 0.1 — DATASET FORMAT TUTORIAL
-====================================
+ASTRA 0.1 — TOKEN MEANINGS
 
-Use the special markers below to show the model who is speaking and what each
-part of a conversation represents. Write the markers exactly as shown.
+<user>      Begins a user message.
+</user>     Ends a user message.
 
-MESSAGE MARKERS
----------------
+<astra>     Begins an ASTRA response.
+</astra>    Ends an ASTRA response.
 
-<|start_user|>       Begins a user message.
-<|end_user|>         Ends a user message.
+<think>     Begins ASTRA's internal thinking section.
+</think>    Ends the thinking section.
 
-<|start_assistant|>  Begins an ASTRA message.
-<|end_assistant|>    Ends an ASTRA message.
-
-<|start_system|>     Begins a system/instruction message.
-<|end_system|>       Ends a system/instruction message.
-
-THINKING MARKERS
-----------------
-
-<|thinking|>         Begins an assistant thinking section.
-<|end_thinking|>     Ends that thinking section.
-
-Thinking is separate from the final response. Do not use these markers for
-ordinary user-facing text.
-
-OTHER USEFUL MARKERS
---------------------
-
-<|separator|>        Separates a message header from its content, if needed.
-<|end_turn|>         Marks the end of ASTRA's complete turn.
-<|tool_call|>         Marks an assistant message that requests a tool/action.
-<|tool_result|>       Marks the result returned by a tool/action.
-
-BASIC CONVERSATION EXAMPLE
---------------------------
-
-<|start_user|>
-Hi, ASTRA!
-<|end_user|>
-<|start_assistant|>
-Hello! How are you?
-<|end_assistant|>
-<|end_turn|>
-
-EXAMPLE WITH A THINKING SECTION
--------------------------------
-
-<|start_user|>
-What is 12 multiplied by 8?
-<|end_user|>
-<|start_assistant|>
-<|thinking|>
-Work out the multiplication: 12 times 8 is 96.
-<|end_thinking|>
-The answer is 96.
-<|end_assistant|>
-<|end_turn|>
-
-IMPORTANT
----------
-
-- These spellings are ASTRA 0.1's proposed dataset markers. They are not
-  automatically special tokens just because they appear in a text file.
-- When preparing the tokenizer, register each marker as its own special token
-  so it is not split into ordinary subword pieces.
-- Use the same spelling consistently in every dataset example.
-- Do not add explanations or ordinary prose outside the message structure
-  when writing training examples.
-- Keep each conversation structurally complete and close every message.
-- This file is a format guide. Put actual training examples in the dataset
-  files you create separately.
+Use the tokens exactly as written. Register each one as a separate special
+token in the tokenizer. Keep thinking separate from the response shown to
+the user.
