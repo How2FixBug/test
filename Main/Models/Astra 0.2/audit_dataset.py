@@ -34,6 +34,21 @@ def repeated(values: list[str], limit: int = 8):
     return [(count, value[:130].replace("\n", " ")) for value, count in counts.most_common(limit) if count > 1]
 
 
+def repeated_phrases(values: list[str], minimum: int = 5, limit: int = 12):
+    counts = Counter()
+    for value in values:
+        clean = re.sub(r"<think>[\s\S]*?</think>", " ", value)
+        words = normalize(clean).split()
+        for size in (4, 5, 6):
+            for index in range(len(words) - size + 1):
+                counts[" ".join(words[index:index + size])] += 1
+    return [
+        (phrase_count, phrase)
+        for phrase, phrase_count in counts.most_common()
+        if phrase_count >= minimum
+    ][:limit]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Inspect ASTRA conversation quality and tokenization; changes no files."
@@ -90,6 +105,14 @@ def main() -> None:
     if groups:
         for count, value in groups:
             print(f"  x{count}: {value}")
+    else:
+        print("  none")
+
+    print("Repeated 4–6 word phrases (review for template patterns):")
+    phrases = repeated_phrases(answers)
+    if phrases:
+        for count, phrase in phrases:
+            print(f"  x{count}: {phrase}")
     else:
         print("  none")
 
