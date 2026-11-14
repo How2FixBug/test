@@ -374,29 +374,34 @@
         easing: "cubic-bezier(.22,.78,.18,1)",
         fill: "forwards"
       });
-      const inputFade = inputBox.animate([
-        { opacity: 1, offset: 0 },
-        { opacity: 1, offset: 0.62 },
-        { opacity: 0, offset: 1 }
-      ], {
-        duration,
-        easing: "linear",
-        fill: "forwards"
-      });
-      await Promise.all([activeFlightAnimation.finished, inputHeightAnimation.finished, inputFade.finished]);
+      await Promise.all([activeFlightAnimation.finished, inputHeightAnimation.finished]);
       activeFlightAnimation.cancel();
       inputHeightAnimation.cancel();
-      inputFade.cancel();
       activeFlightAnimation = null;
       inputHeightAnimation = null;
       if (activeId !== chat.id) throw new Error("Conversation changed");
-      restoreComposer();
+
+      // Reveal the message over the still-visible composer, then fade the composer away.
+      userRow.style.position = "relative";
+      userRow.style.zIndex = "51";
+      inputBox.style.zIndex = "50";
       const messageReveal = bubble.animate(
         [{ opacity: 0 }, { opacity: 1 }],
-        { duration: reducedMotion ? 1 : 180, easing: "ease-out", fill: "forwards" }
+        { duration: reducedMotion ? 1 : 220, easing: "ease-out", fill: "forwards" }
       );
       await messageReveal.finished;
       messageReveal.cancel();
+
+      const inputFade = inputBox.animate(
+        [{ opacity: 1 }, { opacity: 0 }],
+        { duration: reducedMotion ? 1 : 200, easing: "ease-out", fill: "forwards" }
+      );
+      await inputFade.finished;
+      inputFade.cancel();
+
+      userRow.style.position = "";
+      userRow.style.zIndex = "";
+      restoreComposer();
       userRow.classList.add("morph-message-in");
       inputBox.classList.add("composer-reform");
       window.setTimeout(() => inputBox.classList.remove("composer-reform"), reducedMotion ? 1 : 440);
