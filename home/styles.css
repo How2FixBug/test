@@ -165,3 +165,7 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
   .message-morph-target .avatar, .message-morph-target .bubble,
   .input-box.input-fade-back { transition: none !important; }
 }
+
+
+/* Slightly squared upper-right edge makes the composer-to-message morph cleaner. */
+.input-box { border-top-right-radius: 0; }
