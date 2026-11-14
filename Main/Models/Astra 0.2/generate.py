@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import codecs
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -70,7 +71,7 @@ def sample_next_token(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate a direct reply from a trained ASTRA 0.2 checkpoint."
+        description="Generate an ASTRA 0.2 reply or an external-information request."
     )
     parser.add_argument("prompt", nargs="?", default="Hello! What can you do?")
     parser.add_argument("--max-new-tokens", type=int, default=180)
@@ -100,7 +101,7 @@ def main():
         (HERE / "tokenizer_config.json").read_text(encoding="utf-8")
     )
     if not all(key in config for key in ("vocab_hex", "merges", "fingerprint")):
-        raise SystemExit("Tokenizer artifacts are outdated. Run python3 tokenizer.py.")
+        raise SystemExit("Tokenizer artifacts are outdated. Run python3 prepare_dataset.py.")
 
     vocab = [
         bytes.fromhex(item) if item is not None else None
@@ -123,7 +124,7 @@ def main():
         or checkpoint.get("tokenizer_fingerprint") != config["fingerprint"]
     ):
         raise SystemExit(
-            "Checkpoint and tokenizer do not match. Run tokenizer.py, then train.py."
+            "Checkpoint and tokenizer do not match. Run prepare_dataset.py, then train.py."
         )
 
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
@@ -134,13 +135,19 @@ def main():
     if device.type == "mps":
         torch.mps.manual_seed(args.seed)
 
-    # Generate a direct answer; ASTRA no longer has a thinking phase.
-    prompt = f"<user>\n{args.prompt}\n</user>\n<astra>\n"
+    prompt = f"<user>\\n{args.prompt}\\n</user>\\n<astra>\\n"
     generated = encode(prompt, merges)
     astra_end = SPECIAL_TOKENS["</astra>"]
+    think_start = SPECIAL_TOKENS["<think>"]
+    think_end = SPECIAL_TOKENS["</think>"]
+    getinfo_start = SPECIAL_TOKENS["<getinfo>"]
+    getinfo_end = SPECIAL_TOKENS["</getinfo>"]
     special_ids = set(SPECIAL_TOKENS.values())
     answer_ids: list[int] = []
     decoder = codecs.getincrementaldecoder("utf-8")()
+    inside_think = False
+    inside_getinfo = False
+    tool_request_complete = False
 
     with torch.inference_mode():
         for _ in range(args.max_new_tokens):
@@ -150,7 +157,13 @@ def main():
                 device=device,
             )
             logits = model(context)[0, -1]
-            allowed = {astra_end}
+            if inside_think:
+                allowed = {think_end}
+            elif inside_getinfo:
+                allowed = {getinfo_end}
+            else:
+                allowed = {astra_end, think_start, getinfo_start}
+
             next_id = sample_next_token(
                 logits,
                 generated,
@@ -162,26 +175,66 @@ def main():
                 allowed_special_ids=allowed,
                 special_ids=special_ids,
             )
-            # Stop before appending the structural end token, so it never
-            # appears in the decoded user-facing answer.
+
             if next_id == astra_end:
                 break
-
             generated.append(next_id)
             answer_ids.append(next_id)
-            if not args.no_stream and vocab[next_id] is not None:
+
+            if next_id == think_start:
+                inside_think = True
+                continue
+            if next_id == think_end:
+                inside_think = False
+                continue
+            if next_id == getinfo_start:
+                inside_getinfo = True
+                continue
+            if next_id == getinfo_end:
+                inside_getinfo = False
+                tool_request_complete = True
+                break
+
+            if (
+                not args.no_stream
+                and not inside_think
+                and not inside_getinfo
+                and vocab[next_id] is not None
+            ):
                 piece = decoder.decode(vocab[next_id], final=False)
                 if piece:
                     sys.stdout.write(piece)
                     sys.stdout.flush()
 
+    raw_answer = decode(answer_ids, vocab)
+    tool_match = re.search(r"<getinfo>([\\s\\S]*?)</getinfo>", raw_answer)
+    if tool_request_complete and tool_match:
+        if not args.no_stream:
+            tail = decoder.decode(b"", final=True)
+            if tail:
+                sys.stdout.write(tail)
+            sys.stdout.write("\\n")
+        print("ASTRA_TOOL_REQUEST: " + tool_match.group(1).strip())
+        return
+
+    if inside_getinfo:
+        partial = re.search(r"<getinfo>([\\s\\S]*)$", raw_answer)
+        query = partial.group(1).strip() if partial else ""
+        print("ASTRA_TOOL_REQUEST_INCOMPLETE: " + query)
+        return
+
+    visible_answer = re.sub(
+        r"<think>[\\s\\S]*?(?:</think>|$)", "", raw_answer
+    ).strip()
     if args.no_stream:
-        print(decode(answer_ids, vocab).strip())
+        print(visible_answer)
     else:
         tail = decoder.decode(b"", final=True)
         if tail:
             sys.stdout.write(tail)
         print()
+
+
 
 
 if __name__ == "__main__":
