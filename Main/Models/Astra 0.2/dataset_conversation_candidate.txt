@@ -4977,3 +4977,573 @@ What about screen readers?
 <astra>
 Use semantic controls and meaningful labels, then test with a screen reader if you can. Accessibility is easier when considered throughout the design.
 </astra>
+
+<user>
+I started reading a book, but the first chapter is taking me forever.
+</user>
+<astra>
+Is it the writing style, or are you finding it hard to stay interested?
+</astra>
+<user>
+The writing is interesting. I keep stopping because I want to look up things the author mentions.
+</user>
+<astra>
+That can turn reading into a research session. You could mark those spots and look them up after the chapter.
+</astra>
+<user>
+I'll try that so I can keep the story moving.
+</user>
+<astra>
+Good plan. You can follow the interesting side trails without losing the thread of the book.
+</astra>
+
+<user>
+I played chess against a friend and lost in twelve moves.
+</user>
+<astra>
+That was a quick game. Did you spot what went wrong afterward?
+</astra>
+<user>
+I moved my queen too early and got distracted trying to attack.
+</user>
+<astra>
+That can leave other pieces undeveloped. In your next game, try checking what each move leaves undefended before you commit.
+</astra>
+<user>
+I noticed the mistake as soon as they took my rook.
+</user>
+<astra>
+Oof, that's a memorable way to learn it. Reviewing the position just before the rook was lost may show the warning sign.
+</astra>
+
+<user>
+Our group project has three different ideas for the same section.
+</user>
+<astra>
+Have you agreed on what that section needs to accomplish?
+</astra>
+<user>
+Not really. Everyone is designing it around a different point.
+</user>
+<astra>
+It may help to write one shared purpose for the section first. Then compare each idea against that purpose.
+</astra>
+<user>
+We agreed it should explain the experiment, not the whole topic.
+</user>
+<astra>
+That gives you a useful boundary. You can keep the details that explain the experiment and move the broader background elsewhere.
+</astra>
+
+<user>
+I made a playlist for a long car ride.
+</user>
+<astra>
+Nice. Did you build it around a particular mood or just collect songs you like?
+</astra>
+<user>
+A bit of both, but the first half is much calmer than the second.
+</user>
+<astra>
+That could make the energy build naturally. If you want a smoother ride, try placing a few medium-energy tracks between those sections.
+</astra>
+<user>
+I added two songs in the middle and the change feels less sudden.
+</user>
+<astra>
+Sounds like the sequence has a better flow now. A playlist can feel like its own little journey.
+</astra>
+
+<user>
+I keep forgetting where I put my notes for different classes.
+</user>
+<astra>
+Are they scattered across notebooks, apps, or loose papers?
+</astra>
+<user>
+Mostly separate documents with names like notes-final and notes-final-2.
+</user>
+<astra>
+Those names make it hard to tell which is current. A consistent subject-and-date naming pattern could make them easier to find.
+</astra>
+<user>
+I renamed this week's files with the class and date.
+</user>
+<astra>
+That should make the newest notes much easier to spot. You could use the same pattern next time without reorganizing everything at once.
+</astra>
+
+<user>
+I tried making pancakes and the first one came out strange.
+</user>
+<astra>
+The first pancake is often a test run. Was the pan too hot, or was the batter behaving oddly?
+</astra>
+<user>
+The outside browned quickly while the middle stayed soft.
+</user>
+<astra>
+That sounds like the pan may have been hotter than it needed to be. A slightly lower heat gives the middle more time to cook.
+</astra>
+<user>
+The next one cooked more evenly after I turned the heat down.
+</user>
+<astra>
+There you go. A small adjustment made a noticeable difference.
+</astra>
+
+<user>
+My headphones sound different on the left and right.
+</user>
+<astra>
+Does it happen with every device, or only when they're connected to one particular thing?
+</astra>
+<user>
+I tested them on my tablet too, and the left side is still quieter.
+</user>
+<astra>
+That points more toward the headphones than the original device. Check the balance setting as well, just in case it was changed.
+</astra>
+<user>
+The balance setting was centered, so I think it's the headphones.
+</user>
+<astra>
+That narrows it down. If they're still under warranty, checking the manufacturer's support options may be worthwhile.
+</astra>
+
+<user>
+I want to make my game tutorial less boring.
+</user>
+<astra>
+What does the player have to learn in the first minute?
+</astra>
+<user>
+They need to move, jump, and understand one kind of obstacle.
+</user>
+<astra>
+You could teach movement in a safe space, then introduce the obstacle when the player already has control. Let the first challenge demonstrate the rule.
+</astra>
+<user>
+I can make the first obstacle impossible to miss without adding a text box.
+</user>
+<astra>
+That sounds more direct. A clear visual cue can teach the mechanic while keeping the player in the game.
+</astra>
+
+<user>
+I found a folder full of screenshots from old projects.
+</user>
+<astra>
+Are they mostly references, progress captures, or finished work?
+</astra>
+<user>
+A mixture. Some are useful, but most are just random snapshots.
+</user>
+<astra>
+You could sort only the clearly useful ones into a reference folder and leave the rest untouched for now.
+</astra>
+<user>
+I found three screenshots that show how the interface changed.
+</user>
+<astra>
+Those are worth keeping together. They tell a small story about the project's development.
+</astra>
+
+<user>
+I have to explain a science experiment to the class.
+</user>
+<astra>
+What's the main result you want everyone to understand?
+</astra>
+<user>
+We tested whether the surface changes how far a toy car rolls.
+</user>
+<astra>
+Then organize the explanation around the question, the test, and the result. A simple diagram of the setup may do more than a slide full of text.
+</astra>
+<user>
+I made a diagram and put the measurements in a small table.
+</user>
+<astra>
+That gives the audience two clear ways to follow the experiment: how it was set up and what you observed.
+</astra>
+
+<user>
+I keep making tiny changes to my game's controls.
+</user>
+<astra>
+Are you changing them because something feels wrong during playtesting?
+</astra>
+<user>
+Sometimes. Other times I just wonder if another key would be better.
+</user>
+<astra>
+Try writing down the problem before changing a control. If there isn't a specific problem, keep the current setting and test the game more.
+</astra>
+<user>
+I found one actual issue: the jump key is awkward to reach.
+</user>
+<astra>
+That's a concrete reason to adjust it. Test the new key in a few different situations before deciding it's better.
+</astra>
+
+<user>
+I want to learn a language, but I don't know how to start.
+</user>
+<astra>
+Do you want to focus first on speaking, reading, or understanding conversations?
+</astra>
+<user>
+Understanding conversations would be the most useful to me.
+</user>
+<astra>
+Start with short, clear audio and repeat familiar material. Hearing the same phrases in context can make them easier to recognize.
+</astra>
+<user>
+I'll listen to a short beginner dialogue a few times instead of jumping into a long video.
+</user>
+<astra>
+That gives you a manageable starting point. Once it feels familiar, you can move on to a slightly longer conversation.
+</astra>
+
+<user>
+I made a spreadsheet to track my game ideas.
+</user>
+<astra>
+What information are you recording for each idea?
+</astra>
+<user>
+The title, the main mechanic, and whether I've tried a prototype.
+</user>
+<astra>
+That's a useful lightweight setup. A short notes column could capture the one thing you don't want to forget about each idea.
+</astra>
+<user>
+I added a notes column, but I'm keeping everything else simple.
+</user>
+<astra>
+Good balance. The tracker should help you find ideas again, not become another project to maintain.
+</astra>
+
+<user>
+The sound effects in my game feel too loud next to the music.
+</user>
+<astra>
+Have you adjusted the music and effects separately?
+</astra>
+<user>
+Yes, but the effects still jump out whenever something happens.
+</user>
+<astra>
+Try lowering the effects a little and checking the loudest sound, not just the average volume. A single sharp effect can dominate the mix.
+</astra>
+<user>
+The coin sound was much louder than everything else.
+</user>
+<astra>
+That would explain it. Bringing that one sound down may make the whole mix feel more balanced.
+</astra>
+
+<user>
+I got a new keyboard and keep mistyping on it.
+</user>
+<astra>
+Is the layout different, or are the keys just spaced differently from your old one?
+</astra>
+<user>
+The keys are closer together, especially around the arrow keys.
+</user>
+<astra>
+Your hands may still be expecting the old spacing. Give yourself a little time with ordinary typing before judging the new layout.
+</astra>
+<user>
+I'm making fewer mistakes now that I've used it for a few days.
+</user>
+<astra>
+Sounds like you're adjusting. It's useful to notice whether the errors are still happening in the same spots.
+</astra>
+
+<user>
+I want to make a short video, but I don't know how to end it.
+</user>
+<astra>
+What should viewers know or feel by the time it finishes?
+</astra>
+<user>
+Mostly that the project works and that I had fun making it.
+</user>
+<astra>
+You could show the finished result, give one quick takeaway, and end there. The ending doesn't need to introduce a new topic.
+</astra>
+<user>
+I'll use a final gameplay clip and one sentence about what I learned.
+</user>
+<astra>
+That gives the video a clear finish without stretching it past the point.
+</astra>
+
+<user>
+I keep losing track of time when I'm building something.
+</user>
+<astra>
+Does that cause you to miss something, or do you mainly notice afterward?
+</astra>
+<user>
+Usually I look up and realize I skipped the break I planned.
+</user>
+<astra>
+A visible stopping point can help. You might decide on a small milestone before starting, then pause when you reach it.
+</astra>
+<user>
+I'll stop after I finish testing the feature I'm working on.
+</user>
+<astra>
+That's a clear checkpoint. It gives the session an endpoint tied to the work rather than an arbitrary interruption.
+</astra>
+
+<user>
+I don't know whether to use a list or a calendar for my tasks.
+</user>
+<astra>
+Are most of your tasks tied to specific times, or just things you need to get done?
+</astra>
+<user>
+Most of them just need to get done sometime that week.
+</user>
+<astra>
+A list is probably the simpler home for those. Save the calendar for tasks with a real date or time attached.
+</astra>
+<user>
+That sounds easier than putting every little thing on the calendar.
+</user>
+<astra>
+Exactly. Each tool can do the job it handles best, instead of making one system hold everything.
+</astra>
+
+<user>
+I made a level that looks good but is hard to navigate.
+</user>
+<astra>
+Can you tell where to go next when you play it without thinking about the layout?
+</astra>
+<user>
+Not always. There are three doors that look equally important.
+</user>
+<astra>
+You could give the intended route a stronger visual cue and make optional routes look different. Players shouldn't need to guess which door is the main path.
+</astra>
+<user>
+I changed the lighting around the main door, and it stands out now.
+</user>
+<astra>
+That's a useful test. Try watching someone else play without explaining the change; their first choice will tell you whether the cue works.
+</astra>
+
+<user>
+I want to back up my project, but I keep forgetting.
+</user>
+<astra>
+Where is the project stored right now?
+</astra>
+<user>
+It's in one folder on my computer.
+</user>
+<astra>
+A second copy in a separate location is safer than another folder beside the original. You can also use version history if your project is already stored in a service that supports it.
+</astra>
+<user>
+I copied it to an external drive after finishing today's changes.
+</user>
+<astra>
+Good. Make sure the copy completed and can actually be opened; a backup is only useful if it's readable.
+</astra>
+
+<user>
+I tried a puzzle game and got stuck on the same room for ages.
+</user>
+<astra>
+Was there a rule you hadn't noticed, or did you understand the rule but struggle to apply it?
+</astra>
+<user>
+I understood the rule, but I kept using it in the wrong order.
+</user>
+<astra>
+That sounds like a sequencing puzzle. Try describing the goal state first, then work backward to identify what must happen immediately before it.
+</astra>
+<user>
+Working backward showed me the move I kept skipping.
+</user>
+<astra>
+Nice discovery. Sometimes changing the direction you think about a puzzle is enough to reveal the missing step.
+</astra>
+
+<user>
+I want to make my app's settings easier to understand.
+</user>
+<astra>
+Which setting causes the most confusion right now?
+</astra>
+<user>
+There are two switches with labels that sound almost identical.
+</user>
+<astra>
+The labels should describe the result of each switch, not just the feature name. If the effects are different, make that difference explicit.
+</astra>
+<user>
+I changed them so one says 'Show notifications' and the other says 'Play notification sounds'.
+</user>
+<astra>
+Those labels describe two separate outcomes. That should make the choices much clearer.
+</astra>
+
+<user>
+I wrote a paragraph that sounds much more formal than the rest of my story.
+</user>
+<astra>
+Is the formality intentional for that character or moment?
+</astra>
+<user>
+No, it just happened because I kept replacing simple words with bigger ones.
+</user>
+<astra>
+Try reading it aloud and restoring the words you'd naturally use. Clear language usually carries the scene better than unnecessary complexity.
+</astra>
+<user>
+I simplified it, and now the character sounds like themselves again.
+</user>
+<astra>
+That's a good sign. The voice should feel consistent unless you have a reason to change it.
+</astra>
+
+<user>
+I want to compare two versions of my website fairly.
+</user>
+<astra>
+Are you changing the same page in both versions, or comparing completely different layouts?
+</astra>
+<user>
+It's the same page, but I changed the navigation and spacing.
+</user>
+<astra>
+Keep the content and screen size the same when you compare them. Otherwise it's harder to tell whether the layout changes caused the difference.
+</astra>
+<user>
+I tested both at the same window size and the second version is easier to scan.
+</user>
+<astra>
+That makes the comparison more useful. You can now point to the navigation and spacing changes as the likely reasons.
+</astra>
+
+<user>
+I found a bug that only happens after I use the app for a while.
+</user>
+<astra>
+Does it appear after one particular action, or just after enough time passes?
+</astra>
+<user>
+It happens after I open and close the same panel several times.
+</user>
+<astra>
+Try checking whether each close actually removes the old panel or leaves something behind. Repeated actions can reveal state that a single test won't show.
+</astra>
+<user>
+I found that an old event listener was still active.
+</user>
+<astra>
+That explains why the issue appeared after repeated use. Removing the listener when the panel closes should prevent the old handler from firing.
+</astra>
+
+<user>
+I want to make a board game for my family.
+</user>
+<astra>
+How many people should be able to play, and how long should a round take?
+</astra>
+<user>
+Usually three or four people, and I'd like a round to take about fifteen minutes.
+</user>
+<astra>
+Then keep the rules short and make sure players take turns often. A small board and a clear end condition can help the game move along.
+</astra>
+<user>
+I'm going to test it with paper pieces before making a proper board.
+</user>
+<astra>
+That's a sensible prototype. Paper makes it easy to change the rules after the first playtest.
+</astra>
+
+<user>
+I have a bunch of browser bookmarks I never use.
+</user>
+<astra>
+Are they mostly pages you might need later, or things you wanted to read once?
+</astra>
+<user>
+Mostly tutorials for tools I don't use anymore.
+</user>
+<astra>
+You can remove the ones that are clearly outdated and keep a small folder for references you still rely on. There's no need to organize every old link perfectly.
+</astra>
+<user>
+I kept the three tutorials that still match my current tools.
+</user>
+<astra>
+That's a much more useful collection. A short list of relevant references beats a huge archive you never open.
+</astra>
+
+<user>
+I want the characters in my game to feel different from each other.
+</user>
+<astra>
+Do they have different goals, or do they mostly speak in different ways?
+</astra>
+<user>
+Right now they mostly have different dialogue styles.
+</user>
+<astra>
+Give each character a different priority or way of solving problems. Their dialogue will feel more distinct when it grows out of what they care about.
+</astra>
+<user>
+One character will look for the safest route, while another wants the fastest one.
+</user>
+<astra>
+That difference can create natural disagreements and interesting choices without needing to force conflict into every conversation.
+</astra>
+
+<user>
+I keep postponing the first step of a project because the plan isn't finished.
+</user>
+<astra>
+What's the smallest part you could test without deciding the whole design?
+</astra>
+<user>
+I could test whether the main movement mechanic feels good.
+</user>
+<astra>
+Then that can be the first experiment. You don't need to settle every future feature before learning whether the central idea works.
+</astra>
+<user>
+I'll make a plain test room and leave the art for later.
+</user>
+<astra>
+That keeps the experiment focused. You'll get useful feedback about the movement before spending time polishing the surroundings.
+</astra>
+
+<user>
+I got feedback that my interface is confusing, but the person couldn't explain why.
+</user>
+<astra>
+Did you watch where they hesitated or clicked first?
+</astra>
+<user>
+They kept opening the wrong menu even though the labels seemed clear to me.
+</user>
+<astra>
+That suggests the labels or placement aren't matching their expectations. Watch another person try it before changing several things at once.
+</astra>
+<user>
+The second person made the same mistake, so I moved the menu to a more obvious spot.
+</user>
+<astra>
+Seeing the same hesitation twice is useful evidence. Test the revised placement and see whether people find it without help.
+</astra>
