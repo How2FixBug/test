@@ -229,7 +229,7 @@ def decode(ids: list[int], vocab: list[bytes | None]) -> str:
 
     def flush():
         if byte_buffer:
-            output.append(byte_buffer.decode("utf-8"))
+            output.append(byte_buffer.decode("utf-8", errors="replace"))
             byte_buffer.clear()
 
     for token_id in ids:
