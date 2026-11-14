@@ -14,10 +14,10 @@ layer will handle changing facts and external lookups.
 
 - `dataset_conversation_candidate.txt` is the current curated conversation corpus.
 - Current corpus target: **2,500 serialized conversations**.
-- Latest structural audit: 2,500 conversations, 2,630 user turns, and 2,638
+- Latest structural audit: 2,500 conversations, 2,682 user turns, and 2,690
   ASTRA turns. All user and ASTRA message bodies are unique.
-- **100 conversations are multi-turn**, including 65 newly added contextual
-  follow-up exchanges. The audit now enforces a minimum of 100 multi-turn
+- **152 conversations are multi-turn**, including 117 newly added contextual
+  follow-up exchanges. The audit now enforces a minimum of 150 multi-turn
   conversations. There are 8 information-tool request/result examples and 7
   concise thinking notes.
 - The audit reports recurring 4–6 word phrases for manual review. Exact
