@@ -106,7 +106,7 @@ def main() -> None:
     seen_pairs: set[tuple[str, str]] = set()
     for user, answer in matches:
         user = user.strip()
-        answer = THINK_RE.sub("<think>\n</think>", answer.strip(), count=1)
+        answer = THINK_RE.sub("", answer.strip(), count=1).strip()
         key = (normalize(user), normalize(answer))
         answer_key = normalize(THINK_RE.sub("", answer))
         if not user or not answer or key in seen_pairs or answer_counts[answer_key] >= 2:
@@ -121,7 +121,7 @@ def main() -> None:
         if key in seen_pairs:
             continue
         seen_pairs.add(key)
-        kept.append((user, "<think>\n</think>\n" + answer))
+        kept.append((user, answer))
         added += 1
 
     preamble = raw[:re.search(r"(?m)^<user>\s*$", raw).start()].rstrip()
