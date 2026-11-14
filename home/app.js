@@ -325,12 +325,11 @@
 
       userRow.style.visibility = "visible";
       userRow.classList.add("morph-avatar-in");
-      // Morph the real composer into the message bubble, including its visual styling.
+      // Let the real input box gradually become the message bubble over the full contraction.
       const sourceStyle = getComputedStyle(inputBox);
       const targetStyle = getComputedStyle(bubble);
-      const sourceTextStyle = getComputedStyle(input);
       inputBox.style.backgroundImage = "linear-gradient(135deg, rgba(54,82,119,0), rgba(40,57,91,0))";
-      const duration = reducedMotion ? 1 : 430;
+      const duration = reducedMotion ? 1 : 700;
       activeFlightAnimation = inputBox.animate([
         {
           left: sourceRect.left + "px",
@@ -342,9 +341,7 @@
           borderColor: sourceStyle.borderColor,
           borderRadius: sourceStyle.borderRadius,
           boxShadow: sourceStyle.boxShadow,
-          padding: sourceStyle.padding,
-          opacity: 1,
-          offset: 0
+          padding: sourceStyle.padding
         },
         {
           left: targetRect.left + "px",
@@ -356,40 +353,34 @@
           borderColor: targetStyle.borderColor,
           borderRadius: targetStyle.borderRadius,
           boxShadow: targetStyle.boxShadow,
-          padding: targetStyle.padding,
-          opacity: 1,
-          offset: 0.72
-        },
-        {
-          left: targetRect.left + "px",
-          top: targetRect.top + "px",
-          width: targetRect.width + "px",
-          height: targetRect.height + "px",
-          backgroundColor: targetStyle.backgroundColor,
-          backgroundImage: targetStyle.backgroundImage,
-          borderColor: targetStyle.borderColor,
-          borderRadius: targetStyle.borderRadius,
-          boxShadow: targetStyle.boxShadow,
-          padding: targetStyle.padding,
-          opacity: 0,
-          offset: 1
+          padding: targetStyle.padding
         }
       ], {
         duration,
         easing: "cubic-bezier(.22,.78,.18,1)",
         fill: "forwards"
       });
+      const inputFade = inputBox.animate([
+        { opacity: 1, offset: 0 },
+        { opacity: 1, offset: 0.55 },
+        { opacity: 0, offset: 1 }
+      ], {
+        duration,
+        easing: "linear",
+        fill: "forwards"
+      });
       const bubbleReveal = bubble.animate([
         { opacity: 0, offset: 0 },
-        { opacity: 0, offset: 0.72 },
+        { opacity: 0, offset: 0.55 },
         { opacity: 1, offset: 1 }
       ], {
         duration,
         easing: "linear",
         fill: "forwards"
       });
-      await Promise.all([activeFlightAnimation.finished, bubbleReveal.finished]);
+      await Promise.all([activeFlightAnimation.finished, inputFade.finished, bubbleReveal.finished]);
       activeFlightAnimation.cancel();
+      inputFade.cancel();
       bubbleReveal.cancel();
       activeFlightAnimation = null;
       if (activeId !== chat.id) throw new Error("Conversation changed");
