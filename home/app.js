@@ -249,6 +249,8 @@
     }
 
     const inputBox = $(".input-box");
+    const composerShell = $(".composer-shell");
+    const sendButton = $(".send-button");
     const sourceRect = inputBox.getBoundingClientRect();
     welcome.hidden = true;
     messages.classList.add("visible");
@@ -260,54 +262,56 @@
     const avatar = userRow.querySelector(".avatar");
     const conversation = $("#conversation");
 
-    input.value = "";
+    // Keep the actual textarea and its text inside the moving input box.
+    inputBox.classList.remove("input-overflow");
     input.style.height = "24px";
-    input.closest(".input-box").classList.remove("input-overflow");
     syncInputHeight();
-    inputBox.classList.add("input-hidden-for-flight");
     save();
 
     await easeScrollToBottom(conversation, 520);
-    if (activeId !== chat.id) {
-      inputBox.classList.remove("input-hidden-for-flight");
-      return;
-    }
+    if (activeId !== chat.id) return;
 
     const targetRect = bubble.getBoundingClientRect();
-    const avatarRect = avatar.getBoundingClientRect();
-    const flight = document.createElement("div");
-    flight.className = "message-morph-flight";
-    const flightText = document.createElement("span");
-    flightText.textContent = value;
-    flightText.style.width = Math.max(0, sourceRect.width - 38) + "px";
-    flight.append(flightText);
-    Object.assign(flight.style, {
+    const restoreComposer = () => {
+      if (inputBox.parentElement !== composerShell) composerShell.insertBefore(inputBox, sendButton);
+      inputBox.classList.remove("input-box-flight", "input-overflow");
+      inputBox.removeAttribute("style");
+      input.value = "";
+      input.style.height = "24px";
+      syncInputHeight();
+    };
+
+    // Lift the real input box into a fixed layer without replacing its contents.
+    Object.assign(inputBox.style, {
+      position: "fixed",
+      zIndex: "50",
       left: sourceRect.left + "px",
       top: sourceRect.top + "px",
       width: sourceRect.width + "px",
-      height: sourceRect.height + "px"
+      height: sourceRect.height + "px",
+      margin: "0",
+      flex: "none",
+      pointerEvents: "none",
+      transform: "none"
     });
-    document.body.append(flight);
-
-    // Stage one: lift the complete input box to the message's vertical position.
-    const lift = flight.animate([
-      { top: sourceRect.top + "px" },
-      { top: targetRect.top + "px" }
-    ], {
-      duration: reducedMotion ? 1 : 390,
-      easing: "cubic-bezier(.2,.75,.2,1)",
-      fill: "forwards"
-    });
+    inputBox.classList.add("input-box-flight");
+    document.body.append(inputBox);
 
     try {
+      const lift = inputBox.animate([
+        { top: sourceRect.top + "px" },
+        { top: targetRect.top + "px" }
+      ], {
+        duration: reducedMotion ? 1 : 390,
+        easing: "cubic-bezier(.2,.75,.2,1)",
+        fill: "forwards"
+      });
       await lift.finished;
       if (activeId !== chat.id) throw new Error("Conversation changed");
 
-      // Stage two: reveal the profile icon, then contract the box into the
-      // final message bubble, keeping its right edge aligned with the bubble.
       userRow.style.visibility = "visible";
       userRow.classList.add("morph-avatar-in");
-      const shrink = flight.animate([
+      const shrink = inputBox.animate([
         {
           left: sourceRect.left + "px",
           top: targetRect.top + "px",
@@ -328,16 +332,12 @@
         fill: "forwards"
       });
       await shrink.finished;
-      flight.remove();
-      if (activeId !== chat.id) return;
+      if (activeId !== chat.id) throw new Error("Conversation changed");
 
+      restoreComposer();
       userRow.classList.add("morph-message-in");
-      inputBox.classList.remove("input-hidden-for-flight");
-      inputBox.classList.add("input-fade-back");
-      requestAnimationFrame(() => inputBox.classList.add("input-fade-visible"));
-      window.setTimeout(() => {
-        inputBox.classList.remove("input-fade-back", "input-fade-visible");
-      }, reducedMotion ? 1 : 320);
+      inputBox.classList.add("composer-reform");
+      window.setTimeout(() => inputBox.classList.remove("composer-reform"), reducedMotion ? 1 : 440);
 
       window.setTimeout(() => {
         if (activeId !== chat.id) return;
@@ -347,12 +347,11 @@
         easeScrollToBottom(conversation, 360);
       }, 100);
     } catch {
-      flight.remove();
+      restoreComposer();
       if (activeId === chat.id) {
         userRow.style.visibility = "visible";
         userRow.classList.add("morph-message-in");
       }
-      inputBox.classList.remove("input-hidden-for-flight");
     }
     input.focus();
   };
