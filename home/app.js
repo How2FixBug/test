@@ -277,7 +277,10 @@
     const avatarRect = avatar.getBoundingClientRect();
     const flight = document.createElement("div");
     flight.className = "message-morph-flight";
-    flight.textContent = value;
+    const flightText = document.createElement("span");
+    flightText.textContent = value;
+    flightText.style.width = Math.max(0, sourceRect.width - 38) + "px";
+    flight.append(flightText);
     Object.assign(flight.style, {
       left: sourceRect.left + "px",
       top: sourceRect.top + "px",
