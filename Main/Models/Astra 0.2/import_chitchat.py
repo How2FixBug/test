@@ -49,6 +49,29 @@ FACTUAL_RESPONSE_RE = re.compile(
     r"known as the .{0,30} of)\b",
     re.IGNORECASE,
 )
+# Keep ASTRA from learning a fabricated biography from human participants.
+PERSONAL_BIO_RE = re.compile(
+    r"\b(?:i am|i'm|i work at|i work as|i'm studying|i am studying|"
+    r"i served in|i am from|i'm from|my page first loaded|"
+    r"my brother will be|i am an? (?:international|exchange) student)\b",
+    re.IGNORECASE,
+)
+# Exclude knowledge-heavy discussions while retaining ordinary hobby chat.
+KNOWLEDGE_TOPIC_RE = re.compile(
+    r"\b(?:machine learning|xgboost|bitcoin|cryptocurrency|"
+    r"stock market|invest(?:ing|ment)?|nvidia|fafsa|"
+    r"physics|chemistry|biology|geography|historical event|"
+    r"solar system|chemical reaction|mathematical equation|"
+    r"computer science|programming language|neural network|"
+    r"artificial intelligence|machine understanding)\b",
+    re.IGNORECASE,
+)
+SCRIPTED_MONOLOGUE_RE = re.compile(
+    r"\b(?:are you still here|i'll take that as a no|"
+    r"i am going to take that as a no|when my page first loaded|"
+    r"well, have a nice day|i am here for you [A-Z][a-z]+)\b",
+    re.IGNORECASE,
+)
 URL_RE = re.compile(r"(?:https?://|www\.)\S+", re.IGNORECASE)
 EMAIL_RE = re.compile(r"\b[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}\b")
 DIGIT_RE = re.compile(r"\d{4,}")
@@ -158,6 +181,15 @@ def looks_factual_response(text: str) -> bool:
     return False
 
 
+def is_low_value_conversation_turn(text: str) -> bool:
+    """Reject persona-heavy, scripted, or knowledge-focused dialogue."""
+    return bool(
+        PERSONAL_BIO_RE.search(text)
+        or KNOWLEDGE_TOPIC_RE.search(text)
+        or SCRIPTED_MONOLOGUE_RE.search(text)
+    )
+
+
 def download_dataset(force: bool = False) -> Path:
     if RAW_PATH.exists() and RAW_PATH.stat().st_size > 1000 and not force:
         print(f"Using cached source: {RAW_PATH}")
@@ -245,10 +277,18 @@ def make_examples(conversations: dict) -> tuple[list[tuple[str, str]], dict[str,
             history = turns[history_start:response_index]
             target = turns[response_index][1]
             latest_user = history[-1][1]
-            if is_knowledge_question(latest_user) or looks_factual_response(target):
+            if (
+                is_knowledge_question(latest_user)
+                or looks_factual_response(target)
+                or is_low_value_conversation_turn(latest_user)
+                or is_low_value_conversation_turn(target)
+            ):
                 stats["pairs_rejected"] += 1
                 continue
-            if any(is_knowledge_question(text) for _, text in history):
+            if any(
+                is_knowledge_question(text) or is_low_value_conversation_turn(text)
+                for _, text in history
+            ):
                 stats["pairs_rejected"] += 1
                 continue
 
