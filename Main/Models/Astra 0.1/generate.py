@@ -22,14 +22,12 @@ def sample_next_token(
     top_p: float,
     repetition_penalty: float,
     repeat_window: int,
-    end_token: int,
+    allowed_special_ids: set[int],
     special_ids: set[int],
 ) -> int:
     """Apply repetition penalty, top-k, and nucleus filtering before sampling."""
     logits = logits.clone() / temperature
 
-    # Penalize only recently generated ordinary tokens, not the prompt or
-    # structural markers. This discourages loops without suppressing EOS.
     if repetition_penalty > 1.0 and repeat_window > 0:
         recent = set(history[-repeat_window:])
         for token_id in recent:
@@ -39,21 +37,19 @@ def sample_next_token(
                 else:
                     logits[token_id] *= repetition_penalty
 
-    # Only the closing ASTRA marker is legal as a structural token here.
+    # Structural tokens are legal only when the current generation phase allows them.
     for token_id in special_ids:
-        if token_id != end_token:
+        if token_id not in allowed_special_ids:
             logits[token_id] = -float("inf")
 
-    # Top-k filtering.
     if top_k > 0 and top_k < logits.numel():
         values, indices = torch.topk(logits, top_k)
         filtered = torch.full_like(logits, -float("inf"))
         filtered[indices] = values
-        filtered[end_token] = logits[end_token]
+        for token_id in allowed_special_ids:
+            filtered[token_id] = logits[token_id]
         logits = filtered
 
-    # Top-p (nucleus) filtering. Keep the first token crossing the threshold,
-    # and always retain the legal end marker so the reply can terminate.
     if top_p < 1.0:
         sorted_logits, sorted_indices = torch.sort(logits, descending=True)
         sorted_probs = torch.softmax(sorted_logits, dim=-1)
@@ -62,7 +58,8 @@ def sample_next_token(
         remove[0] = False
         filtered = logits.clone()
         filtered[sorted_indices[remove]] = -float("inf")
-        filtered[end_token] = logits[end_token]
+        for token_id in allowed_special_ids:
+            filtered[token_id] = logits[token_id]
         logits = filtered
 
     probabilities = torch.softmax(logits, dim=-1)
@@ -134,17 +131,13 @@ def main():
     if device.type == "mps":
         torch.mps.manual_seed(args.seed)
 
-    # Almost all training examples use an empty think section. Close it in
-    # the prompt so ASTRA learns to generate the user-facing answer directly.
-    prompt = (
-        f"<user>\n{args.prompt}\n</user>\n"
-        "<astra>\n<think>\n</think>\n"
-    )
+    # Match the training format. Generate the think section, but never display it.
+    prompt = f"<user>\n{args.prompt}\n</user>\n<astra>\n<think>\n"
     generated = encode(prompt, merges)
-    response_start = len(generated)
-
-    end_token = SPECIAL_TOKENS["</astra>"]
+    think_end = SPECIAL_TOKENS["</think>"]
+    astra_end = SPECIAL_TOKENS["</astra>"]
     special_ids = set(SPECIAL_TOKENS.values())
+    answer_start = None
 
     with torch.inference_mode():
         for _ in range(args.max_new_tokens):
@@ -154,23 +147,31 @@ def main():
                 device=device,
             )
             logits = model(context)[0, -1]
+            allowed = {think_end} if answer_start is None else {astra_end}
             next_id = sample_next_token(
                 logits,
-                generated[response_start:],
+                generated,
                 temperature=args.temperature,
                 top_k=args.top_k,
                 top_p=args.top_p,
                 repetition_penalty=args.repetition_penalty,
                 repeat_window=args.repeat_window,
-                end_token=end_token,
+                allowed_special_ids=allowed,
                 special_ids=special_ids,
             )
-            if next_id == end_token:
-                break
             generated.append(next_id)
 
-    answer = decode(generated[response_start:], vocab).strip()
-    print(answer)
+            if answer_start is None and next_id == think_end:
+                answer_start = len(generated)
+            elif answer_start is not None and next_id == astra_end:
+                break
+
+    if answer_start is None:
+        raise SystemExit(
+            "ASTRA did not finish its think section. Try increasing --max-new-tokens."
+        )
+
+    print(decode(generated[answer_start:], vocab).strip())
 
 
 if __name__ == "__main__":
