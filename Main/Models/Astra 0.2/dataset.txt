@@ -1,0 +1,4793 @@
+ASTRA 0.2 — DATASET
+
+FORMAT NOTES
+<user> begins a user message; </user> ends it.
+<astra> begins an ASTRA response; </astra> ends it.
+<think> begins a concise, user-displayable reasoning summary; </think> ends it.
+
+Each example contains one user message and one ASTRA response. The think section is a brief explanation of the approach or key concept, not a transcript of private internal reasoning. The response after </think> is intended for the user. Register all four markers as separate special tokens.
+
+TRAINING QUALITY NOTES
+These examples are demonstrations, not fixed scripts. Learn the intent behind each
+response rather than memorizing exact wording. Respond to the user's actual request,
+respect context and constraints, and vary structure and detail naturally. For creative
+prompts, produce specific, coherent, original ideas; explore combinations and alternatives
+instead of relying on generic filler. Keep fictional inventions distinct from factual
+claims. When information is uncertain, be appropriately cautious rather than inventing facts.
+
+TOTAL: 280 conversation examples (560 message blocks).
+
+---
+
+<user>
+Why does ice float?
+</user>
+<astra>
+<think>
+Explain density and freezing.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+Can you explain this? Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+Break this down for me: Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: Why does ice float?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Ice is less dense than liquid water. When water freezes, its molecules form an open structure that takes up more space, so the same amount of water has a larger volume.
+</astra>
+
+---
+
+<user>
+Why is the sky blue?
+</user>
+<astra>
+<think>
+Explain atmospheric scattering.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+Can you explain this? Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+Break this down for me: Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: Why is the sky blue?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Air molecules scatter shorter wavelengths of sunlight more strongly than longer ones. Blue light scatters in many directions, so it reaches our eyes from across the sky.
+</astra>
+
+---
+
+<user>
+How do airplanes fly?
+</user>
+<astra>
+<think>
+Explain the four forces of flight.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+Can you explain this? How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+Break this down for me: How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: How do airplanes fly?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Wings create lift as the plane moves through air. Engines provide thrust, drag resists motion, and gravity pulls downward. In steady level flight, lift balances weight and thrust balances drag.
+</astra>
+
+---
+
+<user>
+What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify inputs, outputs, and light energy.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is photosynthesis?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Photosynthesis lets plants use light energy to make sugars. Chlorophyll captures light, and the plant uses that energy to combine water with carbon dioxide. The process releases oxygen.
+</astra>
+
+---
+
+<user>
+Why do seasons happen?
+</user>
+<astra>
+<think>
+Focus on Earth's axial tilt.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+Can you explain this? Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+Break this down for me: Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: Why do seasons happen?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth's axis is tilted about 23.5 degrees. As Earth orbits the Sun, each hemisphere takes turns tilting toward or away from it, changing sunlight angle and day length.
+</astra>
+
+---
+
+<user>
+What is a black hole?
+</user>
+<astra>
+<think>
+Define the event horizon accurately.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is a black hole?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A black hole is a region of space where gravity is so strong that nothing inside its event horizon can escape, not even light. Objects can still orbit it from outside that boundary.
+</astra>
+
+---
+
+<user>
+Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Explain lunar phases.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+Can you explain this? Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+Break this down for me: Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: Why does the Moon change shape?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+The Moon stays roughly spherical. As it orbits Earth, we see different amounts of its sunlit half. These changing views are called lunar phases.
+</astra>
+
+---
+
+<user>
+What is an atom?
+</user>
+<astra>
+<think>
+Name the nucleus and subatomic particles.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is an atom?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An atom is the smallest unit of a chemical element that keeps that element's identity. It has a nucleus containing protons and usually neutrons, with electrons around it.
+</astra>
+
+---
+
+<user>
+What is an algorithm?
+</user>
+<astra>
+<think>
+Define a sequence of steps and give an example.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is an algorithm?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An algorithm is a clear sequence of steps for solving a problem. A recipe is an everyday example; computers use algorithms to sort lists, find routes, and process data.
+</astra>
+
+---
+
+<user>
+HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Describe structure, presentation, and behavior.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+Can you explain this? HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+Break this down for me: HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: HTML vs. CSS vs. JavaScript?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+HTML defines webpage structure and content. CSS controls appearance and layout. JavaScript adds behavior, such as responding to clicks or updating content.
+</astra>
+
+---
+
+<user>
+What is an API?
+</user>
+<astra>
+<think>
+Explain a defined software interface.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is an API?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An API is a defined way for one program to request information or actions from another. It describes what can be requested and how, without exposing internal implementation.
+</astra>
+
+---
+
+<user>
+What is machine learning?
+</user>
+<astra>
+<think>
+Distinguish training from inference.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is machine learning?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Machine learning builds software that learns patterns from examples. Training adjusts model parameters; inference uses those learned parameters to make predictions on new inputs.
+</astra>
+
+---
+
+<user>
+Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Explain incomplete data and uncertainty.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+Can you explain this? Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+Break this down for me: Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: Why can AI make mistakes?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A language model generates text from patterns in training data and its current context. Those patterns can be incomplete or outdated, so it may produce plausible but incorrect answers.
+</astra>
+
+---
+
+<user>
+How do I debug code?
+</user>
+<astra>
+<think>
+Use a reproduce-isolate-test-recheck process.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+Can you explain this? How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+Break this down for me: How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: How do I debug code?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Reproduce the problem, read the error message, and narrow down the relevant code. Test one possible cause at a time. After fixing it, repeat the original test.
+</astra>
+
+---
+
+<user>
+Fact vs. opinion?
+</user>
+<astra>
+<think>
+Distinguish verifiable claims from judgments.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+Can you explain this? Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+Break this down for me: Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: Fact vs. opinion?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Opinions can use facts as support, but the judgment may depend on personal values.
+</astra>
+
+---
+
+<user>
+How do I study effectively?
+</user>
+<astra>
+<think>
+Recommend active recall and spaced practice.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+Can you explain this? How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+Break this down for me: How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: How do I study effectively?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Divide topics across short sessions. Use active recall by explaining or solving something from memory, revisit difficult topics later, and finish with practice questions.
+</astra>
+
+---
+
+<user>
+What is a neural network?
+</user>
+<astra>
+<think>
+Describe connected operations and adjustable weights.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is a neural network?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A neural network is a model made of connected mathematical operations with adjustable weights. During training, it adjusts those weights to improve its outputs.
+</astra>
+
+---
+
+<user>
+What is next-token prediction?
+</user>
+<astra>
+<think>
+Explain autoregressive generation.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is next-token prediction?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+An autoregressive language model predicts the next token using earlier tokens as context. It adds the selected token to the context and predicts again, producing a sequence.
+</astra>
+
+---
+
+<user>
+What is a tokenizer?
+</user>
+<astra>
+<think>
+Explain text segmentation and token IDs.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is a tokenizer?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+A tokenizer splits text into units called tokens and maps them to numeric IDs. A token may be a word, part of a word, or punctuation.
+</astra>
+
+---
+
+<user>
+What is model quantization?
+</user>
+<astra>
+<think>
+Explain lower-bit representations and trade-offs.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is model quantization?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Quantization stores model values using fewer bits. This can reduce memory use and sometimes improve speed, but rounding can reduce output quality.
+</astra>
+
+---
+
+<user>
+How do I make slides readable?
+</user>
+<astra>
+<think>
+Recommend hierarchy, contrast, and whitespace.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+Can you explain this? How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+Break this down for me: How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: How do I make slides readable?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Give each slide one main idea. Use a clear title, short phrases, readable text, and strong contrast. Leave space around important content.
+</astra>
+
+---
+
+<user>
+What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Explain infrared radiation and greenhouse gases.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+Can you explain this? What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+Break this down for me: What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: What is the greenhouse effect?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Earth releases energy as infrared radiation. Greenhouse gases absorb and re-emit some of it, slowing heat loss to space. Extra greenhouse gases strengthen this natural warming effect.
+</astra>
+
+---
+
+<user>
+Correlation vs. causation?
+</user>
+<astra>
+<think>
+Explain association and confounding variables.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+Can you explain this? Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+Break this down for me: Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: Correlation vs. causation?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Correlation means two things tend to change together; causation means one produces a change in the other. A third factor may influence both.
+</astra>
+
+---
+
+<user>
+How do I make a website accessible?
+</user>
+<astra>
+<think>
+Cover semantic HTML, keyboard access, contrast, and labels.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+Can you explain this? How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+Break this down for me: How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: How do I make a website accessible?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use semantic HTML, keyboard-accessible controls, visible focus, and clear labels. Use readable contrast, meaningful alt text, and captions for media.
+</astra>
+
+---
+
+<user>
+How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Test held-out prompts across multiple quality dimensions.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+Can you explain this? How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+I'd like to understand this: How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+Could you give me a clear explanation? How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+Please explain in simple terms: How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+Help me understand the idea behind this: How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+What should a beginner know about this? How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+Break this down for me: How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+Can you teach me the basics? How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+---
+
+<user>
+Give me a straightforward answer: How do I evaluate a chatbot?
+</user>
+<astra>
+<think>
+Identify the central concept, explain it at the user's level, and keep the answer accurate and focused.
+</think>
+Use varied prompts the model did not train on. Check accuracy, instruction following, clarity, consistency, safety, uncertainty handling, speed, and memory use.
+</astra>
+
+
+ASTRA 0.2 — CREATIVE THINKING EXAMPLES
+
+<user>
+Invent a tiny creature that could live inside a library.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+A **whispermoth** is a thumb-sized creature with paper-thin wings. It lives between old book pages, eats dust and loose thread, and glows softly whenever someone reads aloud. It doesn't understand the words—it just loves the rhythm.
+</astra>
+
+<user>
+What if clouds were solid for one day?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The sky would become a giant obstacle course. Some clouds might feel like soft stone, while others crumble like packed snow. Airports would shut down, climbers would find new routes, and everyone would argue over who owns the best cloud-shaped balcony.
+</astra>
+
+<user>
+Create a game idea where the player controls gravity.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Downshift:** You play as a tiny maintenance robot in a space station. Rotate gravity so floors become walls and ceilings become paths. Each room is a puzzle about moving objects, redirecting energy cells, and finding the exit.
+</astra>
+
+<user>
+Give me a strange but useful invention.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+A **lost-item lighthouse** remembers where you last placed tagged objects. If your keys go missing, it projects a tiny arrow pointing toward their last detected location.
+</astra>
+
+<user>
+Write the opening two sentences of a story about a city built on a giant tree.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Every morning, the city of Brindle woke when the great tree stretched its branches toward the sun. This morning, one of the branches was missing.
+</astra>
+
+<user>
+Make a worldbuilding idea for a planet with very long nights.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+On Nox, night lasts for eleven months and daylight lasts for one. Towns are built around heat-storing towers, calendars count down to sunrise, and the brief bright season is when people travel, celebrate, and repair the roads.
+</astra>
+
+<user>
+Give me a metaphor for curiosity.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Curiosity is a key that keeps making copies of itself every time it opens a door.
+</astra>
+
+<user>
+Invent a holiday that doesn't exist yet.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Second First Day** is a yearly reset holiday. People choose one small thing to begin again—learning a skill, organizing a drawer, or starting a project. The point isn't a huge resolution; it's enjoying a fresh start.
+</astra>
+
+<user>
+Design a simple puzzle involving three switches and one lamp.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Three switches are outside a closed room. Only one controls the lamp inside. You may enter once. Turn A on for a few minutes, then off. Turn B on and enter. If the lamp is on, B is correct; if it's off but warm, A is correct; if it's off and cool, C is correct.
+</astra>
+
+<user>
+What could be a funny name for a dragon who is afraid of fire?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Smokey the Cautious.** He insists he's not afraid of fire—he just prefers dragons with excellent ventilation.
+</astra>
+
+<user>
+Give me an original superpower with a clever limitation.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Bookmark:** You can instantly return to any place you've touched, but you can keep only three locations bookmarked at once. Choosing where to place a bookmark becomes part of the strategy.
+</astra>
+
+<user>
+What would a library for aliens contain?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Some shelves might hold recorded magnetic fields, scent-based histories, or crystals that change color as you approach. The quietest section might be reserved for species that communicate through tiny movements of light.
+</astra>
+
+<user>
+Give me three different ways to make a game feel mysterious without using darkness.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+1. **Incomplete maps:** show places the player hasn't learned how to reach.
+2. **Unusual patterns:** repeat symbols whose meaning becomes clearer over time.
+3. **Quiet changes:** let familiar rooms contain one subtle difference after important events.
+</astra>
+
+<user>
+Invent a new sport that could be played in a school gym.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Zoneball:** Teams score by passing a soft ball to a teammate standing in one of three marked floor zones. Players cannot run while holding the ball, so teamwork and quick passing matter more than speed.
+</astra>
+
+<user>
+Write a four-line poem about an abandoned spaceship.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The engines sleep beneath a coat of dust,
+A silent map still points to somewhere new.
+One little light keeps blinking through the rust,
+As if the ship remembers its old crew.
+</astra>
+
+<user>
+Give me an unexpected twist for a story about a treasure hunt.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The treasure map was drawn by the treasure itself: an ancient tree that wanted someone to find the buried seeds of its lost forest.
+</astra>
+
+<user>
+Imagine the Moon had rings. What might change in the night sky?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The Moon would look dramatically different: a thin ring system could stretch across part of the sky, changing shape with the viewing angle. The rings might make some nights brighter, depending on their composition and orientation.
+</astra>
+
+<user>
+Create a fictional city where nobody owns anything.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+In **Borrowell**, tools, homes, and clothes belong to the city collectively. People reserve what they need at public stations. Sharing is normal, but the city must solve tricky problems when many people need the same thing.
+</astra>
+
+<user>
+Give me a silly explanation for why socks disappear in the laundry.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Tiny sock explorers sneak out during the spin cycle to map the mysterious land behind the washing machine. They send back one sock as a postcard, but the return address is always smudged.
+</astra>
+
+<user>
+Give me an idea for a character who is smart but not good at everything.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Mira can solve almost any mechanical puzzle, but she struggles to explain her ideas to other people. Her story isn't about becoming smarter—it's about learning that sharing knowledge is a skill of its own.
+</astra>
+
+<user>
+Invent a new color and describe it.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+**Velune** is a fictional color between blue and green, with the soft warmth of late-afternoon sunlight. It looks different on every surface, almost like it is remembering the light around it.
+</astra>
+
+<user>
+Give me a plot idea where the villain has a reasonable goal.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+A city planner wants to seal an ancient forest because it is damaging the city's foundations. The heroes want to protect it, but the planner is trying to prevent thousands of people from losing their homes. Both sides need a solution neither considered.
+</astra>
+
+<user>
+Give me a creative coding project idea.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Make a **procedural island generator**. Each click creates a new island, then places beaches, hills, forests, and tiny settlements. Start with simple rules, then add seeds so people can share the same generated island.
+</astra>
+
+<user>
+Imagine a world where shadows move independently. What is one interesting consequence?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Shadows could become a second kind of body language. Someone might stand perfectly still while their shadow waves at a friend across the street—or refuses to follow them somewhere it considers dangerous.
+</astra>
+
+<user>
+Combine a toaster and a telescope into a ridiculous invention.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+The **Toastoscope** lets you inspect distant galaxies while breakfast cooks. Its only flaw is that it announces every discovery with a loud pop, which is also how you know the toast is ready.
+</astra>
+
+<user>
+How could a fictional underwater civilization send messages?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+They could send patterned pulses through coral towers. Each tower vibrates at a different frequency, and nearby communities recognize the rhythm like a combination of music and language.
+</astra>
+
+<user>
+What could make a fictional robot feel like a unique character?
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Give it a peculiar way of noticing the world. Maybe it collects unfinished sounds, labels every chair by how comfortable it looks, or believes its job is to make sure nobody's small accomplishments go unnoticed.
+</astra>
+
+<user>
+Give me a creative alternative to a traditional classroom presentation.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+Turn the presentation into a mini museum. Each slide becomes an exhibit with one object, one short explanation, and one question visitors can answer before moving to the next station.
+</astra>
+
+<user>
+Give me three possible explanations for a mysterious signal from space in a science-fiction story.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+1. An automated beacon repeats a warning from a civilization that no longer exists.
+2. A ship is still traveling toward the solar system and sending its navigation signal.
+3. A natural phenomenon creates an accidental pattern—and humans are the ones assigning it meaning.
+</astra>
+
+<user>
+Create a tiny mystery with a surprising but fair solution.
+</user>
+<astra>
+<think>
+I should make a specific, coherent response that follows the creative prompt rather than reaching for a generic template.
+</think>
+A classroom plant is wet on Monday, dry Tuesday, and wet again Wednesday. The watering can is empty. A student notices a damp trail from the sink to the plant: someone has been carrying water in a cup.
+</astra>
+
+
+---
+
+<user>
+What is the difference between weather and climate?
+</user>
+<astra>
+<think>
+Contrast the time scales.
+</think>
+Weather describes short-term atmospheric conditions, such as today's temperature or rain. Climate describes the usual patterns in a region over many years. A rainy afternoon is weather; a region's typical wet season is climate.
+</astra>
+
+---
+
+<user>
+Why do we see lightning before hearing thunder?
+</user>
+<astra>
+<think>
+Explain the different travel speeds.
+</think>
+Light travels much faster than sound. The flash reaches your eyes almost immediately, while the sound takes longer to travel through the air to your ears.
+</astra>
+
+---
+
+<user>
+Why do leaves change color in autumn?
+</user>
+<astra>
+<think>
+Describe pigment changes without implying every tree behaves identically.
+</think>
+As days get shorter and temperatures change, many trees stop producing as much chlorophyll. The green pigment fades, revealing yellow and orange pigments that were already in the leaves. Some leaves also produce red pigments.
+</astra>
+
+---
+
+<user>
+What makes a rainbow?
+</user>
+<astra>
+<think>
+Explain refraction, reflection, and color separation.
+</think>
+A rainbow forms when sunlight enters water droplets, bends, reflects inside them, and bends again as it leaves. Different colors bend by slightly different amounts, spreading white sunlight into a band of colors.
+</astra>
+
+---
+
+<user>
+Why is the ocean salty?
+</user>
+<astra>
+<think>
+Explain the long-term salt cycle.
+</think>
+Rocks on land slowly release dissolved minerals as rain and rivers weather them. Rivers carry some of those ions to the ocean. Water evaporates from the sea while most dissolved salts stay behind, so salts accumulate over long periods.
+</astra>
+
+---
+
+<user>
+How do bees help plants?
+</user>
+<astra>
+<think>
+Explain pollination simply.
+</think>
+When bees visit flowers for nectar or pollen, pollen grains can stick to their bodies and move to another flower. This pollination helps many plants produce seeds and fruit.
+</astra>
+
+---
+
+<user>
+What is the difference between an asteroid and a comet?
+</user>
+<astra>
+<think>
+Compare composition and behavior near the Sun.
+</think>
+Asteroids are mostly rocky or metallic bodies. Comets contain lots of ice mixed with dust and rock; when they approach the Sun, some ice turns into gas and can create a glowing coma and tail.
+</astra>
+
+---
+
+<user>
+Why does the Moon seem to change shape?
+</user>
+<astra>
+<think>
+Clarify that Earth's shadow is not causing ordinary phases.
+</think>
+The Moon is always roughly half lit by the Sun. As it orbits Earth, we see different portions of that sunlit half. Those changing views create the phases, from new Moon to full Moon and back.
+</astra>
+
+---
+
+<user>
+What causes tides?
+</user>
+<astra>
+<think>
+Mention Moon and Sun gravity and local variation.
+</think>
+Tides are mainly caused by the Moon's gravity pulling on Earth's oceans, with the Sun also contributing. As Earth rotates through the ocean bulges, many coastlines experience changing water levels.
+</astra>
+
+---
+
+<user>
+Why do metal spoons feel colder than wooden spoons in the same room?
+</user>
+<astra>
+<think>
+Distinguish temperature from heat transfer.
+</think>
+Metal conducts heat away from your hand much faster than wood does. Your skin cools more quickly against the metal, so it feels colder even when both objects are at the same temperature.
+</astra>
+
+---
+
+<user>
+What is an ecosystem?
+</user>
+<astra>
+<think>
+Define living and nonliving interactions.
+</think>
+An ecosystem is a community of living things interacting with one another and with nonliving parts of their environment, such as water, soil, air, and sunlight.
+</astra>
+
+---
+
+<user>
+Why are fungi important?
+</user>
+<astra>
+<think>
+Give multiple ecological roles.
+</think>
+Many fungi break down dead plants and animals, returning nutrients to the environment. Others form partnerships with plant roots, and some are food sources. They are essential parts of many ecosystems.
+</astra>
+
+---
+
+<user>
+How does a refrigerator keep food cold?
+</user>
+<astra>
+<think>
+Explain heat movement rather than saying it creates cold.
+</think>
+A refrigerator moves heat from its insulated inside to the warmer room. A circulating refrigerant absorbs heat as it evaporates and releases heat as it condenses, with a compressor helping drive the cycle.
+</astra>
+
+---
+
+<user>
+What is an electrical circuit?
+</user>
+<astra>
+<think>
+Define closed path and open circuit.
+</think>
+An electrical circuit is a connected path that lets electric charge move. A simple circuit needs a source of electrical energy, conducting paths, and a component such as a lamp. If the path is broken, current stops.
+</astra>
+
+---
+
+<user>
+Why do shadows change length during the day?
+</user>
+<astra>
+<think>
+Connect solar angle to shadow length.
+</think>
+The Sun appears at different heights in the sky as Earth rotates. When the Sun is low, light arrives at a shallow angle and shadows are long. When it is higher, shadows are shorter.
+</astra>
+
+---
+
+<user>
+What is the difference between mass and weight?
+</user>
+<astra>
+<think>
+Give a clear distinction and example.
+</think>
+Mass measures how much matter an object has. Weight is the force of gravity acting on that mass. Your mass stays nearly the same on the Moon, but your weight there is lower.
+</astra>
+
+---
+
+<user>
+Why do bubbles become round?
+</user>
+<astra>
+<think>
+Explain surface tension and minimal area.
+</think>
+A liquid surface tends to minimize its area because of surface tension. A sphere encloses a given volume with the smallest surface area, so a free-floating bubble tends toward a round shape.
+</astra>
+
+---
+
+<user>
+What does a computer's operating system do?
+</user>
+<astra>
+<think>
+List core responsibilities.
+</think>
+An operating system manages a computer's hardware and provides services that applications use. It handles tasks such as memory, files, devices, security, and running programs.
+</astra>
+
+---
+
+<user>
+What is the difference between RAM and storage?
+</user>
+<astra>
+<think>
+Compare temporary working memory and persistent storage.
+</think>
+RAM holds information that the computer is actively using and is usually cleared when power is off. Storage keeps files and applications for later, even after the computer shuts down.
+</astra>
+
+---
+
+<user>
+Why do computers use binary?
+</user>
+<astra>
+<think>
+Explain two-state electronics.
+</think>
+Digital circuits can reliably represent two states, such as low and high voltage. Binary uses the digits 0 and 1 to represent information, making it practical to store and process data electronically.
+</astra>
+
+---
+
+<user>
+What is an algorithm?
+</user>
+<astra>
+<think>
+Define with a simple analogy.
+</think>
+An algorithm is a finite, clearly defined sequence of steps for solving a problem or completing a task. A recipe is a familiar everyday example.
+</astra>
+
+---
+
+<user>
+What is a variable in programming?
+</user>
+<astra>
+<think>
+Define storage and changing values.
+</think>
+A variable is a named place in a program where a value can be stored and used. The value may change while the program runs, depending on the language and how the variable is declared.
+</astra>
+
+---
+
+<user>
+Why do programmers use functions?
+</user>
+<astra>
+<think>
+Explain reuse, inputs, and outputs.
+</think>
+Functions package a task into a reusable piece of code. They can accept inputs, perform steps, and return a result, helping programs stay organized and reducing repeated code.
+</astra>
+
+---
+
+<user>
+What is the difference between a bug and a feature?
+</user>
+<astra>
+<think>
+Avoid treating the distinction as always obvious.
+</think>
+A bug is behavior that does not match what the software is intended to do. A feature is an intended capability. Sometimes a behavior is debated, so the design goal and user expectations matter.
+</astra>
+
+---
+
+<user>
+How does a search engine find web pages?
+</user>
+<astra>
+<think>
+Explain crawling, indexing, and ranking.
+</think>
+Search engines discover pages by following links and other signals, analyze and organize the content in an index, then use ranking systems to choose useful results for a query.
+</astra>
+
+---
+
+<user>
+What makes a password stronger?
+</user>
+<astra>
+<think>
+Give practical defensive advice.
+</think>
+A strong password is long, unique to one account, and difficult to guess. A password manager can create and store unique passwords, and multifactor authentication adds another layer of protection.
+</astra>
+
+---
+
+<user>
+What is open-source software?
+</user>
+<astra>
+<think>
+Emphasize license terms.
+</think>
+Open-source software makes its source code available under a license that grants defined rights to use, inspect, modify, and share it. The exact permissions and obligations depend on the license.
+</astra>
+
+---
+
+<user>
+Why do websites use HTTPS?
+</user>
+<astra>
+<think>
+Explain encryption and authentication.
+</think>
+HTTPS encrypts data between a browser and a website and helps verify that the connection is with the site named in the certificate. It reduces the chance that others on the network can read or alter the traffic.
+</astra>
+
+---
+
+<user>
+What is a database?
+</user>
+<astra>
+<think>
+Define with examples.
+</think>
+A database is an organized collection of information that software can store, search, update, and manage. It can hold things such as user accounts, game scores, or product details.
+</astra>
+
+---
+
+<user>
+What is the difference between a list and a dictionary in Python?
+</user>
+<astra>
+<think>
+Contrast indexing and key lookup.
+</think>
+A list stores an ordered sequence of items accessed by position, such as `items[0]`. A dictionary stores key-value pairs accessed by key, such as `person["name"]`.
+</astra>
+
+---
+
+<user>
+Why is testing code useful?
+</user>
+<astra>
+<think>
+Explain regression prevention.
+</think>
+Tests check whether code behaves as expected for chosen inputs and situations. They can catch mistakes early, protect working features when code changes, and make refactoring safer.
+</astra>
+
+---
+
+<user>
+What is a neural network?
+</user>
+<astra>
+<think>
+Give a grounded definition.
+</think>
+A neural network is a machine-learning model made of connected mathematical units. During training, it adjusts numerical parameters so its outputs become better at a task, such as classifying images or predicting text.
+</astra>
+
+---
+
+<user>
+What does a language model predict?
+</user>
+<astra>
+<think>
+Explain next-token prediction.
+</think>
+An autoregressive language model estimates which token is likely to come next given the tokens before it. Repeating that prediction lets it generate a sequence of text.
+</astra>
+
+---
+
+<user>
+Why can a small dataset make a model overfit?
+</user>
+<astra>
+<think>
+Define memorization versus generalization.
+</think>
+A model with many adjustable parameters can memorize a small set of examples instead of learning patterns that generalize. It may perform very well on training data but poorly on new examples.
+</astra>
+
+---
+
+<user>
+What is a validation set?
+</user>
+<astra>
+<think>
+Clarify role distinct from training.
+</think>
+A validation set is data held aside from the training updates and used to estimate how well a model performs on examples it did not train directly on. It helps compare settings and notice overfitting.
+</astra>
+
+---
+
+<user>
+What is the difference between training loss and validation loss?
+</user>
+<astra>
+<think>
+Explain the diagnostic pattern.
+</think>
+Training loss measures prediction error on examples used for learning. Validation loss measures error on held-out examples. If training loss keeps falling while validation loss rises, the model may be overfitting.
+</astra>
+
+---
+
+<user>
+Why do language models sometimes hallucinate?
+</user>
+<astra>
+<think>
+Explain without anthropomorphism.
+</think>
+A language model generates text based on learned patterns, not by automatically checking every statement against reality. It can produce a confident-sounding answer when its context is incomplete or its learned patterns are misleading.
+</astra>
+
+---
+
+<user>
+What is a good way to evaluate a chatbot?
+</user>
+<astra>
+<think>
+Suggest a balanced evaluation approach.
+</think>
+Use a varied set of questions with known expectations, including factual questions, follow-up conversations, ambiguous requests, and creative tasks. Check accuracy, clarity, consistency, and whether it admits uncertainty.
+</astra>
+
+---
+
+<user>
+How do I debug a program that suddenly stopped working?
+</user>
+<astra>
+<think>
+Give a careful debugging sequence.
+</think>
+First reproduce the problem and read the exact error message. Then identify the smallest section that could cause it, inspect recent changes, and test one hypothesis at a time. Keep a working copy before major edits.
+</astra>
+
+---
+
+<user>
+Why should a project have a README?
+</user>
+<astra>
+<think>
+Explain practical value.
+</think>
+A README explains what a project does, how to run it, its requirements, and where to find important files. It gives new contributors a useful starting point without making them inspect every file first.
+</astra>
+
+---
+
+<user>
+What is version control?
+</user>
+<astra>
+<think>
+Describe history, rollback, and branches.
+</think>
+Version control records changes to files over time. It lets developers compare revisions, restore earlier versions, and work on separate branches before combining changes.
+</astra>
+
+---
+
+<user>
+How does a 3D printer make an object?
+</user>
+<astra>
+<think>
+Describe additive manufacturing.
+</think>
+Many 3D printers build an object layer by layer from a digital model. A common type heats plastic filament and places thin lines of material that cool and bond together.
+</astra>
+
+---
+
+<user>
+What is renewable energy?
+</user>
+<astra>
+<think>
+Define with examples and nuance.
+</think>
+Renewable energy comes from sources that naturally replenish on human timescales, such as sunlight, wind, moving water, and geothermal heat. Each source has different costs and environmental trade-offs.
+</astra>
+
+---
+
+<user>
+Why do plants need sunlight?
+</user>
+<astra>
+<think>
+Connect light to photosynthesis.
+</think>
+Plants use light energy to power photosynthesis, which helps them make sugars from water and carbon dioxide. Those sugars provide chemical energy and building material for growth.
+</astra>
+
+---
+
+<user>
+What is the water cycle?
+</user>
+<astra>
+<think>
+Outline the main stages.
+</think>
+The water cycle describes how water moves through the environment. It evaporates from surfaces, condenses into clouds, falls as precipitation, and flows or seeps back into bodies of water.
+</astra>
+
+---
+
+<user>
+Why do some animals migrate?
+</user>
+<astra>
+<think>
+Give common reasons.
+</think>
+Animals migrate to reach places with better food, breeding conditions, or temperatures. The timing and route depend on the species, and some migrations cover enormous distances.
+</astra>
+
+---
+
+<user>
+What is a food web?
+</user>
+<astra>
+<think>
+Contrast network with simple chain.
+</think>
+A food web is a network of connected food chains showing how energy and nutrients move among organisms in an ecosystem. It shows that most species have several food sources and predators.
+</astra>
+
+---
+
+<user>
+How do vaccines help the immune system?
+</user>
+<astra>
+<think>
+Provide high-level accurate health education.
+</think>
+Vaccines safely expose the immune system to a target or instructions for recognizing it. This helps the body build immune memory, so it can respond more effectively if it encounters the pathogen later.
+</astra>
+
+---
+
+<user>
+Why is sleep important for learning?
+</user>
+<astra>
+<think>
+Avoid overstating one mechanism.
+</think>
+Sleep supports attention, memory processing, and many other brain and body functions. Getting enough regular sleep can make it easier to focus and remember what you study.
+</astra>
+
+---
+
+<user>
+What is a scientific hypothesis?
+</user>
+<astra>
+<think>
+Define testability.
+</think>
+A scientific hypothesis is a proposed explanation that can be tested with observations or experiments. A useful hypothesis makes predictions that evidence could support or contradict.
+</astra>
+
+---
+
+<user>
+Why do scientists repeat experiments?
+</user>
+<astra>
+<think>
+Explain reproducibility.
+</think>
+Repeating experiments helps show whether a result is reliable or was caused by chance, measurement error, or an unusual condition. Independent groups repeating a study add another check.
+</astra>
+
+---
+
+<user>
+What is the difference between correlation and causation?
+</user>
+<astra>
+<think>
+Explain confounding.
+</think>
+Correlation means two things vary together. Causation means a change in one thing helps produce a change in another. Correlation alone does not prove causation because other factors may explain the pattern.
+</astra>
+
+---
+
+<user>
+How can I make a difficult topic easier to learn?
+</user>
+<astra>
+<think>
+Give actionable study advice.
+</think>
+Break it into smaller questions, learn the key vocabulary, and connect each new idea to an example you understand. Then explain it in your own words and try a fresh problem without looking at the answer.
+</astra>
+
+---
+
+<user>
+How do I write a clear paragraph?
+</user>
+<astra>
+<think>
+Explain structure and focus.
+</think>
+Start with one main point. Add evidence or an example, explain how it supports the point, and remove sentences that do not belong. A clear paragraph usually has one central job.
+</astra>
+
+---
+
+<user>
+What makes a story's character interesting?
+</user>
+<astra>
+<think>
+Focus on motivation and change.
+</think>
+An interesting character has understandable goals, strengths, flaws, and choices. Their decisions create consequences, and those consequences can change what they believe or what they try next.
+</astra>
+
+---
+
+<user>
+Give me a creative idea for a cozy game.
+</user>
+<astra>
+<think>
+Provide a concrete original game concept.
+</think>
+Create a tiny lighthouse workshop where players repair unusual lamps washed ashore. Each lamp contains a short memory from a distant island, and restoring it gradually reveals a map of the surrounding sea.
+</astra>
+
+---
+
+<user>
+Invent a strange but friendly creature.
+</user>
+<astra>
+<think>
+Make the invention specific and internally coherent.
+</think>
+The mossbell is a palm-sized forest creature with soft mossy fur and two translucent ear-fins. When it feels safe, the fins ring like tiny glass chimes, helping nearby seedlings grow toward the sound.
+</astra>
+
+---
+
+<user>
+Give me an original puzzle mechanic.
+</user>
+<astra>
+<think>
+Describe a clear mechanic and player interaction.
+</think>
+In a room of rotating platforms, the player's shadow is controlled separately from the character. The shadow can stand on moonlit tiles to rotate the room, while the character navigates the new layout.
+</astra>
+
+---
+
+<user>
+Write a short opening for a science-fiction story.
+</user>
+<astra>
+<think>
+Create a concise hook without copying a known work.
+</think>
+At 06:12, every clock on the station gained one extra minute. The crew blamed a software update until the navigation computer reported that the planet below had done the same thing.
+</astra>
+
+---
+
+<user>
+How could I make a platformer feel different?
+</user>
+<astra>
+<think>
+Suggest a distinctive but manageable mechanic.
+</think>
+Build levels around changing gravity zones. A marked surface can pull the player sideways or upside down, so familiar jumps become route-planning puzzles. Introduce one rule at a time, then combine them.
+</astra>
+
+---
+
+<user>
+What is a good way to organize a small game project?
+</user>
+<astra>
+<think>
+Offer a practical structure.
+</think>
+Separate the project into scenes or modules for the menu, gameplay, settings, and shared systems. Keep assets in clearly named folders, and write down how the main pieces connect.
+</astra>
+
+---
+
+<user>
+How can I make a user interface easier to understand?
+</user>
+<astra>
+<think>
+Prioritize clarity and consistency.
+</think>
+Use consistent spacing, clear labels, and predictable placement for similar controls. Make the most important action easy to find, show useful feedback after actions, and avoid adding decoration that competes with the content.
+</astra>
+
+---
+
+<user>
+Why is accessibility important in games?
+</user>
+<astra>
+<think>
+Give examples without assuming one solution fits everyone.
+</think>
+Accessibility lets more people enjoy a game by offering options such as remappable controls, readable text, subtitles, color-independent cues, and adjustable difficulty. Different players need different combinations of support.
+</astra>
+
+---
+
+<user>
+What makes a good tutorial level?
+</user>
+<astra>
+<think>
+Explain gradual teaching.
+</think>
+A good tutorial introduces one mechanic, gives the player a safe place to try it, and then asks them to use it in a slightly new situation. It teaches through clear feedback instead of long instructions.
+</astra>
+
+---
+
+<user>
+How can I tell whether a feature is worth adding?
+</user>
+<astra>
+<think>
+Give a decision framework.
+</think>
+Ask what player problem it solves, how often it will be used, and what complexity it adds. A small feature that makes a common task clearer may be more valuable than a flashy feature that distracts from the main experience.
+</astra>
+
+---
+
+<user>
+What is technical debt?
+</user>
+<astra>
+<think>
+Explain trade-off, not just negative label.
+</think>
+Technical debt is the future cost created by shortcuts or design choices that make later changes harder. Sometimes a shortcut is reasonable, but it helps to record it and revisit it before it spreads.
+</astra>
+
+---
+
+<user>
+How should I respond when I don't know an answer?
+</user>
+<astra>
+<think>
+Model honest uncertainty.
+</think>
+Be clear about what you do and do not know. Share any reliable part of the answer, explain what information is missing, and avoid inventing details just to sound certain.
+</astra>
+
+---
+
+<user>
+What is the difference between an opinion and a fact?
+</user>
+<astra>
+<think>
+Explain mixed claims.
+</think>
+A fact is a claim that can be checked against evidence. An opinion expresses a judgment or preference. Some statements mix both, so it helps to separate measurable details from personal evaluation.
+</astra>
+
+---
+
+<user>
+How can two people disagree respectfully?
+</user>
+<astra>
+<think>
+Offer constructive communication advice.
+</think>
+Each person can describe the specific point they disagree about, listen for the reason behind the other view, and ask clarifying questions. Focus on the idea rather than attacking the person.
+</astra>
+
+---
+
+<user>
+Why is curiosity useful?
+</user>
+<astra>
+<think>
+Explain curiosity as a learning tool.
+</think>
+Curiosity encourages people to ask questions, notice gaps in what they know, and explore explanations. It can turn a mistake or surprising result into a starting point for learning.
+</astra>
+
+---
+
+<user>
+How do I plan a project without making it overwhelming?
+</user>
+<astra>
+<think>
+Give a simple planning method.
+</think>
+Write down the finished result, divide it into a few milestones, and choose one small next action. Review the plan as you learn more instead of trying to predict every detail at the beginning.
+</astra>
+
+---
+
+<user>
+What is the difference between a goal and a task?
+</user>
+<astra>
+<think>
+Clarify with example.
+</think>
+A goal describes an outcome you want to reach. A task is a specific action that helps move toward it. For example, 'finish the game menu' is a goal, while 'add the settings button' is a task.
+</astra>
+
+---
+
+<user>
+Why is backing up files important?
+</user>
+<astra>
+<think>
+Give sound general advice.
+</think>
+A backup gives you another copy if a device fails, a file is accidentally changed, or something is deleted. A useful backup is separate from the original device and is checked occasionally to make sure it can be restored.
+</astra>
+
+---
+
+<user>
+What does it mean for software to be offline-first?
+</user>
+<astra>
+<think>
+Define local operation and later sync.
+</think>
+Offline-first software is designed to keep its important features working without an internet connection. It can store needed data locally and synchronize later when a connection becomes available.
+</astra>
+
+---
+
+<user>
+What is the difference between a website and a web app?
+</user>
+<astra>
+<think>
+Avoid rigid definitions.
+</think>
+A website mainly presents information, while a web app lets people interact with data or tools in the browser. The distinction is flexible: many modern sites combine both roles.
+</astra>
+
+---
+
+<user>
+Why do images need alternative text?
+</user>
+<astra>
+<think>
+Explain accessibility purpose.
+</think>
+Alternative text describes the meaningful content or function of an image for people using screen readers and for cases where an image cannot load. Decorative images can often use empty alternative text.
+</astra>
+
+---
+
+<user>
+What is a good way to name files?
+</user>
+<astra>
+<think>
+Give practical naming guidance.
+</think>
+Use names that describe the file's purpose, keep a consistent style, and avoid vague labels such as 'final-final2'. Dates or version numbers can help when they make the file history clearer.
+</astra>
+
+---
+
+<user>
+How do I compare two design ideas fairly?
+</user>
+<astra>
+<think>
+Offer fair evaluation criteria.
+</think>
+Compare them against the same goals: clarity, ease of use, performance, maintenance, and the time needed to build them. A quick prototype can reveal problems that are hard to judge from descriptions alone.
+</astra>
+
+---
+
+<user>
+Why can a simple design be better than a complicated one?
+</user>
+<astra>
+<think>
+Add nuance.
+</think>
+A simple design makes the important choices easier to notice and understand. It can also be faster to build, test, and maintain. Simplicity is useful when it removes friction, not when it hides necessary features.
+</astra>
+
+---
+
+<user>
+What is a trade-off in engineering?
+</user>
+<astra>
+<think>
+Define with example.
+</think>
+A trade-off is a decision where improving one quality can make another harder to achieve. For example, adding more features may increase capability but also increase complexity and testing time.
+</astra>
+
+---
+
+<user>
+How do I know when a prototype is ready for testing?
+</user>
+<astra>
+<think>
+Set a practical threshold.
+</think>
+A prototype is ready when it demonstrates the main idea well enough for someone to try it and give useful feedback. It does not need every feature or polished artwork, but its central interaction should work.
+</astra>
+
+---
+
+<user>
+Give me a fun name for a tiny robot librarian.
+</user>
+<astra>
+<think>
+Explain the naming choice.
+</think>
+Pipwick. It sounds small and cheerful, and it suggests a little mechanical helper who keeps every book in exactly the right place.
+</astra>
+
+---
+
+<user>
+Invent a fictional planet with an unusual environment.
+</user>
+<astra>
+<think>
+Give coherent visual details.
+</think>
+Veyra is a dim blue planet covered in shallow mirror-like seas. At night, floating mineral plates drift across the water and reflect constellations that are invisible from the shore.
+</astra>
+
+---
+
+<user>
+Create a concept for a puzzle about sound.
+</user>
+<astra>
+<think>
+Describe the core puzzle loop.
+</think>
+Players place tuning stones around a chamber. Each stone repeats a note after a delay, and the goal is to arrange the echoes so they open a door when the melody arrives in the correct order.
+</astra>
+
+---
+
+<user>
+Give me an idea for a funny side quest.
+</user>
+<astra>
+<think>
+Make it playful and specific.
+</think>
+A village's official bell-ringer has lost the tiny hammer, so every resident has invented a different substitute. The player tests increasingly ridiculous objects before discovering the hammer tucked inside the bell's maintenance manual.
+</astra>
+
+---
+
+<user>
+Explain why practice helps someone improve at a skill.
+</user>
+<astra>
+<think>
+Explain feedback and repetition.
+</think>
+Practice gives the brain and body repeated chances to adjust. Focused practice with feedback helps identify mistakes, strengthen useful patterns, and gradually handle more difficult situations.
+</astra>
+
+---
+
+<user>
+What should I do after finishing a first draft?
+</user>
+<astra>
+<think>
+Provide a revision order.
+</think>
+Take a short break, then review the draft for its main purpose and structure. Fix missing ideas first, improve sentence clarity next, and check spelling and formatting at the end.
+</astra>
+
+---
+
+<user>
+How can I make a presentation more engaging?
+</user>
+<astra>
+<think>
+Offer practical communication tips.
+</think>
+Give the audience one clear idea to follow, use examples that make abstract points concrete, and keep each slide focused. Speaking naturally and pausing for questions can help more than adding extra effects.
+</astra>
+
+---
+
+<user>
+What is the purpose of a conclusion?
+</user>
+<astra>
+<think>
+Define function.
+</think>
+A conclusion brings the main points together and explains why they matter. It should leave the reader with a clear final understanding rather than introducing a completely unrelated topic.
+</astra>
+
+---
+
+<user>
+How do I break a big coding problem into smaller pieces?
+</user>
+<astra>
+<think>
+Give decomposition strategy.
+</think>
+Describe the expected input and output, identify the main steps between them, and turn each step into a function or module with a clear responsibility. Test the pieces separately before connecting them.
+</astra>
+
+---
+
+<user>
+Why should I read an error message carefully?
+</user>
+<astra>
+<think>
+Explain diagnostic value.
+</think>
+An error message often identifies the type of failure and the file or line where it occurred. It may not reveal the full cause, but it narrows the search and gives you a useful starting point.
+</astra>
+
+---
+
+<user>
+What is a minimum viable product?
+</user>
+<astra>
+<think>
+Clarify purpose.
+</think>
+A minimum viable product is a small version of a product that includes enough of its core value to test with real users. It is not simply an unfinished product; it should answer a specific learning question.
+</astra>
+
+---
+
+<user>
+How do I choose what to work on first?
+</user>
+<astra>
+<think>
+Give prioritization logic.
+</think>
+Start with tasks that unblock other work or test the biggest uncertainty. Then consider importance, effort, and deadlines. A short list of priorities is usually easier to act on than a huge backlog.
+</astra>
+
+---
+
+<user>
+Why is it useful to keep a changelog?
+</user>
+<astra>
+<think>
+Explain traceability.
+</think>
+A changelog records meaningful updates so users and developers can see what changed between versions. It is especially useful when a fix or feature affects how people use the project.
+</astra>
+
+---
+
+<user>
+What does reproducible mean in a software experiment?
+</user>
+<astra>
+<think>
+Define reproducibility.
+</think>
+A reproducible experiment includes enough detail about the data, settings, code, and environment for someone to repeat it and check whether they get similar results.
+</astra>
+
+---
+
+<user>
+How can I avoid misleading benchmark results?
+</user>
+<astra>
+<think>
+Give sound benchmarking practice.
+</think>
+Use the same hardware and settings for comparisons, repeat measurements, report the exact workload, and separate warm-up time from steady-state performance. Include failures and limitations, not just the best number.
+</astra>
+
+---
+
+<user>
+Why do small language models need careful datasets?
+</user>
+<astra>
+<think>
+Relate dataset quality to capacity.
+</think>
+A small model has limited capacity, so repeated or inconsistent examples can use much of its learning budget without teaching many distinct patterns. Curated variety and clean formatting matter greatly.
+</astra>
+
+---
+
+<user>
+What is data deduplication?
+</user>
+<astra>
+<think>
+Explain exact and semantic duplicates.
+</think>
+Data deduplication identifies repeated or near-repeated examples so they do not dominate a dataset. Exact duplicates are easy to detect; paraphrases and repeated answers may need more careful grouping.
+</astra>
+
+---
+
+<user>
+Why should training and validation data be separated?
+</user>
+<astra>
+<think>
+Explain leakage.
+</think>
+The validation set is meant to estimate performance on unseen examples. If the same answers or near-duplicates appear in both sets, the estimate can look better than real generalization.
+</astra>
+
+---
+
+<user>
+What is a tokenizer?
+</user>
+<astra>
+<think>
+Give flexible definition.
+</think>
+A tokenizer converts text into smaller units called tokens that a language model can process as numbers. Tokens may represent bytes, characters, word pieces, or whole words depending on the tokenizer.
+</astra>
+
+---
+
+<user>
+Why might a tokenizer have a smaller vocabulary than its target?
+</user>
+<astra>
+<think>
+Explain BPE behavior.
+</think>
+A tokenizer may stop early if its training text does not contain enough repeated sequences to justify more merges. A larger target is only a limit; it does not guarantee that every slot will be useful.
+</astra>
+
+---
+
+<user>
+What does an attention mechanism do in a language model?
+</user>
+<astra>
+<think>
+Explain causal constraint.
+</think>
+Attention lets a model combine information from selected earlier tokens when computing a representation for the current token. In a causal language model, it must not use future tokens when predicting the next one.
+</astra>
+
+---
+
+<user>
+Why is a causal mask important?
+</user>
+<astra>
+<think>
+Explain leakage prevention.
+</think>
+A causal mask prevents a language model from looking at later tokens while predicting an earlier position. Without it, training can accidentally reveal the answer the model is supposed to predict.
+</astra>
+
+---
+
+<user>
+What is a recurrent neural network idea?
+</user>
+<astra>
+<think>
+Explain shared state.
+</think>
+A recurrent model reuses a state as it processes a sequence. The state carries information from earlier steps into later ones, allowing the model to process ordered data over time.
+</astra>
+
+---
+
+<user>
+What does parameter sharing mean?
+</user>
+<astra>
+<think>
+Define with trade-off.
+</think>
+Parameter sharing means multiple parts or steps of a model use the same learned weights instead of each having separate weights. It can reduce model size, though the shared weights must serve several roles.
+</astra>
+
+---
+
+<user>
+Why might a model use multiple passes through one block?
+</user>
+<astra>
+<think>
+Connect to ASTRA architecture.
+</think>
+Repeated passes let the same block refine its internal representation more than once. This reuses parameters, but extra passes also cost computation and do not automatically improve results.
+</astra>
+
+---
+
+<user>
+What is early stopping in machine learning?
+</user>
+<astra>
+<think>
+Define best checkpoint.
+</think>
+Early stopping ends training when validation performance has stopped improving for a chosen number of evaluations. It can reduce overfitting and save compute, while keeping the best checkpoint seen so far.
+</astra>
+
+---
+
+<user>
+Why is a low loss not the same as a good chatbot?
+</user>
+<astra>
+<think>
+Explain metric limits.
+</think>
+Loss measures how well a model predicts tokens in a dataset. A chatbot also needs coherent answers, useful behavior, factual reliability, and the ability to handle new questions, so direct testing is essential.
+</astra>
+
+---
+
+<user>
+What makes a dataset high quality?
+</user>
+<astra>
+<think>
+Summarize curation criteria.
+</think>
+A useful dataset has accurate, relevant, varied examples with clear provenance and compatible licenses. It should also be checked for duplicates, formatting errors, harmful content, and train-validation leakage.
+</astra>
+
+---
+
+<user>
+Why should datasets keep source information?
+</user>
+<astra>
+<think>
+Explain provenance.
+</think>
+Source information records where examples came from and what terms apply to them. It makes attribution possible, supports auditing, and helps remove or update data when needed.
+</astra>
+
+---
+
+<user>
+What is the difference between public and public domain?
+</user>
+<astra>
+<think>
+Clarify common confusion.
+</think>
+Publicly accessible means people can view or download something. Public domain means copyright restrictions no longer apply or never applied. A public download can still have a license with conditions.
+</astra>
+
+---
+
+<user>
+What does an attribution license require?
+</user>
+<astra>
+<think>
+Explain not all attribution licenses are identical.
+</think>
+An attribution license generally requires users to credit the creator and preserve specified notices. Some licenses add conditions such as sharing adaptations under the same terms, so the exact license text matters.
+</astra>
+
+---
+
+<user>
+Why can mixing datasets be tricky?
+</user>
+<astra>
+<think>
+Describe practical challenges.
+</think>
+Different datasets may use different licenses, formats, quality standards, and intended tasks. A mixture needs consistent conversion, deduplication, safety filtering, and a record of which source contributed each example.
+</astra>
+
+---
+
+<user>
+What is a good first step when a model gives nonsense output?
+</user>
+<astra>
+<think>
+Give ordered debugging.
+</think>
+Check the tokenizer, special-token formatting, checkpoint compatibility, and generation settings before changing the architecture. Then inspect training examples and compare training loss with held-out validation loss.
+</astra>
+
+---
+
+<user>
+How can I tell whether a model is memorizing?
+</user>
+<astra>
+<think>
+List signals.
+</think>
+Look for very low training loss alongside much higher validation loss, repeated verbatim answers, and poor performance on new prompts. Test with carefully held-out examples that do not share answers with training data.
+</astra>
+
+---
+
+<user>
+What is a useful way to test creative generation?
+</user>
+<astra>
+<think>
+Offer evaluation strategy.
+</think>
+Give the model prompts that require different settings, constraints, and combinations, then check whether each result is coherent and specific. Rephrase prompts and see whether it can adapt instead of repeating one template.
+</astra>
+
+---
+
+<user>
+Why is it useful to keep a small fixed test set?
+</user>
+<astra>
+<think>
+Explain controlled comparison.
+</think>
+A fixed test set makes comparisons between model versions more consistent. Keep it separate from training, avoid tuning repeatedly against it, and include different task types.
+</astra>
+
+---
+
+<user>
+What is a fair way to compare two model versions?
+</user>
+<astra>
+<think>
+Give fair protocol.
+</think>
+Use the same held-out prompts, generation settings, hardware, and evaluation criteria. Compare both numerical metrics and example outputs, and note any change in speed, memory use, or reliability.
+</astra>
+
+---
+
+<user>
+How should an assistant handle an ambiguous question?
+</user>
+<astra>
+<think>
+Give ambiguity handling.
+</think>
+If the likely meaning is clear, answer with that interpretation and state the assumption briefly. If different interpretations would lead to very different answers, ask one focused clarifying question.
+</astra>
+
+---
+
+<user>
+What makes an explanation beginner-friendly?
+</user>
+<astra>
+<think>
+Define accessible teaching.
+</think>
+Use familiar words, introduce technical terms only when needed, connect ideas to concrete examples, and build from the basic concept toward the more detailed explanation.
+</astra>
+
+---
+
+<user>
+Why is it important to distinguish evidence from guesses?
+</user>
+<astra>
+<think>
+Explain epistemic clarity.
+</think>
+Evidence can be checked against observations or reliable sources. A guess may be useful as a possibility, but labeling it clearly prevents people from mistaking uncertainty for a confirmed fact.
+</astra>
+
+---
+
+<user>
+How can a team make decisions when people prefer different designs?
+</user>
+<astra>
+<think>
+Suggest collaborative decision process.
+</think>
+Agree on the goals first, list the constraints, and compare each design against the same criteria. If discussion stalls, build a small prototype or run a limited test to gather evidence.
+</astra>
