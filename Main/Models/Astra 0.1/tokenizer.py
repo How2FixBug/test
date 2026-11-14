@@ -55,11 +55,14 @@ def train_bpe(pairs: list[tuple[str, str]], target_size: int):
     # Frequency-compress identical pieces before learning merges.
     piece_counts: Counter[tuple[int, ...]] = Counter()
     for user, astra in pairs:
-        for piece in text_pieces(user) + text_pieces(astra):
+        clean_user = SPECIAL_RE.sub("", user)
+        clean_astra = SPECIAL_RE.sub("", astra)
+        for piece in text_pieces(clean_user) + text_pieces(clean_astra):
             piece_counts[tuple(piece.encode("utf-8"))] += 1
 
     sequences = [(list(piece), count) for piece, count in piece_counts.items()]
-    vocab = [bytes([i]) for i in range(BASE_VOCAB_SIZE)]
+    # Reserve IDs 256–261 for ASTRA’s six structural tokens.
+    vocab: list[bytes | None] = [bytes([i]) for i in range(BASE_VOCAB_SIZE)] + [None] * len(SPECIAL_TOKENS)
     merges: list[tuple[int, int]] = []
 
     while BASE_VOCAB_SIZE + len(merges) < target_size:
@@ -74,7 +77,7 @@ def train_bpe(pairs: list[tuple[str, str]], target_size: int):
         if frequency < 2:
             break
 
-        new_id = BASE_VOCAB_SIZE + len(merges)
+        new_id = len(vocab)
         left, right = pair
         merges.append(pair)
         vocab.append(vocab[left] + vocab[right])
@@ -101,7 +104,7 @@ def encode_plain(text: str, merges: list[tuple[int, int]]) -> list[int]:
     for piece in text_pieces(text):
         sequence = list(piece.encode("utf-8"))
         for merge_index, pair in enumerate(merges):
-            new_id = BASE_VOCAB_SIZE + merge_index
+            new_id = BASE_VOCAB_SIZE + len(SPECIAL_TOKENS) + merge_index
             merged = []
             index = 0
             changed = False
@@ -145,7 +148,7 @@ def decode(ids: list[int], vocab: list[bytes]) -> str:
         if token_id in reverse:
             flush()
             output.append(reverse[token_id])
-        elif 0 <= token_id < len(vocab):
+        elif 0 <= token_id < len(vocab) and vocab[token_id] is not None:
             byte_buffer.extend(vocab[token_id])
         else:
             raise ValueError(f"Unknown token ID: {token_id}")
@@ -162,7 +165,7 @@ def save_tokenizer(config_path: Path, vocab: list[bytes], merges: list[tuple[int
         "base_byte_vocab_size": BASE_VOCAB_SIZE,
         "special_tokens": SPECIAL_TOKENS,
         "special_token_count": len(SPECIAL_TOKENS),
-        "vocab_hex": [token.hex() for token in vocab],
+        "vocab_hex": [token.hex() if token is not None else None for token in vocab],
         "merges": [list(pair) for pair in merges],
         "notes": (
             "UTF-8 byte fallback preserves every Unicode character. "
@@ -202,7 +205,7 @@ def main():
 
     total_tokens = sum(len(encode(f"<user>\n{u}\n</user>\n<astra>\n{a}\n</astra>", merges))
                        for u, a in pairs)
-    actual_size = len(vocab) + len(SPECIAL_TOKENS)
+    actual_size = len(vocab)
     print(f"Tokenizer trained on {len(pairs)} conversation pairs.")
     print(f"Vocabulary: {actual_size:,} tokens (target: {args.vocab_size:,}).")
     print(f"Learned BPE merges: {len(merges):,}.")
