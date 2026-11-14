@@ -44,8 +44,26 @@
     toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
   };
   const activeChat = () => chats.find(chat => chat.id === activeId);
+  const makeEmptyChat = () => ({ id: id(), title: "New conversation", messages: [], created: Date.now() });
+  const ensureChatExists = () => {
+    if (chats.length) return;
+    const chat = makeEmptyChat();
+    chats.unshift(chat);
+    activeId = chat.id;
+  };
+  const selectChat = (nextId) => {
+    if (nextId === activeId) return;
+    const previous = activeChat();
+    if (previous && previous.messages.length === 0) {
+      chats = chats.filter(chat => chat.id !== previous.id);
+      save();
+    }
+    activeId = nextId;
+    render("switch");
+    $("#sidebar").classList.remove("open");
+  };
   const createChat = () => {
-    const chat = { id: id(), title: "New conversation", messages: [], created: Date.now() };
+    const chat = makeEmptyChat();
     chats.unshift(chat);
     activeId = chat.id;
     animateNewConversation = true;
@@ -92,18 +110,12 @@
       });
       actions.append(rename, remove);
       item.append(glyph, title, actions);
-      item.addEventListener("click", () => {
-        if (activeId === chat.id) return;
-        activeId = chat.id;
-        render("switch");
-        $("#sidebar").classList.remove("open");
-      });
+      item.addEventListener("click", () => selectChat(chat.id));
       item.addEventListener("keydown", event => {
         if (event.target !== item) return;
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          if (activeId !== chat.id) { activeId = chat.id; render("switch"); }
-          $("#sidebar").classList.remove("open");
+          selectChat(chat.id);
         }
       });
       chatList.append(item);
@@ -165,6 +177,7 @@
       makeModalButton("Delete", "danger", () => {
         chats = chats.filter(entry => entry.id !== chat.id);
         if (activeId === chat.id) activeId = chats[0]?.id || null;
+        ensureChatExists();
         save();
         render();
         closeModal();
@@ -213,6 +226,7 @@
       makeModalButton("Delete all", "danger", () => {
         chats = [];
         activeId = null;
+        ensureChatExists();
         save();
         closeModal();
         render("new");
@@ -532,6 +546,8 @@
     const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
     if (Array.isArray(saved)) chats = saved.filter(chat => chat && typeof chat.id === "string" && Array.isArray(chat.messages));
   } catch { chats = []; }
-  if (chats.length) activeId = chats[0].id;
+  ensureChatExists();
+  if (chats.length && !activeId) activeId = chats[0].id;
+  save();
   render("initial");
 })();
