@@ -190,3 +190,7 @@ button{font:inherit}.new-chat{height:45px;width:100%;display:flex;align-items:ce
 .message-morph-flight>span{display:block;flex:0 0 auto;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
 .avatar .ui-icon{width:17px;height:17px}
 .message.sol .avatar .ui-icon{width:19px;height:19px}
+
+/* Preserve the send-button position while the real input box flies away. */
+.input-box-placeholder{display:block;min-width:0;pointer-events:none;}
+.input-box.input-box-flight{overflow:hidden!important;}
