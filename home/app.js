@@ -13,6 +13,8 @@
   const modalActions = $("#modal-actions");
   const editButton = $("#edit-chat-button");
   const editMenu = $("#edit-chat-menu");
+  const modelPicker = $("#model-picker");
+  const modelMenu = $("#model-menu");
   const settingsKey = "astra-settings-v1";
   let settings = { animations: true, enterToSend: true };
   try {
@@ -327,7 +329,7 @@
     if (!activeChat()) createChat();
     const chat = activeChat();
     const userMessage = { role: "user", text: value };
-    const botMessage = { role: "sol", text: "Astra has no brain yet. Come back later!" };
+    const botMessage = { role: "sol", text: "ASTRA 0.1 is selected, but its model files have not been added yet." };
     chat.messages.push(userMessage, botMessage);
     if (chat.messages.filter(message => message.role === "user").length === 1) {
       chat.title = value.length > 30 ? value.slice(0, 27) + "..." : value;
@@ -524,10 +526,31 @@
     if (action === "rename") openRenameDialog();
     if (action === "delete") openDeleteDialog();
   });
+  modelPicker.addEventListener("click", () => {
+    const opening = modelMenu.hidden;
+    modelMenu.hidden = !opening;
+    modelPicker.setAttribute("aria-expanded", String(opening));
+  });
+  modelMenu.addEventListener("click", event => {
+    const option = event.target.closest("[data-model]");
+    if (!option) return;
+    modelMenu.querySelectorAll("[data-model]").forEach(item => {
+      const selected = item === option;
+      item.classList.toggle("selected", selected);
+      item.setAttribute("aria-selected", String(selected));
+    });
+    $("#selected-model-name").textContent = option.querySelector("strong").textContent;
+    modelMenu.hidden = true;
+    modelPicker.setAttribute("aria-expanded", "false");
+  });
   $("#settings-button").addEventListener("click", openSettingsDialog);
   $("#modal-close").addEventListener("click", closeModal);
   modalBackdrop.addEventListener("click", event => { if (event.target === modalBackdrop) closeModal(); });
   document.addEventListener("click", event => {
+    if (!event.target.closest("#model-picker-wrap")) {
+      modelMenu.hidden = true;
+      modelPicker.setAttribute("aria-expanded", "false");
+    }
     if (!event.target.closest(".edit-menu-wrap")) {
       editMenu.hidden = true;
       editButton.setAttribute("aria-expanded", "false");
@@ -549,6 +572,8 @@
       $("#sidebar").classList.remove("open");
       editMenu.hidden = true;
       editButton.setAttribute("aria-expanded", "false");
+      modelMenu.hidden = true;
+      modelPicker.setAttribute("aria-expanded", "false");
       if (!modalBackdrop.hidden) closeModal();
     }
   });
