@@ -66,6 +66,52 @@ MAX_PROMPT_CHARS = 1800
 MAX_ANSWER_CHARS = 1400
 MAX_CONTEXT_MESSAGES = 8
 
+# Keep social, preference, hobby, and everyday-chat exchanges. This is a
+# conservative lexical screen, not a semantic classifier; dry-run samples
+# still need human review before importing.
+INSTRUCTION_PROMPT_RE = re.compile(
+    r"\b(?:how (?:do|can|to)|steps? to|instructions? for|"
+    r"explain how to|show me how|teach me how|write (?:me )?(?:a|the) guide|"
+    r"give me (?:tips|advice|instructions)|what is the best way to|"
+    r"help me (?:plan|prepare|organize|fix|solve))\b",
+    re.I,
+)
+ADVICE_ANSWER_RE = re.compile(
+    r"\b(?:you should|you ought to|i recommend|i suggest|"
+    r"it's important to|it is important to|make sure (?:to|you)|"
+    r"here are (?:some )?(?:tips|steps|ways)|"
+    r"the best way to|to stay safe|for your safety|"
+    r"consider (?:doing|using|trying)|try to remember to)\b",
+    re.I,
+)
+PROCEDURAL_ANSWER_RE = re.compile(
+    r"\b(?:ingredients|preheat|oven to \d+|stir in|bake for|"
+    r"cook for \d+|step-by-step|first,|firstly,|"
+    r"secondly,|finally,|in conclusion,|"
+    r"traffic (?:accidents?|collisions?) (?:are|can be|often)|"
+    r"causes? of (?:traffic|car) accidents?)\b",
+    re.I,
+)
+LIVE_INFO_RE = re.compile(
+    r"\b(?:current(?:ly)? weather|today's forecast|weather forecast|"
+    r"right now it is \d+|currently \d+ degrees|"
+    r"live traffic|real[- ]time (?:weather|traffic|news))\b",
+    re.I,
+)
+CASUAL_SIGNAL_RE = re.compile(
+    r"\b(?:hi|hello|hey|how are you|what's up|"
+    r"thanks|thank you|you're welcome|no problem|"
+    r"guess what|that sounds|sounds like|"
+    r"i (?:am|was|just|feel|felt|like|love|enjoy|prefer|finished|"
+    r"played|watched|read|listened|went|going|hope|think)|"
+    r"my favorite|what is your favorite|what's your favorite|"
+    r"do you like|have you ever|what do you think|"
+    r"that's (?:cool|great|awesome|interesting|fun)|"
+    r"good morning|good night|see you|congratulations)\b",
+    re.I,
+)
+LIST_LINE_RE = re.compile(r"(?m)^\s*(?:[-*•]|\d+[.)])\s+")
+
 
 def normalize(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip().casefold()
@@ -84,7 +130,29 @@ def acceptable_text(value: object, *, assistant: bool) -> bool:
         return False
     if assistant and PERSONA_RE.search(text):
         return False
+    if assistant and PERSONA_RE.search(text):
+        return False
     return True
+
+
+def conversational_pair(prompt: str, answer: str) -> tuple[bool, str | None]:
+    """Reject advice/tutorial/factual-service content and retain casual chat."""
+    if INSTRUCTION_PROMPT_RE.search(prompt):
+        return False, "instructional_prompts"
+    if LIVE_INFO_RE.search(prompt) or LIVE_INFO_RE.search(answer):
+        return False, "live_information"
+    if ADVICE_ANSWER_RE.search(answer):
+        return False, "advice_answers"
+    if PROCEDURAL_ANSWER_RE.search(answer):
+        return False, "instructional_answers"
+    if len(LIST_LINE_RE.findall(answer)) >= 2:
+        return False, "list_style_answers"
+
+    # A prompt or response should contain at least one recognizable social /
+    # everyday-conversation cue. This deliberately favors precision over yield.
+    if not CASUAL_SIGNAL_RE.search(prompt) and not CASUAL_SIGNAL_RE.search(answer):
+        return False, "non_conversational_pairs"
+    return True, None
 
 
 def fetch_rows(scan_rows: int) -> tuple[list[dict], str]:
@@ -190,6 +258,10 @@ def extract_pairs(rows: list[dict]) -> tuple[list[tuple[str, str]], Counter]:
                 for role, content in context
             )
             answer = history[assistant_index][1]
+            keep, reason = conversational_pair(prompt, answer)
+            if not keep:
+                stats[reason] += 1
+                continue
             if not acceptable_text(prompt, assistant=False):
                 stats["filtered_prompts"] += 1
                 continue
@@ -239,7 +311,7 @@ def write_manifest(added: int, stats: Counter, snapshot_hash: str, scanned: int)
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Import broad, general-purpose assistant conversations into ASTRA 0.2."
+        description="Import casual, everyday conversations into ASTRA 0.2."
     )
     parser.add_argument("--max-add", type=int, default=5000)
     parser.add_argument("--scan-rows", type=int, default=SCAN_ROWS)
