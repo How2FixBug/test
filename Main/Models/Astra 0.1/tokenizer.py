@@ -1,63 +1,42 @@
 #!/usr/bin/env python3
-"""ASTRA 0.1 tokenizer and dataset encoder. No third-party packages required."""
+"""Train ASTRA's byte-level BPE tokenizer and encode its dataset.
+
+No third-party packages required. This trains the tokenizer only; it does not
+train the neural network.
+"""
 from __future__ import annotations
+
 import argparse
 import json
 import re
+from collections import Counter
 from pathlib import Path
 
+TARGET_VOCAB_SIZE = 8192
+BASE_VOCAB_SIZE = 256
 SPECIAL_TOKENS = {
     "<user>": 256, "</user>": 257,
     "<astra>": 258, "</astra>": 259,
     "<think>": 260, "</think>": 261,
 }
-VOCAB_SIZE = 262
+SPECIAL_RE = re.compile("(" + "|".join(
+    re.escape(token) for token in sorted(SPECIAL_TOKENS, key=len, reverse=True)
+) + ")")
 PAIR_RE = re.compile(
     r"<user>\s*([\s\S]*?)\s*</user>\s*"
     r"<astra>\s*([\s\S]*?)\s*</astra>"
 )
-MARKER_RE = re.compile("(" + "|".join(
-    re.escape(token) for token in sorted(SPECIAL_TOKENS, key=len, reverse=True)
-) + ")")
+# Keep whitespace, words, numbers, and punctuation in separate pieces.
+PRETOKEN_RE = re.compile(r"\s+|[^\W_]+|_+|[^\w\s]+", re.UNICODE)
 
-def encode(text: str) -> list[int]:
-    ids: list[int] = []
-    for part in MARKER_RE.split(text):
-        if not part:
-            continue
-        if part in SPECIAL_TOKENS:
-            ids.append(SPECIAL_TOKENS[part])
-        else:
-            ids.extend(part.encode("utf-8"))
-    return ids
-
-def decode(ids: list[int]) -> str:
-    reverse = {value: key for key, value in SPECIAL_TOKENS.items()}
-    output: list[str] = []
-    byte_buffer = bytearray()
-    def flush() -> None:
-        if byte_buffer:
-            output.append(byte_buffer.decode("utf-8"))
-            byte_buffer.clear()
-    for token_id in ids:
-        if token_id in reverse:
-            flush()
-            output.append(reverse[token_id])
-        elif 0 <= token_id <= 255:
-            byte_buffer.append(token_id)
-        else:
-            raise ValueError(f"Unknown token ID: {token_id}")
-    flush()
-    return "".join(output)
 
 def load_pairs(dataset_path: Path) -> list[tuple[str, str]]:
     raw = dataset_path.read_text(encoding="utf-8")
-    # The token guide mentions marker strings inline. The real dataset begins
-    # only when <user> appears alone on a line; everything before it is ignored.
-    match = re.search(r"(?m)^<user>\s*$", raw)
-    if not match:
+    # Ignore the explanatory material before the first actual training sample.
+    marker = re.search(r"(?m)^<user>\s*$", raw)
+    if not marker:
         raise ValueError("No standalone <user> training marker found.")
-    pairs = [(u.strip(), a.strip()) for u, a in PAIR_RE.findall(raw[match.start():])]
+    pairs = [(u.strip(), a.strip()) for u, a in PAIR_RE.findall(raw[marker.start():])]
     if not pairs:
         raise ValueError("No complete user/ASTRA pairs found.")
     for index, (user, astra) in enumerate(pairs, 1):
@@ -67,25 +46,172 @@ def load_pairs(dataset_path: Path) -> list[tuple[str, str]]:
             raise ValueError(f"Example {index} is missing a think section.")
     return pairs
 
-def tokenize_dataset(dataset_path: Path, output_path: Path) -> int:
-    pairs = load_pairs(dataset_path)
+
+def text_pieces(text: str) -> list[str]:
+    return PRETOKEN_RE.findall(text)
+
+
+def train_bpe(pairs: list[tuple[str, str]], target_size: int):
+    # Frequency-compress identical pieces before learning merges.
+    piece_counts: Counter[tuple[int, ...]] = Counter()
+    for user, astra in pairs:
+        for piece in text_pieces(user) + text_pieces(astra):
+            piece_counts[tuple(piece.encode("utf-8"))] += 1
+
+    sequences = [(list(piece), count) for piece, count in piece_counts.items()]
+    vocab = [bytes([i]) for i in range(BASE_VOCAB_SIZE)]
+    merges: list[tuple[int, int]] = []
+
+    while BASE_VOCAB_SIZE + len(merges) < target_size:
+        pair_counts: Counter[tuple[int, int]] = Counter()
+        for sequence, frequency in sequences:
+            for left, right in zip(sequence, sequence[1:]):
+                pair_counts[(left, right)] += frequency
+        if not pair_counts:
+            break
+        pair, frequency = pair_counts.most_common(1)[0]
+        # Don't add arbitrary one-off merges just to fill the vocabulary.
+        if frequency < 2:
+            break
+
+        new_id = BASE_VOCAB_SIZE + len(merges)
+        left, right = pair
+        merges.append(pair)
+        vocab.append(vocab[left] + vocab[right])
+
+        updated = []
+        for sequence, count in sequences:
+            merged = []
+            index = 0
+            while index < len(sequence):
+                if index + 1 < len(sequence) and (sequence[index], sequence[index + 1]) == pair:
+                    merged.append(new_id)
+                    index += 2
+                else:
+                    merged.append(sequence[index])
+                    index += 1
+            updated.append((merged, count))
+        sequences = updated
+
+    return vocab, merges
+
+
+def encode_plain(text: str, merges: list[tuple[int, int]]) -> list[int]:
+    ids: list[int] = []
+    for piece in text_pieces(text):
+        sequence = list(piece.encode("utf-8"))
+        for merge_index, pair in enumerate(merges):
+            new_id = BASE_VOCAB_SIZE + merge_index
+            merged = []
+            index = 0
+            changed = False
+            while index < len(sequence):
+                if index + 1 < len(sequence) and (sequence[index], sequence[index + 1]) == pair:
+                    merged.append(new_id)
+                    index += 2
+                    changed = True
+                else:
+                    merged.append(sequence[index])
+                    index += 1
+            if changed:
+                sequence = merged
+        ids.extend(sequence)
+    return ids
+
+
+def encode(text: str, merges: list[tuple[int, int]]) -> list[int]:
+    ids: list[int] = []
+    for part in SPECIAL_RE.split(text):
+        if not part:
+            continue
+        if part in SPECIAL_TOKENS:
+            ids.append(SPECIAL_TOKENS[part])
+        else:
+            ids.extend(encode_plain(part, merges))
+    return ids
+
+
+def decode(ids: list[int], vocab: list[bytes]) -> str:
+    reverse = {value: key for key, value in SPECIAL_TOKENS.items()}
+    output: list[str] = []
+    byte_buffer = bytearray()
+
+    def flush():
+        if byte_buffer:
+            output.append(byte_buffer.decode("utf-8"))
+            byte_buffer.clear()
+
+    for token_id in ids:
+        if token_id in reverse:
+            flush()
+            output.append(reverse[token_id])
+        elif 0 <= token_id < len(vocab):
+            byte_buffer.extend(vocab[token_id])
+        else:
+            raise ValueError(f"Unknown token ID: {token_id}")
+    flush()
+    return "".join(output)
+
+
+def save_tokenizer(config_path: Path, vocab: list[bytes], merges: list[tuple[int, int]]):
+    config = {
+        "name": "ASTRA 0.1 Byte-Level BPE",
+        "type": "byte_level_bpe",
+        "target_vocab_size": TARGET_VOCAB_SIZE,
+        "vocab_size": len(vocab) + len(SPECIAL_TOKENS),
+        "base_byte_vocab_size": BASE_VOCAB_SIZE,
+        "special_tokens": SPECIAL_TOKENS,
+        "special_token_count": len(SPECIAL_TOKENS),
+        "vocab_hex": [token.hex() for token in vocab],
+        "merges": [list(pair) for pair in merges],
+        "notes": (
+            "UTF-8 byte fallback preserves every Unicode character. "
+            "BPE merges are learned from the ASTRA dataset. "
+            "The tokenizer is trained separately from the language model."
+        ),
+    }
+    config_path.write_text(json.dumps(config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def tokenize_dataset(pairs, output_path: Path, merges):
     with output_path.open("w", encoding="utf-8") as output:
         for index, (user, astra) in enumerate(pairs):
             sample = f"<user>\n{user}\n</user>\n<astra>\n{astra}\n</astra>"
-            record = {"id": index, "input_ids": encode(sample)}
+            record = {"id": index, "input_ids": encode(sample, merges)}
             output.write(json.dumps(record, separators=(",", ":"), ensure_ascii=False))
             output.write("\n")
-    return len(pairs)
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Tokenize ASTRA 0.1; this does not train.")
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Train ASTRA's BPE tokenizer and tokenize its dataset. Does not train ASTRA."
+    )
     parser.add_argument("--dataset", type=Path, default=Path(__file__).with_name("dataset.txt"))
     parser.add_argument("--output", type=Path, default=Path(__file__).with_name("tokenized_dataset.jsonl"))
+    parser.add_argument("--config", type=Path, default=Path(__file__).with_name("tokenizer_config.json"))
+    parser.add_argument("--vocab-size", type=int, default=TARGET_VOCAB_SIZE)
     args = parser.parse_args()
-    count = tokenize_dataset(args.dataset, args.output)
-    print(f"Tokenized {count} examples.")
-    print(f"Vocabulary size: {VOCAB_SIZE} (256 byte IDs + 6 special tokens)")
-    print(f"Saved: {args.output}")
+
+    if args.vocab_size <= BASE_VOCAB_SIZE + len(SPECIAL_TOKENS):
+        parser.error("--vocab-size must be greater than 262")
+
+    pairs = load_pairs(args.dataset)
+    vocab, merges = train_bpe(pairs, args.vocab_size)
+    save_tokenizer(args.config, vocab, merges)
+    tokenize_dataset(pairs, args.output, merges)
+
+    total_tokens = sum(len(encode(f"<user>\n{u}\n</user>\n<astra>\n{a}\n</astra>", merges))
+                       for u, a in pairs)
+    actual_size = len(vocab) + len(SPECIAL_TOKENS)
+    print(f"Tokenizer trained on {len(pairs)} conversation pairs.")
+    print(f"Vocabulary: {actual_size:,} tokens (target: {args.vocab_size:,}).")
+    print(f"Learned BPE merges: {len(merges):,}.")
+    print(f"Encoded dataset: {total_tokens:,} tokens.")
+    print(f"Saved tokenizer: {args.config}")
+    print(f"Saved dataset: {args.output}")
+    if actual_size < args.vocab_size:
+        print("Stopped early: no repeated byte pairs remained worth adding.")
+
 
 if __name__ == "__main__":
     main()
