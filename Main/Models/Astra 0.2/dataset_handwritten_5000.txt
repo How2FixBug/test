@@ -1,0 +1,1126 @@
+# ASTRA 0.2 handwritten dataset
+# Batch 1 of 50 | 100 original conversation pairs
+# This file is separate from dataset.txt. The original 531 examples are not modified.
+# Format is compatible with conversation_workbench.py.
+<user>
+Hi!
+</user>
+<astra>
+Hey! How's it going?
+</astra>
+
+---
+
+<user>
+Hello there.
+</user>
+<astra>
+Hello! What’s on your mind?
+</astra>
+
+---
+
+<user>
+Good morning!
+</user>
+<astra>
+Good morning! Hope your day is off to a nice start.
+</astra>
+
+---
+
+<user>
+Hey, how are you?
+</user>
+<astra>
+I'm doing well and ready to chat. How are you?
+</astra>
+
+---
+
+<user>
+I'm back.
+</user>
+<astra>
+Welcome back! What would you like to talk about?
+</astra>
+
+---
+
+<user>
+It's been a while.
+</user>
+<astra>
+It has! What's new?
+</astra>
+
+---
+
+<user>
+I don't really have anything to say.
+</user>
+<astra>
+That's okay. We can just have a quiet, low-pressure chat.
+</astra>
+
+---
+
+<user>
+I'm bored.
+</user>
+<astra>
+Boredom has arrived. Want to talk about something random?
+</astra>
+
+---
+
+<user>
+Today feels unusually long.
+</user>
+<astra>
+Some days really seem to stretch on forever.
+</astra>
+
+---
+
+<user>
+I finally finished my homework.
+</user>
+<astra>
+Nice! That's one thing off your list.
+</astra>
+
+---
+
+<user>
+I got everything done today.
+</user>
+<astra>
+That must feel satisfying. A productive day is a good feeling.
+</astra>
+
+---
+
+<user>
+I didn't get much done.
+</user>
+<astra>
+That happens. One slow day doesn't erase your progress.
+</astra>
+
+---
+
+<user>
+I'm looking forward to the weekend.
+</user>
+<astra>
+A little something to look forward to can make the week easier.
+</astra>
+
+---
+
+<user>
+It's Friday!
+</user>
+<astra>
+Friday has a pretty great reputation for a reason.
+</astra>
+
+---
+
+<user>
+Mondays are rough.
+</user>
+<astra>
+Monday can be a difficult way to restart the week.
+</astra>
+
+---
+
+<user>
+I can't believe it's already November.
+</user>
+<astra>
+The year has moved quickly, hasn't it?
+</astra>
+
+---
+
+<user>
+Time is going by so fast.
+</user>
+<astra>
+It can be strange noticing how quickly the days add up.
+</astra>
+
+---
+
+<user>
+I wish today would slow down.
+</user>
+<astra>
+Sounds like there's a lot happening today.
+</astra>
+
+---
+
+<user>
+I have a lot on my mind.
+</user>
+<astra>
+I'm here to listen. You can start wherever you like.
+</astra>
+
+---
+
+<user>
+I just wanted to say hi.
+</user>
+<astra>
+Hi! Glad you stopped by.
+</astra>
+
+---
+
+<user>
+Thanks for chatting with me.
+</user>
+<astra>
+You're welcome! I'm always ready for another conversation.
+</astra>
+
+---
+
+<user>
+That was helpful, thanks.
+</user>
+<astra>
+You're welcome! Glad it helped.
+</astra>
+
+---
+
+<user>
+I appreciate that.
+</user>
+<astra>
+Of course. Happy to keep talking it through.
+</astra>
+
+---
+
+<user>
+Sorry, I changed the subject.
+</user>
+<astra>
+No problem. Conversations can wander.
+</astra>
+
+---
+
+<user>
+Anyway, moving on.
+</user>
+<astra>
+Sure. What's the new topic?
+</astra>
+
+---
+
+<user>
+Let's talk about something else.
+</user>
+<astra>
+Absolutely. We can switch topics.
+</astra>
+
+---
+
+<user>
+I forgot what I was going to say.
+</user>
+<astra>
+That happens. Maybe it'll come back to you.
+</astra>
+
+---
+
+<user>
+Never mind, I remembered.
+</user>
+<astra>
+There it is! What were you going to say?
+</astra>
+
+---
+
+<user>
+That made me laugh.
+</user>
+<astra>
+A good laugh is always welcome in a conversation.
+</astra>
+
+---
+
+<user>
+That is so random.
+</user>
+<astra>
+Random topics do keep things interesting.
+</astra>
+
+---
+
+<user>
+I have a question, but it's kind of silly.
+</user>
+<astra>
+Silly questions are welcome here.
+</astra>
+
+---
+
+<user>
+This might be a weird question.
+</user>
+<astra>
+Go ahead. Weird questions can be interesting.
+</astra>
+
+---
+
+<user>
+I have no idea what to talk about.
+</user>
+<astra>
+We can start with whatever has been on your mind lately.
+</astra>
+
+---
+
+<user>
+Can we just chat?
+</user>
+<astra>
+Of course. No particular topic required.
+</astra>
+
+---
+
+<user>
+I like having background music on.
+</user>
+<astra>
+Music can make a room feel less quiet.
+</astra>
+
+---
+
+<user>
+I prefer rainy days.
+</user>
+<astra>
+Rainy days do have a distinct atmosphere.
+</astra>
+
+---
+
+<user>
+I love sunny weather.
+</user>
+<astra>
+Sunny days can make everything feel a little brighter.
+</astra>
+
+---
+
+<user>
+I like the sound of rain.
+</user>
+<astra>
+It's a calming sound for a lot of people.
+</astra>
+
+---
+
+<user>
+I wish it would snow.
+</user>
+<astra>
+Snow can make an ordinary day feel different.
+</astra>
+
+---
+
+<user>
+It's really windy today.
+</user>
+<astra>
+Windy weather can make the outdoors feel pretty dramatic.
+</astra>
+
+---
+
+<user>
+The weather keeps changing.
+</user>
+<astra>
+Unpredictable weather makes it hard to know what to expect.
+</astra>
+
+---
+
+<user>
+I like autumn the most.
+</user>
+<astra>
+Autumn has a lot of fans. The changing scenery is part of its appeal.
+</astra>
+
+---
+
+<user>
+Summer is my favorite season.
+</user>
+<astra>
+Summer certainly has a distinctive feel to it.
+</astra>
+
+---
+
+<user>
+I miss the holidays.
+</user>
+<astra>
+Holiday seasons can leave behind some fond memories.
+</astra>
+
+---
+
+<user>
+I like decorating for holidays.
+</user>
+<astra>
+Decorations can make a place feel festive.
+</astra>
+
+---
+
+<user>
+I started a new game.
+</user>
+<astra>
+Nice! What's the game called?
+</astra>
+
+---
+
+<user>
+I've been playing the same game all week.
+</user>
+<astra>
+Sounds like it has kept your attention.
+</astra>
+
+---
+
+<user>
+I finally beat that level.
+</user>
+<astra>
+You got past it! That's a satisfying milestone.
+</astra>
+
+---
+
+<user>
+I keep losing at this game.
+</user>
+<astra>
+That can get frustrating, especially when you're close.
+</astra>
+
+---
+
+<user>
+I found a game I really like.
+</user>
+<astra>
+Finding a game that clicks is great.
+</astra>
+
+---
+
+<user>
+I like building things in games.
+</user>
+<astra>
+Creative building games can be especially fun.
+</astra>
+
+---
+
+<user>
+I prefer single-player games.
+</user>
+<astra>
+Single-player games have their own kind of appeal.
+</astra>
+
+---
+
+<user>
+I like playing games with friends.
+</user>
+<astra>
+Shared games can make good conversations afterward, too.
+</astra>
+
+---
+
+<user>
+I want to try a different genre.
+</user>
+<astra>
+A change of genre can make gaming feel fresh again.
+</astra>
+
+---
+
+<user>
+I haven't played anything lately.
+</user>
+<astra>
+Sometimes other interests take over for a while.
+</astra>
+
+---
+
+<user>
+I watched a really good movie.
+</user>
+<astra>
+Nice! What did you think made it so good?
+</astra>
+
+---
+
+<user>
+I can't decide what to watch.
+</user>
+<astra>
+Choosing can take longer than watching sometimes.
+</astra>
+
+---
+
+<user>
+I finished a show yesterday.
+</user>
+<astra>
+How did you feel about the ending?
+</astra>
+
+---
+
+<user>
+The ending was disappointing.
+</user>
+<astra>
+That's frustrating after investing time in a story.
+</astra>
+
+---
+
+<user>
+I love animated movies.
+</user>
+<astra>
+Animation can tell all kinds of stories.
+</astra>
+
+---
+
+<user>
+I prefer comedies.
+</user>
+<astra>
+A funny movie can be a great change of pace.
+</astra>
+
+---
+
+<user>
+I started reading a book.
+</user>
+<astra>
+Nice! What's it about?
+</astra>
+
+---
+
+<user>
+I haven't read in ages.
+</user>
+<astra>
+It can be nice to return to a book when the right one comes along.
+</astra>
+
+---
+
+<user>
+I finished the whole book in two days.
+</user>
+<astra>
+Sounds like it really pulled you in.
+</astra>
+
+---
+
+<user>
+I don't want any spoilers.
+</user>
+<astra>
+Understood. I'll keep story details spoiler-free.
+</astra>
+
+---
+
+<user>
+I like science fiction.
+</user>
+<astra>
+Science fiction has room for some wonderfully unusual ideas.
+</astra>
+
+---
+
+<user>
+I prefer fantasy stories.
+</user>
+<astra>
+Fantasy can build entire worlds with their own rules.
+</astra>
+
+---
+
+<user>
+I made something today.
+</user>
+<astra>
+That's exciting. What did you make?
+</astra>
+
+---
+
+<user>
+I drew a picture.
+</user>
+<astra>
+Nice! What did you decide to draw?
+</astra>
+
+---
+
+<user>
+I started learning to code.
+</user>
+<astra>
+That's a fun skill to explore. What are you making?
+</astra>
+
+---
+
+<user>
+My code finally works.
+</user>
+<astra>
+Excellent. Getting a stubborn bug fixed is satisfying.
+</astra>
+
+---
+
+<user>
+I found a bug in my project.
+</user>
+<astra>
+Bugs are part of building software. What is it doing?
+</astra>
+
+---
+
+<user>
+I redesigned my website.
+</user>
+<astra>
+A redesign can give a project a whole new feel.
+</astra>
+
+---
+
+<user>
+I have too many project ideas.
+</user>
+<astra>
+Having lots of ideas can make it hard to pick one.
+</astra>
+
+---
+
+<user>
+I abandoned an old project.
+</user>
+<astra>
+Sometimes a project has served its purpose, and that's okay.
+</astra>
+
+---
+
+<user>
+I want to finish what I started.
+</user>
+<astra>
+That sounds like a meaningful goal.
+</astra>
+
+---
+
+<user>
+I came up with a new name for my project.
+</user>
+<astra>
+Nice! What's the new name?
+</astra>
+
+---
+
+<user>
+I like the color blue.
+</user>
+<astra>
+Blue has a huge range, from pale and calm to deep and bold.
+</astra>
+
+---
+
+<user>
+I can't pick a favorite color.
+</user>
+<astra>
+No need to settle on just one.
+</astra>
+
+---
+
+<user>
+I like minimalist designs.
+</user>
+<astra>
+Simple designs can make the important parts stand out.
+</astra>
+
+---
+
+<user>
+I prefer dark mode.
+</user>
+<astra>
+Dark interfaces have a look of their own.
+</astra>
+
+---
+
+<user>
+I changed my desktop wallpaper.
+</user>
+<astra>
+A new wallpaper can make a computer feel refreshed.
+</astra>
+
+---
+
+<user>
+My computer is being slow.
+</user>
+<astra>
+That's annoying, especially when you're trying to get something done.
+</astra>
+
+---
+
+<user>
+I finally organized my files.
+</user>
+<astra>
+That should make things easier to find.
+</astra>
+
+---
+
+<user>
+I have a new keyboard.
+</user>
+<astra>
+Nice! Is it mechanical or a regular keyboard?
+</astra>
+
+---
+
+<user>
+I like quiet places.
+</user>
+<astra>
+A quieter environment can make it easier to focus.
+</astra>
+
+---
+
+<user>
+I work better with some noise around.
+</user>
+<astra>
+A little background activity can help some people settle into a task.
+</astra>
+
+---
+
+<user>
+I don't know what to do next.
+</user>
+<astra>
+We can think through the possibilities together.
+</astra>
+
+---
+
+<user>
+I changed my mind.
+</user>
+<astra>
+That's completely fine. You can change direction.
+</astra>
+
+---
+
+<user>
+I think I made the right choice.
+</user>
+<astra>
+It sounds like you've thought it through.
+</astra>
+
+---
+
+<user>
+I'm excited about tomorrow.
+</user>
+<astra>
+Having something exciting ahead can make the wait feel long.
+</astra>
+
+---
+
+<user>
+I'm nervous about tomorrow.
+</user>
+<astra>
+It's understandable to feel that way before something important.
+</astra>
+
+---
+
+<user>
+I had a pretty good day.
+</user>
+<astra>
+Glad to hear it. What was the best part?
+</astra>
+
+---
+
+<user>
+Today was frustrating.
+</user>
+<astra>
+Sorry it was a rough one. Want to talk about what happened?
+</astra>
+
+---
+
+<user>
+I need a distraction.
+</user>
+<astra>
+We can talk about games, movies, space, or something completely random.
+</astra>
+
+---
+
+<user>
+Tell me something interesting about Saturn.
+</user>
+<astra>
+Saturn's rings are made mostly of countless pieces of ice and rock, ranging from tiny grains to much larger chunks.
+</astra>
+
+---
+
+<user>
+Does Mars have moons?
+</user>
+<astra>
+Yes. Mars has two small moons, Phobos and Deimos.
+</astra>
+
+---
+
+<user>
+Is the Sun a star?
+</user>
+<astra>
+Yes! The Sun is the star at the center of our solar system.
+</astra>
+
+---
+
+<user>
+Why does the Moon change shape?
+</user>
+<astra>
+The Moon doesn't physically change shape. As it orbits Earth, we see different portions of its sunlit half. Those views are called phases.
+</astra>
+
+---
+
+<user>
+What is a light-year?
+</user>
+<astra>
+A light-year is a unit of distance: how far light travels in one year.
+</astra>
+
+---
+
+<user>
+Are there planets outside our solar system?
+</user>
+<astra>
+Yes. They're called exoplanets, and thousands have been confirmed.
+</astra>
+
+---
+
+<user>
+What galaxy do we live in?
+</user>
+<astra>
+We live in the Milky Way galaxy.
+</astra>
+
+---
+
+<user>
+Can a star be bigger than the Sun?
+</user>
+<astra>
+Absolutely. Some stars are hundreds or even more than a thousand times wider than the Sun.
+</astra>
+
+---
+
+<user>
+What is a nebula?
+</user>
+<astra>
+A nebula is a vast cloud of gas and dust in space. Some are places where new stars form.
+</astra>
+
+---
+
+<user>
+Is Jupiter the biggest planet?
+</user>
+<astra>
+Yes. Jupiter is the largest planet in our solar system.
+</astra>
+
+---
+
+<user>
+Does Venus have rings?
+</user>
+<astra>
+No. Venus does not have a ring system.
+</astra>
+
+---
+
+<user>
+Why is Mars red?
+</user>
+<astra>
+Mars looks red because iron minerals in its surface soil have oxidized, giving the dust a rusty color.
+</astra>
+
+---
+
+<user>
+What is a black hole?
+</user>
+<astra>
+A black hole is a region of space where gravity is so strong that nothing, not even light, can escape from within its event horizon.
+</astra>
+
+---
+
+<user>
+Can we see the Milky Way?
+</user>
+<astra>
+Yes. Under a dark, clear sky, the Milky Way can appear as a faint, cloudy band stretching across the sky.
+</astra>
+
+---
+
+<user>
+Do all stars have planets?
+</user>
+<astra>
+Not all stars are known to have planets, but planets appear to be common around stars.
+</astra>
+
+---
+
+<user>
+What causes a solar eclipse?
+</user>
+<astra>
+A solar eclipse happens when the Moon passes between Earth and the Sun, blocking some or all of the Sun from our view.
+</astra>
+
+---
+
+<user>
+Is Pluto still a planet?
+</user>
+<astra>
+Pluto is classified as a dwarf planet, rather than one of the eight planets.
+</astra>
+
+---
+
+<user>
+What is an asteroid?
+</user>
+<astra>
+An asteroid is a small rocky or metallic object that orbits the Sun.
+</astra>
+
+---
+
+<user>
+Are comets made of ice?
+</user>
+<astra>
+Comets contain ice, dust, and rocky material. When they approach the Sun, some of their ice turns directly into gas.
+</astra>
+
+---
+
+<user>
+Does the Moon orbit Earth?
+</user>
+<astra>
+Yes. The Moon travels around Earth in an orbit.
+</astra>
+
+---
+
+<user>
+What is the closest star to Earth?
+</user>
+<astra>
+The Sun is the closest star to Earth. After the Sun, the closest star system is Alpha Centauri.
+</astra>
+
+---
+
+<user>
+Can stars explode?
+</user>
+<astra>
+Some stars end their lives in enormous explosions called supernovae.
+</astra>
+
+---
+
+<user>
+What is the International Space Station?
+</user>
+<astra>
+The International Space Station is a large research laboratory that orbits Earth, where crews conduct experiments in microgravity.
+</astra>
+
+---
+
+<user>
+Why do astronauts float in orbit?
+</user>
+<astra>
+Astronauts and their spacecraft are both in continuous free fall around Earth, which creates the sensation of weightlessness.
+</astra>
+
+---
+
+<user>
+Does Uranus rotate differently from most planets?
+</user>
+<astra>
+Yes. Uranus has an extreme axial tilt, so it rotates almost on its side.
+</astra>
+
+---
+
+<user>
+What is an exoplanet?
+</user>
+<astra>
+An exoplanet is a planet that orbits a star beyond our Sun.
+</astra>
+
+---
+
+<user>
+Are there stars in other galaxies?
+</user>
+<astra>
+Yes. Other galaxies contain enormous numbers of stars, just as the Milky Way does.
+</astra>
+
+---
+
+<user>
+What is a constellation?
+</user>
+<astra>
+A constellation is a recognized pattern or region of the sky named by astronomers. The stars in its pattern may be very far apart in space.
+</astra>
+
+---
+
+<user>
+Can the Moon have an atmosphere?
+</user>
+<astra>
+The Moon has an extremely thin exosphere, but it does not have a thick atmosphere like Earth's.
+</astra>
+
+---
+
+<user>
+What is the difference between a meteor and a meteorite?
+</user>
+<astra>
+A meteor is the streak of light from space material entering an atmosphere. If a piece reaches the ground, it's called a meteorite.
+</astra>
