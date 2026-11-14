@@ -348,8 +348,8 @@
 
   const buildPromptIds = (history, currentMessage, tokenizer) => {
     const maxPromptTokens = 432;
-    const prefix = tokenizer.encode("<user>\\n");
-    const suffix = tokenizer.encode("\\n</user>\\n<astra>\\n");
+    const prefix = tokenizer.encode("<user>\n");
+    const suffix = tokenizer.encode("\n</user>\n<astra>\n");
     let currentBody = tokenizer.encode(currentMessage);
     const currentRoom = Math.max(1, maxPromptTokens - prefix.length - suffix.length);
     if (currentBody.length > currentRoom) currentBody = currentBody.slice(-currentRoom);
@@ -365,8 +365,8 @@
     for (let i = turns.length - 1; i >= 0; i--) {
       const turn = turns[i];
       const turnIds = tokenizer.encode(
-        "<user>\\n" + turn.user + "\\n</user>\\n<astra>\\n" +
-        turn.assistant + "\\n</astra>\\n"
+        "<user>\n" + turn.user + "\n</user>\n<astra>\n" +
+        turn.assistant + "\n</astra>\n"
       );
       if (promptIds.length + turnIds.length > maxPromptTokens) continue;
       promptIds = turnIds.concat(promptIds);
