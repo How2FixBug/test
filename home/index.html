@@ -69,6 +69,22 @@
       </section>
 
       <footer class="composer-area">
+    <div class="model-picker-wrap" id="model-picker-wrap">
+      <button class="model-picker" id="model-picker" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <span class="model-picker-mark" aria-hidden="true"></span>
+        <span class="model-picker-copy"><strong id="selected-model-name">ASTRA 0.1</strong><small id="selected-model-status">Model files not added</small></span>
+        <span class="model-picker-chevron" aria-hidden="true">⌃</span>
+      </button>
+      <div class="model-menu" id="model-menu" role="listbox" aria-label="Choose a model" hidden>
+        <div class="model-menu-heading">AVAILABLE MODELS</div>
+        <button class="model-option selected" type="button" role="option" aria-selected="true" data-model="astra-0.1">
+          <span class="model-option-mark" aria-hidden="true"></span>
+          <span><strong>ASTRA 0.1</strong><small>7.8M parameters · Local model</small></span>
+          <span class="model-option-check" aria-hidden="true">✓</span>
+        </button>
+        <div class="model-menu-note">More models will appear here as they are added.</div>
+      </div>
+    </div>
         <form class="composer-shell" id="chat-form">
           <div class="input-box">
             <textarea id="message-input" rows="1" placeholder="Message ASTRA..." aria-label="Message Astra" autocomplete="off"></textarea>
