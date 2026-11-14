@@ -328,8 +328,22 @@
     if (!value) return;
     if (!activeChat()) createChat();
     const chat = activeChat();
+    const history = chat.messages.map(message => ({ role: message.role, text: message.text }));
     const userMessage = { role: "user", text: value };
-    const botMessage = { role: "sol", text: "ASTRA 0.1 is selected, but its model files have not been added yet." };
+    const botMessage = { role: "sol", text: "Thinking..." };
+    const replyPromise = fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: value, history })
+    }).then(async response => {
+      let data = {};
+      try { data = await response.json(); } catch {}
+      if (!response.ok) throw new Error(data.error || "The local ASTRA server is not running. Start server.py and open http://127.0.0.1:8765/home/.");
+      return data.reply;
+    }).catch(error => {
+      if (error instanceof TypeError) throw new Error("Cannot reach the local ASTRA server. Start server.py and open http://127.0.0.1:8765/home/.");
+      throw error;
+    });
     chat.messages.push(userMessage, botMessage);
     if (chat.messages.filter(message => message.role === "user").length === 1) {
       chat.title = value.length > 30 ? value.slice(0, 27) + "..." : value;
@@ -481,6 +495,17 @@
         messages.append(botRow);
         requestAnimationFrame(() => botRow.classList.add("bot-visible"));
         easeScrollToBottom(conversation, 360);
+        replyPromise.then(reply => {
+          botMessage.text = reply;
+          botRow.querySelector(".bubble").textContent = reply;
+          save();
+          easeScrollToBottom(conversation, 260);
+        }).catch(error => {
+          botMessage.text = error.message || "ASTRA could not generate a response.";
+          botRow.querySelector(".bubble").textContent = botMessage.text;
+          save();
+          easeScrollToBottom(conversation, 260);
+        });
       }, 100);
     } catch {
       activeFlightAnimation?.cancel();
@@ -576,6 +601,14 @@
       modelPicker.setAttribute("aria-expanded", "false");
       if (!modalBackdrop.hidden) closeModal();
     }
+  });
+  fetch("/api/status").then(response => response.json()).then(status => {
+    const label = $("#selected-model-status");
+    label.textContent = status.ready ? "Ready · " + status.device : "Model files not added";
+    modelPicker.title = status.ready ? "ASTRA 0.1 is ready" : (status.error || "ASTRA 0.1 is not loaded");
+  }).catch(() => {
+    $("#selected-model-status").textContent = "Local server offline";
+    modelPicker.title = "Start the local ASTRA server to connect";
   });
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
