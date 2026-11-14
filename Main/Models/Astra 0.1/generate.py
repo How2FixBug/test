@@ -159,12 +159,14 @@ def main():
                 allowed_special_ids=allowed,
                 special_ids=special_ids,
             )
-            generated.append(next_id)
+            # Stop before appending the structural end token, so it never
+            # appears in the decoded user-facing answer.
+            if answer_start is not None and next_id == astra_end:
+                break
 
+            generated.append(next_id)
             if answer_start is None and next_id == think_end:
                 answer_start = len(generated)
-            elif answer_start is not None and next_id == astra_end:
-                break
 
     if answer_start is None:
         raise SystemExit(
