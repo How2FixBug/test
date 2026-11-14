@@ -63,13 +63,20 @@ def main() -> None:
     parser.add_argument(
         "--config", type=Path, default=HERE / "tokenizer_config.json"
     )
+    parser.add_argument("--expected-count", type=int, default=2500, help="Expected conversation count; use 0 to disable.")
     parser.add_argument("--sample-count", type=int, default=12)
     parser.add_argument("--sample-seed", type=int, default=42)
     args = parser.parse_args()
 
     conversations = load_conversations(args.dataset)
+    if args.expected_count and len(conversations) != args.expected_count:
+        raise SystemExit(f"Expected {args.expected_count:,} conversations, found {len(conversations):,}.")
     users = [body.strip() for sample in conversations for body in MESSAGE_RE["user"].findall(sample)]
     answers = [body.strip() for sample in conversations for body in MESSAGE_RE["astra"].findall(sample)]
+    if len({normalize(value) for value in users}) != len(users):
+        raise SystemExit("Duplicate user messages found.")
+    if len({normalize(value) for value in answers}) != len(answers):
+        raise SystemExit("Duplicate ASTRA messages found.")
     multi_turn = sum(
         len(MESSAGE_RE["user"].findall(sample)) > 1 for sample in conversations
     )
@@ -78,6 +85,7 @@ def main() -> None:
 
     print("ASTRA CONVERSATION CORPUS AUDIT")
     print(f"Serialized conversations: {len(conversations):,}")
+    print("Exact duplicate message check: PASS")
     print(f"User turns: {len(users):,} ({len({normalize(x) for x in users}):,} unique)")
     print(f"ASTRA turns: {len(answers):,} ({len({normalize(x) for x in answers}):,} unique)")
     print(f"Multi-turn conversations: {multi_turn:,}")
