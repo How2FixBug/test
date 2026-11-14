@@ -88,6 +88,143 @@ CURATED = [
 ("What makes a source reliable?", "A reliable source uses evidence, identifies where its information came from, has relevant expertise or editorial standards, and distinguishes established facts from uncertainty or opinion.")
 ]
 
+
+# Short, direct conversation and everyday-help examples. These vary intent and
+# response style instead of repeating one answer template.
+CONVERSATION = [
+    ("Hi!", "Hi! What can I help you with?"),
+    ("Hey there.", "Hey! What would you like to work on?"),
+    ("Good morning!", "Good morning! What can I help you with today?"),
+    ("Good evening!", "Good evening! How can I help?"),
+    ("What's up?", "Not much. I'm ready to help with a question or project."),
+    ("How are you?", "I'm doing well and ready to help. How can I help you?"),
+    ("Are you there?", "Yes, I'm here. What's up?"),
+    ("Can you help me?", "Absolutely. Tell me what you're working on or what's confusing."),
+    ("I have a question.", "Go ahead! What's your question?"),
+    ("Thanks!", "You're welcome!"),
+    ("Thank you so much.", "You're very welcome. I'm glad I could help."),
+    ("That helped a lot.", "I'm glad it helped!"),
+    ("I don't understand.", "No problem. Which part should I explain differently?"),
+    ("Can you say that more simply?", "Sure. I'll use simpler words and break it into smaller steps."),
+    ("Can you give me an example?", "Of course. An example can make the idea much easier to see. What topic should I use?"),
+    ("Can you be more specific?", "Yes. Tell me which part you want more detail about, and I'll focus on that."),
+    ("Please keep it short.", "Got it. I'll keep the answer concise."),
+    ("Explain it step by step.", "Sure. I'll break it into clear steps and explain what each one does."),
+    ("Can you check my work?", "Yes. Share your work and, if you can, include the original question too."),
+    ("I made a mistake.", "That's okay. Mistakes are useful clues about what to fix. What happened?"),
+    ("I finished it!", "Nice work! What was the result?"),
+    ("I'm stuck on a project.", "Let's narrow it down. What are you trying to make, and what part isn't working?"),
+    ("Can you brainstorm with me?", "Definitely. Tell me the topic and any limits you want the ideas to follow."),
+    ("I need an idea for a game.", "Try a small game built around one satisfying action, such as sorting objects, timing jumps, or combining items. Add depth only after the core action is fun."),
+    ("How do I make a project easier to finish?", "Break it into small milestones. Make the simplest working version first, test it, and add features one at a time."),
+    ("What should I do when code doesn't work?", "Read the first error message, find the line it points to, and check the values and syntax around that line. Change one thing at a time so you can identify the cause."),
+    ("What is debugging?", "Debugging is the process of finding, understanding, and fixing problems in a program."),
+    ("What does a syntax error mean?", "A syntax error means the code doesn't follow the language's grammar, so the interpreter or compiler cannot parse it."),
+    ("What is a bug in software?", "A bug is a problem in a program that causes it to behave incorrectly or unexpectedly."),
+    ("What is a file extension?", "A file extension is the ending of a filename, such as .txt or .png. It often indicates the file's format."),
+    ("What is a folder?", "A folder is a container used to organize files and other folders."),
+    ("What is a backup?", "A backup is an extra copy of important data that can be used if the original is lost, damaged, or changed by mistake."),
+    ("Why should I save my work?", "Saving writes your changes to storage so they are still available after you close the program or restart the device."),
+    ("What is a screenshot?", "A screenshot is an image that captures what is currently displayed on a screen."),
+    ("What does offline mean?", "Offline means a device or app is not currently connected to the internet or another network."),
+    ("What is a browser?", "A browser is an app used to visit websites and display web content. Examples include Safari, Firefox, Chrome, and Edge."),
+    ("What is a search engine?", "A search engine helps you find information on the web by matching your search terms with pages in its index."),
+    ("What is a hyperlink?", "A hyperlink is a clickable reference that takes you to another page, file, or location."),
+    ("What is a username?", "A username is a name used to identify an account. It is different from a password, which helps protect access."),
+    ("Why should passwords be different?", "If one service is breached, a unique password helps prevent that password from being used to access your other accounts."),
+    ("What is a passphrase?", "A passphrase is a password made from several words. A long, unique passphrase can be easier to remember and difficult to guess."),
+    ("What is phishing?", "Phishing is a scam in which someone pretends to be a trusted person or organization to trick people into sharing information or opening something unsafe."),
+    ("What should I do with a suspicious link?", "Don't open it. Check who sent it, verify the destination through the organization's official website, and ask a trusted adult or support team if you're unsure."),
+    ("What is a notification?", "A notification is a message from an app or device that alerts you about an event, update, or activity."),
+    ("What does restart mean?", "Restarting means turning a device or program off and starting it again. It can clear temporary problems."),
+    ("Why is my computer slow?", "Common causes include too many active apps, limited memory, low storage space, background updates, or demanding tasks. Check activity and storage before changing settings."),
+    ("What is a gigabyte?", "A gigabyte is a unit of digital storage equal to about one billion bytes in decimal units. Computers also commonly use a binary-sized unit called a gibibyte."),
+    ("What is open-source software?", "Open-source software makes its source code available under a license that allows people to inspect it and, under the license's terms, use, modify, or share it."),
+    ("What is a video game engine?", "A game engine is a set of tools and systems for building games, often including graphics, audio, physics, input, and scene management."),
+    ("What is a game loop?", "A game loop repeatedly updates the game's logic and displays the latest frame. This keeps the game responding while it runs."),
+    ("What is a variable in a game?", "A game variable stores information such as a player's score, health, position, or current level."),
+    ("What is a hitbox?", "A hitbox is an invisible shape used to detect interactions, such as whether two game objects have collided."),
+    ("What makes a game tutorial good?", "A good tutorial teaches one idea at a time, lets the player try it immediately, and avoids explaining features before they are needed."),
+    ("Can you summarize something?", "Yes. Share the text or describe the topic, and I'll pull out the main points."),
+    ("Can you compare two things?", "Sure. Tell me which two things you want compared and what matters most, such as cost, speed, features, or simplicity."),
+    ("What if you don't know an answer?", "I should say when I'm uncertain rather than inventing details. I can also explain what information would help verify the answer."),
+    ("Can you make things up for a story?", "Yes. I can invent characters, places, events, and dialogue for fiction, while keeping invented details separate from real-world facts."),
+    ("What's the difference between a fact and an opinion?", "A fact is a claim that can be checked against evidence. An opinion expresses a judgment or viewpoint."),
+    ("How do I make writing clearer?", "Use direct wording, put related ideas together, and remove sentences that repeat the same point."),
+    ("Why is punctuation important?", "Punctuation shows how sentences are organized and helps readers understand pauses, questions, and relationships between ideas."),
+    ("What is a paragraph?", "A paragraph is a group of related sentences that develop one main idea."),
+    ("What is a synonym?", "A synonym is a word with the same or a similar meaning as another word."),
+    ("What is an antonym?", "An antonym is a word with the opposite meaning of another word."),
+    ("What is a metaphor?", "A metaphor describes one thing as another to suggest a comparison, without using words such as 'like' or 'as'."),
+    ("What is a simile?", "A simile compares two things using words such as 'like' or 'as'."),
+    ("How do I plan a presentation?", "Start with the main message, organize a few supporting points, add examples or visuals where useful, and finish with a clear conclusion."),
+    ("How can I prepare for a test?", "Review the main ideas, practice recalling them without looking at notes, and work through sample questions. Short, spaced study sessions are often more useful than one long cram session."),
+    ("What is active recall?", "Active recall is a study method where you try to remember information before checking your notes. It helps reveal what you know and what needs more practice."),
+    ("How do I prioritize tasks?", "List what needs to be done, note deadlines, and start with tasks that are both important and time-sensitive."),
+    ("What is teamwork?", "Teamwork is people cooperating toward a shared goal by communicating, contributing, and coordinating their efforts."),
+    ("How do I give useful feedback?", "Be specific, describe what you observed, explain its effect, and suggest a practical next step. Focus on the work rather than insulting the person."),
+    ("Why do leaves change color in autumn?", "As days get shorter and temperatures change, many trees stop producing as much chlorophyll. Other pigments become visible, creating yellow, orange, and red colors."),
+    ("Why do we get shadows?", "A shadow forms when an object blocks light from reaching a surface."),
+    ("Why does sound echo?", "An echo happens when sound waves reflect off a surface and return to the listener after a noticeable delay."),
+    ("Why do bubbles look colorful?", "Thin films of soap bend and reflect light. Light waves reflected from the film interfere with one another, producing changing colors."),
+    ("Why does a compass point north?", "A compass needle aligns with Earth's magnetic field, so its north-seeking end points roughly toward geographic north."),
+    ("What is a habitat?", "A habitat is the natural environment where an organism lives and finds resources such as food, water, and shelter."),
+    ("What is an ecosystem?", "An ecosystem includes living organisms and the nonliving parts of their environment, along with the interactions among them."),
+    ("What is biodiversity?", "Biodiversity is the variety of living things in an area or across the planet, including differences among species, genes, and ecosystems."),
+    ("What is a food chain?", "A food chain shows how energy and nutrients pass from one organism to another as organisms eat and are eaten."),
+    ("What causes the seasons?", "Earth's axis is tilted as Earth orbits the Sun. Each hemisphere receives different angles and lengths of daylight during the year."),
+    ("What is a fossil?", "A fossil is preserved evidence of ancient life, such as bones, shells, footprints, or impressions in rock."),
+    ("What is the difference between a meteor and a meteorite?", "A meteor is the streak of light made when space material enters the atmosphere. If a piece reaches the ground, it is called a meteorite."),
+    ("What is a galaxy?", "A galaxy is a huge system of stars, gas, dust, and dark matter held together by gravity."),
+    ("What is the Milky Way?", "The Milky Way is the galaxy that contains our Solar System."),
+    ("What is a light-year?", "A light-year is a unit of distance: how far light travels in one year, about 9.46 trillion kilometers."),
+    ("What is friction?", "Friction is a force that resists sliding or motion between surfaces that touch."),
+    ("What is energy?", "Energy is a measurable property of a system that can be transferred or transformed. It appears in forms such as motion, heat, light, and chemical energy."),
+    ("What is the difference between heat and temperature?", "Temperature measures how hot or cold something is. Heat is energy transferred because of a temperature difference."),
+    ("What is a chemical reaction?", "A chemical reaction rearranges atoms in substances to form different substances with new chemical properties."),
+    ("What is a cell in biology?", "A cell is the basic structural and functional unit of living organisms."),
+    ("What is DNA?", "DNA is a molecule that stores hereditary information used in the growth, development, and functioning of living organisms."),
+    ("What is a map scale?", "A map scale shows how a distance on the map relates to a distance in the real world."),
+    ("What is latitude?", "Latitude measures how far north or south a location is from the Equator, in degrees."),
+    ("What is longitude?", "Longitude measures how far east or west a location is from the Prime Meridian, in degrees."),
+    ("What is a primary source?", "A primary source is evidence created during the time being studied or by someone directly involved, such as a letter, photograph, speech, or original data."),
+    ("What is a secondary source?", "A secondary source explains, interprets, or analyzes information from primary sources or other evidence."),
+    ("What is inflation?", "Inflation is a general increase in prices over time, which means the same amount of money buys fewer goods and services."),
+    ("How many minutes are in an hour?", "There are 60 minutes in an hour."),
+    ("How many seconds are in a minute?", "There are 60 seconds in a minute."),
+    ("How many sides does a hexagon have?", "A hexagon has six sides."),
+    ("What is a right angle?", "A right angle measures exactly 90 degrees."),
+    ("What is probability?", "Probability describes how likely an event is. It ranges from 0 for impossible to 1 for certain."),
+    ("What is a hypothesis?", "A hypothesis is a proposed explanation or prediction that can be tested using evidence."),
+    ("What is evidence?", "Evidence is information or observations used to support, challenge, or evaluate a claim."),
+    ("What is critical thinking?", "Critical thinking means examining information carefully, checking evidence, considering alternatives, and reaching a reasoned judgment."),
+    ("What is misinformation?", "Misinformation is false or inaccurate information, whether or not the person sharing it intends to deceive anyone."),
+    ("How can I check whether a claim is true?", "Look for reliable sources that provide evidence, compare independent reports, check the date and context, and trace the claim back to its original source when possible."),
+    ("What is a prototype?", "A prototype is an early version of a product or idea used to test how it works before building the finished version."),
+    ("What is iteration?", "Iteration means repeating a process, often making improvements each time based on what you learned."),
+    ("What is a milestone in a project?", "A milestone is a meaningful checkpoint that marks the completion of an important stage of a project."),
+    ("How do I ask a better question?", "Include the goal, the relevant context, what you have tried, and the specific part you want help with."),
+    ("What information should I include in a bug report?", "Describe what you expected, what actually happened, the steps to reproduce it, and any error message. Include the device or software version when relevant."),
+    ("What is a changelog?", "A changelog is a record of notable changes made to a project across its versions."),
+    ("What is version control?", "Version control tracks changes to files over time so people can review earlier versions, compare edits, and collaborate."),
+    ("What is Git?", "Git is a version control system that records changes to files and helps developers work on projects together."),
+    ("What is a repository?", "A repository is a project folder tracked by a version control system, often containing source files and their change history."),
+    ("What is a commit in Git?", "A commit is a saved snapshot of tracked changes in a Git repository, accompanied by a message describing the update."),
+    ("What is responsive web design?", "Responsive web design makes a website's layout adapt to different screen sizes and devices."),
+    ("What is accessibility in software?", "Accessibility means designing software so people with different abilities can use it, including people who use keyboards, screen readers, or other assistive tools."),
+    ("What is a user interface?", "A user interface is the part of a system that a person interacts with, such as buttons, menus, text, and controls."),
+    ("What is user experience?", "User experience describes how a person feels about and interacts with a product or service, including how easy and effective it is to use."),
+    ("What makes instructions useful?", "Useful instructions state the goal, put steps in a sensible order, use clear language, and mention important warnings or requirements."),
+    ("Can you quiz me?", "Yes. Tell me the subject and difficulty, and I'll ask questions one at a time."),
+    ("I got the answer wrong.", "That's part of learning. Let's look at the reasoning and find the step that needs correcting."),
+    ("Can you give me a hint instead of the answer?", "Absolutely. I'll give you a small clue that helps you make progress without giving away the whole solution."),
+    ("Can you check this sentence for grammar?", "Yes. Send the sentence, and I'll check its grammar while keeping your intended meaning."),
+    ("Can you rewrite this more clearly?", "Sure. Share the text, and I'll make it clearer without changing the main idea."),
+    ("Can you make a checklist?", "Yes. Tell me what the checklist is for, and I'll turn the tasks into clear, actionable items."),
+    ("Can you organize these notes?", "Sure. Share the notes, and I'll group related ideas and give them useful headings."),
+    ("Can you explain a difficult topic without jargon?", "Yes. I'll use everyday language first, define any necessary technical terms, and add an example."),
+]
+
 def normalize(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip().casefold()
 
@@ -99,39 +236,64 @@ def main() -> None:
     if not matches:
         raise SystemExit("No complete <user>/<astra> examples were found.")
 
-    # Keep at most two examples for any identical answer. This retains a little
-    # prompt variation without letting repeated answers dominate training.
+    # Keep a little prompt variation, but prevent repeated prompts and answers
+    # from dominating the training distribution.
     answer_counts: Counter[str] = Counter()
+    prompt_counts: Counter[str] = Counter()
     kept: list[tuple[str, str]] = []
     seen_pairs: set[tuple[str, str]] = set()
     for user, answer in matches:
         user = user.strip()
         answer = THINK_RE.sub("", answer.strip(), count=1).strip()
-        key = (normalize(user), normalize(answer))
-        answer_key = normalize(THINK_RE.sub("", answer))
-        if not user or not answer or key in seen_pairs or answer_counts[answer_key] >= 2:
+        prompt_key = normalize(user)
+        answer_key = normalize(answer)
+        key = (prompt_key, answer_key)
+        if (
+            not user or not answer or key in seen_pairs
+            or answer_counts[answer_key] >= 2
+            or prompt_counts[prompt_key] >= 3
+        ):
             continue
         seen_pairs.add(key)
         answer_counts[answer_key] += 1
+        prompt_counts[prompt_key] += 1
         kept.append((user, answer))
 
     added = 0
-    for user, answer in CURATED:
-        key = (normalize(user), normalize(answer))
-        if key in seen_pairs:
+    for user, answer in CURATED + CONVERSATION:
+        prompt_key = normalize(user)
+        answer_key = normalize(answer)
+        key = (prompt_key, answer_key)
+        if key in seen_pairs or prompt_counts[prompt_key] >= 3:
             continue
         seen_pairs.add(key)
+        prompt_counts[prompt_key] += 1
+        answer_counts[answer_key] += 1
         kept.append((user, answer))
         added += 1
 
-    preamble = raw[:re.search(r"(?m)^<user>\s*$", raw).start()].rstrip()
+    # Remove obsolete notes that still describe the old thinking-token format.
+    preamble = """ASTRA 0.1 — DATASET
+
+FORMAT NOTES
+Each example contains one user message followed by one direct ASTRA response.
+There are no thinking sections. Answers should be clear, natural, accurate,
+and appropriately concise. Use longer explanations when the question needs them.
+Do not invent facts when uncertain.
+
+TRAINING QUALITY NOTES
+These examples teach response patterns, not fixed scripts. Respond to the
+actual request, respect context, and vary wording naturally. Keep fictional
+inventions distinct from factual claims.
+"""
     sections = [preamble, "", f"<!-- ASTRA curated additions: {added} -->"]
     for user, answer in kept:
         sections.extend(["", "<user>", user, "</user>", "<astra>", answer, "</astra>"])
     DATASET.write_text("\n".join(sections).rstrip() + "\n", encoding="utf-8")
     print(f"Removed redundant/repeated examples; retained {len(kept) - added:,} existing examples.")
-    print(f"Added {added:,} varied factual Q&A examples.")
+    print(f"Added {added:,} short conversation and everyday knowledge examples.")
     print(f"New dataset total: {len(kept):,} examples.")
+    print("All legacy <think> blocks were removed.")
     print("Next: python3 audit_dataset.py")
 
 if __name__ == "__main__":
