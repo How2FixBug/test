@@ -308,32 +308,17 @@
 
     let activeFlightAnimation = null;
     try {
-      activeFlightAnimation = inputBox.animate([
-        { top: sourceRect.top + "px" },
-        { top: targetRect.top + "px" }
-      ], {
-        duration: reducedMotion ? 1 : 390,
-        easing: "cubic-bezier(.2,.75,.2,1)",
-        fill: "forwards"
-      });
-      await activeFlightAnimation.finished;
-      activeFlightAnimation.cancel();
-      activeFlightAnimation = null;
-      // Commit the lifted position before starting the contraction phase.
-      inputBox.style.top = targetRect.top + "px";
-      if (activeId !== chat.id) throw new Error("Conversation changed");
-
+      // Move and contract the real composer together: one continuous morph.
       userRow.style.visibility = "visible";
       userRow.classList.add("morph-avatar-in");
-      // Let the real input box gradually become the message bubble over the full contraction.
       const sourceStyle = getComputedStyle(inputBox);
       const targetStyle = getComputedStyle(bubble);
       inputBox.style.backgroundImage = "linear-gradient(135deg, rgba(54,82,119,0), rgba(40,57,91,0))";
-      const duration = reducedMotion ? 1 : 700;
+      const duration = reducedMotion ? 1 : 1050;
       activeFlightAnimation = inputBox.animate([
         {
           left: sourceRect.left + "px",
-          top: targetRect.top + "px",
+          top: sourceRect.top + "px",
           width: sourceRect.width + "px",
           height: sourceRect.height + "px",
           backgroundColor: sourceStyle.backgroundColor,
@@ -362,7 +347,7 @@
       });
       const inputFade = inputBox.animate([
         { opacity: 1, offset: 0 },
-        { opacity: 1, offset: 0.55 },
+        { opacity: 1, offset: 0.62 },
         { opacity: 0, offset: 1 }
       ], {
         duration,
@@ -371,7 +356,7 @@
       });
       const bubbleReveal = bubble.animate([
         { opacity: 0, offset: 0 },
-        { opacity: 0, offset: 0.55 },
+        { opacity: 0, offset: 0.62 },
         { opacity: 1, offset: 1 }
       ], {
         duration,
@@ -384,7 +369,6 @@
       bubbleReveal.cancel();
       activeFlightAnimation = null;
       if (activeId !== chat.id) throw new Error("Conversation changed");
-
       restoreComposer();
       userRow.classList.add("morph-message-in");
       inputBox.classList.add("composer-reform");
