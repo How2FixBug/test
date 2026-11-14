@@ -227,7 +227,7 @@ def tokenize_dataset(pairs, output_path: Path, merge_ranks, fingerprint: str):
     total_tokens = 0
     with output_path.open("w", encoding="utf-8") as output:
         for index, (user, astra) in enumerate(pairs):
-            sample = f"<user>\\n{user}\\n</user>\\n<astra>\\n{astra}\\n</astra>"
+            sample = f"<user>\n{user}\n</user>\n<astra>\n{astra}\n</astra>"
             input_ids = encode(sample, merge_ranks)
             total_tokens += len(input_ids)
             record = {
@@ -236,7 +236,7 @@ def tokenize_dataset(pairs, output_path: Path, merge_ranks, fingerprint: str):
                 "input_ids": input_ids,
             }
             output.write(json.dumps(record, separators=(",", ":"), ensure_ascii=False))
-            output.write("\\n")
+            output.write("\n")
     return total_tokens
 
 def main():
