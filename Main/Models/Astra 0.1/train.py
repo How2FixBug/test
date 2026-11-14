@@ -1,23 +1,20 @@
 #!/usr/bin/env python3
 """Train ASTRA 0.1 locally on Apple Silicon (MPS) or CPU."""
 from __future__ import annotations
-
 import argparse
 import json
 import random
 import time
 from pathlib import Path
-
 import torch
 from torch.nn import functional as F
-
 from model import LoopCore
 
-
 HERE = Path(__file__).resolve().parent
+ASTRA_TOKEN = 258
+IGNORE_INDEX = -100
 
-
-def read_streams(dataset_path: Path, validation_fraction: float, seed: int):
+def read_records(dataset_path: Path):
     records = []
     with dataset_path.open("r", encoding="utf-8") as source:
         for line_number, line in enumerate(source, 1):
@@ -25,42 +22,77 @@ def read_streams(dataset_path: Path, validation_fraction: float, seed: int):
                 continue
             record = json.loads(line)
             ids = record.get("input_ids")
-            if not isinstance(ids, list) or len(ids) < 3:
+            if not isinstance(ids, list) or len(ids) < 4:
                 raise ValueError(f"Invalid token sequence on line {line_number}")
-            records.append(ids)
+            if ASTRA_TOKEN not in ids:
+                raise ValueError(f"Missing <astra> marker on line {line_number}")
+            records.append([int(token) for token in ids])
     if len(records) < 10:
-        raise ValueError("Need at least 10 tokenized examples for a train/validation split.")
-    random.Random(seed).shuffle(records)
-    split = max(1, int(len(records) * (1.0 - validation_fraction)))
-    train_records, validation_records = records[:split], records[split:]
-    return (
-        torch.tensor([token for row in train_records for token in row], dtype=torch.long),
-        torch.tensor([token for row in validation_records for token in row], dtype=torch.long),
-        len(records),
-    )
+        raise ValueError("Need at least 10 tokenized examples.")
+    return records
 
+def split_records(records, validation_fraction: float, seed: int):
+    """Split by exact response so paraphrases cannot leak across splits."""
+    groups = {}
+    for record in records:
+        key = tuple(record[record.index(ASTRA_TOKEN) + 1:])
+        groups.setdefault(key, []).append(record)
+    target = max(1, round(len(records) * validation_fraction))
+    rng = random.Random(seed)
+    buckets = {}
+    for group in groups.values():
+        buckets.setdefault(len(group), []).append(group)
+    validation, count = [], 0
+    for size in sorted(buckets):
+        rng.shuffle(buckets[size])
+        for group in buckets[size]:
+            if count < target and count + len(group) <= target:
+                validation.extend(group)
+                count += len(group)
+    if not validation:
+        raise ValueError("Could not create a non-empty validation split.")
+    held_out = {tuple(r[r.index(ASTRA_TOKEN) + 1:]) for r in validation}
+    training = [
+        r for r in records
+        if tuple(r[r.index(ASTRA_TOKEN) + 1:]) not in held_out
+    ]
+    if not training:
+        raise ValueError("Validation split left no training examples.")
+    return training, validation, len(groups)
 
-def get_batch(stream: torch.Tensor, batch_size: int, block_size: int, device: torch.device):
-    starts = torch.randint(0, stream.numel() - block_size - 1, (batch_size,))
-    offsets = torch.arange(block_size + 1)
-    batch = stream[starts[:, None] + offsets[None, :]].to(device)
-    return batch[:, :-1], batch[:, 1:]
-
+def get_batch(records, batch_size: int, block_size: int, device: torch.device):
+    """Sample rows from individual conversations, never across boundaries."""
+    x_batch = torch.zeros((batch_size, block_size), dtype=torch.long)
+    y_batch = torch.full((batch_size, block_size), IGNORE_INDEX, dtype=torch.long)
+    for row in range(batch_size):
+        record = records[random.randrange(len(records))]
+        max_start = max(0, len(record) - (block_size + 1))
+        start = random.randint(0, max_start)
+        chunk = record[start:start + block_size + 1]
+        chunk_tensor = torch.tensor(chunk, dtype=torch.long)
+        usable = len(chunk) - 1
+        if usable < 1:
+            raise ValueError("A training example must contain at least two tokens.")
+        x_batch[row, :usable] = chunk_tensor[:-1]
+        y_batch[row, :usable] = chunk_tensor[1:]
+    return x_batch.to(device), y_batch.to(device)
 
 @torch.no_grad()
-def estimate_loss(model, train_stream, val_stream, batch_size, block_size, device):
+def estimate_loss(model, train_records, val_records, batch_size, block_size, device):
     model.eval()
     result = {}
-    for name, stream in (("train", train_stream), ("val", val_stream)):
+    for name, records in (("train", train_records), ("val", val_records)):
         losses = []
         for _ in range(20):
-            x, y = get_batch(stream, batch_size, block_size, device)
+            x, y = get_batch(records, batch_size, block_size, device)
             logits = model(x)
-            losses.append(F.cross_entropy(logits.reshape(-1, logits.size(-1)), y.reshape(-1)).item())
+            losses.append(F.cross_entropy(
+                logits.reshape(-1, logits.size(-1)), y.reshape(-1),
+                ignore_index=IGNORE_INDEX,
+            ).item())
         result[name] = sum(losses) / len(losses)
     model.train()
     return result
-
 
 def main():
     parser = argparse.ArgumentParser(description="Train ASTRA's LoopCore neural network.")
@@ -75,57 +107,55 @@ def main():
     args = parser.parse_args()
 
     config_path = HERE / "tokenizer_config.json"
-    data_path = HERE / "tokenized_dataset.jsonl"
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    vocab_size = int(config["vocab_size"])
     if "vocab_hex" not in config or "merges" not in config:
-        raise SystemExit(
-            "Your tokenizer config is still the old 262-token version. "
-            "Run: python3 tokenizer.py"
-        )
-
-    train_stream, val_stream, examples = read_streams(
-        data_path, args.validation_fraction, args.seed
-    )
-    largest_id = max(int(train_stream.max()), int(val_stream.max()))
+        raise SystemExit("Tokenizer artifacts are outdated. Run python3 tokenizer.py first.")
+    vocab_size = int(config["vocab_size"])
+    records = read_records(HERE / "tokenized_dataset.jsonl")
+    largest_id = max(max(record) for record in records)
     if largest_id >= vocab_size:
         raise SystemExit(
-            f"Dataset contains token ID {largest_id}, but tokenizer vocab_size is {vocab_size}. "
-            "Regenerate it with: python3 tokenizer.py"
+            f"Dataset contains token ID {largest_id}, but vocab_size is {vocab_size}. "
+            "Run python3 tokenizer.py again."
         )
 
+    train_records, val_records, response_groups = split_records(
+        records, args.validation_fraction, args.seed
+    )
     block_size = min(args.block_size, 512)
-    if min(train_stream.numel(), val_stream.numel()) <= block_size + 1:
-        raise SystemExit(
-            "Not enough tokens in one split for this block size. Try --block-size 128."
-        )
+    if min(min(map(len, train_records)), min(map(len, val_records))) < 2:
+        raise SystemExit("A training or validation example is too short.")
 
-    if torch.backends.mps.is_available():
-        device = torch.device("mps")
-    else:
-        device = torch.device("cpu")
+    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     torch.manual_seed(args.seed)
     random.seed(args.seed)
-
     model = LoopCore(vocab_size=vocab_size, max_seq_len=512).to(device)
-    parameter_count = sum(parameter.numel() for parameter in model.parameters())
-    optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=0.1)
-
+    parameter_count = sum(p.numel() for p in model.parameters())
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=args.learning_rate, weight_decay=0.1
+    )
     output_dir = HERE / "checkpoints"
     output_dir.mkdir(exist_ok=True)
-    best_val = float("inf")
-    stale_evaluations = 0
+    best_val, stale_evaluations = float("inf"), 0
     started = time.time()
 
-    print(f"ASTRA 0.1 — LoopCore")
-    print(f"Examples: {examples:,} | Vocabulary: {vocab_size:,} | Parameters: {parameter_count:,}")
+    print("ASTRA 0.1 — LoopCore (causal-memory revision)")
+    print(
+        f"Examples: {len(records):,} | Train: {len(train_records):,} | "
+        f"Validation: {len(val_records):,} | Unique response groups: {response_groups:,}"
+    )
+    print(f"Vocabulary: {vocab_size:,} | Parameters: {parameter_count:,}")
     print(f"Device: {device} | Context: {block_size} | Shared passes: {model.loop_passes}")
+    print("Validation groups are isolated by exact response.")
     print("Training from random initialization. No pretrained weights are used.")
 
     for step in range(1, args.steps + 1):
-        x, y = get_batch(train_stream, args.batch_size, block_size, device)
+        x, y = get_batch(train_records, args.batch_size, block_size, device)
         logits = model(x)
-        loss = F.cross_entropy(logits.reshape(-1, vocab_size), y.reshape(-1))
+        loss = F.cross_entropy(
+            logits.reshape(-1, vocab_size), y.reshape(-1),
+            ignore_index=IGNORE_INDEX,
+        )
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
@@ -133,34 +163,26 @@ def main():
 
         if step == 1 or step % args.eval_interval == 0 or step == args.steps:
             metrics = estimate_loss(
-                model, train_stream, val_stream, args.batch_size, block_size, device
+                model, train_records, val_records, args.batch_size, block_size, device
             )
             elapsed = time.time() - started
             print(
-                f"step {step:5d}/{args.steps} | "
-                f"train {metrics['train']:.4f} | val {metrics['val']:.4f} | "
-                f"{elapsed:.1f}s"
+                f"step {step:5d}/{args.steps} | train {metrics['train']:.4f} | "
+                f"val {metrics['val']:.4f} | {elapsed:.1f}s"
             )
             if metrics["val"] < best_val:
-                best_val = metrics["val"]
-                stale_evaluations = 0
-                torch.save(
-                    {
-                        "model_state_dict": model.state_dict(),
-                        "model_config": {
-                            "vocab_size": vocab_size,
-                            "width": 512,
-                            "heads": 8,
-                            "ff_width": 1792,
-                            "max_seq_len": 512,
-                            "local_window": 128,
-                            "loop_passes": 4,
-                        },
-                        "step": step,
-                        "best_val_loss": best_val,
+                best_val, stale_evaluations = metrics["val"], 0
+                torch.save({
+                    "model_state_dict": model.state_dict(),
+                    "model_config": {
+                        "vocab_size": vocab_size, "width": 512, "heads": 8,
+                        "ff_width": 1792, "max_seq_len": 512,
+                        "local_window": 128, "loop_passes": 4,
                     },
-                    output_dir / "astra-0.1-best.pt",
-                )
+                    "architecture_version": 2,
+                    "step": step,
+                    "best_val_loss": best_val,
+                }, output_dir / "astra-0.1-best.pt")
                 print("  saved new best checkpoint")
             else:
                 stale_evaluations += 1
@@ -170,7 +192,6 @@ def main():
 
     print(f"Finished. Best validation loss: {best_val:.4f}")
     print(f"Checkpoint: {output_dir / 'astra-0.1-best.pt'}")
-
 
 if __name__ == "__main__":
     main()
