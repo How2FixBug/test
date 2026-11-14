@@ -22,7 +22,7 @@ SOURCE_URL = (
     "https://raw.githubusercontent.com/BYU-PCCL/chitchat-dataset/"
     "master/chitchat_dataset/dataset.json"
 )
-SOURCE_MARKER = "<!-- ASTRA_SOURCE: BYU-PCCL/chitchat-dataset (MIT) -->"
+SOURCE_MARKER = "<!-- ASTRA_SOURCE: BYU-PCCL/chitchat-dataset -->"
 PAIR_RE = re.compile(
     r"(?m)^<user>\s*\n([\s\S]*?)\n</user>\s*\n"
     r"<astra>\s*\n([\s\S]*?)\n</astra>"
@@ -162,12 +162,9 @@ def download_dataset(force: bool = False) -> Path:
 
 
 def existing_pairs(raw: str) -> set[tuple[str, str]]:
-    marker = re.search(r"(?m)^<user>\s*$", raw)
-    if not marker:
-        return set()
     return {
         (normalize(user), normalize(answer))
-        for user, answer in PAIR_RE.findall(raw[marker.start():])
+        for user, answer in PAIR_RE.findall(raw)
     }
 
 
@@ -220,7 +217,13 @@ def make_examples(conversations: dict) -> tuple[list[tuple[str, str]], dict[str,
         # Every odd turn is the second participant responding to the first.
         # Keep up to six prior turns so later samples teach conversational flow.
         for response_index in range(1, len(turns), 2):
-            history = turns[max(0, response_index - MAX_CONTEXT_TURNS):response_index]
+            history_start = max(0, response_index - MAX_CONTEXT_TURNS)
+            # Keep context aligned to a User turn. If the six-turn window begins
+            # on the other speaker, drop that leading turn rather than teaching
+            # ASTRA prompts that begin with an assistant message.
+            if history_start % 2 == 1:
+                history_start += 1
+            history = turns[history_start:response_index]
             target = turns[response_index][1]
             latest_user = history[-1][1]
             if is_knowledge_question(latest_user) or looks_factual_response(target):
@@ -265,6 +268,14 @@ def main() -> None:
     candidates, stats = make_examples(conversations)
 
     raw_dataset = DATASET_PATH.read_text(encoding="utf-8")
+    # Rebuild this source section on every import so improved filters replace
+    # old imported examples instead of leaving stale low-quality records behind.
+    source_block_re = re.compile(
+        r"(?ms)^<!-- ASTRA_SOURCE: BYU-PCCL/chitchat-dataset(?: \\(MIT\\))? -->\\n"
+        r"<user>\\n.*?\\n</astra>(?:\\n\\s*---)?\\n*"
+    )
+    raw_dataset = source_block_re.sub("", raw_dataset)
+    raw_dataset = re.sub(r"(?m)^TOTAL:.*\\n?", "", raw_dataset, count=1)
     known = existing_pairs(raw_dataset)
     additions = []
     for user, answer in candidates:
@@ -283,7 +294,7 @@ def main() -> None:
         )
         updated = raw_dataset.rstrip() + "\n\n---\n\n" + block + "\n"
         total = len(existing_pairs(updated))
-        original = total - sum(1 for _ in re.finditer(re.escape(SOURCE_MARKER), updated))
+        original = len(existing_pairs(raw_dataset))
         updated = re.sub(
             r"(?m)^TOTAL:.*$",
             f"TOTAL: {total:,} unique examples ({original:,} existing + "
