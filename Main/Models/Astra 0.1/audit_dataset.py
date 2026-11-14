@@ -9,10 +9,7 @@ from collections import Counter
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-PAIR_RE = re.compile(
-    r"(?m)^<user>\s*\n([\s\S]*?)\n</user>\s*\n"
-    r"<astra>\s*\n<think>([\s\S]*?)</think>\s*\n([\s\S]*?)\n</astra>"
-)
+PAIR_RE = re.compile(\n    r"(?m)^<user>\\s*\\n([\\s\\S]*?)\\n</user>\\s*\\n"\n    r"<astra>\\s*\\n(?:<think>[\\s\\S]*?</think>\\s*)?([\\s\\S]*?)\\n</astra>"\n)
 
 
 def normalize(value: str) -> str:
@@ -56,8 +53,6 @@ def main():
     print(f"Unique answers (normalized): {len({normalize(x) for x in answers}):,}")
     print(f"Unique prompt/answer pairs: {len(set(pairs)):,}")
     print(f"Repeated-answer examples: {len(answers) - len({normalize(x) for x in answers}):,}")
-    empty = sum(not x for x in thinks)
-    print(f"Empty think sections: {empty:,} ({empty / max(1, len(thinks)):.1%})")
     print(f"Prompt+answer character lengths p10/p50/p90: {percentile(lengths,.1)}/{percentile(lengths,.5)}/{percentile(lengths,.9)}")
     print("Source markers:")
     if source_counts:
