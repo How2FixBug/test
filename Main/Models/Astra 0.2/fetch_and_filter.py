@@ -100,8 +100,7 @@ PERSONAL_CLAIM_RE = re.compile(
 )
 LOW_QUALITY_RE = re.compile(
     r"\b(?:wre|teh|thier|becuase|definately|defiantly|"
-    r"recieve|seperate|occured|doesnt|dont|wont|cant|"
-    r"imma|gonna|wanna)\b",
+    r"recieve|seperate|occured)\b",
     re.I,
 )
 
