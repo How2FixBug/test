@@ -326,15 +326,8 @@ def main() -> None:
     conversations = json.loads(raw_path.read_text(encoding="utf-8"))
     candidates, stats = make_examples(conversations)
 
-    raw_dataset = DATASET_PATH.read_text(encoding="utf-8")
-    # Rebuild this source section on every import so improved filters replace
-    # old imported examples instead of leaving stale low-quality records behind.
-    source_block_re = re.compile(
-        r"(?ms)^<!-- ASTRA_SOURCE: BYU-PCCL/chitchat-dataset(?: \(MIT\))? -->\n"
-        r"<user>\n.*?\n</astra>(?:\n\s*---)?\n*"
-    )
-    raw_dataset = source_block_re.sub("", raw_dataset)
-    known = existing_pairs(raw_dataset)
+    # Export candidates separately. This script never edits the training dataset.
+    known: set[tuple[str, str]] = set()
     additions = []
     for user, answer in candidates:
         key = (normalize(user), normalize(answer))
@@ -345,32 +338,25 @@ def main() -> None:
         if len(additions) >= args.max_examples:
             break
 
-    if additions:
-        block = "\n\n---\n\n".join(
-            f"{SOURCE_MARKER}\n<user>\n{user}\n</user>\n<astra>\n{answer}\n</astra>"
-            for user, answer in additions
-        )
-        updated = raw_dataset.rstrip() + "\n\n---\n\n" + block + "\n"
-        total = len(existing_pairs(updated))
-        original = len(existing_pairs(raw_dataset))
-        updated = re.sub(
-            r"(?m)^TOTAL:.*$",
-            f"TOTAL: {total:,} unique examples ({original:,} existing + "
-            f"{total - original:,} BYU Chit-Chat additions).",
-            updated,
-            count=1,
-        )
-        DATASET_PATH.write_text(updated, encoding="utf-8")
-    else:
-        total = len(known)
-
-    imported_total = len(re.findall(re.escape(SOURCE_MARKER), DATASET_PATH.read_text(encoding="utf-8")))
+    review_block = "\\n\\n---\\n\\n".join(
+        f"{SOURCE_MARKER}\\n<user>\\n{user}\\n</user>\\n<astra>\\n{answer}\\n</astra>"
+        for user, answer in additions
+    )
+    REVIEW_PATH = HERE / "byu_review_candidates.txt"
+    REVIEW_PATH.write_text(
+        "# REVIEW CANDIDATES ONLY — NOT TRAINING DATA\\n"
+        "# Check every prompt/response pair before copying approved examples into dataset.txt.\\n\\n"
+        + review_block + ("\\n" if review_block else ""),
+        encoding="utf-8",
+    )
+    total = len(additions)
+    imported_total = total
     print("\nBYU CHIT-CHAT IMPORT")
     print(f"Source conversations: {len(conversations):,}")
     for key, value in stats.items():
         print(f"{key.replace('_', ' ').title()}: {value:,}")
     print(f"New unique examples added: {len(additions):,}")
-    print(f"BYU examples already in dataset: {imported_total:,}")
+    print(f"Review candidates exported (not added to training): {imported_total:,}")
     print(f"Total unique ASTRA examples: {total:,}")
     if total < 5000:
         print(f"Still need {5000 - total:,} examples to reach the 5,000-example milestone.")
