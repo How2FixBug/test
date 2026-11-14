@@ -272,8 +272,16 @@
     if (activeId !== chat.id) return;
 
     const targetRect = bubble.getBoundingClientRect();
+    // Hold the original composer slot so the send button never shifts.
+    const inputPlaceholder = document.createElement("div");
+    inputPlaceholder.className = "input-box-placeholder";
+    inputPlaceholder.style.width = sourceRect.width + "px";
+    inputPlaceholder.style.height = sourceRect.height + "px";
+    inputPlaceholder.style.flex = "0 0 " + sourceRect.width + "px";
+    composerShell.insertBefore(inputPlaceholder, inputBox);
     const restoreComposer = () => {
       if (inputBox.parentElement !== composerShell) composerShell.insertBefore(inputBox, sendButton);
+      inputPlaceholder.remove();
       inputBox.classList.remove("input-box-flight", "input-overflow");
       inputBox.removeAttribute("style");
       input.value = "";
@@ -295,6 +303,7 @@
       transform: "none"
     });
     inputBox.classList.add("input-box-flight");
+    inputBox.style.overflow = "hidden";
     document.body.append(inputBox);
 
     let activeFlightAnimation = null;
@@ -310,6 +319,8 @@
       await activeFlightAnimation.finished;
       activeFlightAnimation.cancel();
       activeFlightAnimation = null;
+      // Commit the lifted position before starting the contraction phase.
+      inputBox.style.top = targetRect.top + "px";
       if (activeId !== chat.id) throw new Error("Conversation changed");
 
       userRow.style.visibility = "visible";
