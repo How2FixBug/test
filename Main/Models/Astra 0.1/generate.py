@@ -134,13 +134,9 @@ def main():
     if device.type == "mps":
         torch.mps.manual_seed(args.seed)
 
-    # Match the training format. Generate the think section, but never display it.
-    prompt = f"<user>\n{args.prompt}\n</user>\n<astra>\n<think>\n"
-    generated = encode(prompt, merges)
-    think_end = SPECIAL_TOKENS["</think>"]
+    # Generate a direct answer; ASTRA no longer has a thinking phase.\n    prompt = f"<user>\\n{args.prompt}\\n</user>\\n<astra>\\n"\n    generated = encode(prompt, merges)
     astra_end = SPECIAL_TOKENS["</astra>"]
     special_ids = set(SPECIAL_TOKENS.values())
-    answer_start = None
     answer_ids: list[int] = []
     decoder = codecs.getincrementaldecoder("utf-8")()
 
@@ -152,7 +148,7 @@ def main():
                 device=device,
             )
             logits = model(context)[0, -1]
-            allowed = {think_end} if answer_start is None else {astra_end}
+            allowed = {astra_end}
             next_id = sample_next_token(
                 logits,
                 generated,
@@ -166,28 +162,7 @@ def main():
             )
             # Stop before appending the structural end token, so it never
             # appears in the decoded user-facing answer.
-            if answer_start is not None and next_id == astra_end:
-                break
-
-            generated.append(next_id)
-            if answer_start is None and next_id == think_end:
-                answer_start = len(generated)
-                continue
-
-            if answer_start is not None:
-                answer_ids.append(next_id)
-                if not args.no_stream and vocab[next_id] is not None:
-                    piece = decoder.decode(vocab[next_id], final=False)
-                    if piece:
-                        sys.stdout.write(piece)
-                        sys.stdout.flush()
-
-    if answer_start is None:
-        raise SystemExit(
-            "ASTRA did not finish its think section. Try increasing --max-new-tokens."
-        )
-
-    if args.no_stream:
+            if next_id == astra_end:\n                break\n\n            generated.append(next_id)\n            answer_ids.append(next_id)\n            if not args.no_stream and vocab[next_id] is not None:\n                piece = decoder.decode(vocab[next_id], final=False)\n                if piece:\n                    sys.stdout.write(piece)\n                    sys.stdout.flush()\n\n    if args.no_stream:
         print(decode(answer_ids, vocab).strip())
     else:
         tail = decoder.decode(b"", final=True)
