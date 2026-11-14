@@ -10,9 +10,10 @@ ASTRA 0.1 — TOKEN MEANINGS
 </think>    Ends a user-visible reasoning summary.
 
 In this dataset, <think> contains a brief explanation of the response approach
-or the key idea being used. It is not private internal deliberation. The frontend
-may display this section in a collapsible block labeled "Reasoning summary".
-The text after </think> is the user-facing answer.
+or the key idea being used. It is not private internal deliberation. A response
+may contain more than one <think> section when multiple concise summaries are
+useful. The frontend may display each section in a collapsible block labeled
+"Reasoning summary". The text after </think> is the user-facing answer.
 
 Register each token exactly as written as a separate special token.
 
