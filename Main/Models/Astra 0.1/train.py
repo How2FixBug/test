@@ -197,7 +197,7 @@ def main():
             )
             elapsed = time.time() - started
             print(
-                f"step {step:5d}/{args.steps} | train {metrics['train']:.4f} | "
+                f"step {step:5d}/{final_step} | train {metrics['train']:.4f} | "
                 f"val {metrics['val']:.4f} | {elapsed:.1f}s"
             )
             if metrics["val"] < best_val:
