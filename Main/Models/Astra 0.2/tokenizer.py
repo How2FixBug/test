@@ -29,6 +29,7 @@ SPECIAL_RE = re.compile("(" + "|".join(
 ) + ")")
 PAIR_RE = re.compile(
     r"<user>\s*([\s\S]*?)\s*</user>\s*"
+    r"(?:<think>[\s\S]*?</think>\s*)?"
     r"<astra>\s*([\s\S]*?)\s*</astra>"
 )
 # Keep whitespace, words, numbers, and punctuation in separate pieces.
