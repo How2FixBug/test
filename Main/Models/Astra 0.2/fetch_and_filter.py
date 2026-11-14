@@ -95,7 +95,9 @@ PROCEDURAL_ANSWER_RE = re.compile(
 LIVE_INFO_RE = re.compile(
     r"\b(?:current(?:ly)? weather|today's forecast|weather forecast|"
     r"right now it is \d+|currently \d+ degrees|"
-    r"live traffic|real[- ]time (?:weather|traffic|news))\b",
+    r"live traffic|real[- ]time (?:weather|traffic|news)|"
+    r"weather.{0,35}(?:today|tomorrow|forecast)|"
+    r"(?:today|tomorrow).{0,35}weather)\b",
     re.I,
 )
 CASUAL_SIGNAL_RE = re.compile(
@@ -127,8 +129,6 @@ def acceptable_text(value: object, *, assistant: bool) -> bool:
     if URL_RE.search(text) or EMAIL_RE.search(text) or PHONE_RE.search(text):
         return False
     if LONG_NUMBER_RE.search(text) or UNSAFE_RE.search(text) or HATE_RE.search(text):
-        return False
-    if assistant and PERSONA_RE.search(text):
         return False
     if assistant and PERSONA_RE.search(text):
         return False
