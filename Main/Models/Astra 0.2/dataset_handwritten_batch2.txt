@@ -1,0 +1,9003 @@
+# ASTRA 0.2 handwritten dataset
+# Batch 2 of 5 | 1,000 original conversation pairs
+# Batch 1 contains 125 pairs in dataset_handwritten_5000.txt.
+# This file is separate from dataset.txt. The original 531 examples are untouched.
+# Format is compatible with conversation_workbench.py.
+
+<user>
+I finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+I finally got the tricky part working in my program!
+</user>
+<astra>
+That's nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+So, i finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+A quick update: I finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great!
+</astra>
+
+---
+
+<user>
+By the way, i finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+Something happened today. I finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i finally got the tricky part working in my program.
+</user>
+<astra>
+Nice! Getting past the part that was holding everything up feels great.
+</astra>
+
+---
+
+<user>
+My game project is starting to feel like a real game.
+</user>
+<astra>
+That's a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+My game project is starting to feel like a real game!
+</user>
+<astra>
+That's a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: my game project is starting to feel like a real game.
+</user>
+<astra>
+That's a fun stage to reach. The pieces are beginning to come together!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. My game project is starting to feel like a real game.
+</user>
+<astra>
+That's a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+So, my game project is starting to feel like a real game.
+</user>
+<astra>
+That sounds like a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+A quick update: My game project is starting to feel like a real game.
+</user>
+<astra>
+That's a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+By the way, my game project is starting to feel like a real game.
+</user>
+<astra>
+That's a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+Something happened today. My game project is starting to feel like a real game.
+</user>
+<astra>
+That's a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: my game project is starting to feel like a real game.
+</user>
+<astra>
+That's a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: my game project is starting to feel like a real game.
+</user>
+<astra>
+It sounds like that's a fun stage to reach. The pieces are beginning to come together.
+</astra>
+
+---
+
+<user>
+I keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+I keep changing the name of my project!
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+So, i keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+A quick update: I keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+By the way, i keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+Something happened today. I keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i keep changing the name of my project.
+</user>
+<astra>
+Finding a name that feels right can take a few tries!
+</astra>
+
+---
+
+<user>
+I made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+I made a tiny improvement to my website today!
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+So, i made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+A quick update: I made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+By the way, i made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on!
+</astra>
+
+---
+
+<user>
+Something happened today. I made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i made a tiny improvement to my website today.
+</user>
+<astra>
+Small improvements add up, especially on a project you keep working on.
+</astra>
+
+---
+
+<user>
+I found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+I found an old project I forgot about!
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes!
+</astra>
+
+---
+
+<user>
+So, i found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+A quick update: I found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+By the way, i found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+Something happened today. I found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i found an old project I forgot about.
+</user>
+<astra>
+An old project can be interesting to look at with fresh eyes.
+</astra>
+
+---
+
+<user>
+I want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing!
+</astra>
+
+---
+
+<user>
+I want to make something creative, but I have no idea what!
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+So, i want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+A quick update: I want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+By the way, i want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+Something happened today. I want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want to make something creative, but I have no idea what.
+</user>
+<astra>
+Sometimes choosing a tiny starting point is easier than planning the whole thing.
+</astra>
+
+---
+
+<user>
+I have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+I have three different ideas and can't choose!
+</user>
+<astra>
+You really could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+So, i have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+A quick update: I have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+By the way, i have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+Something happened today. I have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now!
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i have three different ideas and can't choose.
+</user>
+<astra>
+You could pick the one that sounds most fun to work on right now.
+</astra>
+
+---
+
+<user>
+I decided to restart my project from scratch.
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+I decided to restart my project from scratch!
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i decided to restart my project from scratch.
+</user>
+<astra>
+That is a fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I decided to restart my project from scratch.
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+So, i decided to restart my project from scratch.
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting!
+</astra>
+
+---
+
+<user>
+A quick update: I decided to restart my project from scratch.
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+By the way, i decided to restart my project from scratch.
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+Something happened today. I decided to restart my project from scratch.
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i decided to restart my project from scratch.
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i decided to restart my project from scratch.
+</user>
+<astra>
+A fresh start can help when the old structure feels limiting.
+</astra>
+
+---
+
+<user>
+I finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+That's a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+I finally fixed a bug that annoyed me for days!
+</user>
+<astra>
+That's a satisfying fix. Those stubborn bugs can take a lot of patience!
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+That's a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+That sounds like a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+So, i finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+That's a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+A quick update: I finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+That's a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+By the way, i finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+That's a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+Something happened today. I finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+That's a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+It sounds like that's a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i finally fixed a bug that annoyed me for days.
+</user>
+<astra>
+That's a satisfying fix. Those stubborn bugs can take a lot of patience.
+</astra>
+
+---
+
+<user>
+I accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+I accidentally deleted something important from my project!
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+So, i accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+A quick update: I accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+By the way, i accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+Something happened today. I accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i accidentally deleted something important from my project.
+</user>
+<astra>
+Oh no. Do you have a recent backup or version history?
+</astra>
+
+---
+
+<user>
+I made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+I made a new level for my game!
+</user>
+<astra>
+That's cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+So, i made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+A quick update: I made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+By the way, i made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+Something happened today. I made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i made a new level for my game.
+</user>
+<astra>
+Cool! What kind of challenge does the level have?
+</astra>
+
+---
+
+<user>
+The first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+The first version of my game is finished!
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: the first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. The first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+So, the first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+A quick update: The first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+By the way, the first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+Something happened today. The first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: the first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: the first version of my game is finished.
+</user>
+<astra>
+Congratulations on getting a complete version together.
+</astra>
+
+---
+
+<user>
+I want my game's menu to look cleaner.
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+I want my game's menu to look cleaner!
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want my game's menu to look cleaner.
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want my game's menu to look cleaner.
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+So, i want my game's menu to look cleaner.
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+A quick update: I want my game's menu to look cleaner.
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+By the way, i want my game's menu to look cleaner.
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+Something happened today. I want my game's menu to look cleaner.
+</user>
+<astra>
+That is a simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want my game's menu to look cleaner.
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want my game's menu to look cleaner.
+</user>
+<astra>
+A simpler menu can make it easier for players to find what they need!
+</astra>
+
+---
+
+<user>
+I spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+I spent ages choosing a font!
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+So, i spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+A quick update: I spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+By the way, i spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design!
+</astra>
+
+---
+
+<user>
+Something happened today. I spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i spent ages choosing a font.
+</user>
+<astra>
+Fonts can change the whole personality of a design.
+</astra>
+
+---
+
+<user>
+I changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+I changed the layout of my homepage!
+</user>
+<astra>
+That is a layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different!
+</astra>
+
+---
+
+<user>
+So, i changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+A quick update: I changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+By the way, i changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+Something happened today. I changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i changed the layout of my homepage.
+</user>
+<astra>
+A layout change can make a site feel completely different.
+</astra>
+
+---
+
+<user>
+I finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic!
+</astra>
+
+---
+
+<user>
+I finally organized my project folders!
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+So, i finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+A quick update: I finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+By the way, i finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+Something happened today. I finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i finally organized my project folders.
+</user>
+<astra>
+That should make the next round of edits less chaotic.
+</astra>
+
+---
+
+<user>
+I wrote a short story today.
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+I wrote a short story today!
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i wrote a short story today.
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I wrote a short story today.
+</user>
+<astra>
+That's nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+So, i wrote a short story today.
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+A quick update: I wrote a short story today.
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+By the way, i wrote a short story today.
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+Something happened today. I wrote a short story today.
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i wrote a short story today.
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i wrote a short story today.
+</user>
+<astra>
+Nice! What kind of story did you write?
+</astra>
+
+---
+
+<user>
+I drew a character for a game.
+</user>
+<astra>
+That's a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+I drew a character for a game!
+</user>
+<astra>
+It sounds like that's a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i drew a character for a game.
+</user>
+<astra>
+That's a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I drew a character for a game.
+</user>
+<astra>
+That's a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+So, i drew a character for a game.
+</user>
+<astra>
+That's a great way to give the game its own personality!
+</astra>
+
+---
+
+<user>
+A quick update: I drew a character for a game.
+</user>
+<astra>
+That's a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+By the way, i drew a character for a game.
+</user>
+<astra>
+That sounds like a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+Something happened today. I drew a character for a game.
+</user>
+<astra>
+That's a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i drew a character for a game.
+</user>
+<astra>
+That's a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i drew a character for a game.
+</user>
+<astra>
+That's a great way to give the game its own personality.
+</astra>
+
+---
+
+<user>
+I made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+I made a new song!
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+So, i made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+A quick update: I made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+By the way, i made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+Something happened today. I made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i made a new song.
+</user>
+<astra>
+Very cool. What sort of sound were you going for?
+</astra>
+
+---
+
+<user>
+I tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+I tried making pixel art!
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+So, i tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+A quick update: I tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+By the way, i tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+Something happened today. I tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts!
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i tried making pixel art.
+</user>
+<astra>
+Pixel art is a fun style because every little detail counts.
+</astra>
+
+---
+
+<user>
+I want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+I want to learn animation!
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+So, i want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+A quick update: I want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying!
+</astra>
+
+---
+
+<user>
+By the way, i want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+Something happened today. I want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want to learn animation.
+</user>
+<astra>
+Animation is a neat skill to explore. Even a tiny loop can be satisfying.
+</astra>
+
+---
+
+<user>
+I finished a drawing, but I might change it later.
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+I finished a drawing, but I might change it later!
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i finished a drawing, but I might change it later.
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I finished a drawing, but I might change it later.
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+So, i finished a drawing, but I might change it later.
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+A quick update: I finished a drawing, but I might change it later.
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+By the way, i finished a drawing, but I might change it later.
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+Something happened today. I finished a drawing, but I might change it later.
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i finished a drawing, but I might change it later.
+</user>
+<astra>
+That's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i finished a drawing, but I might change it later.
+</user>
+<astra>
+It sounds like that's fine. Sometimes a finished piece still gives you ideas.
+</astra>
+
+---
+
+<user>
+I don't like the colors I picked.
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+I don't like the colors I picked!
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i don't like the colors I picked.
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I don't like the colors I picked.
+</user>
+<astra>
+You really can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+So, i don't like the colors I picked.
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+A quick update: I don't like the colors I picked.
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+By the way, i don't like the colors I picked.
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+Something happened today. I don't like the colors I picked.
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i don't like the colors I picked.
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i don't like the colors I picked.
+</user>
+<astra>
+You can always revisit the palette. Design choices aren't permanent!
+</astra>
+
+---
+
+<user>
+I think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+I think my design has too much going on!
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+So, i think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+A quick update: I think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+By the way, i think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out!
+</astra>
+
+---
+
+<user>
+Something happened today. I think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i think my design has too much going on.
+</user>
+<astra>
+Removing a few elements might help the important parts stand out.
+</astra>
+
+---
+
+<user>
+I made a logo for my project.
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+I made a logo for my project!
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i made a logo for my project.
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I made a logo for my project.
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity!
+</astra>
+
+---
+
+<user>
+So, i made a logo for my project.
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+A quick update: I made a logo for my project.
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+By the way, i made a logo for my project.
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+Something happened today. I made a logo for my project.
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i made a logo for my project.
+</user>
+<astra>
+Nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i made a logo for my project.
+</user>
+<astra>
+That's nice! A logo gives a project a recognizable identity.
+</astra>
+
+---
+
+<user>
+I started learning a new programming language.
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+I started learning a new programming language!
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i started learning a new programming language.
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I started learning a new programming language.
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+So, i started learning a new programming language.
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+A quick update: I started learning a new programming language.
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+By the way, i started learning a new programming language.
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+Something happened today. I started learning a new programming language.
+</user>
+<astra>
+It sounds like that's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i started learning a new programming language.
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i started learning a new programming language.
+</user>
+<astra>
+That's an interesting challenge. What language did you choose?
+</astra>
+
+---
+
+<user>
+I understand loops now.
+</user>
+<astra>
+That's a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+I understand loops now!
+</user>
+<astra>
+That's a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i understand loops now.
+</user>
+<astra>
+That's a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I understand loops now.
+</user>
+<astra>
+That's a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+So, i understand loops now.
+</user>
+<astra>
+It sounds like that's a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+A quick update: I understand loops now.
+</user>
+<astra>
+That's a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+By the way, i understand loops now.
+</user>
+<astra>
+That's a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+Something happened today. I understand loops now.
+</user>
+<astra>
+That's a useful concept to have clicked into place!
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i understand loops now.
+</user>
+<astra>
+That's a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i understand loops now.
+</user>
+<astra>
+That sounds like a useful concept to have clicked into place.
+</astra>
+
+---
+
+<user>
+Functions finally make sense to me.
+</user>
+<astra>
+That's great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+Functions finally make sense to me!
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: functions finally make sense to me.
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. Functions finally make sense to me.
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+So, functions finally make sense to me.
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize!
+</astra>
+
+---
+
+<user>
+A quick update: Functions finally make sense to me.
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+By the way, functions finally make sense to me.
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+Something happened today. Functions finally make sense to me.
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: functions finally make sense to me.
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: functions finally make sense to me.
+</user>
+<astra>
+Great! Functions can make larger programs much easier to organize.
+</astra>
+
+---
+
+<user>
+I keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+I keep forgetting a tiny semicolon!
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems!
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+So, i keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+A quick update: I keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+By the way, i keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+Something happened today. I keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i keep forgetting a tiny semicolon.
+</user>
+<astra>
+Tiny syntax details have a talent for causing surprisingly large problems.
+</astra>
+
+---
+
+<user>
+My code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+My code works, but it's messy!
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: my code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. My code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+So, my code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+A quick update: My code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+By the way, my code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+Something happened today. My code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: my code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually!
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: my code works, but it's messy.
+</user>
+<astra>
+Getting it working is a first milestone. You can tidy it up gradually.
+</astra>
+
+---
+
+<user>
+I don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+I don't understand this error message!
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+So, i don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+A quick update: I don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+By the way, i don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+Something happened today. I don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i don't understand this error message.
+</user>
+<astra>
+Error messages can be cryptic. What does yours say?
+</astra>
+
+---
+
+<user>
+I found a much simpler way to do something.
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+I found a much simpler way to do something!
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i found a much simpler way to do something.
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I found a much simpler way to do something.
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+So, i found a much simpler way to do something.
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+A quick update: I found a much simpler way to do something.
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+By the way, i found a much simpler way to do something.
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+Something happened today. I found a much simpler way to do something.
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i found a much simpler way to do something.
+</user>
+<astra>
+That's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i found a much simpler way to do something.
+</user>
+<astra>
+It sounds like that's always a nice discovery. Simpler code is often easier to maintain.
+</astra>
+
+---
+
+<user>
+I want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+I want to add settings to my app!
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+So, i want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+A quick update: I want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+By the way, i want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+Something happened today. I want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want to add settings to my app.
+</user>
+<astra>
+Settings can make an app feel more complete, especially when the choices are clear!
+</astra>
+
+---
+
+<user>
+I made a search bar for my site.
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+I made a search bar for my site!
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i made a search bar for my site.
+</user>
+<astra>
+That's nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I made a search bar for my site.
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+So, i made a search bar for my site.
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+A quick update: I made a search bar for my site.
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+By the way, i made a search bar for my site.
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate!
+</astra>
+
+---
+
+<user>
+Something happened today. I made a search bar for my site.
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i made a search bar for my site.
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i made a search bar for my site.
+</user>
+<astra>
+Nice! Search can make a growing site much easier to navigate.
+</astra>
+
+---
+
+<user>
+I tested my project on another computer.
+</user>
+<astra>
+It sounds like that's a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+I tested my project on another computer!
+</user>
+<astra>
+That's a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i tested my project on another computer.
+</user>
+<astra>
+That's a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I tested my project on another computer.
+</user>
+<astra>
+That's a useful check. Different devices can reveal things you wouldn't notice on your own!
+</astra>
+
+---
+
+<user>
+So, i tested my project on another computer.
+</user>
+<astra>
+That's a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+A quick update: I tested my project on another computer.
+</user>
+<astra>
+That sounds like a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+By the way, i tested my project on another computer.
+</user>
+<astra>
+That's a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+Something happened today. I tested my project on another computer.
+</user>
+<astra>
+That's a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i tested my project on another computer.
+</user>
+<astra>
+That's a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i tested my project on another computer.
+</user>
+<astra>
+That's a useful check. Different devices can reveal things you wouldn't notice on your own.
+</astra>
+
+---
+
+<user>
+My project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange!
+</astra>
+
+---
+
+<user>
+My project looks different on a smaller screen!
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: my project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. My project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+So, my project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+A quick update: My project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+By the way, my project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+Something happened today. My project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: my project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: my project looks different on a smaller screen.
+</user>
+<astra>
+Responsive layouts can be tricky. It's worth checking how the elements rearrange.
+</astra>
+
+---
+
+<user>
+I finally published my website.
+</user>
+<astra>
+That's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+I finally published my website!
+</user>
+<astra>
+That's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i finally published my website.
+</user>
+<astra>
+That's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I finally published my website.
+</user>
+<astra>
+That's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+So, i finally published my website.
+</user>
+<astra>
+It sounds like that's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+A quick update: I finally published my website.
+</user>
+<astra>
+That's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+By the way, i finally published my website.
+</user>
+<astra>
+That's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+Something happened today. I finally published my website.
+</user>
+<astra>
+That's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i finally published my website.
+</user>
+<astra>
+That's a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i finally published my website.
+</user>
+<astra>
+That sounds like a big milestone. Your work is out there now!
+</astra>
+
+---
+
+<user>
+I updated my portfolio.
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+I updated my portfolio!
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i updated my portfolio.
+</user>
+<astra>
+That is a portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I updated my portfolio.
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+So, i updated my portfolio.
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed!
+</astra>
+
+---
+
+<user>
+A quick update: I updated my portfolio.
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+By the way, i updated my portfolio.
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+Something happened today. I updated my portfolio.
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i updated my portfolio.
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i updated my portfolio.
+</user>
+<astra>
+A portfolio is a nice place to show how your projects have developed.
+</astra>
+
+---
+
+<user>
+I have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+I have an idea for a chatbot!
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+So, i have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+A quick update: I have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+By the way, i have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+Something happened today. I have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i have an idea for a chatbot.
+</user>
+<astra>
+Interesting! What do you want the chatbot to be able to do?
+</astra>
+
+---
+
+<user>
+I want my chatbot to sound less robotic.
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+I want my chatbot to sound less robotic!
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want my chatbot to sound less robotic.
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want my chatbot to sound less robotic.
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+So, i want my chatbot to sound less robotic.
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+A quick update: I want my chatbot to sound less robotic.
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+By the way, i want my chatbot to sound less robotic.
+</user>
+<astra>
+That is a varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+Something happened today. I want my chatbot to sound less robotic.
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want my chatbot to sound less robotic.
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style!
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want my chatbot to sound less robotic.
+</user>
+<astra>
+A varied set of natural examples can help give it a more conversational style.
+</astra>
+
+---
+
+<user>
+My chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+My chatbot keeps giving answers that are too long!
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: my chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. My chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+So, my chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+A quick update: My chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help!
+</astra>
+
+---
+
+<user>
+By the way, my chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+Something happened today. My chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: my chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: my chatbot keeps giving answers that are too long.
+</user>
+<astra>
+Shorter training responses and a clear response style may help.
+</astra>
+
+---
+
+<user>
+I want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+I want my chatbot to remember the conversation!
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+So, i want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+A quick update: I want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+By the way, i want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+Something happened today. I want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want my chatbot to remember the conversation.
+</user>
+<astra>
+That can make follow-ups feel more coherent. The memory design matters, though.
+</astra>
+
+---
+
+<user>
+I tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+I tested my model with a new prompt!
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+So, i tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+A quick update: I tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+By the way, i tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+Something happened today. I tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i tested my model with a new prompt.
+</user>
+<astra>
+What did it respond with?
+</astra>
+
+---
+
+<user>
+My model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+My model gave a really strange answer!
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: my model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. My model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+So, my model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+A quick update: My model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+By the way, my model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate!
+</astra>
+
+---
+
+<user>
+Something happened today. My model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: my model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: my model gave a really strange answer.
+</user>
+<astra>
+That can happen. One example can reveal a useful weakness to investigate.
+</astra>
+
+---
+
+<user>
+I finished preparing a dataset.
+</user>
+<astra>
+It sounds like that's a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+I finished preparing a dataset!
+</user>
+<astra>
+That's a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i finished preparing a dataset.
+</user>
+<astra>
+That's a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I finished preparing a dataset.
+</user>
+<astra>
+That's a substantial step. Dataset quality can make a real difference!
+</astra>
+
+---
+
+<user>
+So, i finished preparing a dataset.
+</user>
+<astra>
+That's a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+A quick update: I finished preparing a dataset.
+</user>
+<astra>
+That sounds like a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+By the way, i finished preparing a dataset.
+</user>
+<astra>
+That's a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+Something happened today. I finished preparing a dataset.
+</user>
+<astra>
+That's a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i finished preparing a dataset.
+</user>
+<astra>
+That's a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i finished preparing a dataset.
+</user>
+<astra>
+That's a substantial step. Dataset quality can make a real difference.
+</astra>
+
+---
+
+<user>
+I found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied!
+</astra>
+
+---
+
+<user>
+I found duplicate examples in my dataset!
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+So, i found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+A quick update: I found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+By the way, i found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+Something happened today. I found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i found duplicate examples in my dataset.
+</user>
+<astra>
+Removing duplicates should make the training data more varied.
+</astra>
+
+---
+
+<user>
+I want to make my dataset more consistent.
+</user>
+<astra>
+A clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+I want to make my dataset more consistent!
+</user>
+<astra>
+A clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want to make my dataset more consistent.
+</user>
+<astra>
+A clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want to make my dataset more consistent.
+</user>
+<astra>
+A clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+So, i want to make my dataset more consistent.
+</user>
+<astra>
+A clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+A quick update: I want to make my dataset more consistent.
+</user>
+<astra>
+That is a clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+By the way, i want to make my dataset more consistent.
+</user>
+<astra>
+A clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+Something happened today. I want to make my dataset more consistent.
+</user>
+<astra>
+A clear format and consistent response style are good places to start!
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want to make my dataset more consistent.
+</user>
+<astra>
+A clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want to make my dataset more consistent.
+</user>
+<astra>
+A clear format and consistent response style are good places to start.
+</astra>
+
+---
+
+<user>
+I am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+I am taking a break from coding!
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+So, i am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes!
+</astra>
+
+---
+
+<user>
+A quick update: I am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+By the way, i am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+Something happened today. I am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i am taking a break from coding.
+</user>
+<astra>
+Sounds sensible. A break can make it easier to return with fresh eyes.
+</astra>
+
+---
+
+<user>
+I got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+I got distracted while working!
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready!
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+So, i got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+A quick update: I got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+By the way, i got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+Something happened today. I got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i got distracted while working.
+</user>
+<astra>
+It happens. You can pick one small next step when you're ready.
+</astra>
+
+---
+
+<user>
+I spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+I spent the whole afternoon debugging!
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+So, i spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+A quick update: I spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+By the way, i spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+Something happened today. I spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause!
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i spent the whole afternoon debugging.
+</user>
+<astra>
+That sounds like a long session. Hopefully you found the cause.
+</astra>
+
+---
+
+<user>
+I made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+I made progress even though it was slow!
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+So, i made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+A quick update: I made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward!
+</astra>
+
+---
+
+<user>
+By the way, i made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+Something happened today. I made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i made progress even though it was slow.
+</user>
+<astra>
+Slow progress is still progress. The work moved forward.
+</astra>
+
+---
+
+<user>
+I think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+I think I should simplify my project!
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+So, i think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+A quick update: I think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+By the way, i think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+Something happened today. I think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i think I should simplify my project.
+</user>
+<astra>
+Simplifying can make a project easier to finish and maintain.
+</astra>
+
+---
+
+<user>
+I want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+I want to add one more feature, but the project is already big!
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+So, i want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+A quick update: I want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+By the way, i want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+Something happened today. I want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want to add one more feature, but the project is already big.
+</user>
+<astra>
+It may help to decide whether that feature is essential for the first release!
+</astra>
+
+---
+
+<user>
+I decided not to add that feature.
+</user>
+<astra>
+That's a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+I decided not to add that feature!
+</user>
+<astra>
+That's a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i decided not to add that feature.
+</user>
+<astra>
+That's a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I decided not to add that feature.
+</user>
+<astra>
+It sounds like that's a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+So, i decided not to add that feature.
+</user>
+<astra>
+That's a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+A quick update: I decided not to add that feature.
+</user>
+<astra>
+That's a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+By the way, i decided not to add that feature.
+</user>
+<astra>
+That's a perfectly reasonable scope decision!
+</astra>
+
+---
+
+<user>
+Something happened today. I decided not to add that feature.
+</user>
+<astra>
+That's a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i decided not to add that feature.
+</user>
+<astra>
+That sounds like a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i decided not to add that feature.
+</user>
+<astra>
+That's a perfectly reasonable scope decision.
+</astra>
+
+---
+
+<user>
+I showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+I showed my project to someone!
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+So, i showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+A quick update: I showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+By the way, i showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+Something happened today. I showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i showed my project to someone.
+</user>
+<astra>
+What did they think of it?
+</astra>
+
+---
+
+<user>
+Someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion!
+</astra>
+
+---
+
+<user>
+Someone gave me feedback on my design!
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. Someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+So, someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+A quick update: Someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+By the way, someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+Something happened today. Someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: someone gave me feedback on my design.
+</user>
+<astra>
+Feedback can be useful, even when you don't use every suggestion.
+</astra>
+
+---
+
+<user>
+I got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+I got a suggestion that I disagree with!
+</user>
+<astra>
+You really can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+So, i got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+A quick update: I got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+By the way, i got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+Something happened today. I got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion!
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i got a suggestion that I disagree with.
+</user>
+<astra>
+You can consider the reasoning without automatically adopting the suggestion.
+</astra>
+
+---
+
+<user>
+I like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+I like working on projects independently!
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+So, i like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment!
+</astra>
+
+---
+
+<user>
+A quick update: I like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+By the way, i like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+Something happened today. I like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i like working on projects independently.
+</user>
+<astra>
+Working independently can give you lots of room to experiment.
+</astra>
+
+---
+
+<user>
+I enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+I enjoy collaborating on projects!
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered!
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+So, i enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+A quick update: I enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+By the way, i enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+Something happened today. I enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i enjoy collaborating on projects.
+</user>
+<astra>
+Collaboration can bring in ideas you might not have considered.
+</astra>
+
+---
+
+<user>
+I have trouble explaining my project to people.
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+I have trouble explaining my project to people!
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i have trouble explaining my project to people.
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I have trouble explaining my project to people.
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+So, i have trouble explaining my project to people.
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+A quick update: I have trouble explaining my project to people.
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+By the way, i have trouble explaining my project to people.
+</user>
+<astra>
+That is a short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+Something happened today. I have trouble explaining my project to people.
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i have trouble explaining my project to people.
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point!
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i have trouble explaining my project to people.
+</user>
+<astra>
+A short description of what it does and why you made it can be a good starting point.
+</astra>
+
+---
+
+<user>
+I made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+I made a checklist for my project!
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+So, i made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+A quick update: I made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable!
+</astra>
+
+---
+
+<user>
+By the way, i made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+Something happened today. I made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i made a checklist for my project.
+</user>
+<astra>
+That can make a big task feel more manageable.
+</astra>
+
+---
+
+<user>
+I crossed the last item off my checklist.
+</user>
+<astra>
+Nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+I crossed the last item off my checklist!
+</user>
+<astra>
+Nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i crossed the last item off my checklist.
+</user>
+<astra>
+Nice! It's satisfying to finish a list!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I crossed the last item off my checklist.
+</user>
+<astra>
+Nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+So, i crossed the last item off my checklist.
+</user>
+<astra>
+Nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+A quick update: I crossed the last item off my checklist.
+</user>
+<astra>
+Nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+By the way, i crossed the last item off my checklist.
+</user>
+<astra>
+Nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+Something happened today. I crossed the last item off my checklist.
+</user>
+<astra>
+Nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i crossed the last item off my checklist.
+</user>
+<astra>
+That's nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i crossed the last item off my checklist.
+</user>
+<astra>
+Nice! It's satisfying to finish a list.
+</astra>
+
+---
+
+<user>
+I need to reorganize my schedule.
+</user>
+<astra>
+A little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+I need to reorganize my schedule!
+</user>
+<astra>
+A little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i need to reorganize my schedule.
+</user>
+<astra>
+A little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I need to reorganize my schedule.
+</user>
+<astra>
+A little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+So, i need to reorganize my schedule.
+</user>
+<astra>
+A little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+A quick update: I need to reorganize my schedule.
+</user>
+<astra>
+A little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+By the way, i need to reorganize my schedule.
+</user>
+<astra>
+A little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+Something happened today. I need to reorganize my schedule.
+</user>
+<astra>
+That is a little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i need to reorganize my schedule.
+</user>
+<astra>
+A little reshuffling can help make room for what matters most.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i need to reorganize my schedule.
+</user>
+<astra>
+A little reshuffling can help make room for what matters most!
+</astra>
+
+---
+
+<user>
+I have a busy week ahead.
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+I have a busy week ahead!
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i have a busy week ahead.
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I have a busy week ahead.
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+So, i have a busy week ahead.
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+A quick update: I have a busy week ahead.
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+By the way, i have a busy week ahead.
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too!
+</astra>
+
+---
+
+<user>
+Something happened today. I have a busy week ahead.
+</user>
+<astra>
+It sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i have a busy week ahead.
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i have a busy week ahead.
+</user>
+<astra>
+Sounds like a lot is coming up. I hope you get some breathing room, too.
+</astra>
+
+---
+
+<user>
+I am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+I am looking forward to a day off!
+</user>
+<astra>
+That is a free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace!
+</astra>
+
+---
+
+<user>
+So, i am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+A quick update: I am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+By the way, i am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+Something happened today. I am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i am looking forward to a day off.
+</user>
+<astra>
+A free day can be a welcome change of pace.
+</astra>
+
+---
+
+<user>
+I slept really well last night.
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different!
+</astra>
+
+---
+
+<user>
+I slept really well last night!
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i slept really well last night.
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I slept really well last night.
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+So, i slept really well last night.
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+A quick update: I slept really well last night.
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+By the way, i slept really well last night.
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+Something happened today. I slept really well last night.
+</user>
+<astra>
+It sounds like that's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i slept really well last night.
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i slept really well last night.
+</user>
+<astra>
+That's good to hear. A restful night can make the day feel different.
+</astra>
+
+---
+
+<user>
+I woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+I woke up earlier than I expected!
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+So, i woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+A quick update: I woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+By the way, i woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+Something happened today. I woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange!
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i woke up earlier than I expected.
+</user>
+<astra>
+An unexpectedly early start can feel a little strange.
+</astra>
+
+---
+
+<user>
+I am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+I am still waking up!
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+So, i am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake!
+</astra>
+
+---
+
+<user>
+A quick update: I am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+By the way, i am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+Something happened today. I am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i am still waking up.
+</user>
+<astra>
+No rush. It can take a while to feel fully awake.
+</astra>
+
+---
+
+<user>
+I need a quiet afternoon.
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+I need a quiet afternoon!
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace!
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i need a quiet afternoon.
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I need a quiet afternoon.
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+So, i need a quiet afternoon.
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+A quick update: I need a quiet afternoon.
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+By the way, i need a quiet afternoon.
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+Something happened today. I need a quiet afternoon.
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i need a quiet afternoon.
+</user>
+<astra>
+A peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i need a quiet afternoon.
+</user>
+<astra>
+That is a peaceful afternoon sounds like a nice change of pace.
+</astra>
+
+---
+
+<user>
+I want to go outside later.
+</user>
+<astra>
+Hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+I want to go outside later!
+</user>
+<astra>
+Hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want to go outside later.
+</user>
+<astra>
+Hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want to go outside later.
+</user>
+<astra>
+Hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+So, i want to go outside later.
+</user>
+<astra>
+Hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+A quick update: I want to go outside later.
+</user>
+<astra>
+Hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+By the way, i want to go outside later.
+</user>
+<astra>
+Hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+Something happened today. I want to go outside later.
+</user>
+<astra>
+I hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want to go outside later.
+</user>
+<astra>
+Hope you get to enjoy some fresh air!
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want to go outside later.
+</user>
+<astra>
+Hope you get to enjoy some fresh air.
+</astra>
+
+---
+
+<user>
+I went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+I went for a walk today!
+</user>
+<astra>
+That's nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+So, i went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+A quick update: I went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+By the way, i went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+Something happened today. I went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i went for a walk today.
+</user>
+<astra>
+Nice! Did you go somewhere familiar or explore a different route?
+</astra>
+
+---
+
+<user>
+I stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+I stayed inside all day!
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+So, i stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+A quick update: I stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+By the way, i stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+Something happened today. I stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i stayed inside all day.
+</user>
+<astra>
+Sometimes an indoor day is exactly how things turn out.
+</astra>
+
+---
+
+<user>
+I spent time with my family.
+</user>
+<astra>
+Hope you had a good time together.
+</astra>
+
+---
+
+<user>
+I spent time with my family!
+</user>
+<astra>
+Hope you had a good time together.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i spent time with my family.
+</user>
+<astra>
+Hope you had a good time together.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I spent time with my family.
+</user>
+<astra>
+Hope you had a good time together.
+</astra>
+
+---
+
+<user>
+So, i spent time with my family.
+</user>
+<astra>
+Hope you had a good time together.
+</astra>
+
+---
+
+<user>
+A quick update: I spent time with my family.
+</user>
+<astra>
+Hope you had a good time together.
+</astra>
+
+---
+
+<user>
+By the way, i spent time with my family.
+</user>
+<astra>
+Hope you had a good time together.
+</astra>
+
+---
+
+<user>
+Something happened today. I spent time with my family.
+</user>
+<astra>
+Hope you had a good time together.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i spent time with my family.
+</user>
+<astra>
+I hope you had a good time together.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i spent time with my family.
+</user>
+<astra>
+Hope you had a good time together!
+</astra>
+
+---
+
+<user>
+I talked with a friend today.
+</user>
+<astra>
+It's nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+I talked with a friend today!
+</user>
+<astra>
+It's nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i talked with a friend today.
+</user>
+<astra>
+It's nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I talked with a friend today.
+</user>
+<astra>
+It's nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+So, i talked with a friend today.
+</user>
+<astra>
+It's nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+A quick update: I talked with a friend today.
+</user>
+<astra>
+It's nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+By the way, i talked with a friend today.
+</user>
+<astra>
+It's nice when a conversation brightens the day!
+</astra>
+
+---
+
+<user>
+Something happened today. I talked with a friend today.
+</user>
+<astra>
+It's nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i talked with a friend today.
+</user>
+<astra>
+It's nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i talked with a friend today.
+</user>
+<astra>
+It is nice when a conversation brightens the day.
+</astra>
+
+---
+
+<user>
+I haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+I haven't seen my friends in a while!
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart!
+</astra>
+
+---
+
+<user>
+So, i haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+A quick update: I haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+By the way, i haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+Something happened today. I haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i haven't seen my friends in a while.
+</user>
+<astra>
+It can be nice to catch up after some time apart.
+</astra>
+
+---
+
+<user>
+I am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+I am planning a game night!
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+So, i am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+A quick update: I am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+By the way, i am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+Something happened today. I am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i am planning a game night.
+</user>
+<astra>
+That sounds fun. Have you picked the games yet?
+</astra>
+
+---
+
+<user>
+We couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+We couldn't agree on what game to play!
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: we couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. We couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+So, we couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+A quick update: We couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+By the way, we couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+Something happened today. We couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night!
+</astra>
+
+---
+
+<user>
+I've been thinking about this: we couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: we couldn't agree on what game to play.
+</user>
+<astra>
+Choosing one game for a group can be the hardest part of game night.
+</astra>
+
+---
+
+<user>
+I tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+I tried a board game I had never played!
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+So, i tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices!
+</astra>
+
+---
+
+<user>
+A quick update: I tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+By the way, i tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+Something happened today. I tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i tried a board game I had never played.
+</user>
+<astra>
+Trying a new game can be a fun change from the usual choices.
+</astra>
+
+---
+
+<user>
+I lost the board game, but it was fun.
+</user>
+<astra>
+That's a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+I lost the board game, but it was fun!
+</user>
+<astra>
+That's a good outcome. Enjoying the game matters more than the score!
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i lost the board game, but it was fun.
+</user>
+<astra>
+That's a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I lost the board game, but it was fun.
+</user>
+<astra>
+That sounds like a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+So, i lost the board game, but it was fun.
+</user>
+<astra>
+That's a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+A quick update: I lost the board game, but it was fun.
+</user>
+<astra>
+That's a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+By the way, i lost the board game, but it was fun.
+</user>
+<astra>
+That's a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+Something happened today. I lost the board game, but it was fun.
+</user>
+<astra>
+That's a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i lost the board game, but it was fun.
+</user>
+<astra>
+It sounds like that's a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i lost the board game, but it was fun.
+</user>
+<astra>
+That's a good outcome. Enjoying the game matters more than the score.
+</astra>
+
+---
+
+<user>
+I won a match by one point.
+</user>
+<astra>
+A close win is especially exciting.
+</astra>
+
+---
+
+<user>
+I won a match by one point!
+</user>
+<astra>
+A close win is especially exciting.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i won a match by one point.
+</user>
+<astra>
+A close win is especially exciting.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I won a match by one point.
+</user>
+<astra>
+A close win is especially exciting.
+</astra>
+
+---
+
+<user>
+So, i won a match by one point.
+</user>
+<astra>
+A close win is especially exciting.
+</astra>
+
+---
+
+<user>
+A quick update: I won a match by one point.
+</user>
+<astra>
+A close win is especially exciting.
+</astra>
+
+---
+
+<user>
+By the way, i won a match by one point.
+</user>
+<astra>
+That is a close win is especially exciting.
+</astra>
+
+---
+
+<user>
+Something happened today. I won a match by one point.
+</user>
+<astra>
+A close win is especially exciting.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i won a match by one point.
+</user>
+<astra>
+A close win is especially exciting!
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i won a match by one point.
+</user>
+<astra>
+A close win is especially exciting.
+</astra>
+
+---
+
+<user>
+I almost won, but lost at the end.
+</user>
+<astra>
+That's a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+I almost won, but lost at the end!
+</user>
+<astra>
+That's a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i almost won, but lost at the end.
+</user>
+<astra>
+It sounds like that's a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I almost won, but lost at the end.
+</user>
+<astra>
+That's a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+So, i almost won, but lost at the end.
+</user>
+<astra>
+That's a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+A quick update: I almost won, but lost at the end.
+</user>
+<astra>
+That's a frustrating finish, especially after getting so close!
+</astra>
+
+---
+
+<user>
+By the way, i almost won, but lost at the end.
+</user>
+<astra>
+That's a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+Something happened today. I almost won, but lost at the end.
+</user>
+<astra>
+That sounds like a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i almost won, but lost at the end.
+</user>
+<astra>
+That's a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i almost won, but lost at the end.
+</user>
+<astra>
+That's a frustrating finish, especially after getting so close.
+</astra>
+
+---
+
+<user>
+I like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+I like puzzle games!
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+So, i like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+A quick update: I like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+By the way, i like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+Something happened today. I like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i like puzzle games.
+</user>
+<astra>
+Puzzle games can be satisfying when the pieces finally click.
+</astra>
+
+---
+
+<user>
+I prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+I prefer games with exploration!
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+So, i prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+A quick update: I prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+By the way, i prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+Something happened today. I prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i prefer games with exploration.
+</user>
+<astra>
+Exploring a game world can make the experience feel open-ended!
+</astra>
+
+---
+
+<user>
+I like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+I like games with short rounds!
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+So, i like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+A quick update: I like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+By the way, i like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while!
+</astra>
+
+---
+
+<user>
+Something happened today. I like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i like games with short rounds.
+</user>
+<astra>
+Short rounds make it easy to play for a little while.
+</astra>
+
+---
+
+<user>
+I want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+I want to try a co-op game!
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity!
+</astra>
+
+---
+
+<user>
+So, i want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+A quick update: I want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+By the way, i want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+Something happened today. I want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want to try a co-op game.
+</user>
+<astra>
+Co-op can be a great way to make a game a shared activity.
+</astra>
+
+---
+
+<user>
+I found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile!
+</astra>
+
+---
+
+<user>
+I found a hidden area in a game!
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+So, i found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+A quick update: I found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+By the way, i found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+Something happened today. I found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i found a hidden area in a game.
+</user>
+<astra>
+Nice discovery! Hidden areas can make exploring worthwhile.
+</astra>
+
+---
+
+<user>
+I completed every achievement.
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+I completed every achievement!
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i completed every achievement.
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I completed every achievement.
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+So, i completed every achievement.
+</user>
+<astra>
+It sounds like that's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+A quick update: I completed every achievement.
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+By the way, i completed every achievement.
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+Something happened today. I completed every achievement.
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i completed every achievement.
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i completed every achievement.
+</user>
+<astra>
+That's quite a checklist to finish. Was there a particularly difficult one?
+</astra>
+
+---
+
+<user>
+I started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+I started a new series!
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+So, i started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+A quick update: I started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+By the way, i started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+Something happened today. I started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i started a new series.
+</user>
+<astra>
+What series did you start?
+</astra>
+
+---
+
+<user>
+I watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+I watched the finale last night!
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+So, i watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+A quick update: I watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+By the way, i watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+Something happened today. I watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i watched the finale last night.
+</user>
+<astra>
+How did you feel about the way it wrapped up?
+</astra>
+
+---
+
+<user>
+I need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+I need a movie recommendation!
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+So, i need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+A quick update: I need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+By the way, i need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+Something happened today. I need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i need a movie recommendation.
+</user>
+<astra>
+What kind of movie are you in the mood for?
+</astra>
+
+---
+
+<user>
+I watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+I watched a movie that made me think!
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+So, i watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+A quick update: I watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward!
+</astra>
+
+---
+
+<user>
+By the way, i watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+Something happened today. I watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i watched a movie that made me think.
+</user>
+<astra>
+Those are often the ones that stay in your mind afterward.
+</astra>
+
+---
+
+<user>
+I prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+I prefer watching movies at home!
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible!
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+So, i prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+A quick update: I prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+By the way, i prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+Something happened today. I prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i prefer watching movies at home.
+</user>
+<astra>
+Home viewing has the advantage of being comfortable and flexible.
+</astra>
+
+---
+
+<user>
+I went to the cinema.
+</user>
+<astra>
+Hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+I went to the cinema!
+</user>
+<astra>
+Hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i went to the cinema.
+</user>
+<astra>
+Hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I went to the cinema.
+</user>
+<astra>
+Hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+So, i went to the cinema.
+</user>
+<astra>
+Hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+A quick update: I went to the cinema.
+</user>
+<astra>
+Hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+By the way, i went to the cinema.
+</user>
+<astra>
+Hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+Something happened today. I went to the cinema.
+</user>
+<astra>
+Hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i went to the cinema.
+</user>
+<astra>
+I hope you enjoyed the big-screen experience.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i went to the cinema.
+</user>
+<astra>
+Hope you enjoyed the big-screen experience!
+</astra>
+
+---
+
+<user>
+I am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+I am halfway through a book!
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+So, i am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+A quick update: I am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+By the way, i am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+Something happened today. I am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i am halfway through a book.
+</user>
+<astra>
+What's been your favorite part so far?
+</astra>
+
+---
+
+<user>
+I keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+I keep rereading the same chapter!
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention!
+</astra>
+
+---
+
+<user>
+So, i keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+A quick update: I keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+By the way, i keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+Something happened today. I keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i keep rereading the same chapter.
+</user>
+<astra>
+Maybe there's a detail in it that keeps catching your attention.
+</astra>
+
+---
+
+<user>
+I like books with unexpected endings.
+</user>
+<astra>
+A well-earned surprise ending can be memorable!
+</astra>
+
+---
+
+<user>
+I like books with unexpected endings!
+</user>
+<astra>
+A well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i like books with unexpected endings.
+</user>
+<astra>
+A well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I like books with unexpected endings.
+</user>
+<astra>
+A well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+So, i like books with unexpected endings.
+</user>
+<astra>
+A well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+A quick update: I like books with unexpected endings.
+</user>
+<astra>
+A well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+By the way, i like books with unexpected endings.
+</user>
+<astra>
+A well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+Something happened today. I like books with unexpected endings.
+</user>
+<astra>
+A well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i like books with unexpected endings.
+</user>
+<astra>
+That is a well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i like books with unexpected endings.
+</user>
+<astra>
+A well-earned surprise ending can be memorable.
+</astra>
+
+---
+
+<user>
+I started reading a graphic novel.
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+I started reading a graphic novel!
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i started reading a graphic novel.
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I started reading a graphic novel.
+</user>
+<astra>
+That's nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+So, i started reading a graphic novel.
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+A quick update: I started reading a graphic novel.
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+By the way, i started reading a graphic novel.
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+Something happened today. I started reading a graphic novel.
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging!
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i started reading a graphic novel.
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i started reading a graphic novel.
+</user>
+<astra>
+Nice! The combination of art and story can be really engaging.
+</astra>
+
+---
+
+<user>
+I want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+I want to read more this year!
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+So, i want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier!
+</astra>
+
+---
+
+<user>
+A quick update: I want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+By the way, i want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+Something happened today. I want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i want to read more this year.
+</user>
+<astra>
+Finding books you're genuinely curious about can make that easier.
+</astra>
+
+---
+
+<user>
+I finished a difficult assignment.
+</user>
+<astra>
+Nicely done getting through it.
+</astra>
+
+---
+
+<user>
+I finished a difficult assignment!
+</user>
+<astra>
+Well done getting through it!
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i finished a difficult assignment.
+</user>
+<astra>
+Well done getting through it.
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I finished a difficult assignment.
+</user>
+<astra>
+Well done getting through it.
+</astra>
+
+---
+
+<user>
+So, i finished a difficult assignment.
+</user>
+<astra>
+Well done getting through it.
+</astra>
+
+---
+
+<user>
+A quick update: I finished a difficult assignment.
+</user>
+<astra>
+Well done getting through it.
+</astra>
+
+---
+
+<user>
+By the way, i finished a difficult assignment.
+</user>
+<astra>
+Well done getting through it.
+</astra>
+
+---
+
+<user>
+Something happened today. I finished a difficult assignment.
+</user>
+<astra>
+Well done getting through it.
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i finished a difficult assignment.
+</user>
+<astra>
+Well done getting through it.
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i finished a difficult assignment.
+</user>
+<astra>
+Well done getting through it.
+</astra>
+
+---
+
+<user>
+I have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+I have a presentation coming up!
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+I wanted to mention this: i have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+Here's something on my mind. I have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+So, i have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+A quick update: I have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+By the way, i have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+Something happened today. I have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+I've been thinking about this: i have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
+
+---
+
+<user>
+One thing I wanted to share: i have a presentation coming up.
+</user>
+<astra>
+I hope the preparation goes smoothly. What's the topic?
+</astra>
