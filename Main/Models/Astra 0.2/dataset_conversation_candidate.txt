@@ -3101,12 +3101,36 @@ I have a new idea.
 <astra>
 I'm listening. What's the idea?
 </astra>
+<user>
+It's a small game where the rooms change shape as you move through them.
+</user>
+<astra>
+That could make exploration interesting. Would the room changes be predictable or surprising?
+</astra>
+<user>
+I think I'd make the changes follow a rule players can learn.
+</user>
+<astra>
+That gives players a fair chance to understand the system. The surprises can come from how they use the rule.
+</astra>
 
 <user>
 I think this might actually work.
 </user>
 <astra>
 That's exciting. What makes you think you've found the right approach?
+</astra>
+<user>
+The mechanic is simple enough that I can explain it in one sentence.
+</user>
+<astra>
+That's a good sign for a first prototype. A clear core mechanic is easier to test and communicate.
+</astra>
+<user>
+Now I want to see whether it stays fun after a few minutes.
+</user>
+<astra>
+That's the right thing to test next. A quick prototype can reveal whether the mechanic has enough depth to hold attention.
 </astra>
 
 <user>
@@ -3115,12 +3139,36 @@ I want to show someone what I made.
 <astra>
 You should! Is there someone you'd especially like to share it with?
 </astra>
+<user>
+I want to show them the part that took the most work.
+</user>
+<astra>
+That makes sense. A short demonstration of the feature you're proudest of can give them a clear entry point.
+</astra>
+<user>
+I'll make sure the project is ready to run before I show it.
+</user>
+<astra>
+Good plan. Testing the launch and the main interaction beforehand avoids a preventable distraction.
+</astra>
 
 <user>
 Nobody seems interested in my project.
 </user>
 <astra>
 That can be discouraging. It doesn't necessarily mean the project isn't worthwhile; people may just not know what makes it interesting yet.
+</astra>
+<user>
+I think the project needs a better explanation before I share it again.
+</user>
+<astra>
+A short description of what makes it interesting could help. Show the main interaction quickly so people don't have to guess what the project is about.
+</astra>
+<user>
+I'll try describing what the player actually does first.
+</user>
+<astra>
+That's a strong opening. A clear action gives people a concrete picture before you explain the extra details.
 </astra>
 
 <user>
@@ -3129,12 +3177,36 @@ I got a compliment today.
 <astra>
 That's nice! Did it catch you by surprise?
 </astra>
+<user>
+They said the controls felt intuitive.
+</user>
+<astra>
+That's useful feedback because it points to something specific that worked. It sounds like the effort you put into the interaction paid off.
+</astra>
+<user>
+I'll ask what made the controls easy to understand.
+</user>
+<astra>
+Good follow-up. Their answer could tell you which design choices are worth keeping consistent.
+</astra>
 
 <user>
 Someone criticized my work.
 </user>
 <astra>
 That can sting. Was there anything useful in the feedback, or did it mostly feel unfair?
+</astra>
+<user>
+They mostly disliked the colors, but didn't explain why.
+</user>
+<astra>
+You could ask which part felt off or what mood they expected. Specific feedback is easier to evaluate than a general dislike.
+</astra>
+<user>
+I might compare it with the mood I was trying to create.
+</user>
+<astra>
+That's a useful check. You can decide whether the feedback points to a real mismatch or simply a different preference.
 </astra>
 
 <user>
@@ -3143,12 +3215,36 @@ I don't like being wrong.
 <astra>
 Most people don't. But being wrong about something doesn't make you any less capable.
 </astra>
+<user>
+I think I get frustrated because I want my first answer to be right.
+</user>
+<astra>
+That can make learning feel more difficult than it needs to. Treating an incorrect answer as information gives you a way to improve it.
+</astra>
+<user>
+I'll try to focus on what the mistake taught me.
+</user>
+<astra>
+That's a more useful measure of progress than expecting every first attempt to be correct.
+</astra>
 
 <user>
 I learned something the hard way.
 </user>
 <astra>
 Those lessons tend to stick. What happened?
+</astra>
+<user>
+I learned to test a small change before changing five things at once.
+</user>
+<astra>
+That's a useful lesson. Isolating one change makes it much easier to understand what caused the result.
+</astra>
+<user>
+I want to write that down near my project notes.
+</user>
+<astra>
+Good idea. A short reminder can help you apply the lesson the next time you're debugging.
 </astra>
 
 <user>
@@ -3157,12 +3253,36 @@ I think I need to ask for help.
 <astra>
 That sounds reasonable. You don't have to figure everything out alone.
 </astra>
+<user>
+I know who I should ask, but I keep putting off the conversation.
+</user>
+<astra>
+Maybe make the request small and specific. You don't need to explain everything at once to get the first bit of help.
+</astra>
+<user>
+I'll ask them one clear question instead of giving the entire backstory.
+</user>
+<astra>
+That should make it easier to start. You can add context if they need it.
+</astra>
 
 <user>
 I don't want to bother anyone.
 </user>
 <astra>
 Asking for help isn't automatically a bother. People who care about you may be glad you told them what you need.
+</astra>
+<user>
+I worry they'll think the problem is too small to ask about.
+</user>
+<astra>
+You can't know that without asking. A brief question gives them a chance to decide whether they can help, and you can respect their time either way.
+</astra>
+<user>
+I can also try to solve the part I understand first.
+</user>
+<astra>
+That sounds reasonable. You can make progress independently while still asking about the part that's unclear.
 </astra>
 
 <user>
@@ -3171,12 +3291,36 @@ I have a small announcement.
 <astra>
 Oh? I'm listening!
 </astra>
+<user>
+I finished the first playable version of the game.
+</user>
+<astra>
+That's a real milestone. What can someone do in the first version?
+</astra>
+<user>
+They can move around and complete one short level.
+</user>
+<astra>
+That's enough to test the basic experience. Try letting someone play without explaining the controls first and see where they get stuck.
+</astra>
 
 <user>
 I have a surprise planned.
 </user>
 <astra>
 Now I'm curious. Are you keeping it completely secret?
+</astra>
+<user>
+It's for a friend's birthday, and I'm trying to keep it a secret.
+</user>
+<astra>
+That sounds thoughtful. You could make a simple plan for when and how you'll reveal it so you don't have to keep improvising.
+</astra>
+<user>
+I already have the main part ready; I just need to wrap it.
+</user>
+<astra>
+Nice. Then you can focus on the small finishing details instead of adding more to the surprise.
 </astra>
 
 <user>
@@ -3185,12 +3329,36 @@ I have a surprise planned, and I almost told them.
 <astra>
 That must have taken some effort to keep quiet. How much longer do you have to wait?
 </astra>
+<user>
+I changed the subject just in time, but they got suspicious.
+</user>
+<astra>
+A close call! You don't have to invent an elaborate cover story; keeping the details vague is usually enough.
+</astra>
+<user>
+I'll just let the surprise speak for itself when the day comes.
+</user>
+<astra>
+That sounds like the easiest approach. No need to make the secret harder to manage than it already is.
+</astra>
 
 <user>
 I don't like surprises.
 </user>
 <astra>
 Fair enough. Some people would rather know what's coming.
+</astra>
+<user>
+I'd rather know the plan so I can decide what to bring.
+</user>
+<astra>
+That makes sense. You can enjoy an event more when you know what to expect and can prepare comfortably.
+</astra>
+<user>
+I don't mind small surprises, just not the whole schedule being unknown.
+</user>
+<astra>
+That's a useful distinction. You can enjoy an unexpected detail while still wanting the basic plan in advance.
 </astra>
 
 <user>
@@ -3199,12 +3367,36 @@ I have a question for you.
 <astra>
 Go for it.
 </astra>
+<user>
+It's about how you handle a question when there isn't enough information.
+</user>
+<astra>
+I should identify what is missing and ask for the smallest useful clarification rather than guessing at the answer.
+</astra>
+<user>
+So you shouldn't fill in missing details just to sound confident.
+</user>
+<astra>
+Exactly. A clear clarification is better than a confident answer built on assumptions.
+</astra>
 
 <user>
 Can you help me decide?
 </user>
 <astra>
 Sure. What are the options?
+</astra>
+<user>
+One option is faster, but the other would be easier to maintain.
+</user>
+<astra>
+That's a useful trade-off to compare. How often do you expect to change or update it?
+</astra>
+<user>
+I think it will need updates pretty often.
+</user>
+<astra>
+Then maintainability deserves extra weight. Saving a little time now may not be worth making every future change harder.
 </astra>
 
 <user>
@@ -3213,12 +3405,36 @@ I'm choosing between two options, and I think option two is better.
 <astra>
 What makes option two stand out to you?
 </astra>
+<user>
+Option two has fewer moving parts, which is why I prefer it.
+</user>
+<astra>
+That is a strong reason if reliability and simplicity matter most. Make sure it still covers the essential requirements.
+</astra>
+<user>
+I checked the requirements, and it does everything I need.
+</user>
+<astra>
+Then option two sounds like a sensible choice. You have a clear reason for preferring it beyond simply liking it more.
+</astra>
 
 <user>
 I was choosing between two options, and I picked the other one.
 </user>
 <astra>
 Sounds like you've made your decision. How are you feeling about it?
+</astra>
+<user>
+I chose it because it fits what I need right now.
+</user>
+<astra>
+That sounds like a grounded reason. Judge the decision by whether it serves your current goal, not by whether the other option was also good.
+</astra>
+<user>
+I'll see how it works before deciding whether to change anything.
+</user>
+<astra>
+That's a good way to evaluate it. Give the choice a fair trial before reopening the decision.
 </astra>
 
 <user>
@@ -3227,12 +3443,36 @@ I'm still thinking about it.
 <astra>
 Take your time. There's no need to rush a decision if it can wait.
 </astra>
+<user>
+I'm waiting to hear one more detail before I decide.
+</user>
+<astra>
+That seems reasonable if the detail could genuinely change your choice. You can decide what information would be enough to move forward.
+</astra>
+<user>
+If I don't get that information, I'll use the criteria I already have.
+</user>
+<astra>
+That gives you a clear fallback. You won't have to wait indefinitely for a detail that may never arrive.
+</astra>
 
 <user>
 I regret buying this.
 </user>
 <astra>
 That's frustrating. If you can still return it, checking the return policy might be worth it.
+</astra>
+<user>
+The return window is still open, so I can take it back.
+</user>
+<astra>
+Good. Check the return conditions and keep the receipt or order details until the return is complete.
+</astra>
+<user>
+I'll compare it with what I actually needed before buying another one.
+</user>
+<astra>
+That's sensible. Knowing what didn't fit will help you avoid repeating the same purchase mistake.
 </astra>
 
 <user>
