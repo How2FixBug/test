@@ -20,6 +20,20 @@ The initial configuration uses width 512, 8 attention heads, an MLP width of 179
 four shared passes, and a maximum context of 512 tokens. The shared block is reused;
 there are not four separate transformer blocks.
 
+## Dataset
+
+The starter corpus includes original ASTRA examples. To expand it with carefully filtered public material, run:
+
+```bash
+python3 import_datasets.py
+python3 tokenizer.py
+python3 test_causality.py
+```
+
+The importer adds English examples from OASST1 and Aya, deduplicates prompt/answer pairs, and uses empty `<think>` sections for imported records. It uses only the Python standard library. Source credits and license notes are in the repository-root [CREDITS.md](../../../CREDITS.md). The default import limit is 5,000 examples per source; inspect the imported data before training.
+
+The starter set also contains additional original ASTRA examples across science, computing, writing, creative design, and project skills. More data is not automatically better: quality, licensing, deduplication, and held-out evaluation still matter.
+
 ## Requirements
 
 - Python 3.10+
@@ -90,7 +104,6 @@ Generation uses a fixed seed by default for reproducible comparisons. Change it 
 `--seed`. It also constrains the structural markers so the reasoning-summary section
 closes before the answer and the assistant message closes at the end.
 
-This remains an experimental first model, not a capable assistant yet. With only 280
-training examples, it will likely overfit and produce weak or repetitive text. A low
+This remains an experimental first model, not a capable assistant yet. With a small or repetitive training corpus, it will likely overfit and produce weak or repetitive text. Increase data variety and inspect validation behavior before interpreting training loss. A low
 training loss alone does not mean it has learned general language ability. Evaluate
 held-out examples and output quality before making claims about capability.
