@@ -217,7 +217,26 @@
     $("#conversation").scrollTop = $("#conversation").scrollHeight;
   };
   const render = () => { renderList(); renderMessages(); };
-  const sendMessage = (text) => {
+  const easeScrollToBottom = (element, duration = 480) => new Promise(resolve => {
+    const startY = element.scrollTop;
+    const distance = element.scrollHeight - element.clientHeight - startY;
+    if (Math.abs(distance) < 2 || reducedMotion) {
+      element.scrollTop = element.scrollHeight;
+      resolve();
+      return;
+    }
+    const started = performance.now();
+    const frame = now => {
+      const progress = Math.min(1, (now - started) / duration);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      element.scrollTop = startY + distance * eased;
+      if (progress < 1) requestAnimationFrame(frame);
+      else resolve();
+    };
+    requestAnimationFrame(frame);
+  });
+
+  const sendMessage = async (text) => {
     const value = text.trim();
     if (!value) return;
     if (!activeChat()) createChat();
@@ -232,18 +251,26 @@
 
     const inputBox = $(".input-box");
     const sourceRect = inputBox.getBoundingClientRect();
-    const wasWelcome = !messages.classList.contains("visible");
     welcome.hidden = true;
     messages.classList.add("visible");
 
+    // Add the destination to the document first, so the conversation gains
+    // its full height before scrolling. Keep it invisible until the handoff.
     const userRow = buildMessage(userMessage);
     userRow.classList.add("message-morph-target");
     messages.append(userRow);
-    const targetBubble = userRow.querySelector(".bubble");
-    const targetRect = targetBubble.getBoundingClientRect();
-    userRow.style.visibility = "hidden";
+    input.value = "";
+    input.style.height = "24px";
+    inputBox.classList.remove("composer-reform");
+    void inputBox.offsetWidth;
+    inputBox.classList.add("composer-reform");
+    save();
 
-    // The old composer surface travels to the message's exact final position.
+    const conversation = $("#conversation");
+    await easeScrollToBottom(conversation, 520);
+    if (activeId !== chat.id) return;
+
+    const targetRect = userRow.querySelector(".bubble").getBoundingClientRect();
     const flight = document.createElement("div");
     flight.className = "message-morph-flight";
     flight.textContent = value;
@@ -252,12 +279,6 @@
     flight.style.width = sourceRect.width + "px";
     flight.style.height = sourceRect.height + "px";
     document.body.append(flight);
-
-    input.value = "";
-    input.style.height = "24px";
-    inputBox.classList.remove("composer-reform");
-    void inputBox.offsetWidth;
-    inputBox.classList.add("composer-reform");
 
     const animation = flight.animate([
       {
@@ -277,25 +298,27 @@
         opacity: 1
       }
     ], {
-      duration: 640,
+      duration: reducedMotion ? 1 : 640,
       easing: "cubic-bezier(.22,.78,.18,1)",
       fill: "forwards"
     });
 
-    save();
-    animation.finished.then(() => {
+    try {
+      await animation.finished;
       flight.remove();
       if (activeId !== chat.id) return;
       userRow.style.visibility = "visible";
-      $("#conversation").scrollTop = $("#conversation").scrollHeight;
       window.setTimeout(() => {
         if (activeId !== chat.id) return;
         const botRow = buildMessage(botMessage, "bot-arriving");
         messages.append(botRow);
         requestAnimationFrame(() => botRow.classList.add("bot-visible"));
-        $("#conversation").scrollTop = $("#conversation").scrollHeight;
+        easeScrollToBottom(conversation, 360);
       }, 90);
-    }).catch(() => flight.remove());
+    } catch {
+      flight.remove();
+      if (activeId === chat.id) userRow.style.visibility = "visible";
+    }
     input.focus();
   };
   form.addEventListener("submit", event => { event.preventDefault(); sendMessage(input.value); });
