@@ -134,7 +134,9 @@ def main():
     if device.type == "mps":
         torch.mps.manual_seed(args.seed)
 
-    # Generate a direct answer; ASTRA no longer has a thinking phase.\n    prompt = f"<user>\\n{args.prompt}\\n</user>\\n<astra>\\n"\n    generated = encode(prompt, merges)
+    # Generate a direct answer; ASTRA no longer has a thinking phase.
+    prompt = f"<user>\n{args.prompt}\n</user>\n<astra>\n"
+    generated = encode(prompt, merges)
     astra_end = SPECIAL_TOKENS["</astra>"]
     special_ids = set(SPECIAL_TOKENS.values())
     answer_ids: list[int] = []
@@ -162,7 +164,10 @@ def main():
             )
             # Stop before appending the structural end token, so it never
             # appears in the decoded user-facing answer.
-            if next_id == astra_end:\n                break\n\n            generated.append(next_id)\n            answer_ids.append(next_id)\n            if not args.no_stream and vocab[next_id] is not None:\n                piece = decoder.decode(vocab[next_id], final=False)\n                if piece:\n                    sys.stdout.write(piece)\n                    sys.stdout.flush()\n\n    if args.no_stream:
+            if next_id == astra_end:
+                break
+
+            generated.append(next_id)\n            answer_ids.append(next_id)\n            if not args.no_stream and vocab[next_id] is not None:\n                piece = decoder.decode(vocab[next_id], final=False)\n                if piece:\n                    sys.stdout.write(piece)\n                    sys.stdout.flush()\n\n    if args.no_stream:
         print(decode(answer_ids, vocab).strip())
     else:
         tail = decoder.decode(b"", final=True)
