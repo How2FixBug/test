@@ -4,6 +4,18 @@ I'm taking a break from gaming.
 <astra>
 Sounds good. A change of pace can be refreshing.
 </astra>
+<user>
+I think I'll spend the break doing something creative instead.
+</user>
+<astra>
+That sounds like a nice change. Do you already have something in mind?
+</astra>
+<user>
+Maybe I'll sketch for a while and see where it goes.
+</user>
+<astra>
+A no-pressure sketching session sounds ideal. You can stop whenever the idea feels finished.
+</astra>
 
 <user>
 I want to learn something new.
@@ -16,6 +28,12 @@ I've been curious about how video games are made, especially how the different s
 </user>
 <astra>
 That's a fun subject to explore. You could start with a tiny game and learn one piece at a time, like movement or scoring.
+</astra>
+<user>
+I might try making a tiny prototype to see how the pieces connect.
+</user>
+<astra>
+That would make the different systems easier to understand. Which piece would you build first?
 </astra>
 
 <user>
@@ -30,6 +48,12 @@ Yeah, I'm enjoying it. I'm mostly experimenting and seeing what I like drawing n
 <astra>
 That's a nice way to get back into it. You don't need a big plan; experimenting can help you find your rhythm again.
 </astra>
+<user>
+I might draw a few things from memory and see what comes out.
+</user>
+<astra>
+That's a relaxed experiment. You could compare them with references afterward and notice what you remembered.
+</astra>
 
 <user>
 My drawing looks weird.
@@ -42,6 +66,12 @@ The proportions are off, especially around the hands. They look different from w
 </user>
 <astra>
 Hands are tricky because their shapes change so much with perspective. You could simplify them into a few basic shapes before adding details.
+</astra>
+<user>
+I tried simplifying the fingers, and the hand reads better now.
+</user>
+<astra>
+That's a useful improvement. Does the overall shape feel closer to what you pictured?
 </astra>
 
 <user>
@@ -56,12 +86,30 @@ It's a bouncing ball. I tried making it squash a little when it hits the floor.
 <astra>
 That's a great animation exercise. The squash gives the impact more weight, and changing the spacing between frames can make the bounce feel more natural.
 </astra>
+<user>
+The timing is the part I'm still adjusting.
+</user>
+<astra>
+Try giving the ball more time near the top of the bounce and less time during the fall. That contrast can make the motion feel more convincing.
+</astra>
 
 <user>
 It's only three seconds long.
 </user>
 <astra>
 Three seconds is still an animation! Small projects are a great way to try an idea.
+</astra>
+<user>
+I want to add a little pause at the end so it loops cleanly.
+</user>
+<astra>
+A clear ending can make a short animation feel intentional. Check that the last frame connects smoothly to the first.
+</astra>
+<user>
+I'll keep it simple rather than adding a background.
+</user>
+<astra>
+Good call. A focused exercise can teach you plenty without needing extra scenery.
 </astra>
 
 <user>
@@ -76,12 +124,30 @@ The main idea is okay, but the layout feels cluttered and I don't know what to r
 <astra>
 Try identifying the one thing you want people to notice first. You can make the other elements quieter instead of deleting everything.
 </astra>
+<user>
+I think the title and main button are the parts worth keeping.
+</user>
+<astra>
+Then make those the visual anchors. You can reduce the size or contrast of anything competing with them.
+</astra>
 
 <user>
 I think I'm going to start over.
 </user>
 <astra>
 A fresh start can help when a project feels tangled. You can keep any ideas you liked from the first attempt.
+</astra>
+<user>
+I'll save a copy of the old version before I do.
+</user>
+<astra>
+Definitely. Starting over shouldn't mean losing the parts that might still be useful.
+</astra>
+<user>
+I might reuse the color scheme even if the layout changes.
+</user>
+<astra>
+That's a good way to carry forward something you already like without keeping the clutter.
 </astra>
 
 <user>
@@ -96,12 +162,30 @@ I had the wrong variable name in one place. It took ages to notice because the n
 <astra>
 Those tiny mismatches are easy to overlook. It may be worth using clearer names so the same confusion is less likely next time.
 </astra>
+<user>
+I renamed the variables, and the code is much easier to scan.
+</user>
+<astra>
+Clear names pay off when you come back later. They also make similar variables easier to distinguish.
+</astra>
 
 <user>
 It was one missing bracket.
 </user>
 <astra>
 The classic tiny-character disaster. At least it was a simple fix once you found it.
+</astra>
+<user>
+I added a quick syntax check before running it again.
+</user>
+<astra>
+Nice habit. Catching small syntax issues early can save debugging time.
+</astra>
+<user>
+The next time I see a weird error, I'll check the punctuation first.
+</user>
+<astra>
+That's a useful first check, especially when the code looks logically correct.
 </astra>
 
 <user>
