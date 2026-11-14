@@ -116,7 +116,8 @@ def is_knowledge_question(text: str) -> bool:
         if re.search(
             r"\b(?:how are you|how's it going|what are you doing|"
             r"what do you think|what do you like|what's your favorite|"
-            r"who are you with|where are you going|when are you free)\b",
+            r"who are you with|where are you going|when are you free|"
+            r"what are your plans|what are you up to|what do you want to do)\b",
             lowered,
         ):
             return False
@@ -233,7 +234,7 @@ def make_examples(conversations: dict) -> tuple[list[tuple[str, str]], dict[str,
                 user_input = latest_user
             else:
                 transcript = "\n".join(
-                    f"{role}: {text}" for role, (_, text) in zip(roles[-len(history)-1:response_index], history)
+                    f"{role}: {text}" for role, (_, text) in zip(roles[response_index - len(history):response_index], history)
                 )
                 user_input = (
                     "Conversation so far:\n"
