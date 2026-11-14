@@ -323,7 +323,7 @@
         parseFloat(targetStyle.borderBottomWidth)
       );
       inputBox.style.backgroundImage = "linear-gradient(135deg, rgba(54,82,119,0), rgba(40,57,91,0))";
-      const duration = reducedMotion ? 1 : 500;
+      const duration = reducedMotion ? 1 : 350;
       inputHeightAnimation = input.animate([
         {
           height: input.getBoundingClientRect().height + "px",
