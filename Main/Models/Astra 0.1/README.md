@@ -1,4 +1,4 @@
-# ASTRA 0.1 — LoopCore
+# ASTRA 0.1 — AstraGPT
 
 ASTRA is a small autoregressive language model trained from random initialization.
 It is not a wrapper around another model and does not use pretrained weights.
