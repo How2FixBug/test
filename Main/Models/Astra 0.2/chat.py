@@ -105,19 +105,6 @@ def generate_reply(model, device, merges, vocab, history, message, args):
                 SPECIAL_TOKENS["<getinfo>"],
             }
 
-        if tool_complete:
-            allowed = {SPECIAL_TOKENS["</astra>"]}
-        elif inside_think:
-            allowed = {SPECIAL_TOKENS["</think>"]}
-        elif inside_getinfo:
-            allowed = {SPECIAL_TOKENS["</getinfo>"]}
-        else:
-            allowed = {
-                SPECIAL_TOKENS["</astra>"],
-                SPECIAL_TOKENS["<think>"],
-                SPECIAL_TOKENS["<getinfo>"],
-            }
-
         token = sample_next_token(
             logits, generated,
             temperature=args.temperature,
