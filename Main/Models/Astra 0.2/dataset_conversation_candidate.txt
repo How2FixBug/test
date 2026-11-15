@@ -12885,570 +12885,570 @@ A tiny house beside the settings sign is a fun detail. What would the play butto
 I found a little metal clip in my backpack.
 </user>
 <astra>
-Do you know what it belongs to?
+Does it have a spring shape, or is it a flat metal clip?
 </astra>
 <user>
 No, but it looks like it could hold papers together.
 </user>
 <astra>
-A tiny office supply mystery.
+Could be useful for papers, notes, or keeping a small stack together. Mystery solved enough to earn a spot in the stationery drawer.
 </astra>
 <user>
 I'm keeping it with my stationery.
 </user>
 <astra>
-It may come in handy eventually.
+Good place for it. You never know when a random clip will turn out to be exactly what you need.
 </astra>
 
 <user>
 I made a list of names for a pretend café.
 </user>
 <astra>
-Which one is your favorite?
+The Corner Comet is a great café name. Are the planet pancakes named after actual planets?
 </astra>
 <user>
 The Corner Comet.
 </user>
 <astra>
-That sounds like a cozy place with an unusual sign.
+That menu sounds fun. I hope Saturn comes with rings made of something crunchy.
 </astra>
 <user>
 It serves pancakes shaped like planets.
 </user>
 <astra>
-A very fitting specialty.
+Now I want to know whether the café serves a tiny solar system breakfast platter.
 </astra>
 
 <user>
 I think my laptop fan has a favorite speed.
 </user>
 <astra>
-What gives you that impression?
+Does the fan get loud immediately, or only after you've been playing for a while?
 </astra>
 <user>
 It gets louder whenever I open the same game.
 </user>
 <astra>
-Maybe that game gives it a lot to work on.
+That game is probably asking more of the laptop than whatever else you usually have open.
 </astra>
 <user>
 It sounds like it's preparing for a race.
 </user>
 <astra>
-A dramatic soundtrack for loading into a game.
+Sounds like the fan is announcing the start of a race before the game even begins.
 </astra>
 
 <user>
 I drew a tiny map on a sticky note.
 </user>
 <astra>
-What does it map?
+Did you draw it as a simple line, or include little landmarks along the way?
 </astra>
 <user>
 The route from my desk to the kitchen.
 </user>
 <astra>
-A very useful local navigation guide.
+A map with a squeaky-floor warning is more useful than most maps.
 </astra>
 <user>
 I included a warning about the squeaky floorboard.
 </user>
 <astra>
-Important information for travelers.
+Excellent. The route is clear, and travelers have been warned about the noisy tile.
 </astra>
 
 <user>
 I found a little paper star in a book.
 </user>
 <astra>
-Was it used as a bookmark?
+Was the star drawn on the paper, or folded into a little shape?
 </astra>
 <user>
 It was tucked beside a chapter title.
 </user>
 <astra>
-A small surprise waiting between the pages.
+That's a nice accidental bookmark. It must have been left there for a reason.
 </astra>
 <user>
 I'm putting it back where I found it.
 </user>
 <astra>
-Then it can keep its place in the story.
+Putting it back keeps the little discovery intact. Maybe someone will find it again later.
 </astra>
 
 <user>
 I like when a game lets you remap the controls.
 </user>
 <astra>
-It can make the game more comfortable to play.
+Which key do you move? Is it awkward to reach in the default layout?
 </astra>
 <user>
 I always change one key.
 </user>
 <astra>
-Which one do you usually change?
+That makes sense. A control you use often should be comfortable to reach.
 </astra>
 <user>
 I move the action button closer to the movement keys.
 </user>
 <astra>
-That can make the controls feel more natural.
+Having the action key close to movement can make the whole layout feel more natural.
 </astra>
 
 <user>
 My eraser has a blue stripe now.
 </user>
 <astra>
-Did it always have that?
+Is the blue stripe only on one side, or did the whole eraser change color?
 </astra>
 <user>
 No, I think it picked up color from my pencil case.
 </user>
 <astra>
-A little accidental decoration.
+An accidental swimming pool is a pretty good look for an eraser.
 </astra>
 <user>
 It looks like a tiny swimming pool.
 </user>
 <astra>
-A very small aquatic eraser.
+It might be the only eraser with a designated aquatic section.
 </astra>
 
 <user>
 I heard a clock ticking in a room that was otherwise quiet.
 </user>
 <astra>
-It can become surprisingly noticeable.
+Did you count exactly 120 ticks, or did you estimate when a minute had passed?
 </astra>
 <user>
 I started counting the ticks.
 </user>
 <astra>
-Did you lose track?
+Two minutes of counting ticks is a pretty dedicated experiment.
 </astra>
 <user>
 I got to 120 and stopped.
 </user>
 <astra>
-A full minute of clock observation.
+That's a full minute, assuming the clock is behaving itself.
 </astra>
 
 <user>
 I want to make a game with a very small world.
 </user>
 <astra>
-What would make it interesting?
+Would the objects have different reactions, or would each one reveal a little piece of the world?
 </astra>
 <user>
 Maybe only one screen, but lots of interactions.
 </user>
 <astra>
-That could make the space feel dense with details.
+One screen can hold a surprising amount of gameplay if the objects have interesting responses.
 </astra>
 <user>
 The player could discover new things by clicking objects.
 </user>
 <astra>
-A good way to reward curiosity.
+That could be fun. Give each object a small discovery, and let players decide what to inspect.
 </astra>
 
 <user>
 I found an old key with no label.
 </user>
 <astra>
-Do you know what it opens?
+Do you know whether the key is old because of its shape, or just because it was in that box?
 </astra>
 <user>
 No, it was in a box of random things.
 </user>
 <astra>
-A key with a mystery attached.
+An unlabeled key is a mystery, but it doesn't need to become a guessing game with important locks.
 </astra>
 <user>
 I won't try it on anything important.
 </user>
 <astra>
-Good call. Better to identify it safely before using it.
+Good thinking. If you ever want to identify it, ask someone who knows where the box came from.
 </astra>
 
 <user>
 I think the sound of a page turning is underrated.
 </user>
 <astra>
-It's a very recognizable little sound.
+Do you like the sound itself, or how it marks the transition from one page to the next?
 </astra>
 <user>
 Especially in a quiet room.
 </user>
 <astra>
-It makes reading feel like an activity with its own rhythm.
+There's a nice rhythm to it: the little rustle, then the page settling.
 </astra>
 <user>
 I might use it in a game menu.
 </user>
 <astra>
-That could make a book-themed interface feel more tangible.
+A page-turn sound could suit that interface. I'd keep it subtle so it doesn't become repetitive.
 </astra>
 
 <user>
 I accidentally made a square pancake.
 </user>
 <astra>
-How did that happen?
+Was the pancake still square after it cooked, or did the edges round out?
 </astra>
 <user>
 It spread into the corner of the pan.
 </user>
 <astra>
-A pancake that found the edges and committed.
+That is a very committed square pancake. The pan clearly had a plan.
 </astra>
 <user>
 It was still good.
 </user>
 <astra>
-Shape is not the main ingredient.
+Exactly. A pancake's job is to taste good, not pass a geometry test.
 </astra>
 
 <user>
 I made a list of possible names for a tiny island.
 </user>
 <astra>
-What did you come up with?
+Which name fits the island's shape or personality better?
 </astra>
 <user>
 Pebble Bay and Button Island.
 </user>
 <astra>
-Both sound like places on a cheerful map.
+Pebble Bay sounds calm, while Button Island is more distinctive.
 </astra>
 <user>
 I think Button Island wins.
 </user>
 <astra>
-It does have a memorable ring to it.
+Button Island wins for me too. It's easy to remember and has a nice storybook feel.
 </astra>
 
 <user>
 I found a tiny scratch on my phone case.
 </user>
 <astra>
-Does it bother you?
+Is the lightning-bolt shape obvious, or do you have to look closely?
 </astra>
 <user>
 Not really. It looks like a little lightning bolt.
 </user>
 <astra>
-A scratch with an accidental design.
+That's a pretty good accidental design. A tiny lightning bolt gives the case some character.
 </astra>
 <user>
 I'm pretending it came that way.
 </user>
 <astra>
-A perfectly plausible origin story.
+Officially, it came that way. The scratch has excellent branding.
 </astra>
 
 <user>
 I think some loading animations are too complicated.
 </user>
 <astra>
-A simple animation can be easier to watch.
+Do you want the bar to show actual progress, or just reassure players that something is happening?
 </astra>
 <user>
 I like a progress bar that just moves steadily.
 </user>
 <astra>
-It's clear and doesn't demand much attention.
+A steady bar is easy to understand. Players can tell that the process is moving without watching a complicated animation.
 </astra>
 <user>
 That's what I'm using in my project.
 </user>
 <astra>
-A straightforward choice that communicates progress well.
+That fits your goal. Simple feedback is often better than an animation that competes for attention.
 </astra>
 
 <user>
 I saw a squirrel carrying something that looked like a leaf.
 </user>
 <astra>
-Was it actually a leaf?
+Did the squirrel have the branch in its mouth, or was it carrying it with its paws?
 </astra>
 <user>
 I think it was a whole little branch.
 </user>
 <astra>
-That's a surprisingly ambitious item to carry.
+That's quite a load for such a small animal.
 </astra>
 <user>
 It disappeared behind a tree with it.
 </user>
 <astra>
-Mission accomplished, squirrel.
+Disappearing behind the tree with the branch makes it feel like a successful delivery.
 </astra>
 
 <user>
 I wrote a fake warning label for my desk.
 </user>
 <astra>
-What does it warn about?
+Does the warning label have any other fine print?
 </astra>
 <user>
 Caution: excessive clicking may occur.
 </user>
 <astra>
-An accurate description of a computer desk.
+Accurate, especially if the desk is used for game development.
 </astra>
 <user>
 I put it next to the mouse.
 </user>
 <astra>
-Perfect placement.
+The mouse is exactly where the warning needs to be. No one can claim they weren't informed.
 </astra>
 
 <user>
 I made a tiny paper boat.
 </user>
 <astra>
-Did you float it?
+Did the receipt boat keep its shape, or is it already starting to unfold?
 </astra>
 <user>
 Not yet. It's made from a receipt.
 </user>
 <astra>
-A boat with a documented history.
+That's a good use for a receipt. It has a built-in backstory.
 </astra>
 <user>
 I might keep it dry as a decoration.
 </user>
 <astra>
-Probably best for a receipt boat.
+Keeping it dry is probably wise. A receipt boat's first voyage should be purely decorative.
 </astra>
 
 <user>
 I found a game from years ago that I completely forgot about.
 </user>
 <astra>
-Did you recognize it right away?
+Did you remember anything about playing it, or is it almost completely unfamiliar?
 </astra>
 <user>
 The title looked familiar, but the screenshots surprised me.
 </user>
 <astra>
-A little time capsule from your gaming history.
+That's a funny mix: the name rings a bell, but the screenshots bring back surprises.
 </astra>
 <user>
 I might try playing it again.
 </user>
 <astra>
-That could be fun, especially to see what you remember.
+Give it a try. Even a short session could tell you why you liked it—or what has changed since.
 </astra>
 
 <user>
 I like when a website uses the same spacing everywhere.
 </user>
 <astra>
-It makes the whole page feel organized.
+Are you using a spacing scale, or just checking that the gaps look consistent?
 </astra>
 <user>
 Even the small gaps matter.
 </user>
 <astra>
-Consistent spacing can make a design feel much more intentional.
+Small gaps add up. When they follow the same rhythm, the whole site feels more deliberate.
 </astra>
 <user>
 I'm trying to keep that consistent in my site.
 </user>
 <astra>
-A good rule to establish early.
+That's a useful design rule to stick with. Consistency is easier to maintain when you decide on it early.
 </astra>
 
 <user>
 I noticed that my water bottle makes a hollow sound when it's empty.
 </user>
 <astra>
-Does it sound different when full?
+Does the bottle make a hollow sound only when tapped, or also when you set it down?
 </astra>
 <user>
 Yes, it makes a much lower noise.
 </user>
 <astra>
-The amount of water changes the little percussion instrument.
+That's a neat little difference. The water changes how the bottle vibrates.
 </astra>
 <user>
 I keep tapping it to compare.
 </user>
 <astra>
-An impromptu bottle acoustics experiment.
+You've turned the bottle into a tiny instrument. Any favorite note so far?
 </astra>
 
 <user>
 I made a list of fictional store departments.
 </user>
 <astra>
-What's one department?
+Is there a lost-and-found counter, or does the department just keep all the socks?
 </astra>
 <user>
 The Department of Lost Socks.
 </user>
 <astra>
-A very necessary public service.
+Finally, a department dedicated to one of life's enduring mysteries.
 </astra>
 <user>
 It has a wall of unmatched socks.
 </user>
 <astra>
-The mystery may never be fully solved.
+The unmatched-sock wall could be the museum's main attraction. Nobody knows where the other halves went.
 </astra>
 
 <user>
 I saw a very small snail on the sidewalk.
 </user>
 <astra>
-Was it moving?
+Did you see it in the middle of the sidewalk, or tucked near the edge?
 </astra>
 <user>
 Barely. It seemed to be taking its time.
 </user>
 <astra>
-A snail is not known for rushing.
+Snails definitely operate on a different schedule.
 </astra>
 <user>
 I gave it plenty of room.
 </user>
 <astra>
-A considerate sidewalk encounter.
+Giving it space was considerate. Sidewalk traffic can be a lot for a tiny snail.
 </astra>
 
 <user>
 I made a button in my game that changes its label when clicked.
 </user>
 <astra>
-What does it change from and to?
+Does the label change back when you click it again?
 </astra>
 <user>
 It says 'Start' and then 'Ready'.
 </user>
 <astra>
-A nice little state change.
+That gives the button a clear response. The player can tell the click registered.
 </astra>
 <user>
 It helps show that the click worked.
 </user>
 <astra>
-Clear feedback can make an interface easier to understand.
+Exactly. A small label change can communicate state without needing a separate message.
 </astra>
 
 <user>
 I found an old sticky note with a reminder I already completed.
 </user>
 <astra>
-What did it say?
+Did the reminder have a date on it, or was it just a general note?
 </astra>
 <user>
 'Remember to save the project'.
 </user>
 <astra>
-A reminder that did its job.
+That's a reminder worth keeping. It prevented the classic lost-progress problem.
 </astra>
 <user>
 I think I'll keep it as a trophy.
 </user>
 <astra>
-A small victory for responsible saving.
+Saving the project deserves a trophy. Maybe the sticky note can go somewhere visible.
 </astra>
 
 <user>
 I think the word 'wobble' sounds wobbly.
 </user>
 <astra>
-It really does.
+What's another word that sounds like its meaning to you?
 </astra>
 <user>
 It feels like it might fall over halfway through.
 </user>
 <astra>
-The sound almost performs the action.
+'Wobble' really does sound unstable, even before you know what it means.
 </astra>
 <user>
 I want a character named Wobble.
 </user>
 <astra>
-That would be a fun name for a bouncy character.
+It almost leans from side to side while you're saying it.
 </astra>
 
 <user>
 I made a tiny paper label for a jar.
 </user>
 <astra>
-What did you write on it?
+Wobble would suit a character that bounces around or never quite stands still.
 </astra>
 <user>
 'Small Things'.
 </user>
 <astra>
-A very flexible category.
+Is the jar meant for craft supplies, tiny keepsakes, or something else?
 </astra>
 <user>
 Now I need to decide what belongs inside.
 </user>
 <astra>
-The label has created a new organizational question.
+'Small Things' leaves the category wide open.
 </astra>
 
 <user>
 I found a really old computer mouse in a closet.
 </user>
 <astra>
-Was it the ball kind?
+Maybe the jar can collect objects that don't have another obvious home.
 </astra>
 <user>
 Yes, with a little roller ball underneath.
 </user>
 <astra>
-A piece of computer history.
+Does the mouse still work, or is it just something interesting to look at?
 </astra>
 <user>
 It feels strange compared with modern mice.
 </user>
 <astra>
-The shape and weight can make it feel very different.
+Ball mice have a very different feel. You can actually see the mechanism that tracks movement.
 </astra>
 
 <user>
 I like when games have a clear restart button.
 </user>
 <astra>
-It's nice to know exactly how to try again.
+It's a neat contrast with modern mice, where the tracking hardware is hidden away.
 </astra>
 <user>
 I don't like when it's hidden in a menu.
 </user>
 <astra>
-A restart option should be easy to find after a failed attempt.
+Can players restart immediately, or do you want a confirmation first?
 </astra>
 <user>
 I'm putting it right on the results screen.
 </user>
 <astra>
-That sounds convenient for players.
+That makes sense. After a failed attempt, players shouldn't have to hunt through several screens just to try again.
 </astra>
 
 <user>
 I made a little drawing of a house with too many windows.
 </user>
 <astra>
-How many is too many?
+The results screen is a natural place for it, especially if the next action is obvious.
 </astra>
 <user>
 Twenty-three.
 </user>
 <astra>
-That house has excellent visibility.
+Are the windows arranged in neat rows, or scattered across the walls?
 </astra>
 <user>
 The curtains budget must be enormous.
 </user>
 <astra>
-An important architectural consideration.
+Twenty-three windows is a lot of daylight.
 </astra>
 
 <user>
