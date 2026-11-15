@@ -49,11 +49,12 @@ def main() -> None:
             "FAIL: vocab size does not equal byte tokens + special tokens + BPE merges."
         )
 
+    merge_ranks = {pair: rank for rank, pair in enumerate(merges)}
     total_tokens = 0
     max_token_id = -1
     round_trip_failures = []
     for index, conversation in enumerate(conversations, 1):
-        token_ids = encode(conversation, dict((pair, rank) for rank, pair in enumerate(merges)), special_tokens)
+        token_ids = encode(conversation, merge_ranks, special_tokens)
         total_tokens += len(token_ids)
         if token_ids:
             max_token_id = max(max_token_id, max(token_ids))
