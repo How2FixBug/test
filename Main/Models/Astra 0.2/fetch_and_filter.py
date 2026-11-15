@@ -12,12 +12,12 @@ from tokenizer import load_conversations
 
 HERE = Path(__file__).resolve().parent
 DATASET_PATH = HERE / "dataset_conversation_candidate.txt"
-USER_RE = re.compile(r"<user>([\\s\\S]*?)</user>")
-ASTRA_RE = re.compile(r"<astra>([\\s\\S]*?)</astra>")
+USER_RE = re.compile(r"<user>([\s\S]*?)</user>")
+ASTRA_RE = re.compile(r"<astra>([\s\S]*?)</astra>")
 
 
 def normalize(value: str) -> str:
-    return re.sub(r"\\s+", " ", value).strip().casefold()
+    return re.sub(r"\s+", " ", value).strip().casefold()
 
 
 def main() -> None:
@@ -81,9 +81,9 @@ def main() -> None:
     if args.sample_count:
         count = min(args.sample_count, len(conversations))
         indices = sorted(random.Random(42).sample(range(len(conversations)), count))
-        print(f"\\nMANUAL REVIEW SAMPLE ({count} of {len(conversations)})")
+        print(f"\nMANUAL REVIEW SAMPLE ({count} of {len(conversations)})")
         for number, index in enumerate(indices, 1):
-            print(f"\\n[{number}/{count}]")
+            print(f"\n[{number}/{count}]")
             print(conversations[index])
 
 
