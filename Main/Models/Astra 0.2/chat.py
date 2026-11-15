@@ -45,8 +45,6 @@ def sample_next_token(
         values, indices = torch.topk(logits, top_k)
         filtered = torch.full_like(logits, -float("inf"))
         filtered[indices] = values
-        for token_id in allowed_special_ids:
-            filtered[token_id] = logits[token_id]
         logits = filtered
 
     if top_p < 1.0:
@@ -57,8 +55,6 @@ def sample_next_token(
         remove[0] = False
         filtered = logits.clone()
         filtered[sorted_indices[remove]] = -float("inf")
-        for token_id in allowed_special_ids:
-            filtered[token_id] = logits[token_id]
         logits = filtered
 
     return int(torch.multinomial(torch.softmax(logits, dim=-1), 1).item())
@@ -106,7 +102,7 @@ def generate_reply(model, device, merges, vocab, history, message, args):
             }
 
         token = sample_next_token(
-            logits, generated,
+            logits, answer_ids,
             temperature=args.temperature,
             top_k=args.top_k,
             top_p=args.top_p,
