@@ -161,12 +161,19 @@ def train_bpe(conversations: list[str], target_size: int):
     return vocab, merges
 
 
-def encode_plain(text: str, merge_ranks: dict[tuple[int, int], int]) -> list[int]:
+def encode_plain(
+    text: str,
+    merge_ranks: dict[tuple[int, int], int],
+    special_tokens: dict[str, int] | None = None,
+) -> list[int]:
     """Apply ranked BPE merges efficiently with a min-heap."""
     import heapq
     # Backward compatibility: older callers pass the serialized merge list.
     if not isinstance(merge_ranks, dict):
         merge_ranks = {tuple(pair): rank for rank, pair in enumerate(merge_ranks)}
+
+    special_tokens = SPECIAL_TOKENS if special_tokens is None else special_tokens
+    merge_offset = BASE_VOCAB_SIZE + len(special_tokens)
 
     ids: list[int] = []
     for piece in text_pieces(text):
@@ -199,7 +206,7 @@ def encode_plain(text: str, merge_ranks: dict[tuple[int, int], int]) -> list[int
             if merge_ranks.get((values[left], values[right])) != rank:
                 continue
 
-            values[left] = BASE_VOCAB_SIZE + len(SPECIAL_TOKENS) + rank
+            values[left] = merge_offset + rank
             alive[right] = False
             after = following[right]
             following[left] = after
@@ -219,19 +226,35 @@ def encode_plain(text: str, merge_ranks: dict[tuple[int, int], int]) -> list[int
     return ids
 
 
-def encode(text: str, merge_ranks: dict[tuple[int, int], int]) -> list[int]:
+def encode(
+    text: str,
+    merge_ranks: dict[tuple[int, int], int],
+    special_tokens: dict[str, int] | None = None,
+) -> list[int]:
+    special_tokens = SPECIAL_TOKENS if special_tokens is None else special_tokens
+    special_re = re.compile("(" + "|".join(
+        re.escape(token) for token in sorted(special_tokens, key=len, reverse=True)
+    ) + ")") if special_tokens else None
+
     ids: list[int] = []
-    for part in SPECIAL_RE.split(text):
+    parts = special_re.split(text) if special_re else [text]
+    for part in parts:
         if not part:
             continue
-        if part in SPECIAL_TOKENS:
-            ids.append(SPECIAL_TOKENS[part])
+        if part in special_tokens:
+            ids.append(special_tokens[part])
         else:
-            ids.extend(encode_plain(part, merge_ranks))
+            ids.extend(encode_plain(part, merge_ranks, special_tokens))
     return ids
 
-def decode(ids: list[int], vocab: list[bytes | None]) -> str:
-    reverse = {value: key for key, value in SPECIAL_TOKENS.items()}
+
+def decode(
+    ids: list[int],
+    vocab: list[bytes | None],
+    special_tokens: dict[str, int] | None = None,
+) -> str:
+    special_tokens = SPECIAL_TOKENS if special_tokens is None else special_tokens
+    reverse = {value: key for key, value in special_tokens.items()}
     output: list[str] = []
     byte_buffer = bytearray()
 
