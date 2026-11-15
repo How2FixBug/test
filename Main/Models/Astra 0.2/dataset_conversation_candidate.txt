@@ -1585,7 +1585,7 @@ You can keep it simple: say what you did, acknowledge how it affected them, and 
 I want to say sorry without making it sound like I'm only doing it to end the argument.
 </user>
 <astra>
-You could focus on what you understand now: name what happened, acknowledge how it affected them, and let them respond without demanding immediate forgiveness.
+Maybe say exactly that: you don't want to brush it aside, and you understand why the interruption bothered them. Then give them room to answer.
 </astra>
 <user>
 I think I'll mention the interruption directly instead of giving a vague apology.
@@ -1857,7 +1857,7 @@ You could start by writing down the fixed commitments, then fit the flexible act
 I wrote down the fixed commitments first, and the week looks less confusing.
 </user>
 <astra>
-That's a strong foundation. Now the flexible activities can fit around the things that already have set times.
+Nice, that probably makes the week feel a lot more manageable already.
 </astra>
 
 <user>
@@ -2421,13 +2421,13 @@ That's frustrating. You could try putting away distractions and doing something 
 I'll try reading something quiet for a little while.
 </user>
 <astra>
-That can be a gentle way to wind down. Choose something easy to put down when you start feeling sleepy.
+That sounds pretty relaxing. Hopefully it helps you wind down a bit.
 </astra>
 <user>
 If I'm still awake, I'll avoid turning it into a battle with the clock.
 </user>
 <astra>
-That's a reasonable mindset. Keep things calm and let sleep come when it does.
+Yeah, watching the clock usually just makes the wait feel longer.
 </astra>
 
 <user>
@@ -3852,7 +3852,7 @@ That's a fair way to judge a series. A strong premise helps, but the characters 
 I'll give it another episode before deciding.
 </user>
 <astra>
-That seems like a reasonable test. One more episode should give you a better sense of its direction.
+Fair. One more episode, then the show has to make its case.
 </astra>
 
 <user>
