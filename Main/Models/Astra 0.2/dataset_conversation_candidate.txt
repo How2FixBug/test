@@ -14025,570 +14025,570 @@ Lowercase can make a word feel more casual, while capitals can make it feel like
 I found a small folded note inside a board game box.
 </user>
 <astra>
-Was it part of the instructions?
+Could it have fallen out of a board game component bag?
 </astra>
 <user>
 It just says 'blue goes first'.
 </user>
 <astra>
-A very brief strategy guide.
+That's a wonderfully cryptic note. It sounds like a rule from a game nobody can identify.
 </astra>
 <user>
 I don't know which game it belongs to.
 </user>
 <astra>
-The box has gained a tiny mystery.
+Maybe the note is from a different game entirely. The box has become a mystery box.
 </astra>
 
 <user>
 I made a new icon for my project.
 </user>
 <astra>
-What shape did you choose?
+Is the star centered in the square, or tucked into one corner?
 </astra>
 <user>
 A rounded square with a little star.
 </user>
 <astra>
-That should be easy to recognize at small sizes.
+Rounded square plus a simple star should be easy to recognize, even as a tiny icon.
 </astra>
 <user>
 I kept the details minimal.
 </user>
 <astra>
-A good approach for an app icon.
+Minimal details are a good call. The icon has to work when it's only a few pixels wide.
 </astra>
 
 <user>
 My water bottle has a sticker that is peeling at one corner.
 </user>
 <astra>
-Is it still mostly attached?
+Is the sticker starting to peel away from the bottle, or just lifting at the edge?
 </astra>
 <user>
 Yes, just one tiny corner is lifting.
 </user>
 <astra>
-The sticker is beginning a very slow escape.
+The sticker is testing its escape plan.
 </astra>
 <user>
 I pressed it back down.
 </user>
 <astra>
-For now, the sticker remains on duty.
+Good save. Hopefully it stays attached this time.
 </astra>
 
 <user>
 I saw a dog carrying a tennis ball almost as big as its head.
 </user>
 <astra>
-Was it able to carry it easily?
+Was the ball too big for the dog's mouth, or was it just awkward to carry?
 </astra>
 <user>
 It kept dropping it and picking it up again.
 </user>
 <astra>
-A determined fetch enthusiast.
+That's some serious dedication to fetch. The ball keeps escaping, but the dog keeps winning it back.
 </astra>
 <user>
 It looked very proud each time.
 </user>
 <astra>
-The ball was clearly an important achievement.
+Every successful pickup deserves a little celebration.
 </astra>
 
 <user>
 I think the best part of a new game is learning its little rules.
 </user>
 <astra>
-Discovering how everything works can be satisfying.
+What kind of rules do you want players to discover on their own?
 </astra>
 <user>
 Especially when the game doesn't explain everything at once.
 </user>
 <astra>
-A bit of discovery can make the world feel more interesting.
+That can make exploration feel rewarding. Players get to notice patterns instead of reading a long explanation.
 </astra>
 <user>
 I want my tutorial to be short.
 </user>
 <astra>
-A few useful hints can be better than a long interruption.
+A short tutorial can teach the essentials and leave room for discovery.
 </astra>
 
 <user>
 I found a tiny square of fabric in a drawer.
 </user>
 <astra>
-Do you recognize the material?
+Is the fabric a particular color or texture?
 </astra>
 <user>
 It might be from an old craft project.
 </user>
 <astra>
-A small leftover piece with an unknown origin.
+Keeping it makes sense. Small scraps are handy when a project needs one little detail.
 </astra>
 <user>
 I'm keeping it for another project.
 </user>
 <astra>
-Good idea. Small scraps can be useful.
+Maybe it'll turn out to be exactly the right size for something later.
 </astra>
 
 <user>
 I made a fake logo for a company that sells clouds.
 </user>
 <astra>
-What's the company called?
+Cloud Supply Co. sounds like a company that has excellent branding and unreliable stock.
 </astra>
 <user>
 Cloud Supply Co.
 </user>
 <astra>
-A very dependable name for a business with a rather unpredictable product.
+That slogan is wonderfully honest. The clouds are available when the weather permits.
 </astra>
 <user>
 Their slogan is 'Mostly available'.
 </user>
 <astra>
-A realistic promise for cloud inventory.
+I'd trust the company more for admitting the inventory problem up front.
 </astra>
 
 <user>
 I noticed that one of my app buttons is slightly off-center.
 </user>
 <astra>
-Does it bother you when you see it?
+Is the button misaligned vertically, horizontally, or both?
 </astra>
 <user>
 Now that I've noticed it, yes.
 </user>
 <astra>
-Alignment issues can become very obvious once spotted.
+Once your eye catches a one-pixel offset, it's hard to look anywhere else.
 </astra>
 <user>
 I'm fixing it before I forget.
 </user>
 <astra>
-A small polish pass can make the whole layout feel better.
+Fixing it now is probably the fastest way to stop noticing it every time you open the app.
 </astra>
 
 <user>
 I heard a woodpecker outside.
 </user>
 <astra>
-Was it easy to identify?
+Was it close enough that you could hear the individual taps?
 </astra>
 <user>
 The tapping gave it away.
 </user>
 <astra>
-A very distinctive sound.
+Woodpecker tapping really does sound like rapid typing from a tiny keyboard.
 </astra>
 <user>
 It sounded like someone typing on a tiny keyboard.
 </user>
 <astra>
-Nature's own rapid typist.
+Nature's fastest typist, and probably no need for a mechanical keyboard.
 </astra>
 
 <user>
 I made a paper bookmark shaped like a lightning bolt.
 </user>
 <astra>
-Does it stick out of the book?
+Does the bolt sit at the top of the page, or does it hang out from the side?
 </astra>
 <user>
 A little, so I can find the page quickly.
 </user>
 <astra>
-That's a practical shape for a bookmark.
+That's useful—the bookmark is easy to spot without having to search for it.
 </astra>
 <user>
 It looks like the book is charging.
 </user>
 <astra>
-A book with a very energetic reading status.
+A book that's charging sounds like it's almost ready to launch into the next chapter.
 </astra>
 
 <user>
 I found an old USB cable with a connector I don't recognize.
 </user>
 <astra>
-Do you know what device it might be for?
+Do you know whether it's USB-A, USB-C, micro-USB, or something older?
 </astra>
 <user>
 Not yet. I'm leaving it with the other mystery cables.
 </user>
 <astra>
-A whole collection of unidentified connectors.
+Labeling the cables you recognize is a good first step. You don't have to identify every mystery connector at once.
 </astra>
 <user>
 Maybe I'll label the known ones first.
 </user>
 <astra>
-That could make the mystery pile easier to manage.
+Once the known ones are sorted, the remaining pile should be much less confusing.
 </astra>
 
 <user>
 I think game menus should have a clear visual hierarchy.
 </user>
 <astra>
-The important action should stand out.
+Which button should stand out most after Play?
 </astra>
 <user>
 Play should be obvious without making settings invisible.
 </user>
 <astra>
-That balance makes navigation easier.
+Exactly. Play can be the obvious first choice while settings stay visible as a secondary option.
 </astra>
 <user>
 I'm testing the layout with fewer buttons.
 </user>
 <astra>
-A focused menu can feel much more polished.
+Trying fewer buttons is a good test. You can see whether each one actually needs to be on the first screen.
 </astra>
 
 <user>
 I drew a tiny lighthouse on graph paper.
 </user>
 <astra>
-Does it have a beam?
+Is the lighthouse meant to be viewed from the side or from above?
 </astra>
 <user>
 Yes, but the beam is just three yellow squares.
 </user>
 <astra>
-A very pixel-friendly lighthouse.
+Three yellow squares are enough to sell the light beam in pixel art.
 </astra>
 <user>
 It's guarding a one-inch ocean.
 </user>
 <astra>
-A small but dedicated coastal service.
+That's a very small coastline, but the lighthouse is taking its job seriously.
 </astra>
 
 <user>
 I made a list of imaginary awards.
 </user>
 <astra>
-What's one award?
+Are the awards for real people, or for characters in a fictional school?
 </astra>
 <user>
 Most Likely to Misplace a Pencil.
 </user>
 <astra>
-A competitive category in many classrooms.
+That category probably has a lot of competition.
 </astra>
 <user>
 The trophy is a pencil with a crown.
 </user>
 <astra>
-A fitting prize.
+The crowned pencil is a worthy trophy. It should be displayed point-up.
 </astra>
 
 <user>
 I found a little crack in a plastic ruler.
 </user>
 <astra>
-Does it still measure properly?
+Is the crack spreading, or has it stayed the same size?
 </astra>
 <user>
 Yes, the crack is near the end.
 </user>
 <astra>
-Still, it's worth checking that the markings are readable.
+Good idea. If the crack gets worse, it's better not to rely on the ruler as a measuring tool.
 </astra>
 <user>
 I'm using it for drawing lines instead.
 </user>
 <astra>
-A ruler can have a second job.
+Drawing straight lines is still a useful job for it, as long as the edge is stable.
 </astra>
 
 <user>
 I like when a game has a little animation after you unlock something.
 </user>
 <astra>
-It makes the reward feel noticeable.
+Would the badge appear immediately, or wait until the player finishes the level?
 </astra>
 <user>
 But I don't want it to cover the whole screen.
 </user>
 <astra>
-A brief animation can celebrate without slowing things down.
+A little celebration can make an unlock feel rewarding without interrupting the game.
 </astra>
 <user>
 Maybe a small badge appears in the corner.
 </user>
 <astra>
-That sounds subtle and clear.
+Appearing in the corner sounds about right. It can be noticed without covering the action.
 </astra>
 
 <user>
 I saw a cloud that looked like a loaf of bread.
 </user>
 <astra>
-Was it a convincing loaf?
+Did the cloud look more like a loaf of bread or a whole sandwich?
 </astra>
 <user>
 It had a rounded top and everything.
 </user>
 <astra>
-A bakery-quality cloud.
+That's a convincing loaf. The rounded top is doing most of the work.
 </astra>
 <user>
 Then it split into two smaller clouds.
 </user>
 <astra>
-The loaf has been sliced.
+Cloud slicing: a new weather phenomenon.
 </astra>
 
 <user>
 I made a tiny sign for a pretend library.
 </user>
 <astra>
-What rule does it have?
+Is the library full of ordinary books, or does it have other unusual things besides dragons?
 </astra>
 <user>
 Please return books and borrowed dragons.
 </user>
 <astra>
-A sensible policy for a library with unusual inventory.
+That rule is sensible. Borrowed dragons probably need a little extra supervision.
 </astra>
 <user>
 The dragons are due on Tuesdays.
 </user>
 <astra>
-The library has a strict schedule.
+Tuesday returns only. The library takes its dragon lending seriously.
 </astra>
 
 <user>
 I found an old drawing I made when I was younger.
 </user>
 <astra>
-Did you recognize what it was?
+Did you keep the original drawing, or is it just a memory now?
 </astra>
 <user>
 Yes, but the proportions were very different.
 </user>
 <astra>
-It's interesting to see how your drawing style changes.
+Comparing the old proportions with your current style could be interesting.
 </astra>
 <user>
 I might redraw it now.
 </user>
 <astra>
-That could be a fun before-and-after comparison.
+That sounds like a fun redraw. You could keep the original nearby and see what you naturally change.
 </astra>
 
 <user>
 I think the sound of a pencil writing on paper is satisfying.
 </user>
 <astra>
-It's a very familiar sound.
+Do you prefer pencil sounds because they're soft, or because you can hear the texture of the paper?
 </astra>
 <user>
 Especially on graph paper.
 </user>
 <astra>
-The texture gives it a slightly different rhythm.
+Graph paper gives the pencil a slightly different scratch as it crosses the lines.
 </astra>
 <user>
 I like writing little labels by hand.
 </user>
 <astra>
-Handwritten labels have a nice personal touch.
+Handwritten labels have a warmth that typed ones don't always capture.
 </astra>
 
 <user>
 I made a tiny cardboard box with a lid.
 </user>
 <astra>
-Does it close properly?
+Does the lid stay shut once it's folded, or does it pop open again?
 </astra>
 <user>
 Only if I fold one corner inward.
 </user>
 <astra>
-A handmade box with a special closing technique.
+That sounds like a handmade design with one very important instruction.
 </astra>
 <user>
 It holds exactly four coins.
 </user>
 <astra>
-A very specific storage capacity.
+Four coins exactly—any more and the box files a complaint.
 </astra>
 
 <user>
 I found a game with a very unusual level select screen.
 </user>
 <astra>
-How was it unusual?
+What did the rooms represent: different worlds, levels, or parts of the same place?
 </astra>
 <user>
 The levels were arranged like rooms in a house.
 </user>
 <astra>
-That makes the selection screen part of the game's world.
+That's a clever way to turn level selection into exploration.
 </astra>
 <user>
 I liked exploring it before playing.
 </user>
 <astra>
-A good menu can be enjoyable in its own right.
+If the menu was fun before the game even started, it did its job.
 </astra>
 
 <user>
 I noticed my mouse wheel makes a soft clicking sound.
 </user>
 <astra>
-Does it happen with every scroll?
+Does the click happen when you scroll up and down, or only in one direction?
 </astra>
 <user>
 Yes, one click for each little step.
 </user>
 <astra>
-That feedback can make scrolling feel precise.
+That little detent gives your fingers feedback about each scroll step.
 </astra>
 <user>
 I never noticed it until today.
 </user>
 <astra>
-A tiny detail suddenly became the main event.
+Funny how a sound can be there for ages and then suddenly become impossible not to notice.
 </astra>
 
 <user>
 I wrote a short story title on a sticky note.
 </user>
 <astra>
-What is the title?
+Is the button a normal shirt button, or something more unusual?
 </astra>
 <user>
 The Last Button in the Drawer.
 </user>
 <astra>
-That sounds like the start of a curious little story.
+The Last Button in the Drawer is a strong title. It makes an ordinary object sound like the main character.
 </astra>
 <user>
 It's about a button that doesn't belong to anything.
 </user>
 <astra>
-A small object with a big identity crisis.
+Maybe it has been waiting for the right garment all this time.
 </astra>
 
 <user>
 I found a tiny paper triangle on my desk.
 </user>
 <astra>
-Was it cut from something?
+Was the triangle already folded, or did you find a flat scrap?
 </astra>
 <user>
 I think it came from a folded note.
 </user>
 <astra>
-A leftover shape from a previous project.
+That sounds like a leftover from a note or paper craft.
 </astra>
 <user>
 I'm using it as a bookmark corner.
 </user>
 <astra>
-A clever reuse.
+Using it as a corner bookmark is clever. It can hold the page without taking up much space.
 </astra>
 
 <user>
 I think a good app should tell you when it has no results.
 </user>
 <astra>
-A blank screen can be confusing.
+What would the empty-state message say?
 </astra>
 <user>
 Even a short message helps.
 </user>
 <astra>
-It lets people know the search worked.
+Exactly. A short message confirms that the app is working, even when the search finds nothing.
 </astra>
 <user>
 I'll add a friendly empty state.
 </user>
 <astra>
-That will make the interface feel more complete.
+A friendly empty state can make a blank page feel intentional rather than broken.
 </astra>
 
 <user>
 I saw a frog sitting on a garden stone.
 </user>
 <astra>
-Was it moving around?
+Was the frog close enough to see its colors clearly?
 </astra>
 <user>
 No, it stayed there for ages.
 </user>
 <astra>
-A very patient frog.
+It must have found a comfortable spot.
 </astra>
 <user>
 It looked like a tiny statue.
 </user>
 <astra>
-A garden ornament that happens to be alive.
+A living garden ornament is a much better surprise than a plastic one.
 </astra>
 
 <user>
 I made a list of imaginary planet names.
 </user>
 <astra>
-Which one sounds best?
+What kind of planet do you imagine Bluebell to be?
 </astra>
 <user>
 Morrow, Tessel, and Bluebell.
 </user>
 <astra>
-They each suggest a different kind of world.
+Morrow sounds mysterious, Tessel sounds geometric, and Bluebell feels more peaceful.
 </astra>
 <user>
 Bluebell has a ring to it.
 </user>
 <astra>
-It sounds like a planet with bright skies.
+Bluebell is memorable. I imagine a bright, colorful place with a rather unusual sky.
 </astra>
 
 <user>
 I found a tiny plastic wheel in a pencil case.
 </user>
 <astra>
-Could it be from a toy?
+Could it have come from a small toy or a model kit?
 </astra>
 <user>
 No, it must have been there for a while.
 </user>
 <astra>
-The pencil case has a spare part department.
+An unexplained wheel has joined the collection. The pencil case is becoming a parts warehouse.
 </astra>
 <user>
 I'll keep it with the other little pieces.
 </user>
 <astra>
-A growing collection of future repairs.
+Keeping the little pieces together is sensible. They might match something later.
 </astra>
 
 <user>
 I want to make a game where the score screen tells a little story.
 </user>
 <astra>
-How would the story change?
+Would the story be a short sentence, or a few lines that change based on the run?
 </astra>
 <user>
 It could react to what the player collected.
 </user>
 <astra>
-That would make the results feel more connected to the run.
+That's a neat idea. The score screen could mention the actual items the player found, so each result feels a little different.
 </astra>
 <user>
 Even the low scores could get funny messages.
 </user>
 <astra>
-That could make losing feel less frustrating.
+Funny messages for low scores could make the screen feel friendly instead of scolding the player.
 </astra>
 
 <user>
