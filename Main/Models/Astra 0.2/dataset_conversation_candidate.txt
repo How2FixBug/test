@@ -16305,568 +16305,568 @@ That sounds like a good place for it. A slightly bent star might make the decora
 I found a tiny brass-colored star in a box.
 </user>
 <astra>
-Was it a decoration?
+Was it attached to a pen, or does it look like it could be part of one?
 </astra>
 <user>
 It has a little loop at the top.
 </user>
 <astra>
-It may have been meant to hang somewhere.
+That's the kind of tiny part that's difficult to identify without its original object.
 </astra>
 <user>
 I'll put it on my shelf.
 </user>
 <astra>
-A small ornament with a new home.
+Keeping it with the spare bits is sensible. Maybe its matching piece will show up later.
 </astra>
 
 <user>
 I made a list of names for a fictional bookstore.
 </user>
 <astra>
-Which one did you like?
+Is the show about the moon waiting for something, or is it simply taking its time?
 </astra>
 <user>
 The Paper Lantern.
 </user>
 <astra>
-That sounds like a warm, inviting place.
+That's a funny title. I imagine the moon slowly drifting across the screen while the audience waits.
 </astra>
 <user>
 It has a reading nook by the window.
 </user>
 <astra>
-A perfect detail for a bookstore.
+One imaginary coin sounds affordable. The planetarium has a very generous ticket policy.
 </astra>
 
 <user>
 I think a game should make its controls easy to discover.
 </user>
 <astra>
-A clear control guide helps players get started.
+Does the icon use a distinctive outline, or is it mostly defined by its colors?
 </astra>
 <user>
 I want to show the keys in a small panel.
 </user>
 <astra>
-That could work without taking over the screen.
+That's an important test. The icon should stay recognizable whether the background is dark or light.
 </astra>
 <user>
 I'll keep the panel optional after the first level.
 </user>
 <astra>
-A good way to avoid repeating instructions.
+Try both backgrounds at the size people will actually see it. That's where contrast problems tend to show up.
 </astra>
 
 <user>
 I heard a little thump from the next room.
 </user>
 <astra>
-Did you find out what caused it?
+Was the tapping steady, or did it happen only when the wind picked up?
 </astra>
 <user>
 A book had slipped off the shelf.
 </user>
 <astra>
-Mystery solved by gravity.
+A loose blind cord can make a surprisingly convincing knock.
 </astra>
 <user>
 It landed open on the floor.
 </user>
 <astra>
-An unexpected reading session.
+Now that you've found the source, the sound probably won't be so mysterious next time.
 </astra>
 
 <user>
 I drew a tiny rocket with square windows.
 </user>
 <astra>
-How many windows?
+Is the imaginary-train platform hidden behind the regular ones, or clearly marked?
 </astra>
 <user>
 Three on each side.
 </user>
 <astra>
-A very symmetrical spaceship.
+'Maybe arriving' is a very honest sign for an imaginary train station.
 </astra>
 <user>
 The pilot is a little circle.
 </user>
 <astra>
-A simple but effective crew design.
+The timetable sounds like it was written by someone who refuses to make promises.
 </astra>
 
 <user>
 I found a little paper label that says 'spare'.
 </user>
 <astra>
-What was it attached to?
+Do you already have a box in mind for the label?
 </astra>
 <user>
 Nothing. It was loose in the drawer.
 </user>
 <astra>
-A label that has outlived its original object.
+A label without a box is getting ahead of the organization process.
 </astra>
 <user>
 I'll put it on the spare-parts box.
 </user>
 <astra>
-It has found its purpose.
+Maybe decide what the box will hold first, then give it a name that actually helps you find things.
 </astra>
 
 <user>
 I like when a game shows a preview of the next level.
 </user>
 <astra>
-It gives players something to look forward to.
+Will the skip option appear on every viewing, or only after the first time through?
 </astra>
 <user>
 Even a tiny thumbnail can help.
 </user>
 <astra>
-A small preview can communicate the theme.
+That's a considerate feature for replaying. People who already know the scene can move on.
 </astra>
 <user>
 I'll add one beside each level name.
 </user>
 <astra>
-That should make the selection screen more informative.
+Exactly. Let the first viewing tell the story, then let players skip repeats.
 </astra>
 
 <user>
 I saw a pigeon walking around a fountain.
 </user>
 <astra>
-Was it drinking water?
+Did the snail seem to be heading over the rim, or just exploring the edge?
 </astra>
 <user>
 It kept looking into the water.
 </user>
 <astra>
-Maybe it was inspecting its reflection.
+That's a long climb for such a small visitor.
 </astra>
 <user>
 It seemed very serious about it.
 </user>
 <astra>
-A very important fountain inspection.
+Maybe the top of the pot has the best view in the garden.
 </astra>
 
 <user>
 I made a tiny pixel art sandwich.
 </user>
 <astra>
-What are its layers?
+Are the other points all the same length, or is the bottom the only one that's different?
 </astra>
 <user>
 Two green layers and a yellow square.
 </user>
 <astra>
-A very abstract sandwich.
+That longer point gives the star a recognizable shape.
 </astra>
 <user>
 I'm calling it the mystery sub.
 </user>
 <astra>
-A sandwich with an air of intrigue.
+If it looks better to you, keep it. Perfect symmetry isn't always the most interesting choice.
 </astra>
 
 <user>
 I found an old pencil with no eraser.
 </user>
 <astra>
-Does it still write?
+Do you have any guess what 'the blue one' might mean?
 </astra>
 <user>
 Yes, the tip is fine.
 </user>
 <astra>
-It can still do most of its job.
+Past-you left a clue that requires context from past-you. Not very helpful.
 </astra>
 <user>
 I'll use it for quick sketches.
 </user>
 <astra>
-A good role for a pencil without an eraser.
+Some mysteries don't need solving. The note can stay as an unexplained artifact.
 </astra>
 
 <user>
 I think a settings page should show which options are currently active.
 </user>
 <astra>
-That makes the state clear.
+Do you want the credits to be skippable immediately, or only after a short delay?
 </astra>
 <user>
 A checkmark or selected button could work.
 </user>
 <astra>
-Both can communicate the choice.
+A skip button gives players control while still letting the credits be seen.
 </astra>
 <user>
 I'll use a highlight for the selected option.
 </user>
 <astra>
-That should fit the rest of the interface.
+A back button at the bottom is clear. It gives the credits a definite exit.
 </astra>
 
 <user>
 I made a little paper sign for an imaginary aquarium.
 </user>
 <astra>
-What's written on the sign?
+Does the question-mark chimney look like a question mark from far away too?
 </astra>
 <user>
 Please do not feed the invisible fish.
 </user>
 <astra>
-A sensible rule for an unusual aquarium.
+The dotted smoke is a nice touch. It gives the building a little movement without adding much detail.
 </astra>
 <user>
 The fish are very shy.
 </user>
 <astra>
-That explains why nobody has seen them.
+That could become a memorable landmark. The unusual chimney would make it easy to recognize.
 </astra>
 
 <user>
 I saw a tiny patch of frost on the grass.
 </user>
 <astra>
-Was it in the shade?
+Is the felt soft and thick, or more like a thin craft sheet?
 </astra>
 <user>
 Yes, the sunny spots were already clear.
 </user>
 <astra>
-The shaded areas can stay cold longer.
+Bright orange should make a cheerful little coaster.
 </astra>
 <user>
 It looked like glitter from far away.
 </user>
 <astra>
-A little sparkle on the ground.
+A tiny cup deserves its own tiny coaster. Excellent attention to scale.
 </astra>
 
 <user>
 I found a small plastic button in a craft box.
 </user>
 <astra>
-Does it have four holes?
+Would the door chime be a single note or a short sequence?
 </astra>
 <user>
 It has two, and they're very close together.
 </user>
 <astra>
-A slightly unusual button design.
+A soft chime would make the station feel calm without being silent.
 </astra>
 <user>
 I'm keeping it for a future project.
 </user>
 <astra>
-It may be just the right piece someday.
+The hallway hum could make the place feel lived-in. It gives the quiet a little texture.
 </astra>
 
 <user>
 I like when a game lets you adjust text size.
 </user>
 <astra>
-That can make the game easier to read.
+Is the loop part of the zipper pull, or stitched onto the fabric?
 </astra>
 <user>
 Not everyone wants the same size.
 </user>
 <astra>
-Giving players the option is considerate.
+That's a small feature with a real benefit. It gives you something easy to grab.
 </astra>
 <user>
 I'll add a couple of size choices.
 </user>
 <astra>
-A few clear options can be enough.
+Useful details can be almost invisible until you need them.
 </astra>
 
 <user>
 I made a list of imaginary street names.
 </user>
 <astra>
-Can you give me one example?
+Are you keeping the navigation in the same position on every page?
 </astra>
 <user>
 Winding Teacup Lane.
 </user>
 <astra>
-That sounds like a street in a very unusual town.
+That consistency helps people build a mental map of the site.
 </astra>
 <user>
 It ends at a roundabout shaped like a cup.
 </user>
 <astra>
-The town's planning department has a theme.
+Keeping the layout steady should make moving between pages feel natural.
 </astra>
 
 <user>
 I heard a soft tapping from a tree branch.
 </user>
 <astra>
-Was it hitting the window?
+Is the white stripe smooth and even, or does it have a rough edge?
 </astra>
 <user>
 Yes, just when the wind moved it.
 </user>
 <astra>
-A small repeating sound from outside.
+That sounds like a neat natural pattern. The stripe going all the way around makes it especially distinctive.
 </astra>
 <user>
 I moved the curtain so I could see it.
 </user>
 <astra>
-Sometimes it's nice to know what's making a noise.
+It could be a nice little desk decoration. The continuous stripe gives it something interesting to look at.
 </astra>
 
 <user>
 I made a tiny pixel art door with a glowing handle.
 </user>
 <astra>
-Does it lead somewhere?
+Did you build the booth from one piece of cardboard or attach separate walls?
 </astra>
 <user>
 It leads to a room full of stars.
 </user>
 <astra>
-A nice surprise behind an ordinary door.
+The opening flap makes it feel like a real ticket window.
 </astra>
 <user>
 The room is smaller than the door.
 </user>
 <astra>
-A very unusual bit of architecture.
+Little rectangles are perfect tickets. You could even give them tiny seat or destination numbers.
 </astra>
 
 <user>
 I found an old game controller with a loose thumbstick.
 </user>
 <astra>
-Can the controller still be used?
+Will the locked levels show what players need to do to unlock them?
 </astra>
 <user>
 It works, but the movement feels inconsistent.
 </user>
 <astra>
-That can make games frustrating to control.
+That's a good distinction. Locked should look like a deliberate state, not an error message.
 </astra>
 <user>
 I'll leave it aside until it can be checked.
 </user>
 <astra>
-A sensible choice rather than forcing it.
+A small lock icon should do the job without making the whole tile look broken.
 </astra>
 
 <user>
 I think a good website homepage should explain what the site is for quickly.
 </user>
 <astra>
-People should understand where they are.
+Was the buzzing coming from the lamp itself, or from the plug or power adapter?
 </astra>
 <user>
 A clear title and a short description can do that.
 </user>
 <astra>
-That gives visitors context without overwhelming them.
+Turning it off was the right move while the source is uncertain.
 </astra>
 <user>
 I'll keep the homepage simple.
 </user>
 <astra>
-A focused first impression can be very effective.
+Good call asking an adult to check it. Don't take the lamp apart or try to fix electrical parts yourself.
 </astra>
 
 <user>
 I found a little paper clip shaped like a star.
 </user>
 <astra>
-Was it already shaped that way?
+Are the rolls shaped like little clouds, or are they just extra fluffy?
 </astra>
 <user>
 Yes, it came in a stationery set.
 </user>
 <astra>
-A little decorative office supply.
+Cloud-shaped rolls are a fun specialty. They'd be easy to recognize on the menu.
 </astra>
 <user>
 I'm using it to mark a page.
 </user>
 <astra>
-A useful job for a star-shaped clip.
+'Puff pastries, but literally puff' is a pretty excellent explanation.
 </astra>
 
 <user>
 I made a list of fictional museums that should exist.
 </user>
 <astra>
-What's one museum?
+Was the star drawn freehand, or did you use the graph squares to make it?
 </astra>
 <user>
 The Museum of Almost Finished Projects.
 </user>
 <astra>
-That would have a very large collection.
+A little star in the corner is a nice detail to find on an otherwise blank page.
 </astra>
 <user>
 The gift shop sells blank notebooks.
 </user>
 <astra>
-A fitting souvenir.
+Copying it into your notebook could turn it into a recurring little symbol.
 </astra>
 
 <user>
 I saw a very small bird hopping along a railing.
 </user>
 <astra>
-Did it fly away?
+Would the pause menu include a return-to-menu option as well?
 </astra>
 <user>
 Eventually, but it stayed for a while.
 </user>
 <astra>
-A little visitor taking its time.
+That makes sense. Players should be able to leave a level without guessing where the option is.
 </astra>
 <user>
 It was smaller than my hand.
 </user>
 <astra>
-Tiny birds can be surprisingly quick.
+Keeping restart separate is important. One starts the level over; the other leaves it.
 </astra>
 
 <user>
 I like when a game has a quick way to mute sound.
 </user>
 <astra>
-It's useful if you need silence suddenly.
+Was the robin pecking at the grass, or just checking different spots?
 </astra>
 <user>
 A keyboard shortcut could work.
 </user>
 <astra>
-A quick toggle is convenient.
+It sounds like it was searching carefully for something to eat.
 </astra>
 <user>
 I'll put a mute button in the pause menu too.
 </user>
 <astra>
-That gives players an easy option either way.
+Robins can move surprisingly quickly between spots. Did it find anything?
 </astra>
 
 <user>
 I found a tiny piece of blue paper under a notebook.
 </user>
 <astra>
-Was there writing on it?
+Is the chest meant to be opened, or is it just decoration for the scene?
 </astra>
 <user>
 No, just a blue square.
 </user>
 <astra>
-A leftover scrap from something.
+The gold lock should stand out against the chest and make the purpose obvious.
 </astra>
 <user>
 I'm using it as a color sample.
 </user>
 <astra>
-A simple way to keep the shade around.
+Leaving the contents undecided is fine. You can choose something that fits the level when you need it.
 </astra>
 
 <user>
 I made a tiny drawing of a bridge.
 </user>
 <astra>
-What is it crossing?
+Does the fade lead straight into gameplay, or into the main menu?
 </astra>
 <user>
 A river that's only two lines wide.
 </user>
 <astra>
-A very efficient river.
+A title and a quick fade can make a strong first impression without holding players up.
 </astra>
 <user>
 There is a boat underneath it.
 </user>
 <astra>
-The bridge has its first visitor.
+That's a good balance. Give the game a moment of identity, then let people play.
 </astra>
 
 <user>
 I think game achievements should describe what the player did.
 </user>
 <astra>
-That makes them feel more personal.
+Was the smiley drawn on the paper, or printed as part of a sticker?
 </astra>
 <user>
 Not just generic numbers.
 </user>
 <astra>
-A specific title can make a small accomplishment memorable.
+That's a nice little surprise to find on the back of a folder.
 </astra>
 <user>
 I'll write a few that match the game mechanics.
 </user>
 <astra>
-That should make them feel connected to the experience.
+Moving it into your notebook gives it a more permanent place.
 </astra>
 
 <user>
 I found a little cardboard tube from an empty roll.
 </user>
 <astra>
-Can it be used for a project?
+Does the roundabout actually have roads leading into it, or is it just a tiny circle in the town?
 </astra>
 <user>
 I might turn it into a telescope for a toy.
 </user>
 <astra>
-A fun miniature prop.
+That's a wonderfully specific tourist attraction. The gift shop clearly understands its audience.
 </astra>
 <user>
 I'll decorate the outside first.
 </user>
 <astra>
-That will give it some personality.
+Tiny maps are exactly the right souvenir for the World's Smallest Roundabout.
 </astra>
 
 <user>
 I saw a cloud that looked like a curled-up cat.
 </user>
 <astra>
-Was the shape clear?
+Does the spinner stop as soon as the page is ready, or does it finish a full loop first?
 </astra>
 <user>
 For a few seconds, yes.
 </user>
 <astra>
-Cloud shapes can change quickly.
+That's the key. The user needs to know the app is still working, not wonder whether it froze.
 </astra>
 <user>
 Then it stretched into a long rectangle.
 </user>
 <astra>
-The cat has become a very unusual building.
+Disabling the button during loading is a good safeguard against duplicate clicks.
 </astra>
 
 <user>
 I want to make a game where every level has a different color theme.
 </user>
 <astra>
-How would you keep it consistent?
+Is the star going to hang from a string, or are you attaching it flat to something?
 </astra>
 <user>
 Use the same interface layout, but change the level palette.
 </user>
 <astra>
-That keeps the controls familiar while giving each level its own identity.
+The bend gives it a little character. Does it still catch the light?
 </astra>
 <user>
 I'll try that approach.
 </user>
 <astra>
-It sounds like a strong visual system.
+That sounds like a nice decoration detail. The slightly bent star might look more interesting than a perfect one.
 </astra>
