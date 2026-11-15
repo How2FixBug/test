@@ -157,6 +157,7 @@ def generate_reply(model, device, merges, vocab, special_tokens, history, messag
 
 def main():
     parser = argparse.ArgumentParser(description="Chat with ASTRA 0.2.")
+    parser.add_argument("--checkpoint", type=Path, default=HERE / "checkpoints" / "astra-0.2-best.pt", help="Checkpoint file to load")
     parser.add_argument("--max-new-tokens", type=int, default=120)
     parser.add_argument("--temperature", type=float, default=0.75)
     parser.add_argument("--top-k", type=int, default=40)
@@ -173,7 +174,7 @@ def main():
         parser.error("repeat-window cannot be negative")
 
     config_path = HERE / "tokenizer_config.json"
-    checkpoint_path = HERE / "checkpoints" / "astra-0.2-best.pt"
+    checkpoint_path = args.checkpoint.expanduser().resolve()
     if not config_path.exists() or not checkpoint_path.exists():
         raise SystemExit(
             "ASTRA artifacts are missing. A matching tokenizer config and trained "
