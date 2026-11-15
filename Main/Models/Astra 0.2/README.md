@@ -65,6 +65,19 @@ reviewed and training is explicitly approved.
 python3 train.py
 ```
 
+## Interactive chat
+
+Start a persistent terminal conversation with the trained model:
+
+```bash
+python3 chat.py
+```
+
+The model is loaded once and reused for every reply. ASTRA keeps the current
+session's conversation history as context. Use `/reset` to clear that context
+or `/quit` to exit. Older turns are dropped automatically when the context
+window fills. This does not save chat history to disk or modify the dataset.
+
 ## Generate
 
 Generation requires a checkpoint trained with the matching tokenizer
