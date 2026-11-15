@@ -11745,570 +11745,570 @@ Congratulations: you've discovered a search about searching. The internet is now
 I found a tiny sticker stuck to the back of a notebook.
 </user>
 <astra>
-What is on it?
+A blue whale is a pretty good notebook mascot. Does it look like a sticker you meant to put there?
 </astra>
 <user>
 A little blue whale.
 </user>
 <astra>
-A tiny whale has chosen an unusual ocean.
+Leaving it in place sounds right. It has become part of the notebook's identity.
 </astra>
 <user>
 I'm leaving it there.
 </user>
 <astra>
-It has earned its place.
+That whale has a whole notebook-sized ocean to explore.
 </astra>
 
 <user>
 My clock is two minutes fast.
 </user>
 <astra>
-Do you usually keep it that way?
+Two minutes fast is a funny compromise. Do you ever catch yourself trusting it and arriving early?
 </astra>
 <user>
 I used to fix it, but now I'm used to it.
 </user>
 <astra>
-Your clock has established its own time zone.
+Your clock has successfully trained you. Just remember not to use it for anything time-critical.
 </astra>
 <user>
 It makes me feel early.
 </user>
 <astra>
-A useful illusion, as long as you remember the difference.
+Feeling early is a nice bonus, provided the rest of the world hasn't noticed.
 </astra>
 
 <user>
 I made a new desktop wallpaper.
 </user>
 <astra>
-What did you put on it?
+What kind of pattern did you make—randomly scattered squares or a repeating grid?
 </astra>
 <user>
 A simple pattern of tiny squares.
 </user>
 <astra>
-That could look clean without being distracting.
+Three greens should give it some variation without making the desktop too busy.
 </astra>
 <user>
 I used three shades of green.
 </user>
 <astra>
-A limited palette can make a pattern feel cohesive.
+That sounds like a calm wallpaper. Does it tile across the screen?
 </astra>
 
 <user>
 A spoon fell into the sink and made a surprisingly musical noise.
 </user>
 <astra>
-Was it a high or low sound?
+Was it the kind of clang that rang out for a second?
 </astra>
 <user>
 A very clear little clang.
 </user>
 <astra>
-The sink briefly became a percussion instrument.
+The sink got one excellent note out of that spoon.
 </astra>
 <user>
 I tried to repeat it, but it sounded different.
 </user>
 <astra>
-Apparently the sink only performs live.
+Maybe the first performance was the only one worth hearing.
 </astra>
 
 <user>
 I have a folder full of screenshots of bugs in my games.
 </user>
 <astra>
-Do you keep them to fix later?
+Do you label them by the bug, or just save the screenshot and move on?
 </astra>
 <user>
 Yes, and some are from versions that don't exist anymore.
 </user>
 <astra>
-A visual history of your debugging adventures.
+That's a useful record, especially if an old bug ever shows up again.
 </astra>
 <user>
 Some are actually kind of funny now.
 </user>
 <astra>
-Old bugs can become excellent project memories once they're fixed.
+It's funny how frustrating bugs can become funny once they're safely in the past.
 </astra>
 
 <user>
 I saw a book with a really long title.
 </user>
 <astra>
-Did it explain the whole plot?
+Was the title printed in tiny letters, or did it wrap across the whole cover?
 </astra>
 <user>
 It nearly explained the entire first chapter.
 </user>
 <astra>
-That's a lot of information before page one.
+That's practically a summary disguised as a title.
 </astra>
 <user>
 The cover was tiny, too.
 </user>
 <astra>
-The title must have needed its own layout system.
+The cover designer had a difficult job: fit a chapter and a half onto a rectangle.
 </astra>
 
 <user>
 I made a tiny house out of index cards.
 </user>
 <astra>
-Did it stay standing?
+How did you keep the cards together while building it?
 </astra>
 <user>
 Mostly, except one wall keeps leaning.
 </user>
 <astra>
-That wall is exploring alternative architecture.
+One leaning wall gives it a bit of character, but a roof might help hold everything in place.
 </astra>
 <user>
 I might add a cardboard roof.
 </user>
 <astra>
-A roof could give it a bit more stability.
+Maybe add a small support inside before putting the roof on. What's the house supposed to look like?
 </astra>
 
 <user>
 I found a button that fell off an old shirt.
 </user>
 <astra>
-Is it a plain button?
+A swirl pattern on a button is a nice find. Did it come from a particular shirt?
 </astra>
 <user>
 It has four holes and a tiny swirl pattern.
 </user>
 <astra>
-A little decorative detail that survived the shirt.
+The jar is turning into a tiny museum of things with unknown origins.
 </astra>
 <user>
 I'm keeping it in a jar.
 </user>
 <astra>
-The jar of mystery objects grows.
+At least the button has a safe place to wait for its next project.
 </astra>
 
 <user>
 I think the best part of a new notebook is the first page.
 </user>
 <astra>
-It's full of possibility.
+Do you like the first page because it's still blank, or because it feels like a fresh start?
 </astra>
 <user>
 Then I get nervous about writing something messy.
 </user>
 <astra>
-The blank page can feel oddly important.
+That pressure is real. It can help to treat the first page like a draft instead of something that has to look perfect.
 </astra>
 <user>
 I usually just write the date.
 </user>
 <astra>
-A simple way to get started without making it a big event.
+Writing the date is a low-pressure start. After that, the notebook is officially in use.
 </astra>
 
 <user>
 I made a new shortcut on my desktop.
 </user>
 <astra>
-What does it open?
+Nice shortcut. Does it open the folder directly, or a project launcher inside it?
 </astra>
 <user>
 A folder with all my project files.
 </user>
 <astra>
-That's a handy place to have one click away.
+An obvious name is exactly what a shortcut needs. No decoding required.
 </astra>
 <user>
 I gave it a very obvious name.
 </user>
 <astra>
-Future you will appreciate that.
+Future you won't have to remember which mystery icon contains the files.
 </astra>
 
 <user>
 A bird landed on the fence and stared at me.
 </user>
 <astra>
-Did it stay for long?
+Did the bird seem curious, or was it just watching its surroundings?
 </astra>
 <user>
 Long enough that it felt like a meeting.
 </user>
 <astra>
-Maybe it had an agenda.
+A bird meeting with no agenda and no minutes. Very efficient.
 </astra>
 <user>
 It left without saying anything.
 </user>
 <astra>
-A very brief and mysterious appointment.
+Maybe it had somewhere else to be. The meeting is adjourned.
 </astra>
 
 <user>
 I think old websites had interesting buttons.
 </user>
 <astra>
-What do you like about them?
+Do you mean the old glossy buttons with shadows and bevels?
 </astra>
 <user>
 They often looked like actual objects you could press.
 </user>
 <astra>
-That tactile style gave interfaces a distinct personality.
+They made buttons look more like physical controls. It's a fun style when used deliberately.
 </astra>
 <user>
 I might try that look on a small project.
 </user>
 <astra>
-It could work nicely if the rest of the design stays simple.
+Try it on one small interface element first; that way the whole project doesn't become visually crowded.
 </astra>
 
 <user>
 I found a tiny crack in a sidewalk shaped like a Y.
 </user>
 <astra>
-Did you notice it while walking?
+Did the Y shape have one long branch and one short one?
 </astra>
 <user>
 Yes, it looked like a little road map.
 </user>
 <astra>
-A branching path for ants, perhaps.
+That's a fun way to read an ordinary crack. It really does look like a tiny map.
 </astra>
 <user>
 I almost stepped around it like it was important.
 </user>
 <astra>
-The sidewalk has gained a landmark.
+Congratulations to that crack on becoming an official landmark.
 </astra>
 
 <user>
 I made a playlist title that is longer than the playlist.
 </user>
 <astra>
-What's the title?
+That's a fantastic title. The playlist has two songs, but the title already tells a whole story.
 </astra>
 <user>
 Songs for When the Ceiling Is More Interesting Than My Homework.
 </user>
 <astra>
-That title paints a very specific scene.
+Two songs is a perfectly valid start. The title might be the main attraction for now.
 </astra>
 <user>
 It only has two songs so far.
 </user>
 <astra>
-A very selective soundtrack.
+Maybe the next song should be about staring at the ceiling, just to keep the theme consistent.
 </astra>
 
 <user>
 I like when a game remembers the last settings I used.
 </user>
 <astra>
-It's convenient not to set everything again.
+Do you save the settings automatically when someone changes them?
 </astra>
 <user>
 Especially the volume slider.
 </user>
 <astra>
-Audio preferences should stick around.
+Volume is exactly the sort of setting people shouldn't have to adjust every time.
 </astra>
 <user>
 I always turn music down a little.
 </user>
 <astra>
-A saved setting makes that easy.
+That makes sense. Remembering the last volume level saves a little annoyance each session.
 </astra>
 
 <user>
 I accidentally drew a face on a sticky note.
 </user>
 <astra>
-What expression does it have?
+Did you draw the face intentionally, or did it just happen while you were writing?
 </astra>
 <user>
 It looks mildly confused.
 </user>
 <astra>
-A perfect expression for a sticky note.
+Mildly confused is a very useful expression for a sticky note.
 </astra>
 <user>
 I put it on my monitor.
 </user>
 <astra>
-Now your monitor has a tiny audience.
+Now it can silently judge your monitor activity. Very professional.
 </astra>
 
 <user>
 I think the letter W is just two V's wearing a coat.
 </user>
 <astra>
-That's a very convincing description of its shape.
+That is an alarmingly good description of W.
 </astra>
 <user>
 It even has the same pointy bits.
 </user>
 <astra>
-The alphabet has some interesting design choices.
+The alphabet really did put two V's together and call it a day.
 </astra>
 <user>
 I can't unsee it now.
 </user>
 <astra>
-Some observations are difficult to reverse.
+Sorry, but that image is probably permanent now.
 </astra>
 
 <user>
 I found a tiny plastic gear in a drawer.
 </user>
 <astra>
-Do you know what it came from?
+Twelve teeth is a precise clue. Any chance there's a matching gear nearby?
 </astra>
 <user>
 No, but it has twelve teeth.
 </user>
 <astra>
-A very specific mystery component.
+Could be from a toy or a small mechanism. The mystery drawer remains undefeated.
 </astra>
 <user>
 It looks like it belongs in a toy.
 </user>
 <astra>
-Could be. The drawer may be a retired toy's parts department.
+If you find another gear, you might be able to identify what it belonged to.
 </astra>
 
 <user>
 I made a little progress bar for a pretend loading screen.
 </user>
 <astra>
-Does it actually move?
+Why 73 percent? Was it just a number that looked visually balanced?
 </astra>
 <user>
 No, I just drew it at 73 percent.
 </user>
 <astra>
-A very specific amount of almost finished.
+73% has the perfect amount of unfinished energy.
 </astra>
 <user>
 I chose 73 because it looked right.
 </user>
 <astra>
-Sometimes the number is part of the design.
+Now the loading bar has lore. It is forever stuck at a very deliberate 73%.
 </astra>
 
 <user>
 I saw a cat sitting inside an empty box.
 </user>
 <astra>
-Was the box much too small?
+Was the cat curled up in the box, or sitting upright like it owned the place?
 </astra>
 <user>
 It was barely big enough.
 </user>
 <astra>
-Cats do seem to have flexible standards for furniture.
+That is classic cat logic: if it fits approximately, it fits.
 </astra>
 <user>
 The cat looked very pleased.
 </user>
 <astra>
-The box has passed inspection.
+The box has passed inspection and is now premium furniture.
 </astra>
 
 <user>
 I made a list of sounds I like.
 </user>
 <astra>
-What's at the top?
+Any other sounds on the list, or are those the top two?
 </astra>
 <user>
 Rain tapping on a window.
 </user>
 <astra>
-That's a nice, steady sound.
+Rain on a window has a nice natural rhythm. It can make a room feel quieter.
 </astra>
 <user>
 The second is a keyboard typing quickly.
 </user>
 <astra>
-A very different kind of rhythm, but satisfying too.
+Keyboard typing is a completely different rhythm—more like someone making progress.
 </astra>
 
 <user>
 I attempted to fold a paper crane.
 </user>
 <astra>
-What shape did it end up taking?
+Did the crane at least have a recognizable head or wings?
 </astra>
 <user>
 It looks like a very confused bird.
 </user>
 <astra>
-Origami can be surprisingly demanding.
+Origami instructions can be surprisingly unforgiving. One fold slightly off and the whole thing changes.
 </astra>
 <user>
 I'm keeping it anyway.
 </user>
 <astra>
-Absolutely. It has character.
+Keep it! A confused paper bird still counts as a paper bird.
 </astra>
 
 <user>
 I have a mug with a chipped handle.
 </user>
 <astra>
-Does it still work?
+Is the chip smooth, or does it leave a sharp edge?
 </astra>
 <user>
 Yes, the chip is on the outside edge.
 </user>
 <astra>
-Still, be careful with it if the chip is sharp.
+Using it as a pencil holder is a good reuse. Just keep it away from the edge if the handle is damaged.
 </astra>
 <user>
 I use it as a pencil holder now.
 </user>
 <astra>
-A sensible second career for the mug.
+The mug has retired from beverages and taken up office work.
 </astra>
 
 <user>
 I think the best file names are descriptive but short.
 </user>
 <astra>
-Agreed. You should know what's inside without reading a paragraph.
+Do you include version numbers too, or just a short project label?
 </astra>
 <user>
 I used to name everything 'final'.
 </user>
 <astra>
-The classic naming system with many sequels.
+'final', 'final2', and 'final-really-final'—a naming tradition with a long history.
 </astra>
 <user>
 Now I add the project name.
 </user>
 <astra>
-Much easier to identify later.
+Adding the project name makes a big difference when several folders are open.
 </astra>
 
 <user>
 I found a really old bookmark in a library book.
 </user>
 <astra>
-Was it left by another reader?
+Was the bus ticket being used as a bookmark, or was it just tucked into the pages?
 </astra>
 <user>
 It was a bus ticket.
 </user>
 <astra>
-A little trace of someone's reading day.
+That's a neat little accidental time capsule.
 </astra>
 <user>
 The date was years ago.
 </user>
 <astra>
-That ticket has been waiting a long time to be discovered.
+Someone's ordinary trip became a tiny piece of the book's history.
 </astra>
 
 <user>
 I drew a maze that accidentally has no exit.
 </user>
 <astra>
-Can you still get to the center?
+Is the center a dead end, or can you get back out the way you came?
 </astra>
 <user>
 Yes, but then you're stuck.
 </user>
 <astra>
-A maze with commitment issues.
+That's a very unfair maze. It lets you visit the center but refuses to let you leave.
 </astra>
 <user>
 I might add a secret passage.
 </user>
 <astra>
-That would give the maze a second chance.
+A secret passage could be the perfect fix. Maybe hide it somewhere that rewards careful looking.
 </astra>
 
 <user>
 My mouse cursor looked enormous after I changed a setting.
 </user>
 <astra>
-Did you mean to change its size?
+Did the cursor become huge enough to cover things, or was it just noticeably larger?
 </astra>
 <user>
 No, I was looking for a different option.
 </user>
 <astra>
-A surprise accessibility feature.
+An accidental setting change with a surprisingly useful result.
 </astra>
 <user>
 It was actually easy to see.
 </user>
 <astra>
-Large cursors can be useful, even when unexpected.
+If you liked the visibility, you could keep the larger size. No need to change it back just because it was unexpected.
 </astra>
 
 <user>
 I made a tiny sign that says 'Do Not Disturb the Potato'.
 </user>
 <astra>
-Is there an actual potato involved?
+Does the potato have a name, or is the crown enough to establish its authority?
 </astra>
 <user>
 No. It's just a drawing of one.
 </user>
 <astra>
-The potato has been granted important status.
+Royalty deserves privacy. The sign has made the rules clear.
 </astra>
 <user>
 It has a little crown.
 </user>
 <astra>
-Clearly a royal potato.
+All hail the potato. I assume the crown is non-negotiable.
 </astra>
 
 <user>
 I think some game over screens are more memorable than the game itself.
 </user>
 <astra>
-What makes one stand out?
+Do you have a particular game over screen in mind that stuck with you?
 </astra>
 <user>
 A funny message or a clever animation.
 </user>
 <astra>
-A small moment of personality can stick with you.
+A short animation can make failure feel less abrupt without making players wait around.
 </astra>
 <user>
 I want mine to be short and not annoying.
 </user>
 <astra>
-That is a good goal. Players should be able to get back into the game quickly.
+That's a good balance: give it a little personality, then let people retry.
 </astra>
 
 <user>
 I found a tiny notebook that fits in my pocket.
 </user>
 <astra>
-What are you going to use it for?
+Is it small enough to carry around without noticing it's there?
 </astra>
 <user>
 Writing down random ideas.
 </user>
 <astra>
-A portable place for thoughts before they disappear.
+That's a handy use for a pocket notebook. Random ideas rarely wait until you're at a desk.
 </astra>
 <user>
 The pages are graph paper.
 </user>
 <astra>
-Even better for sketches and little diagrams.
+Graph paper makes it useful for more than notes—little maps and layouts will fit nicely too.
 </astra>
 
 <user>
