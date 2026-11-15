@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compatibility entry point for the ASTRA general-purpose dataset importer."""
+"""Compatibility entry point for ASTRA's local curated-corpus checker."""
 from __future__ import annotations
 
 import runpy
