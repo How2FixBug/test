@@ -10,7 +10,7 @@ from pathlib import Path
 import torch
 
 from model import AstraGPT
-from tokenizer import SPECIAL_TOKENS, encode, decode
+from tokenizer import encode, decode
 
 HERE = Path(__file__).resolve().parent
 
@@ -25,9 +25,10 @@ def sample_next_token(
     repetition_penalty: float,
     repeat_window: int,
     allowed_special_ids: set[int],
+    special_tokens: dict[str, int],
 ) -> int:
     logits = logits.clone() / temperature
-    special_ids = set(SPECIAL_TOKENS.values())
+    special_ids = set(special_tokens.values())
 
     if repetition_penalty > 1.0 and repeat_window:
         for token_id in set(history[-repeat_window:]):
@@ -60,7 +61,13 @@ def sample_next_token(
     return int(torch.multinomial(torch.softmax(logits, dim=-1), 1).item())
 
 
-def make_prompt(history: list[tuple[str, str]], message: str, merges, max_seq_len: int) -> list[int]:
+def make_prompt(
+    history: list[tuple[str, str]],
+    message: str,
+    merges,
+    max_seq_len: int,
+    special_tokens: dict[str, int],
+) -> list[int]:
     turns = history + [(message, "")]
     while True:
         transcript = "".join(
@@ -68,15 +75,17 @@ def make_prompt(history: list[tuple[str, str]], message: str, merges, max_seq_le
             if answer else f"<user>\n{user}\n</user>\n<astra>\n"
             for user, answer in turns
         )
-        tokens = encode(transcript, merges)
+        tokens = encode(transcript, merges, special_tokens)
         if len(tokens) <= max_seq_len or len(turns) == 1:
             return tokens[-max_seq_len:]
         turns = turns[1:]
 
 
 @torch.inference_mode()
-def generate_reply(model, device, merges, vocab, history, message, args):
-    prompt_ids = make_prompt(history, message, merges, model.max_seq_len)
+def generate_reply(model, device, merges, vocab, special_tokens, history, message, args):
+    prompt_ids = make_prompt(
+        history, message, merges, model.max_seq_len, special_tokens
+    )
     generated = list(prompt_ids)
     answer_ids: list[int] = []
     inside_think = False
@@ -88,18 +97,19 @@ def generate_reply(model, device, merges, vocab, history, message, args):
             [generated[-model.max_seq_len:]], dtype=torch.long, device=device
         )
         logits = model(context)[0, -1]
+        end_astra = special_tokens["</astra>"]
         if tool_complete:
-            allowed = {SPECIAL_TOKENS["</astra>"]}
+            allowed = {end_astra}
         elif inside_think:
-            allowed = {SPECIAL_TOKENS["</think>"]}
+            allowed = {special_tokens["</think>"]}
         elif inside_getinfo:
-            allowed = {SPECIAL_TOKENS["</getinfo>"]}
+            allowed = {special_tokens["</getinfo>"]}
         else:
-            allowed = {
-                SPECIAL_TOKENS["</astra>"],
-                SPECIAL_TOKENS["<think>"],
-                SPECIAL_TOKENS["<getinfo>"],
-            }
+            allowed = {end_astra}
+            if "<think>" in special_tokens:
+                allowed.add(special_tokens["<think>"])
+            if "<getinfo>" in special_tokens:
+                allowed.add(special_tokens["<getinfo>"])
 
         token = sample_next_token(
             logits, answer_ids,
@@ -109,30 +119,39 @@ def generate_reply(model, device, merges, vocab, history, message, args):
             repetition_penalty=args.repetition_penalty,
             repeat_window=args.repeat_window,
             allowed_special_ids=allowed,
+            special_tokens=special_tokens,
         )
-        if token == SPECIAL_TOKENS["</astra>"]:
+        if token == special_tokens["</astra>"]:
             break
 
         generated.append(token)
         answer_ids.append(token)
-        if token == SPECIAL_TOKENS["<think>"]:
+        if "<think>" in special_tokens and token == special_tokens["<think>"]:
             inside_think = True
-        elif token == SPECIAL_TOKENS["</think>"]:
+        elif "</think>" in special_tokens and token == special_tokens["</think>"]:
             inside_think = False
-        elif token == SPECIAL_TOKENS["<getinfo>"]:
+        elif "<getinfo>" in special_tokens and token == special_tokens["<getinfo>"]:
             inside_getinfo = True
-        elif token == SPECIAL_TOKENS["</getinfo>"]:
+        elif "</getinfo>" in special_tokens and token == special_tokens["</getinfo>"]:
             inside_getinfo = False
             tool_complete = True
 
-    raw = decode(answer_ids, vocab)
-    tool_match = re.search(r"<getinfo>([\s\S]*?)</getinfo>", raw)
+    raw = decode(answer_ids, vocab, special_tokens)
+    tool_match = (
+        re.search(r"<getinfo>([\s\S]*?)</getinfo>", raw)
+        if "<getinfo>" in special_tokens and "</getinfo>" in special_tokens
+        else None
+    )
     if tool_complete and tool_match:
         return "", tool_match.group(1).strip()
     if inside_getinfo:
         partial = re.search(r"<getinfo>([\s\S]*)$", raw)
         return "", "INCOMPLETE: " + (partial.group(1).strip() if partial else "")
-    visible = re.sub(r"<think>[\s\S]*?(?:</think>|$)", "", raw).strip()
+    visible = (
+        re.sub(r"<think>[\s\S]*?(?:</think>|$)", "", raw).strip()
+        if "<think>" in special_tokens
+        else raw.strip()
+    )
     return visible, None
 
 
@@ -162,10 +181,24 @@ def main():
         )
 
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    if not all(key in config for key in ("vocab_hex", "merges", "fingerprint")):
+    if not all(key in config for key in ("vocab_hex", "merges", "fingerprint", "special_tokens")):
         raise SystemExit("Tokenizer artifacts are outdated.")
     vocab = [bytes.fromhex(item) if item is not None else None for item in config["vocab_hex"]]
     merges = [tuple(pair) for pair in config["merges"]]
+    special_tokens = {str(token): int(token_id) for token, token_id in config["special_tokens"].items()}
+    expected_special_ids = list(range(256, 256 + len(special_tokens)))
+    if sorted(special_tokens.values()) != expected_special_ids:
+        raise SystemExit("Tokenizer special-token IDs are not a contiguous vocabulary prefix.")
+    if any(vocab[token_id] is not None for token_id in expected_special_ids):
+        raise SystemExit("Tokenizer special-token slots do not match the saved vocabulary.")
+    merge_offset = 256 + len(special_tokens)
+    for rank, (left, right) in enumerate(merges):
+        token_id = merge_offset + rank
+        if token_id >= len(vocab) or vocab[token_id] != vocab[left] + vocab[right]:
+            raise SystemExit(
+                f"Tokenizer merge/vocabulary mismatch at merge {rank}; "
+                "refusing to load incompatible artifacts."
+            )
 
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     if checkpoint.get("architecture_version") != 3:
@@ -206,7 +239,7 @@ def main():
 
         try:
             reply, tool_request = generate_reply(
-                model, device, merges, vocab, history, message, args
+                model, device, merges, vocab, special_tokens, history, message, args
             )
         except Exception as exc:
             print(f"Generation error: {exc}")
