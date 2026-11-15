@@ -15744,3 +15744,573 @@ I'll test the main menu again.
 <astra>
 A good place to start.
 </astra>
+
+<user>
+I found a tiny plastic ring in a pencil case.
+</user>
+<astra>
+Could it be from a pen?
+</astra>
+<user>
+I'm not sure what it belongs to.
+</user>
+<astra>
+A small circular mystery.
+</astra>
+<user>
+I'll keep it with the spare bits.
+</user>
+<astra>
+It may become useful later.
+</astra>
+
+<user>
+I made a tiny sign for a pretend planetarium.
+</user>
+<astra>
+What does it announce?
+</astra>
+<user>
+Next show: The Very Patient Moon.
+</user>
+<astra>
+That sounds like a calm and slightly funny presentation.
+</astra>
+<user>
+Tickets are one imaginary coin.
+</user>
+<astra>
+A reasonable price for an imaginary show.
+</astra>
+
+<user>
+I think the best app icons are simple enough to recognize quickly.
+</user>
+<astra>
+A clear silhouette helps.
+</astra>
+<user>
+I want mine to work on both dark and light backgrounds.
+</user>
+<astra>
+That is worth checking early in the design.
+</astra>
+<user>
+I'll test it with both.
+</user>
+<astra>
+Good plan. Contrast can change how an icon reads.
+</astra>
+
+<user>
+I heard a little tapping sound from the window.
+</user>
+<astra>
+Was it a branch?
+</astra>
+<user>
+It was a loose blind cord moving in the breeze.
+</user>
+<astra>
+A small sound with a simple explanation.
+</astra>
+<user>
+I thought it was someone knocking.
+</user>
+<astra>
+An understandable guess when the room is quiet.
+</astra>
+
+<user>
+I made a tiny drawing of a train station.
+</user>
+<astra>
+How many platforms?
+</astra>
+<user>
+Two, but one is just for imaginary trains.
+</user>
+<astra>
+A special platform for a very specific service.
+</astra>
+<user>
+It has a sign that says 'Maybe arriving'.
+</user>
+<astra>
+The timetable is still being finalized.
+</astra>
+
+<user>
+I found a blank label in a drawer.
+</user>
+<astra>
+Are you going to use it?
+</astra>
+<user>
+Probably. It's the perfect size for a small box.
+</user>
+<astra>
+A label waiting for its purpose.
+</astra>
+<user>
+I haven't decided what the box will hold.
+</user>
+<astra>
+The box and label can be assigned together later.
+</astra>
+
+<user>
+I like when a game lets you skip a cutscene you've already seen.
+</user>
+<astra>
+It respects the player's time.
+</astra>
+<user>
+Especially on a second playthrough.
+</user>
+<astra>
+Repeated scenes can become tedious.
+</astra>
+<user>
+I'll include a skip option.
+</user>
+<astra>
+A useful feature for replayability.
+</astra>
+
+<user>
+I saw a snail on a garden pot.
+</user>
+<astra>
+Was it climbing?
+</astra>
+<user>
+It was right near the rim.
+</user>
+<astra>
+A little explorer nearing the top.
+</astra>
+<user>
+I wonder if it was looking for a view.
+</user>
+<astra>
+The garden pot may offer excellent scenery.
+</astra>
+
+<user>
+I made a tiny pixel art star with eight points.
+</user>
+<astra>
+Does it look balanced?
+</astra>
+<user>
+Mostly, but the bottom point is longer.
+</user>
+<astra>
+A star with a little extra emphasis.
+</astra>
+<user>
+I think it looks better that way.
+</user>
+<astra>
+Sometimes a small asymmetry gives a design personality.
+</astra>
+
+<user>
+I found an old note that just says 'check the blue one'.
+</user>
+<astra>
+Do you know what it refers to?
+</astra>
+<user>
+No, there are several blue things around.
+</user>
+<astra>
+A very unhelpful clue from past you.
+</astra>
+<user>
+I'll leave it as a mystery.
+</user>
+<astra>
+Some notes are better left as puzzles.
+</astra>
+
+<user>
+I think a game's credits should be easy to close.
+</user>
+<astra>
+Players may not want to sit through them every time.
+</astra>
+<user>
+A skip button is a nice option.
+</user>
+<astra>
+It gives people control without hiding the credits.
+</astra>
+<user>
+I'll put a back button at the bottom.
+</user>
+<astra>
+That should make the exit clear.
+</astra>
+
+<user>
+I drew a tiny house with a chimney shaped like a question mark.
+</user>
+<astra>
+That's a curious architectural choice.
+</astra>
+<user>
+The smoke comes out as little dots.
+</user>
+<astra>
+A very minimalist chimney.
+</astra>
+<user>
+I might turn it into a game building.
+</user>
+<astra>
+It could be a memorable landmark.
+</astra>
+
+<user>
+I found a little square of felt in a box.
+</user>
+<astra>
+Was it left over from a project?
+</astra>
+<user>
+Probably. It's bright orange.
+</user>
+<astra>
+A cheerful scrap to have around.
+</astra>
+<user>
+I'll use it as a coaster for something tiny.
+</user>
+<astra>
+A coaster for a miniature cup, perhaps.
+</astra>
+
+<user>
+I made a list of sounds for a fictional space station.
+</user>
+<astra>
+What's one sound?
+</astra>
+<user>
+A soft chime when a door opens.
+</user>
+<astra>
+That would make the station feel calm and orderly.
+</astra>
+<user>
+Another is a quiet hum in the hallway.
+</user>
+<astra>
+A steady background sound could help the place feel occupied.
+</astra>
+
+<user>
+I noticed that my pencil case zipper has a tiny fabric loop.
+</user>
+<astra>
+Does it make it easier to open?
+</astra>
+<user>
+Yes, it's much easier to grab.
+</user>
+<astra>
+A small detail with a practical purpose.
+</astra>
+<user>
+I never paid attention to it before.
+</user>
+<astra>
+The most useful design features can be easy to overlook.
+</astra>
+
+<user>
+I like when a website doesn't move things around between pages.
+</user>
+<astra>
+Consistency helps people know where to look.
+</astra>
+<user>
+Especially the navigation.
+</user>
+<astra>
+Keeping it in the same place makes browsing easier.
+</astra>
+<user>
+I'm trying to keep the layout steady.
+</user>
+<astra>
+That should make the site feel more predictable.
+</astra>
+
+<user>
+I found a little pebble with a white stripe through it.
+</user>
+<astra>
+Was it smooth?
+</astra>
+<user>
+Yes, and the stripe goes all the way around.
+</user>
+<astra>
+A neat natural pattern.
+</astra>
+<user>
+I'm keeping it on my desk.
+</user>
+<astra>
+A small decoration with a nice detail.
+</astra>
+
+<user>
+I made a tiny cardboard ticket booth.
+</user>
+<astra>
+Does it have a window?
+</astra>
+<user>
+Yes, with a flap that opens.
+</user>
+<astra>
+A surprisingly functional miniature booth.
+</astra>
+<user>
+The tickets are just little rectangles.
+</user>
+<astra>
+That's all a ticket booth really needs.
+</astra>
+
+<user>
+I think a good level select screen should show which levels are locked.
+</user>
+<astra>
+It helps players understand what's available.
+</astra>
+<user>
+But it shouldn't make locked levels look like errors.
+</user>
+<astra>
+A clear locked state can be informative without feeling broken.
+</astra>
+<user>
+I'll use a small lock icon.
+</user>
+<astra>
+That should communicate the status quickly.
+</astra>
+
+<user>
+I heard a very quiet buzzing sound near a lamp.
+</user>
+<astra>
+Did you find the source?
+</astra>
+<user>
+It stopped when I turned the lamp off.
+</user>
+<astra>
+That narrows it down to the lamp or its power supply.
+</astra>
+<user>
+I'll ask an adult to check it before using it again.
+</user>
+<astra>
+Good idea. Electrical equipment should be checked safely.
+</astra>
+
+<user>
+I made a paper sign for a fictional bakery.
+</user>
+<astra>
+What does it sell?
+</astra>
+<user>
+Cloud-shaped rolls.
+</user>
+<astra>
+A bakery with a distinctive specialty.
+</astra>
+<user>
+They are called puff pastries, but literally puff.
+</user>
+<astra>
+A very appropriate name.
+</astra>
+
+<user>
+I found a little piece of graph paper with a star on it.
+</user>
+<astra>
+Was the star part of a diagram?
+</astra>
+<user>
+No, it was just drawn in the corner.
+</user>
+<astra>
+A tiny decoration from a past note.
+</astra>
+<user>
+I might copy it into my notebook.
+</user>
+<astra>
+A nice little doodle to reuse.
+</astra>
+
+<user>
+I think a game should have a clear way to return to the main menu.
+</user>
+<astra>
+Players shouldn't have to guess how to leave a level.
+</astra>
+<user>
+A pause menu is a good place for it.
+</user>
+<astra>
+That keeps the option available during play.
+</astra>
+<user>
+I'll keep it separate from restart.
+</user>
+<astra>
+Good distinction. Those actions do different things.
+</astra>
+
+<user>
+I saw a robin hopping across the grass.
+</user>
+<astra>
+Was it looking for food?
+</astra>
+<user>
+It kept stopping and looking down.
+</user>
+<astra>
+It may have been searching for something to eat.
+</astra>
+<user>
+It moved very quickly between spots.
+</user>
+<astra>
+A focused little search.
+</astra>
+
+<user>
+I made a tiny pixel art chest.
+</user>
+<astra>
+Does it have a lock?
+</astra>
+<user>
+Yes, a bright gold one.
+</user>
+<astra>
+A classic treasure chest detail.
+</astra>
+<user>
+I haven't decided what's inside.
+</user>
+<astra>
+The contents can be a surprise for later.
+</astra>
+
+<user>
+I like when a game has a short intro instead of a long one.
+</user>
+<astra>
+It gets players into the action sooner.
+</astra>
+<user>
+A title and a quick fade can be enough.
+</user>
+<astra>
+A focused intro can still make the game feel polished.
+</astra>
+<user>
+That's what I'm aiming for.
+</user>
+<astra>
+A good balance between atmosphere and pace.
+</astra>
+
+<user>
+I found a little paper square with a smiley face on it.
+</user>
+<astra>
+Was it a note?
+</astra>
+<user>
+It was stuck to the back of a folder.
+</user>
+<astra>
+A small cheerful surprise.
+</astra>
+<user>
+I'm moving it to my notebook.
+</user>
+<astra>
+It has found a new home.
+</astra>
+
+<user>
+I made a list of fictional town landmarks.
+</user>
+<astra>
+What's one landmark?
+</astra>
+<user>
+The World's Smallest Roundabout.
+</user>
+<astra>
+A very specific tourist attraction.
+</astra>
+<user>
+The gift shop sells tiny maps.
+</user>
+<astra>
+The souvenirs match the scale.
+</astra>
+
+<user>
+I think an app should make its loading state clear.
+</user>
+<astra>
+Otherwise people might click again.
+</astra>
+<user>
+A small spinner can help.
+</user>
+<astra>
+It shows that the app is working.
+</astra>
+<user>
+I'll disable the button while it loads.
+</user>
+<astra>
+That can prevent duplicate actions.
+</astra>
+
+<user>
+I found a little plastic star in a box of craft supplies.
+</user>
+<astra>
+Is it shiny?
+</astra>
+<user>
+Very shiny, and slightly bent.
+</user>
+<astra>
+A star with a little history.
+</astra>
+<user>
+I'm adding it to a decoration.
+</user>
+<astra>
+It sounds like it could fit right in.
+</astra>
