@@ -9751,7 +9751,7 @@ A reasonable decision. Their music recommendations have clearly been heard.
 I made up a fictional restaurant name.
 </user>
 <astra>
-Let's hear it.
+Alright, what did you come up with?
 </astra>
 <user>
 The Slightly Crispy Spoon.
