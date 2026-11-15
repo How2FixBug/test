@@ -24,6 +24,7 @@ def sample_next_token(
     top_p: float,
     repetition_penalty: float,
     repeat_window: int,
+    allowed_special_ids: set[int],
 ) -> int:
     logits = logits.clone() / temperature
     special_ids = set(SPECIAL_TOKENS.values())
@@ -36,20 +37,15 @@ def sample_next_token(
                 else:
                     logits[token_id] *= repetition_penalty
 
-    allowed = {
-        SPECIAL_TOKENS["</astra>"],
-        SPECIAL_TOKENS["<think>"],
-        SPECIAL_TOKENS["<getinfo>"],
-    }
     for token_id in special_ids:
-        if token_id not in allowed:
+        if token_id not in allowed_special_ids:
             logits[token_id] = -float("inf")
 
     if top_k and top_k < logits.numel():
         values, indices = torch.topk(logits, top_k)
         filtered = torch.full_like(logits, -float("inf"))
         filtered[indices] = values
-        for token_id in allowed:
+        for token_id in allowed_special_ids:
             filtered[token_id] = logits[token_id]
         logits = filtered
 
@@ -61,7 +57,7 @@ def sample_next_token(
         remove[0] = False
         filtered = logits.clone()
         filtered[sorted_indices[remove]] = -float("inf")
-        for token_id in allowed:
+        for token_id in allowed_special_ids:
             filtered[token_id] = logits[token_id]
         logits = filtered
 
@@ -109,6 +105,19 @@ def generate_reply(model, device, merges, vocab, history, message, args):
                 SPECIAL_TOKENS["<getinfo>"],
             }
 
+        if tool_complete:
+            allowed = {SPECIAL_TOKENS["</astra>"]}
+        elif inside_think:
+            allowed = {SPECIAL_TOKENS["</think>"]}
+        elif inside_getinfo:
+            allowed = {SPECIAL_TOKENS["</getinfo>"]}
+        else:
+            allowed = {
+                SPECIAL_TOKENS["</astra>"],
+                SPECIAL_TOKENS["<think>"],
+                SPECIAL_TOKENS["<getinfo>"],
+            }
+
         token = sample_next_token(
             logits, generated,
             temperature=args.temperature,
@@ -116,6 +125,7 @@ def generate_reply(model, device, merges, vocab, history, message, args):
             top_p=args.top_p,
             repetition_penalty=args.repetition_penalty,
             repeat_window=args.repeat_window,
+            allowed_special_ids=allowed,
         )
         if token == SPECIAL_TOKENS["</astra>"]:
             break
