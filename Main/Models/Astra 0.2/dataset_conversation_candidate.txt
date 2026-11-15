@@ -15165,570 +15165,570 @@ Funny messages for low scores could make the game feel welcoming, even when a ru
 I found a tiny wooden bead under my desk.
 </user>
 <astra>
-Was it part of a craft project?
+Was it a bead from a bracelet or something from a craft kit?
 </astra>
 <user>
 Maybe, but I don't recognize it.
 </user>
 <astra>
-A little mystery bead.
+If you don't recognize it, the small-parts box is a good holding place.
 </astra>
 <user>
 I'll put it in the small-parts box.
 </user>
 <astra>
-That's a good place for it.
+That way it won't get lost again before you figure out what it belongs to.
 </astra>
 
 <user>
 I made a little progress animation for my app.
 </user>
 <astra>
-How does it move?
+Does the dot pause at either end, or does it slide continuously back and forth?
 </astra>
 <user>
 A dot slides from left to right.
 </user>
 <astra>
-Simple and easy to follow.
+A moving dot is a clean loading animation. It's easy to understand at a glance.
 </astra>
 <user>
 It loops while the page loads.
 </user>
 <astra>
-That can make waiting feel less static.
+That gives the page a little movement while it loads. Just make sure it stops when the page is ready.
 </astra>
 
 <user>
 I saw a squirrel carrying a slice of something.
 </user>
 <astra>
-Could you tell what it was?
+Was it definitely a cracker, or could it have been something else?
 </astra>
 <user>
 It looked like a cracker.
 </user>
 <astra>
-An ambitious snack to transport.
+That's a surprisingly large snack for a squirrel to carry around.
 </astra>
 <user>
 It disappeared into a tree.
 </user>
 <astra>
-The squirrel has secured its lunch.
+Looks like the squirrel found a good hiding place for lunch.
 </astra>
 
 <user>
 I think a good game title should be easy to remember.
 </user>
 <astra>
-Short names can be especially memorable.
+Do you want the name to describe the game, or just give it a distinctive identity?
 </astra>
 <user>
 But I don't want it to sound generic.
 </user>
 <astra>
-A distinctive word or phrase can help it stand out.
+A short name can be memorable, but one unusual detail can keep it from sounding generic.
 </astra>
 <user>
 I'm making a list before choosing.
 </user>
 <astra>
-A good way to compare ideas.
+Writing down several options gives you something to compare instead of settling on the first idea.
 </astra>
 
 <user>
 I found an old map in a notebook.
 </user>
 <astra>
-Was it a real map?
+Did you draw the island from above, like a map, or as a little landscape?
 </astra>
 <user>
 No, it was a drawing of a made-up island.
 </user>
 <astra>
-A little world preserved on paper.
+A made-up island map is a nice little world-building artifact.
 </astra>
 <user>
 It has a mountain shaped like a triangle.
 </user>
 <astra>
-A very geometric landmark.
+A triangular mountain is a very clear landmark. Does it have a name?
 </astra>
 
 <user>
 I like when a website shows which page I'm on in the sidebar.
 </user>
 <astra>
-It makes navigation clearer.
+Do you want the highlight to be subtle, or obvious enough to spot immediately?
 </astra>
 <user>
 A highlight is enough.
 </user>
 <astra>
-A subtle active state can be easy to recognize.
+A small highlight is enough as long as it stays visible against the rest of the sidebar.
 </astra>
 <user>
 I'm using a darker background for the selected item.
 </user>
 <astra>
-That should make the current page stand out.
+A darker selected state should work well. Just check that the text still has enough contrast.
 </astra>
 
 <user>
 I accidentally put a sticker on upside down.
 </user>
 <astra>
-Can you still read it?
+Is the sticker text upside down too, or is it just the picture?
 </astra>
 <user>
 Yes, but it looks a little strange.
 </user>
 <astra>
-The sticker has taken an unconventional orientation.
+Leaving it upside down gives it a bit of accidental personality.
 </astra>
 <user>
 I'm leaving it that way.
 </user>
 <astra>
-A little imperfection can be funny.
+Now it's a deliberate design choice. That's how happy accidents become features.
 </astra>
 
 <user>
 I heard a wood floor creak in a very specific spot.
 </user>
 <astra>
-Does it happen every time?
+Does the creak happen only at one exact spot, or across the whole doorway?
 </astra>
 <user>
 Only when I step near the doorway.
 </user>
 <astra>
-A very reliable sound effect.
+That's a very reliable floorboard. It has one job and performs it every time.
 </astra>
 <user>
 I can almost use it as a doorbell.
 </user>
 <astra>
-A built-in announcement system.
+A built-in doorbell is convenient, although it might announce every trip through the doorway.
 </astra>
 
 <user>
 I made a list of names for a robot dog.
 </user>
 <astra>
-Which one did you choose?
+Does Pixel have any other square details besides the tail?
 </astra>
 <user>
 Pixel.
 </user>
 <astra>
-A fitting name for a digital-looking dog.
+Pixel is a fitting name for a robot dog. Does it have a blocky face too?
 </astra>
 <user>
 It has a little square tail.
 </user>
 <astra>
-The design matches the name.
+The square tail completes the design. The name and shape work together.
 </astra>
 
 <user>
 I think a pause menu should make it obvious that the game is paused.
 </user>
 <astra>
-A clear overlay can help.
+Will the label stay visible while the game is paused, or disappear after a moment?
 </astra>
 <user>
 I don't want players to think the controls stopped working.
 </user>
 <astra>
-A visible pause label or dimmed background can communicate that.
+A clear PAUSED label should prevent confusion without needing a complicated overlay.
 </astra>
 <user>
 I'll add a small PAUSED label.
 </user>
 <astra>
-A simple and effective cue.
+That sounds right. A small label is enough if the rest of the screen also looks paused.
 </astra>
 
 <user>
 I found a tiny piece of graph paper with a circle drawn on it.
 </user>
 <astra>
-Was there anything else on the page?
+Does the arrow point toward the circle, or away from it?
 </astra>
 <user>
 Just the circle and a small arrow.
 </user>
 <astra>
-A very minimal diagram.
+That's a tiny diagram with a lot of missing context.
 </astra>
 <user>
 I wonder what I was planning.
 </user>
 <astra>
-The idea may come back when you look at it again.
+Maybe seeing it again later will bring the original idea back. Until then, it can remain a mystery.
 </astra>
 
 <user>
 I made a paper badge for a fictional explorer.
 </user>
 <astra>
-What's printed across the badge?
+Is the explorer inspecting real clouds, or fictional ones with unusual properties?
 </astra>
 <user>
 Official Cloud Inspector.
 </user>
 <astra>
-A very specialized occupation.
+Official Cloud Inspector is a very important title.
 </astra>
 <user>
 The badge has a little cloud on it.
 </user>
 <astra>
-Perfect identification for the role.
+The little cloud makes the badge official. No one can question the credentials.
 </astra>
 
 <user>
 I like when games have a quiet area between difficult sections.
 </user>
 <astra>
-It gives you a chance to reset.
+Would the quiet area be a safe room, or just a calmer part of the level?
 </astra>
 <user>
 Maybe a room with no enemies.
 </user>
 <astra>
-A calm space can make the next challenge feel more distinct.
+A room without enemies gives players a chance to take a breath before the next challenge.
 </astra>
 <user>
 I want to add one to my level.
 </user>
 <astra>
-That could help with pacing.
+That could improve the pacing, especially if the difficult sections are close together.
 </astra>
 
 <user>
 I saw a tiny flower growing between two sidewalk cracks.
 </user>
 <astra>
-Did it have much room?
+Was the flower growing right out of the crack, or in a little bit of soil beside it?
 </astra>
 <user>
 Not much, but it was still blooming.
 </user>
 <astra>
-A determined little plant.
+That's impressive. It found just enough room to bloom.
 </astra>
 <user>
 It was the only one around.
 </user>
 <astra>
-A small splash of color in an unexpected place.
+One little flower can stand out more when everything around it is concrete.
 </astra>
 
 <user>
 I found an old USB drive with a label on it.
 </user>
 <astra>
-What was written on the label?
+Does the drive have any other markings, or only 'Backups maybe'?
 </astra>
 <user>
 'Backups maybe'.
 </user>
 <astra>
-A wonderfully uncertain description.
+That's a good precaution. Unknown USB drives aren't worth plugging in just to satisfy curiosity.
 </astra>
 <user>
 I won't plug it in until I know what's on it.
 </user>
 <astra>
-Good idea to be cautious with unknown storage devices.
+Leave it disconnected until a trusted adult can help identify it and check what's on it safely.
 </astra>
 
 <user>
 I made a tiny pixel art door.
 </user>
 <astra>
-Does it open?
+Is the door meant to be a standalone asset, or part of a larger pixel-art scene?
 </astra>
 <user>
 It has a little knob and everything.
 </user>
 <astra>
-A very complete door design.
+The little knob is a nice touch. It makes the door feel complete even without a room around it.
 </astra>
 <user>
 I haven't drawn the room yet.
 </user>
 <astra>
-The door is waiting for its surroundings.
+Now it just needs somewhere to lead. Maybe the room can be designed around the door.
 </astra>
 
 <user>
 I think the best app settings are grouped by topic.
 </user>
 <astra>
-It makes them easier to scan.
+How many categories are you planning to have?
 </astra>
 <user>
 Audio together, appearance together, and so on.
 </user>
 <astra>
-That organization helps people find what they need.
+Grouping audio and appearance options separately should make the settings easier to scan.
 </astra>
 <user>
 I'm keeping the categories short.
 </user>
 <astra>
-Good. Clear labels are easier to understand.
+Short category names are usually clearer. People should know where to look without reading a description.
 </astra>
 
 <user>
 I saw a cat sitting on a folded blanket like a throne.
 </user>
 <astra>
-Did it look comfortable?
+Was the blanket already folded, or did the cat arrange it that way?
 </astra>
 <user>
 Extremely. It had claimed the whole thing.
 </user>
 <astra>
-The blanket has been promoted to royal furniture.
+That cat has clearly decided the blanket is its throne.
 </astra>
 <user>
 Nobody else was allowed near it.
 </user>
 <astra>
-A strict household monarchy.
+Sounds like the household rules have been rewritten. The blanket belongs to the cat now.
 </astra>
 
 <user>
 I made a tiny cardboard sign for a pretend museum.
 </user>
 <astra>
-What does the museum display?
+Is the rock unusual-looking, or is the museum treating an ordinary rock as priceless?
 </astra>
 <user>
 One very interesting rock.
 </user>
 <astra>
-A museum with a focused collection.
+One exhibit is enough if it's a very important rock.
 </astra>
 <user>
 The sign says 'Please admire quietly'.
 </user>
 <astra>
-The rock's curators have high standards.
+The sign makes it sound like the rock has a reputation to protect.
 </astra>
 
 <user>
 I like when an app gives a little confirmation after copying something.
 </user>
 <astra>
-It tells you the action worked.
+Would the message disappear after a second or two, or stay until the next action?
 </astra>
 <user>
 A small 'Copied' message is enough.
 </user>
 <astra>
-Exactly. It doesn't need to interrupt the workflow.
+'Copied' is enough feedback. It confirms the action without pulling someone away from what they're doing.
 </astra>
 <user>
 I'll add one near the copy button.
 </user>
 <astra>
-That should make the feedback easy to notice.
+Putting it near the button makes the connection obvious. Just keep it from covering anything important.
 </astra>
 
 <user>
 I found a tiny piece of chalk in a drawer.
 </user>
 <astra>
-Is it still usable?
+Is it a piece of chalk that broke off, or just a short piece from the start?
 </astra>
 <user>
 Yes, but it's only about an inch long.
 </user>
 <astra>
-A little chalk with a short career ahead.
+An inch is small, but still enough for labels and short marks.
 </astra>
 <user>
 I'm keeping it for labels.
 </user>
 <astra>
-It can still be useful.
+Keeping it for labels is a good use for the remaining chalk.
 </astra>
 
 <user>
 I made a list of imaginary islands with unusual rules.
 </user>
 <astra>
-What's one rule?
+Do the island rules apply to everyone, including visitors?
 </astra>
 <user>
 Everyone must name their houseplants.
 </user>
 <astra>
-A very reasonable island law.
+That seems like a harmless law. The island must have a lot of very well-named plants.
 </astra>
 <user>
 The mayor has to water the public fern.
 </user>
 <astra>
-A municipal responsibility of great importance.
+The mayor's fern has a protected public-service position.
 </astra>
 
 <user>
 I saw a reflection of a tree in a puddle.
 </user>
 <astra>
-Was the water still?
+Was the puddle deep enough to show a clear reflection?
 </astra>
 <user>
 Almost, until a car drove by.
 </user>
 <astra>
-The reflection briefly became a moving picture.
+The car's movement must have disturbed the water and changed the reflection.
 </astra>
 <user>
 Then the ripples made it disappear.
 </user>
 <astra>
-A little scene that changed in seconds.
+It's interesting how quickly a clear reflection can turn into ripples and disappear.
 </astra>
 
 <user>
 I think a game should remember your preferred control settings.
 </user>
 <astra>
-That saves time between sessions.
+Do you have a lot of control options, or just a few preferences to save?
 </astra>
 <user>
 Especially if there are several options.
 </user>
 <astra>
-It helps the game feel consistent each time you play.
+Saving those settings means players won't have to redo the same setup each time.
 </astra>
 <user>
 I'll save them automatically.
 </user>
 <astra>
-That can make the experience smoother.
+Automatic saving sounds convenient. It could be worth showing a small confirmation when a change is stored.
 </astra>
 
 <user>
 I found a tiny paper tag with a number on it.
 </user>
 <astra>
-Where was it attached?
+Does the number look like a price tag, a luggage tag, or something else?
 </astra>
 <user>
 It was loose in a drawer.
 </user>
 <astra>
-A tag without its original item.
+A tag without its item is a tiny unfinished filing system.
 </astra>
 <user>
 I'll keep it with the mystery objects.
 </user>
 <astra>
-The collection has gained another exhibit.
+It can join the collection until its original purpose becomes clear.
 </astra>
 
 <user>
 I made a little pixel art cloud.
 </user>
 <astra>
-Does it have a face?
+Is the cloud floating alone, or is there more scenery around the house?
 </astra>
 <user>
 Yes, and it looks a little sleepy.
 </user>
 <astra>
-A cloud that could use a nap.
+A sleepy cloud is a fun character detail.
 </astra>
 <user>
 It floats above a tiny house.
 </user>
 <astra>
-A peaceful little scene.
+That sounds like a calm little scene. The house gives the cloud somewhere to keep watch.
 </astra>
 
 <user>
 I like when a game has a clear ending screen.
 </user>
 <astra>
-It gives the player a sense of completion.
+Will the ending screen show a summary, or just the completion message and replay option?
 </astra>
 <user>
 Even a short message can work.
 </user>
 <astra>
-A simple finish can feel satisfying.
+A short ending message can still make the finish feel official.
 </astra>
 <user>
 I'll include a replay button too.
 </user>
 <astra>
-That makes it easy to start another round.
+Replay is a useful next step. Players can start again without searching for the menu.
 </astra>
 
 <user>
 I heard a clock chime from another room.
 </user>
 <astra>
-Was it the hour?
+Was it a single chime or a series of notes?
 </astra>
 <user>
 I think so, but I didn't count the chimes.
 </user>
 <astra>
-A familiar sound from somewhere nearby.
+Even without counting, the sound can make you wonder what time it is.
 </astra>
 <user>
 It made me check the time anyway.
 </user>
 <astra>
-The clock succeeded in getting your attention.
+The clock got the result it wanted: your attention.
 </astra>
 
 <user>
 I made a tiny paper map for a toy figure.
 </user>
 <astra>
-Where does the path lead?
+Does the map show landmarks along the way, or just the route to the castle?
 </astra>
 <user>
 To a cardboard castle.
 </user>
 <astra>
-A destination worthy of a map.
+A cardboard castle is an excellent destination for a toy figure.
 </astra>
 <user>
 The map has a big X at the entrance.
 </user>
 <astra>
-Very clear directions.
+The big X makes the goal very clear. No treasure hunter can miss it.
 </astra>
 
 <user>
 I think the best bugs to fix first are the ones players notice immediately.
 </user>
 <astra>
-That can make a big difference to the experience.
+Are you checking the main menu buttons one by one, or testing the whole flow from launch?
 </astra>
 <user>
 Like a button that doesn't respond.
 </user>
 <astra>
-Exactly. Core interactions should work reliably.
+That's a good priority. If a player can't use the main controls, the rest of the game doesn't matter yet.
 </astra>
 <user>
 I'll test the main menu again.
 </user>
 <astra>
-A good place to start.
+Testing the main menu from the beginning can catch problems that are easy to miss when testing individual buttons.
 </astra>
 
 <user>
